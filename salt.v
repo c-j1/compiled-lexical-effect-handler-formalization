@@ -1,4 +1,5 @@
 From Coq Require Import Lists.List.
+Module Salt.
 (* ------------ ------------ ------------
    ------------ ------------ ------------
    ----------- Abstract Syntax -----------
@@ -182,28 +183,28 @@ Definition fetch_heap (loc:heap_loc) (i:nat) (h:heap) :=
 (* --------------------------------------------
                       Interpreter
    -------------------------------------------- *)
-Inductive step : program -> (heap * reg_file) ->
+Inductive step (P:program) : (heap * reg_file) ->
 (heap * reg_file) -> Prop :=
-  | S_add : forall P (H:heap) (R:reg_file) (l:location)
+  | S_add : forall (H:heap) (R:reg_file) (l:location)
     (reg:register) (o:operand),
     R ip = l -> fetch_instr l P = Some (inl (add reg o)) ->
     step P (H,R)
       (H, ip !->r (next l); reg !->r (add_wd (R reg) (operand_value o R)) ; R)
-  | S_mkstk : forall P (H:heap) (R:reg_file) (l:location)
+  | S_mkstk : forall (H:heap) (R:reg_file) (l:location)
     (reg:register) (L:heap_loc),
     R ip = l -> fetch_instr l P = Some (inl (mkstk reg))
     -> H L = empty_heap_val ->
     step P (H,R)
       (L !->h (stack nil) ; H,
       ip !->r (next l); reg !->r L; R)
-  | S_salloc : forall P (H:heap) (R:reg_file) (l:location)
+  | S_salloc : forall (H:heap) (R:reg_file) (l:location)
               (n j:nat) (lsp:heap_loc) (lst:list word),
     R ip = l -> fetch_instr l P = Some (inl (salloc n))
     -> R sp =  (incr_loc j lsp) -> H lsp = stack lst -> length lst = j ->
     step P (H,R)
       (lsp !->h stack (n_ns n lst); H ,
       ip !->r (next l); sp !->r  (incr_loc (j+n) lsp); R)
-  | S_push : forall P (H:heap) (R:reg_file) (l:location)
+  | S_push : forall (H:heap) (R:reg_file) (l:location)
            (o:operand) (j:nat) (lsp:heap_loc) (lst:list word),
     R ip = l -> fetch_instr l P = Some (inl (push o))
     -> R sp =  (j+(loc_to_nat lsp)) -> H lsp = stack lst
@@ -211,7 +212,7 @@ Inductive step : program -> (heap * reg_file) ->
     step P (H,R)
       (lsp !->h stack (cons (operand_value o R) lst); H ,
       ip !->r (next l); sp !->r  (incr_loc (1+j) lsp); R)
-  | S_sfree : forall P (H:heap) (R:reg_file) (l:location)
+  | S_sfree : forall (H:heap) (R:reg_file) (l:location)
             (j n:nat) (reg:register) (lsp:heap_loc) (lst:list word),
     R ip = l -> fetch_instr l P = Some (inl (sfree n))
     -> R reg =  (j+(loc_to_nat lsp)) -> H lsp = stack lst
@@ -219,7 +220,7 @@ Inductive step : program -> (heap * reg_file) ->
     step P (H,R)
       (lsp !->h stack (cdr_nth n lst); H,
       ip !->r (next l); sp !->r  (incr_loc (j-n) lsp); R)
-  | S_pop : forall P (H:heap) (R:reg_file) (l:location)
+  | S_pop : forall (H:heap) (R:reg_file) (l:location)
           (j:nat) (reg:register) (lsp:heap_loc) (lst:list word),
     R ip = l -> fetch_instr l P = Some (inl (pop reg))
     -> R sp =  (j+(loc_to_nat lsp)) -> H lsp = stack lst
@@ -228,19 +229,19 @@ Inductive step : program -> (heap * reg_file) ->
       (lsp !->h stack (cdr_nth 1 lst); H,
       ip !->r (next l); reg !->r (List.hd ns lst);
       sp !->r  (incr_loc (j-1) lsp); R)
-  | S_malloc : forall P (H:heap) (R:reg_file) (l:location)
+  | S_malloc : forall (H:heap) (R:reg_file) (l:location)
     (i d:nat) (L:heap_loc),
     R ip = l -> fetch_instr l P = Some (inl (malloc d i))
     -> H L = empty_heap_val ->
     step P (H,R)
       (L !->h tuple (n_ns i nil) ; H,
       ip !->r (next l) ; d !->r L ;R)
-  | S_mov : forall P (H:heap) (R:reg_file) (l:location)
+  | S_mov : forall (H:heap) (R:reg_file) (l:location)
     (d:nat) (o:operand),
     R ip = l -> fetch_instr l P = Some (inl (mov d o)) ->
     step P (H,R)
       (H, ip !->r (next l); d !->r (operand_value o R); R)
-  | S_mov_sp : forall P (H:heap) (R:reg_file) (l:location)
+  | S_mov_sp : forall (H:heap) (R:reg_file) (l:location)
              (o:operand) (L:heap_loc) (lst:list word) (j k:nat),
     R ip = l -> fetch_instr l P = Some (inl (mov sp o))
     -> operand_value o R = (incr_loc j L) -> H L = stack lst
@@ -248,20 +249,20 @@ Inductive step : program -> (heap * reg_file) ->
     step P (H,R)
       (L !->h stack (cdr_nth (k-j) lst); H,
       ip !->r (next l); sp !->r (incr_loc j L) ; R)
-  | S_load : forall P (H:heap) (R:reg_file) (l:location)
+  | S_load : forall (H:heap) (R:reg_file) (l:location)
     (L:heap_loc) (d s j:nat),
     R ip = l -> fetch_instr l P = Some (inl (load d s j))
     -> R s = L ->
     step P (H,R)
       (H, ip !->r (next l); d !->r fetch_heap L j H ; R)
-  | S_store : forall P (H:heap) (R:reg_file) (l:location)
+  | S_store : forall (H:heap) (R:reg_file) (l:location)
     (L:heap_loc) (d j:nat) (o:operand) (lst:list word),
     R ip = l -> fetch_instr l P = Some (inl (store d o j))
     -> R d = L -> H L = tuple lst -> j < length lst ->
     step P (H,R)
       (L !->h tuple (update_nth j lst (operand_value o R)); H,
       ip !->r (next l); R)
-  | S_call : forall P (H:heap) (R:reg_file) (l l':location)
+  | S_call : forall (H:heap) (R:reg_file) (l l':location)
     (lsp:heap_loc) (j:nat) (o:operand) (lst:list word),
     R ip = l -> fetch_instr l P = Some (inl (call o))
     -> R sp = (incr_loc j lsp) -> H lsp = stack lst -> length lst = j
@@ -269,19 +270,19 @@ Inductive step : program -> (heap * reg_file) ->
     step P (H,R)
       (lsp !->h stack (cons (loc_w (next l)) lst) ; H,
       ip !->r l' ; R)
-  | S_jmp : forall P (H:heap) (R:reg_file) (l l':location)
+  | S_jmp : forall (H:heap) (R:reg_file) (l l':location)
     (o:operand),
     R ip = l -> fetch_instr l P = Some (inr (jmp o))
     -> operand_value o R = l' ->
     step P (H,R) (H, ip !->r l' ; R)
-  | S_ret : forall P (H:heap) (R:reg_file) (l l':location)
+  | S_ret : forall (H:heap) (R:reg_file) (l l':location)
     (lst:list word) (j:nat) (lsp:heap_loc),
     R ip = l -> fetch_instr l P = Some (inr ret)
     -> R sp = (incr_loc j lsp) -> H lsp = stack (cons (loc_w l') lst)
     -> length lst = j-1 ->
     step P (H,R)
       (lsp !->h stack lst ; H, ip !->r l' ; R)
-  | S_halt : forall P (H:heap) (R:reg_file) (l:location),
+  | S_halt : forall (H:heap) (R:reg_file) (l:location),
     R ip = l -> fetch_instr l P = Some (inl halt) ->
     step P (H,R) (H,R).
 Definition normal_form_salt P H R : Prop := step P (H,R) (H,R).
@@ -290,3 +291,4 @@ Definition multi_step_salt (p:program) (h h':heap) (r r':reg_file)
   (heap * reg_file) (step p) (h,r) (h',r').
 Definition interp p h h' r r' := 
   multi_step_salt p h h' r r' /\ normal_form_salt p h' r'.
+End Salt.
