@@ -1,0 +1,403 @@
+DIGEST c010c5f7eaaa7b816acd4deedd60e660
+FLSEH.LexiToSalt
+R24:33 Coq.Lists.List <> <> lib
+R82:95 Coq.Strings.String <> <> lib
+R123:126 LSEH.Lexi <> <> lib
+R154:157 LSEH.Salt <> <> lib
+mod 168:180 <> LexiSaltTrans
+def 248:251 LexiSaltTrans iota
+binder 253:253 <> i:1
+R266:266 LSEH.LexiToSalt <> i:1 var
+R277:277 Coq.Init.Datatypes <> S constr
+R284:287 Coq.Init.Datatypes <> cons constr
+R292:295 LSEH.LexiToSalt <> iota:2 def
+R289:289 LSEH.LexiToSalt <> i:1 var
+R304:304 Coq.Init.Datatypes <> O constr
+R309:311 Coq.Init.Datatypes <> nil constr
+def 329:333 LexiSaltTrans ind_h
+binder 335:337 <> lst:4
+binder 339:341 <> str:5
+binder 343:345 <> acc:6
+R358:360 LSEH.LexiToSalt <> lst:4 var
+R371:374 Coq.Init.Datatypes <> cons constr
+R389:397 LSEH.Lexi L var_eqb def
+R401:403 LSEH.LexiToSalt <> str:5 var
+R419:423 LSEH.LexiToSalt <> ind_h:7 def
+R435:435 Coq.Init.Datatypes <> S constr
+R437:439 LSEH.LexiToSalt <> acc:6 var
+R430:432 LSEH.LexiToSalt <> str:5 var
+R410:412 LSEH.LexiToSalt <> acc:6 var
+R446:448 Coq.Init.Datatypes <> nil constr
+def 473:475 LexiSaltTrans ind
+binder 477:479 <> lst:9
+binder 481:483 <> str:10
+R488:492 LSEH.LexiToSalt LexiSaltTrans ind_h def
+R494:496 LSEH.LexiToSalt <> lst:9 var
+R498:500 LSEH.LexiToSalt <> str:10 var
+def 514:520 LexiSaltTrans zip_map
+binder 523:523 <> A:11
+binder 525:525 <> B:12
+binder 527:527 <> C:13
+R543:544 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R542:542 LSEH.LexiToSalt <> A:11 var
+R546:547 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R545:545 LSEH.LexiToSalt <> B:12 var
+R548:548 LSEH.LexiToSalt <> C:13 var
+binder 537:540 <> func:14
+binder 551:554 <> lst1:15
+binder 556:559 <> lst2:16
+R577:580 LSEH.LexiToSalt <> lst2:16 var
+R572:575 LSEH.LexiToSalt <> lst1:15 var
+R591:594 Coq.Init.Datatypes <> cons constr
+R606:609 Coq.Init.Datatypes <> cons constr
+R639:643 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R668:668 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R627:627 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R638:638 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R628:631 LSEH.LexiToSalt <> func:14 var
+R644:650 LSEH.LexiToSalt <> zip_map:17 def
+R652:655 LSEH.LexiToSalt <> func:14 var
+R681:683 Coq.Init.Datatypes <> nil constr
+def 702:704 LexiSaltTrans zip
+binder 707:707 <> A:20
+R729:732 Coq.Init.Datatypes <> list ind
+R734:734 LSEH.LexiToSalt <> A:20 var
+binder 717:720 <> lst1:21
+binder 722:725 <> lst2:22
+R753:756 LSEH.LexiToSalt <> lst2:22 var
+R748:751 LSEH.LexiToSalt <> lst1:21 var
+R767:770 Coq.Init.Datatypes <> cons constr
+R781:784 Coq.Init.Datatypes <> cons constr
+R803:807 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R823:823 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R797:797 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R799:800 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R802:802 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R808:810 LSEH.LexiToSalt <> zip:23 def
+R829:831 Coq.Init.Datatypes <> nil constr
+R841:844 LSEH.LexiToSalt <> lst2:22 var
+R855:857 Coq.Init.Datatypes <> nil constr
+R862:865 LSEH.LexiToSalt <> lst1:21 var
+def 943:956 LexiSaltTrans concat_lst_seq
+binder 958:960 <> lst:26
+binder 962:962 <> s:27
+R975:977 LSEH.LexiToSalt <> lst:26 var
+R988:991 Coq.Init.Datatypes <> cons constr
+R1006:1008 LSEH.Salt <> seq constr
+R1016:1029 LSEH.LexiToSalt <> concat_lst_seq:28 def
+R1036:1036 LSEH.LexiToSalt <> s:27 var
+R1043:1045 Coq.Init.Datatypes <> nil constr
+R1050:1050 LSEH.LexiToSalt <> s:27 var
+def 1129:1144 LexiSaltTrans annotation_trans
+R1149:1160 LSEH.Lexi L annotation ind
+binder 1147:1147 <> a:30
+binder 1163:1163 <> r:31
+R1167:1171 LSEH.Salt <> instr ind
+R1184:1184 LSEH.LexiToSalt <> a:30 var
+R1195:1200 LSEH.Lexi L tail constr
+R1205:1207 LSEH.Salt <> mov constr
+R1209:1209 LSEH.LexiToSalt <> r:31 var
+R1217:1223 LSEH.Lexi L abort constr
+R1228:1230 LSEH.Salt <> mov constr
+R1232:1232 LSEH.LexiToSalt <> r:31 var
+R1240:1248 LSEH.Lexi L general constr
+R1253:1255 LSEH.Salt <> mov constr
+R1257:1257 LSEH.LexiToSalt <> r:31 var
+def 1280:1288 LexiSaltTrans val_trans
+R1296:1299 Coq.Init.Datatypes <> list ind
+R1301:1310 LSEH.Lexi L variable ind
+binder 1291:1293 <> env:33
+binder 1313:1313 <> r:34
+binder 1315:1315 <> v:35
+R1319:1323 LSEH.Salt <> instr ind
+R1336:1336 LSEH.LexiToSalt <> v:35 var
+R1347:1355 LSEH.Lexi L var_val constr
+R1364:1367 LSEH.Salt <> load constr
+R1369:1369 LSEH.LexiToSalt <> r:34 var
+R1371:1372 LSEH.Salt <> sp constr
+R1375:1377 LSEH.LexiToSalt LexiSaltTrans ind def
+R1379:1381 LSEH.LexiToSalt <> env:33 var
+R1392:1402 LSEH.Lexi L const_val constr
+R1405:1415 LSEH.Lexi L int_const constr
+R1423:1425 LSEH.Salt <> mov constr
+R1427:1427 LSEH.LexiToSalt <> r:34 var
+R1435:1445 LSEH.Lexi L const_val constr
+R1448:1460 LSEH.Lexi L c_lab_const constr
+R1463:1469 LSEH.Lexi L c_lab constr
+R1480:1482 LSEH.Salt <> mov constr
+R1484:1484 LSEH.LexiToSalt <> r:34 var
+R1487:1491 LSEH.Salt <> c_loc constr
+R1507:1510 LSEH.Salt <> halt constr
+def 1531:1540 LexiSaltTrans expr_trans
+binder 1542:1544 <> env:37
+binder 1546:1548 <> exp:38
+R1552:1555 Coq.Init.Datatypes <> list ind
+R1557:1561 LSEH.Salt <> instr ind
+R1574:1576 LSEH.LexiToSalt <> exp:38 var
+R1587:1593 LSEH.Lexi L val_e constr
+R1601:1601 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1619:1619 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1602:1610 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R1612:1614 LSEH.LexiToSalt <> env:37 var
+R1625:1629 LSEH.Lexi L add constr
+R1644:1644 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R1663:1664 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R1683:1684 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R1700:1700 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R1645:1653 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R1655:1657 LSEH.LexiToSalt <> env:37 var
+R1665:1673 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R1675:1677 LSEH.LexiToSalt <> env:37 var
+R1685:1687 LSEH.Salt <> add constr
+R1692:1696 LSEH.Salt <> reg_o constr
+R1706:1710 LSEH.Lexi L app constr
+R1746:1753 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R1727:1727 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1745:1745 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1728:1736 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R1738:1740 LSEH.LexiToSalt <> env:37 var
+R1754:1754 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R1839:1847 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R1755:1757 Coq.Lists.List <> rev def
+R1760:1766 LSEH.LexiToSalt LexiSaltTrans zip_map def
+R1791:1793 Coq.Lists.List <> map def
+R1804:1807 LSEH.LexiToSalt LexiSaltTrans iota def
+R1810:1820 Coq.Lists.List <> length syndef
+R1795:1801 LSEH.Salt <> nat_reg constr
+R1769:1777 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R1779:1781 LSEH.LexiToSalt <> env:37 var
+R1848:1848 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1855:1855 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1849:1852 LSEH.Salt <> call constr
+R1862:1869 LSEH.Lexi L newref constr
+R1872:1878 LSEH.Lexi L tuple constr
+R1921:1928 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R1893:1893 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1920:1920 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R1894:1899 LSEH.Salt <> malloc constr
+R1904:1914 Coq.Lists.List <> length syndef
+R1929:1931 LSEH.LexiToSalt LexiSaltTrans zip def
+R1968:1970 Coq.Lists.List <> map def
+R2016:2019 LSEH.LexiToSalt LexiSaltTrans iota def
+R2022:2032 Coq.Lists.List <> length syndef
+binder 1977:1977 <> x:40
+R1982:1986 LSEH.Salt <> store constr
+R1992:1992 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R1991:1991 LSEH.LexiToSalt <> x:40 var
+R1997:2001 LSEH.Salt <> reg_o constr
+R1934:1936 Coq.Lists.List <> map def
+R1939:1947 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R1949:1951 LSEH.LexiToSalt <> env:37 var
+R2046:2049 LSEH.Lexi L pi constr
+R2058:2058 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2076:2077 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2088:2088 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2059:2067 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2069:2071 LSEH.LexiToSalt <> env:37 var
+R2078:2081 LSEH.Salt <> load constr
+R2094:2099 LSEH.Lexi L asgn constr
+R2116:2116 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2135:2136 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2155:2156 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2176:2176 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2117:2125 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2127:2129 LSEH.LexiToSalt <> env:37 var
+R2137:2145 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2147:2149 LSEH.LexiToSalt <> env:37 var
+R2157:2161 LSEH.Salt <> store constr
+R2168:2172 LSEH.Salt <> reg_o constr
+R2182:2189 LSEH.Lexi L handle constr
+R2216:2222 LSEH.Lexi L c_lab constr
+R2192:2198 LSEH.Lexi L c_lab constr
+R2248:2248 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2269:2270 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2292:2299 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2321:2322 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2346:2353 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2471:2471 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2249:2264 LSEH.LexiToSalt LexiSaltTrans annotation_trans def
+R2271:2279 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2281:2283 LSEH.LexiToSalt <> env:37 var
+R2300:2302 LSEH.Salt <> mov constr
+R2307:2311 LSEH.Salt <> c_loc constr
+R2323:2325 LSEH.Salt <> mov constr
+R2330:2334 LSEH.Salt <> c_loc constr
+R2354:2357 LSEH.Salt <> call constr
+R2382:2390 LSEH.Lexi L general constr
+R2396:2400 LSEH.Salt <> c_loc constr
+R2433:2437 LSEH.Salt <> c_loc constr
+R2477:2483 LSEH.Lexi L raise constr
+R2485:2493 LSEH.Lexi L general constr
+R2504:2504 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2523:2524 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2543:2548 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2576:2576 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2505:2513 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2515:2517 LSEH.LexiToSalt <> env:37 var
+R2525:2533 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2535:2537 LSEH.LexiToSalt <> env:37 var
+R2549:2552 LSEH.Salt <> call constr
+R2555:2559 LSEH.Salt <> c_loc constr
+R2582:2588 LSEH.Lexi L raise constr
+R2590:2595 LSEH.Lexi L tail constr
+R2606:2606 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2625:2627 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2646:2651 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2662:2663 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2674:2676 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2691:2691 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2607:2615 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2617:2619 LSEH.LexiToSalt <> env:37 var
+R2628:2636 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2638:2640 LSEH.LexiToSalt <> env:37 var
+R2652:2655 LSEH.Salt <> load constr
+R2664:2667 LSEH.Salt <> load constr
+R2677:2680 LSEH.Salt <> call constr
+R2683:2687 LSEH.Salt <> reg_o constr
+R2697:2704 LSEH.Lexi L resume constr
+R2715:2715 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2734:2736 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2755:2760 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2789:2789 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R2716:2724 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2726:2728 LSEH.LexiToSalt <> env:37 var
+R2737:2745 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2747:2749 LSEH.LexiToSalt <> env:37 var
+R2761:2764 LSEH.Salt <> call constr
+R2767:2771 LSEH.Salt <> c_loc constr
+R2848:2849 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 2867:2878 LexiSaltTrans term_trans_h
+binder 2880:2881 <> tm:42
+R2888:2891 Coq.Init.Datatypes <> list ind
+R2893:2902 LSEH.Lexi L variable ind
+binder 2884:2886 <> env:43
+R2907:2910 Coq.Init.Datatypes <> list ind
+R2912:2916 LSEH.Salt <> instr ind
+R2928:2929 LSEH.LexiToSalt <> tm:42 var
+R2940:2949 LSEH.Lexi L val_term constr
+R2956:2956 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2974:2974 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2957:2965 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R2967:2969 LSEH.LexiToSalt <> env:43 var
+R2980:2985 LSEH.Lexi L bind constr
+R2992:2998 LSEH.Lexi L raise constr
+R3000:3006 LSEH.Lexi L abort constr
+R3024:3024 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3043:3045 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3064:3069 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3080:3081 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3098:3099 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3110:3111 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3119:3119 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3025:3033 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R3035:3037 LSEH.LexiToSalt <> env:43 var
+R3046:3054 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R3056:3058 LSEH.LexiToSalt <> env:43 var
+R3070:3073 LSEH.Salt <> load constr
+R3082:3084 LSEH.Salt <> mov constr
+R3086:3087 LSEH.Salt <> sp constr
+R3090:3094 LSEH.Salt <> reg_o constr
+R3100:3103 LSEH.Salt <> load constr
+R3112:3116 LSEH.Salt <> sfree constr
+R3125:3130 LSEH.Lexi L bind constr
+R3137:3142 LSEH.Lexi L exit constr
+R3156:3156 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3174:3175 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3180:3180 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3157:3165 LSEH.LexiToSalt LexiSaltTrans val_trans def
+R3167:3169 LSEH.LexiToSalt <> env:43 var
+R3176:3179 LSEH.Salt <> halt constr
+R3186:3191 LSEH.Lexi L bind constr
+R3228:3235 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3210:3219 LSEH.LexiToSalt LexiSaltTrans expr_trans def
+R3221:3223 LSEH.LexiToSalt <> env:43 var
+R3354:3361 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3236:3236 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3353:3353 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3237:3240 LSEH.Salt <> push constr
+R3243:3247 LSEH.Salt <> reg_o constr
+R3284:3288 LSEH.Lexi L add constr
+R3311:3316 LSEH.Lexi L asgn constr
+R3362:3373 LSEH.LexiToSalt <> term_trans_h:44 def
+R3378:3381 Coq.Init.Datatypes <> cons constr
+R3387:3389 LSEH.LexiToSalt <> env:43 var
+R3420:3425 LSEH.Lexi L halt constr
+R3432:3433 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 3453:3462 LexiSaltTrans term_trans
+binder 3464:3465 <> tm:47
+binder 3467:3469 <> env:48
+R3473:3473 Coq.Init.Datatypes <> ::type_scope:x_'+'_x not
+R3484:3487 Coq.Init.Datatypes <> ::type_scope:x_'+'_x not
+R3474:3477 Coq.Init.Datatypes <> list ind
+R3479:3483 LSEH.Salt <> instr ind
+R3488:3496 LSEH.Salt <> instr_seq ind
+R3509:3510 LSEH.LexiToSalt <> tm:47 var
+R3521:3526 LSEH.Lexi L bind constr
+R3533:3539 LSEH.Lexi L raise constr
+R3541:3547 LSEH.Lexi L abort constr
+R3565:3567 Coq.Init.Datatypes <> inr constr
+R3570:3583 LSEH.LexiToSalt LexiSaltTrans concat_lst_seq def
+R3586:3597 LSEH.LexiToSalt LexiSaltTrans term_trans_h def
+R3599:3600 LSEH.LexiToSalt <> tm:47 var
+R3602:3604 LSEH.LexiToSalt <> env:48 var
+R3608:3610 LSEH.Salt <> jmp constr
+R3613:3617 LSEH.Salt <> reg_o constr
+R3635:3637 Coq.Init.Datatypes <> inl constr
+R3640:3651 LSEH.LexiToSalt LexiSaltTrans term_trans_h def
+R3657:3659 LSEH.LexiToSalt <> env:48 var
+def 3678:3684 LexiSaltTrans num_let
+binder 3686:3687 <> tm:50
+R3700:3701 LSEH.LexiToSalt <> tm:50 var
+R3712:3721 LSEH.Lexi L val_term constr
+R3734:3739 LSEH.Lexi L bind constr
+R3752:3752 Coq.Init.Datatypes <> S constr
+R3755:3761 LSEH.LexiToSalt <> num_let:51 def
+R3772:3777 LSEH.Lexi L halt constr
+def 3804:3813 LexiSaltTrans func_trans
+R3818:3827 LSEH.Lexi L function ind
+binder 3816:3816 <> f:53
+R3832:3840 LSEH.Salt <> instr_seq ind
+R3853:3853 LSEH.LexiToSalt <> f:53 var
+R3862:3867 LSEH.Lexi L func constr
+R3889:3899 Coq.Lists.List <> length syndef
+R3930:3939 LSEH.LexiToSalt LexiSaltTrans term_trans def
+R3961:3963 Coq.Init.Datatypes <> inl constr
+R3980:3993 LSEH.LexiToSalt LexiSaltTrans concat_lst_seq def
+R4063:4076 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R4006:4008 Coq.Lists.List <> map def
+R4045:4052 Coq.Lists.List <> rev def
+R4055:4058 LSEH.LexiToSalt LexiSaltTrans iota def
+R4018:4020 Coq.Init.Datatypes <> nat ind
+binder 4016:4016 <> x:55
+R4027:4030 LSEH.Salt <> push constr
+R4033:4037 LSEH.Salt <> reg_o constr
+R4039:4039 LSEH.LexiToSalt <> x:55 var
+R4079:4082 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R4083:4083 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R4107:4107 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R4084:4088 LSEH.Salt <> sfree constr
+R4092:4095 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R4105:4105 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R4096:4102 LSEH.LexiToSalt LexiSaltTrans num_let def
+R4120:4122 LSEH.Salt <> ret constr
+R4132:4134 Coq.Init.Datatypes <> inr constr
+R4150:4163 LSEH.LexiToSalt LexiSaltTrans concat_lst_seq def
+R4176:4178 Coq.Lists.List <> map def
+R4215:4222 Coq.Lists.List <> rev def
+R4225:4228 LSEH.LexiToSalt LexiSaltTrans iota def
+R4188:4190 Coq.Init.Datatypes <> nat ind
+binder 4186:4186 <> x:56
+R4197:4200 LSEH.Salt <> push constr
+R4203:4207 LSEH.Salt <> reg_o constr
+R4209:4209 LSEH.LexiToSalt <> x:56 var
+def 4284:4293 LexiSaltTrans code_trans
+R4298:4303 LSEH.Lexi L code def
+binder 4296:4296 <> c:57
+R4308:4314 LSEH.Salt <> program def
+R4328:4335 LSEH.Salt <> code_loc def
+binder 4326:4326 <> x:58
+R4341:4350 LSEH.LexiToSalt LexiSaltTrans func_trans def
+R4353:4353 LSEH.LexiToSalt <> c:57 var
+R4356:4362 LSEH.Lexi L c_lab constr
+R4364:4364 LSEH.LexiToSalt <> x:58 var
+R4373:4385 LSEH.LexiToSalt LexiSaltTrans <> mod
