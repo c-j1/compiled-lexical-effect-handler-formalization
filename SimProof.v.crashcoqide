@@ -7,7 +7,7 @@ From LSEH Require Import RelConfig.
 Module L := Lexi. Module S := Salt. Module LS := LexiToSalt.
 Module R := RelConfig.
 Delimit Scope Lexi_scope with L_scope.
-
+ 
 
 (* ----------------------------------------------------------
                           Simulation 
@@ -194,14 +194,11 @@ Proof with automation.
         (tm:=t1'). destruct (RelConfig.LS.term_trans t1')as []eqn:?...
         rewrite <- Heql. rewrite <- PeanoNat.Nat.add_succ_comm.
         apply rel_tm with (E:=L.nat_const (i1 + i2) :: E1) (t:=t1').
-      * apply rel_context with (s:=s) (s_out:=s_out)
-        (L_0:=L_0)... apply rel_hdl_general. inversion H7...
-        -- 
-(*other things
-0. changes in lexi heaps e.g. assignment
-1. handler related stuff
-2. relating data heap
-3. relating hdl-led-ctx*)
+        
+      *
+      inversion H10... inversion H12... inversion H7...
+
+
 
 only change:
 (x !->e L.nat_const (i1 + i2); E1)%L_scope =
