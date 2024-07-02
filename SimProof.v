@@ -60,34 +60,6 @@ Definition stk_app f stk :=
   | stack lst => stack (f lst)
   | no_stacks => no_stacks
   end.
-Theorem reg_file_front_update : forall (R:reg_file) a v1 v2
-  oi os o1 o2 o3 o4 o5 o6,
-  (a = ip \/ a = sp \/ a = nat_reg 1 \/ a = nat_reg 2 \/
-   a = nat_reg 3 \/ a = nat_reg 4 \/ a = nat_reg 5
-   \/ a = nat_reg 6) ->
-  R = [(ip,oi);(sp,os);(nat_reg 1,o1);(nat_reg 2,o2);(nat_reg 3,o3);
-      (nat_reg 4,o4);(nat_reg 5,o5);(nat_reg 6,o6)] ->
-  (a !->r v1; a !->r v2; R) = (a !->r v1; R).
-Proof. intros. repeat (destruct H;automation). Qed.
-Theorem reg_file_swap : forall R a b v1 v2
-  oi os o1 o2 o3 o4 o5 o6,
-  (a = ip \/ a = sp \/ a = nat_reg 1 \/ a = nat_reg 2 \/
-   a = nat_reg 3 \/ a = nat_reg 4 \/ a = nat_reg 5
-   \/ a = nat_reg 6) ->
-  (b = ip \/ b = sp \/ b = nat_reg 1 \/ b = nat_reg 2 \/
-   b = nat_reg 3 \/ b = nat_reg 4 \/ b = nat_reg 5
-   \/ b = nat_reg 6) ->
-  reg_eqb a b = false ->
-  R = [(ip,oi);(sp,os);(nat_reg 1,o1);(nat_reg 2,o2);(nat_reg 3,o3);
-      (nat_reg 4,o4);(nat_reg 5,o5);(nat_reg 6,o6)] ->
-  (a !->r v1; b !->r v2; R) = (b !->r v2; a !->r v1; R).
-Proof with automation.
-  intros. subst.
-  repeat (destruct H as [ | ]);
-  repeat (destruct H0 as [ | ]); automation.
-Qed.
-Lemma h_eqb_refl : forall (a:heap_loc), a = a -> h_eqb a a = true.
-Proof. intros. unfold h_eqb. destruct a. apply eqb_refl. Qed.
 Lemma term_trans_not_nil : forall tm,
   term_trans tm <> [].
 Proof with automation.

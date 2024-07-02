@@ -2,7 +2,7 @@ From Coq Require Import Lists.List. Import ListNotations.
 From Coq Require Import Strings.String.
 From LSEH Require Import Lexi.
 From LSEH Require Import Salt.
-Module L := Lexi. Module S := Salt.
+Module L := Lexi. Module S := Salt. 
 (* -------------- Helper Functions ----------------- *)
 Fixpoint iota i :=
   match i with

@@ -52,7 +52,7 @@ Definition heap_val := (stack_heap_val + tuple_heap_val)%type.
 Inductive instr_seq : Type :=
   | ins_seq : list instr -> instr_seq.
 Definition reg_file : Type := list (register * word).
-Definition stack_heap : Type := heap_loc -> stack_heap_val.
+Definition stack_heap : Type := list (heap_loc * stack_heap_val).
 Definition tuple_heap : Type := heap_loc -> tuple_heap_val.
 Definition heap : Type := (stack_heap * tuple_heap).
 Definition program : Type := code_loc -> instr_seq.
@@ -109,12 +109,16 @@ Definition h_eqb a b :=
   match a,b with
   | hloc_str a', hloc_str b' => eqb a' b'
   end.
-Definition sh_empty : stack_heap := fun _ => no_stacks.
+Definition sh_empty : stack_heap := nil.
 Definition th_empty : tuple_heap := fun _ => tuple nil.
 Definition h_empty : heap := (sh_empty, th_empty).
-Definition sh_update (sh:stack_heap) (x:heap_loc)
+Fixpoint sh_update (sh:stack_heap) (x:heap_loc)
   (v:stack_heap_val) :=
-  (fun x' => if h_eqb x x' then v else sh x').
+  match sh with
+  | nil => (x,v) :: nil
+  | (hl,shv) :: sh' => if h_eqb hl x then (hl,v) :: sh'
+                       else (hl,shv) :: (sh_update sh' x v)
+  end.
 Definition th_update (th:tuple_heap) (x:heap_loc)
   (v:tuple_heap_val) :=
   (fun x' => if h_eqb x x' then v else th x').
@@ -209,17 +213,23 @@ Definition operand_value o (r_file:reg_file) :=
 (* --------------------------------------------
           Section for H hat of paper
    -------------------------------------------- *)
+Fixpoint stk_heap_app (sh: stack_heap) (loc: heap_loc) :=
+  match sh with
+  | (x,v) :: sh' => if h_eqb x loc then v else stk_heap_app sh' loc
+  | [] => no_stacks
+  end.
+
 (* returns word at given heap memory address *)
 Definition heap_app (h: heap) (loc:heap_loc) :=
   match h with (s_h,t_h) =>
-    match s_h loc with
+    match stk_heap_app s_h loc with
     | stack lst => inl (stack lst)
     | no_stacks => inr (t_h loc)
     end
   end.
 Definition fetch_heap (loc:heap_loc) (i:nat) (h:heap) :=
   match h with (s_h,t_h) =>
-    match s_h loc with
+    match stk_heap_app s_h loc with
     | stack lst => nth ((List.length lst)-i) lst ns
     | no_stacks => 
       match t_h loc with tuple lst => nth i lst ns end
@@ -422,3 +432,37 @@ Definition multi_step_salt (p:program) (h h':heap) (r r':reg_file)
   (heap * reg_file) (step p) (h,r) (h',r').
 Definition interp p h h' r r' := 
   multi_step_salt p h h' r r' /\ normal_form_salt p h' r'.
+
+
+Ltac automation :=
+  subst;auto;repeat constructor;try reflexivity;
+  try discriminate;subst;try congruence.
+
+Theorem reg_file_front_update : forall (R:reg_file) a v1 v2
+  oi os o1 o2 o3 o4 o5 o6,
+  (a = ip \/ a = sp \/ a = nat_reg 1 \/ a = nat_reg 2 \/
+   a = nat_reg 3 \/ a = nat_reg 4 \/ a = nat_reg 5
+   \/ a = nat_reg 6) ->
+  R = [(ip,oi);(sp,os);(nat_reg 1,o1);(nat_reg 2,o2);(nat_reg 3,o3);
+      (nat_reg 4,o4);(nat_reg 5,o5);(nat_reg 6,o6)] ->
+  (a !->r v1; a !->r v2; R) = (a !->r v1; R).
+Proof. intros. repeat (destruct H;automation). Qed.
+Theorem reg_file_swap : forall R a b v1 v2
+  oi os o1 o2 o3 o4 o5 o6,
+  (a = ip \/ a = sp \/ a = nat_reg 1 \/ a = nat_reg 2 \/
+   a = nat_reg 3 \/ a = nat_reg 4 \/ a = nat_reg 5
+   \/ a = nat_reg 6) ->
+  (b = ip \/ b = sp \/ b = nat_reg 1 \/ b = nat_reg 2 \/
+   b = nat_reg 3 \/ b = nat_reg 4 \/ b = nat_reg 5
+   \/ b = nat_reg 6) ->
+  reg_eqb a b = false ->
+  R = [(ip,oi);(sp,os);(nat_reg 1,o1);(nat_reg 2,o2);(nat_reg 3,o3);
+      (nat_reg 4,o4);(nat_reg 5,o5);(nat_reg 6,o6)] ->
+  (a !->r v1; b !->r v2; R) = (b !->r v2; a !->r v1; R).
+Proof with automation.
+  intros. subst.
+  repeat (destruct H as [ | ]);
+  repeat (destruct H0 as [ | ]); automation.
+Qed.
+Lemma h_eqb_refl : forall (a:heap_loc), a = a -> h_eqb a a = true.
+Proof. intros. unfold h_eqb. destruct a. apply eqb_refl. Qed.
