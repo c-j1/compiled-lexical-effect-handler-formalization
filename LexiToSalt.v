@@ -30,13 +30,24 @@ Definition annotation_trans (a:L.annotation) r : instr :=
   | L.abort => mov r 2
   | L.general => mov r 0
   end.
-
-Definition val_trans r v : instr :=
+Definition static_const_trans (c:L.static_const)
+  : S.word :=
+  match c with
+  | nat_const n => n
+  | c_lab_const (c_lab c) => cloc c 0
+  end.
+Definition val_direct_trans (v:L.value)
+  (stk_lst:list word) : S.word :=
   match v with
-  | L.ind_val (dind n) => load r sp n
-  | L.const_val (L.nat_const i) => mov r i
-  | L.const_val (L.c_lab_const (L.c_lab lab)) => mov r (cloc lab 0)
-  | _ => halt
+  | L.var_val (dbjind_var n) =>
+    nth n stk_lst ns
+  | L.var_val (L.free_var _) => ns
+  | L.const_val c => static_const_trans c
+  end.
+Definition val_trans r (v:value) : instr :=
+  match v with
+  | L.var_val (dbjind_var n) => load r sp false n
+  | _ => mov r (val_direct_trans v [])
   end.
 
 Definition expr_trans exp : list instr :=
@@ -55,7 +66,7 @@ Definition expr_trans exp : list instr :=
     zip (map (val_trans 1) h_v)
       (map (fun x => store 2 (x-1) (reg_o 1))
         (iota (List.length h_v))))
-  | L.pi i v => [val_trans 1 v; load 1 1 i]
+  | L.pi i v => [val_trans 1 v; load 1 1 true i]
   | L.asgn v1 i v2 =>
     [val_trans 1 v2; val_trans 2 v1; store 2 i (reg_o 1)]
   | L.handle (L.c_lab clab_body)
@@ -68,7 +79,7 @@ Definition expr_trans exp : list instr :=
   | L.raise L.general v1 v2 => [val_trans 2 v2; val_trans 1 v1;
     call (cloc "raise"%string 0)]
   | L.raise L.tail v1 v2 => [val_trans 2 v2 ; val_trans 1 v1;
-    load 3 1 3; load 1 1 2 ; call (reg_o 3)]
+    load 3 1 false 3; load 1 1 false 2 ; call (reg_o 3)]
   | L.resume v1 v2 => [val_trans 2 v2 ; val_trans 1 v1;
     call (cloc "resume"%string 0)]
   (* Impossible case for newref continuation *)
@@ -79,7 +90,7 @@ Fixpoint term_trans tm : list instr:=
   | L.val_term v => [val_trans 1 v]
   | L.bind (L.raise L.abort v1 v2) t =>
     [val_trans 2 v2 ; val_trans 1 v1;
-    load 3 1 3; mov sp (reg_o 1); load 1 1 2;
+    load 3 1 false 3; mov sp (reg_o 1); load 1 1 false 2;
     sfree 4; jmp (reg_o 3)]
   | L.bind (L.exit v) t =>
     [val_trans 1 v; halt]
@@ -114,6 +125,7 @@ Definition func_trans (f:L.function) : instr_seq :=
 Definition code_trans (c:L.code) : S.program :=
   fun (x:code_loc) =>
   match x with cloc_str str => func_trans (c str) end.
+
   (* match c with
   | cons (L.c_lab x,f) c' => 
     cons (cloc_str_str x, func_trans f) (code_trans c')

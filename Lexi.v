@@ -9,20 +9,24 @@ Open Scope Lexi_scope.
    ----------- Abstract Syntax -----------
    ------------ ------------ ------------
    ------------ ------------ ------------ *)
-Inductive dbj_ind := dind : nat -> dbj_ind.
+Inductive variable := 
+  | dbjind_var : nat -> variable
+  | free_var : string -> variable.
 Inductive code_label := c_lab : string -> code_label.
 Inductive data_label : Type := 
   | obj_lab : string -> data_label
   | hand_lab : string -> data_label.
-Inductive const : Type :=
-  | nat_const : nat -> const
-  | c_lab_const : code_label -> const
-  | d_lab_const : data_label -> const
+Inductive static_const : Type :=
+  | nat_const : nat -> static_const
+  | c_lab_const : code_label -> static_const.
+Inductive runtime_const : Type :=
+  | run_const : static_const -> runtime_const
+  | d_lab_const : data_label -> runtime_const
   | ns.
-Inductive value : Type :=
-  | const_val : const -> value
-  | ind_val : dbj_ind -> value.
-Definition local_env : Type := list const.
+Inductive value :=
+  | const_val : static_const -> value
+  | var_val : variable -> value.
+Definition local_env : Type := list runtime_const.
 Inductive annotation : Type :=
   | tail
   | abort
@@ -49,7 +53,7 @@ with frame : Type :=
   | h_f : h_frame -> frame
   | a_f : a_frame -> frame
 with heap_const : Type :=
-  | tuple : list const -> heap_const
+  | tuple : list runtime_const -> heap_const
   | cont : list frame -> heap_const.
 Definition eval_context := list frame.
 Definition heap := data_label -> heap_const.
@@ -59,15 +63,18 @@ Definition code : Type := code_label -> function.
 Inductive program : Type :=
   letrec : code -> term -> program.
 (* Coercions *)
-Coercion dind : nat >-> dbj_ind.
+Coercion dbjind_var : nat >-> variable.
+Coercion free_var : string >-> variable.
 Coercion c_lab : string >-> code_label.
-Coercion nat_const : nat >-> const.
-Coercion c_lab_const : code_label >-> const.
-Coercion d_lab_const : data_label >-> const.
-Coercion const_val : const >-> value.
+Coercion nat_const : nat >-> static_const.
+Coercion c_lab_const : code_label >-> static_const.
+Coercion run_const : static_const >-> runtime_const.
+Coercion d_lab_const : data_label >-> runtime_const.
+Coercion const_val : static_const >-> value.
 Coercion val_e : value >-> expr.
 Coercion h_f : h_frame >-> frame.
 Coercion a_f : a_frame >-> frame.
+
 (* ------------ ------------ ------------
    ------------ ------------ ------------
    ------------- Interpreter -------------
@@ -96,8 +103,12 @@ Notation "x '!->h' v ';' m" := (h_update m x v)
 Definition var_eqb (a b : variable) := 
   match a,b with str_var a', str_var b' => Nat.eqb a' b' end.
 *)
-Definition env_fetch (env: local_env) (ind:dbj_ind) : const :=
-  match ind with dind n => nth n env ns end.
+Definition env_fetch (env: local_env) (var:variable)
+  : runtime_const :=
+  match var with
+  | dbjind_var n => nth n env ns
+  | free_var str => ns
+  end.
 (*  match env with
   | cons (x,v) lst' => if var_eqb x var then v else env_fetch lst' var
   | nil => ns
@@ -147,11 +158,13 @@ Fixpoint update_nth {A: Type} (n:nat) (lst:list A) (v:A) :=
   | _, nil => nil
   | S n', cons x lst' => update_nth n' lst' v
   end.
+
 (* E hat of paper *)
-Definition var_deref (E:local_env) (val:value) : const :=
+Definition var_deref (E:local_env) (val:value)
+  : runtime_const :=
   match val with
-  | ind_val ind => env_fetch E ind
-  | const_val c => c
+  | var_val ind => env_fetch E ind
+  | const_val c => run_const c
   end.
 
 (* --------------------------------------------
@@ -167,7 +180,7 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
   | L_arith : forall H K E t (v1 v2:value) (i1 i2:nat),
     v1 = i1 -> v2 = i2 ->
     step C (H,K,E, bind (add v1 v2) t)
-      (H,K,(nat_const (i1+i2)) :: E,t)
+      (H,K,(run_const (i1+i2)) :: E,t)
   | L_value : forall H K E t (v:value),
     step C (H,K,E, bind v t) (H,K,(var_deref E v) :: E,t)
   | L_new : forall H K E t (lst:list value) (L:data_label),
@@ -175,12 +188,12 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
     step C (H,K,E, bind (newref lst) t)
       (L !->h tuple (map (var_deref E) lst); H, K, (d_lab_const L) :: E, t)
   | L_get : forall H K E t (i:nat) (v:value)
-    (L:data_label) (lst:list const),
+    (L:data_label) (lst:list runtime_const),
     var_deref E v = L -> H L = tuple lst ->
     step C (H,K,E, bind (pi i v) t)
       (H,K,(nth (1+i) lst ns) :: E,t)
   | L_set : forall H K E t (i:nat)
-    (v v':value) (L:data_label) (lst:list const),
+    (v v':value) (L:data_label) (lst:list runtime_const),
     var_deref E v = L -> H L = tuple lst ->
     step C (H,K,E, bind (asgn v i v') t)
       (L !->h tuple (update_nth (i-1) lst (var_deref E v')); H,
@@ -243,7 +256,7 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
     step C (H,K' ++ [h_f (handler_f L L_env lab_op abort)] ++ K,E,
       bind (raise abort v1 v2) t)
       (H,K,[d_lab_const L_y;d_lab_const L_env],t')
-  | L_exit : forall H K E t (v:value)  (c:const),
+  | L_exit : forall H K E t (v:value)  (c:runtime_const),
     var_deref E v = c ->
     step C (H,K,E,bind (exit v) t)
       (H,(a_f (act_f E t)) :: K,[var_deref E v],halt).
