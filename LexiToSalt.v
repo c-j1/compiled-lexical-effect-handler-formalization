@@ -126,11 +126,6 @@ Definition code_trans (c:L.code) : S.program :=
   fun (x:code_loc) =>
   match x with cloc_str str => func_trans (c str) end.
 
-  (* match c with
-  | cons (L.c_lab x,f) c' => 
-    cons (cloc_str_str x, func_trans f) (code_trans c')
-  | nil => nil
-  end.*)
 (*
 All changes made
 0. register 1 and register 2 are swapped in addition and assignment

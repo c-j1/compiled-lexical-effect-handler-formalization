@@ -14,9 +14,11 @@ Inductive variable :=
   | dbjind_var : nat -> variable
   | free_var : var -> variable.
 Inductive code_label := c_lab : string -> code_label.
+Inductive obj_label := obj_lab : string -> obj_label.
+Inductive hdl_label := hdl_lab : string -> hdl_label.
 Inductive data_label : Type := 
-  | obj_lab : string -> data_label
-  | hand_lab : string -> data_label.
+  | obj_data_lab : obj_label -> data_label
+  | hdl_data_lab : hdl_label -> data_label.
 Inductive static_const : Type :=
   | nat_const : nat -> static_const
   | c_lab_const : code_label -> static_const.
@@ -48,7 +50,7 @@ with term : Type :=
   | bind : expr -> term -> term
   | halt
 with a_frame: Type := act_f : local_env -> term -> a_frame
-with h_frame : Type := handler_f : data_label -> data_label ->
+with h_frame : Type := handler_f : hdl_label -> hdl_label ->
     code_label -> annotation -> h_frame
 with frame : Type :=
   | h_f : h_frame -> frame
@@ -57,7 +59,7 @@ with heap_const : Type :=
   | tuple : list runtime_const -> heap_const
   | cont : list frame -> heap_const.
 Definition eval_context := list frame.
-Definition heap := data_label -> heap_const.
+Definition heap := obj_label -> heap_const.
 Inductive function : Type :=
   func : nat -> term -> function.
 Definition code : Type := code_label -> function.
@@ -67,6 +69,8 @@ Inductive program : Type :=
 Coercion dbjind_var : nat >-> variable.
 Coercion free_var : var >-> variable.
 Coercion c_lab : string >-> code_label.
+Coercion obj_data_lab : obj_label >-> data_label.
+Coercion hdl_data_lab : hdl_label >-> data_label.
 Coercion nat_const : nat >-> static_const.
 Coercion c_lab_const : code_label >-> static_const.
 Coercion run_const : static_const >-> runtime_const.
@@ -87,54 +91,24 @@ Coercion a_f : a_frame >-> frame.
    -------------------------------------------- *)
 (* Heap *)
 Definition empty_hconst := tuple nil.
-Definition h_eqb (a b : data_label) := 
+Definition h_eqb (a b : obj_label) := 
   match a,b with
   | obj_lab a', obj_lab b' => String.eqb a' b'
-  | hand_lab a', hand_lab b' => String.eqb a' b'
-  | _,_ => false
   end.
 Definition h_empty : heap := fun _ => empty_hconst.
-Definition h_update (m : heap) (x : data_label) (v : heap_const) :=
+Definition h_update (m : heap) (x : obj_label) (v : heap_const) :=
   fun x' => if h_eqb x x' then v else m x'.
 Notation "x '!->h' v ';' m" := (h_update m x v)
   (at level 100, v at next level, right associativity):Lexi_scope.
 
 (* Environment *)
-(*
-Definition var_eqb (a b : variable) := 
-  match a,b with str_var a', str_var b' => Nat.eqb a' b' end.
-*)
 Definition env_fetch (env: local_env) (var:variable)
   : runtime_const :=
   match var with
   | dbjind_var n => nth n env ns
   | free_var str => ns
   end.
-(*  match env with
-  | cons (x,v) lst' => if var_eqb x var then v else env_fetch lst' var
-  | nil => ns
-  end.*)
-(*Fixpoint env_update ) :=
-  match env with
-  | cons (x',v') env' =>
-    if var_eqb x x' then cons (x,v) env' else cons (x',v') (env_update env' x v)
-  | nil => cons (x,v) nil
-  end.
 
-Notation "x '!->e' v ';' m" := (env_update m x v)
-  (at level 100, v at next level, right associativity):Lexi_scope.
-Reserved Notation "var_lst '!->!e' val_lst ';' m"
-  (at level 100, val_lst at next level, right associativity).
-Fixpoint env_super_update (m:local_env)
-  (var_lst: list variable) (val_lst:list const) : local_env :=
-  match var_lst,val_lst with
-  | cons var var_lst', cons val val_lst' =>
-    var_lst' !->!e val_lst' ; (var !->e val ; m)
-  | _,_ => m
-  end
-where "var_lst '!->!e' val_lst ';' m" :=
-  (env_super_update m var_lst val_lst).
-*)
 (* Code *)
 Definition c_eqb (a b : code_label) := 
   match a,b with
@@ -142,11 +116,7 @@ Definition c_eqb (a b : code_label) :=
   end.
 Definition c_update (m : code) (x : code_label) (v : function) :=
   fun x' => if c_eqb x x' then v else m x'.
-(* Fixpoint code_fetch (c: code) (lab: code_label) : function :=
-  match c with
-  | cons (x,v) c' => if c_eqb x lab then v else code_fetch c' lab
-  | nil => func nil (halt 1)
-  end.*)
+
 Notation "x '!->c' v ';' m" := (c_update m x v)
   (at level 100, v at next level, right associativity):Lexi_scope.
 (* --------------------------------------------
@@ -184,32 +154,32 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
       (H,K,(run_const (i1+i2)) :: E,t)
   | L_value : forall H K E t (v:value),
     step C (H,K,E, bind v t) (H,K,(var_deref E v) :: E,t)
-  | L_new : forall H K E t (lst:list value) (L:data_label),
+  | L_new : forall H K E t (lst:list value) (L:obj_label),
     H L = empty_hconst ->
     step C (H,K,E, bind (newref lst) t)
       (L !->h tuple (List.map (var_deref E) lst); H, K, (d_lab_const L) :: E, t)
   | L_get : forall H K E t (i:nat) (v:value)
-    (L:data_label) (lst:list runtime_const),
+    (L:obj_label) (lst:list runtime_const),
     var_deref E v = L -> H L = tuple lst ->
     step C (H,K,E, bind (pi i v) t)
       (H,K,(nth (1+i) lst ns) :: E,t)
   | L_set : forall H K E t (i:nat)
-    (v v':value) (L:data_label) (lst:list runtime_const),
+    (v v':value) (L:obj_label) (lst:list runtime_const),
     var_deref E v = L -> H L = tuple lst ->
     step C (H,K,E, bind (asgn v i v') t)
       (L !->h tuple (update_nth (i-1) lst (var_deref E v')); H,
       K,(var_deref E v') :: E,t)
   | L_handle : forall H K E t t'
     (v_env:value) (lst:list value) (A:annotation)
-    (lab_body lab_op:code_label) (L L_env:data_label),
-    H L = empty_hconst -> C lab_body = func 2 t' ->
+    (lab_body lab_op:code_label) (L L_env:hdl_label),
+    (* L fresh *) C lab_body = func 2 t' ->
     var_deref E v_env = L_env ->
     step C (H,K,E, bind (handle lab_body lab_op A v_env) t)
       (H, ([h_f(handler_f L L_env lab_op A);a_f(act_f E t)] ++ K),
       [d_lab_const L; d_lab_const L_env],t')
     (*L and L_env reversed because dbj index counts from inside *)
   | L_leave : forall H K E E' t
-    (L L_env:data_label) (lab_op:code_label) (A:annotation) (v:value),
+    (L L_env:hdl_label) (lab_op:code_label) (A:annotation) (v:value),
     step C (H,
       [h_f (handler_f L L_env lab_op A); a_f(act_f E t)] ++ K,
       E',val_term v)
@@ -225,7 +195,7 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
     step C (H,(a_f(act_f E t)) :: K,E',val_term v)
       (H,K,(var_deref E' v) :: E,t)
   | L_raise : forall H K K' E t t' (v1 v2:value)
-    (L L_env L_k L_y:data_label) (lab_op:code_label),
+    (L L_env:hdl_label) (L_k:obj_label) (L_y:data_label) (lab_op:code_label),
     H L_k = empty_hconst -> var_deref E v1 = L ->
     C lab_op = func 3 t' -> var_deref E v2 = L_y ->
     step C (H,K' ++ [h_f (handler_f L L_env lab_op general)] ++ K,E,
@@ -235,15 +205,15 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
       H,K,
       [d_lab_const L_k;d_lab_const L_y;d_lab_const L_env],t')
   | L_resume : forall H K K' E E' t t' (v1 v2:value)
-    (L_k:data_label),
+    (L_k:obj_label),
     var_deref E v1 = L_k -> H L_k = cont (a_f(act_f E' t') :: K') ->
     step C (H,K,E,bind (resume v1 v2) t)
       (L_k !->h tuple [ns]; H,
       K' ++ [a_f(act_f E t)] ++ K,
       (var_deref E v2) :: E',t')
   | L_tailraise : forall H K K' E t t' (v1 v2:value)
-    (L L_env L_y:data_label) (lab_op:code_label),
-    var_deref E v1 = L -> (*code_fetch*) C lab_op = func 2 t' ->
+    (L L_env:hdl_label) (L_y:data_label) (lab_op:code_label),
+    var_deref E v1 = L -> C lab_op = func 2 t' ->
     var_deref E v2 = L_y ->
     step C (H,K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,E,
       bind (raise tail v1 v2) t)
@@ -251,7 +221,7 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
       [a_f (act_f E t)] ++ K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,
       [d_lab_const L_y;d_lab_const L_env],t')
   | L_abortraise : forall H K K' E t t' (v1 v2:value)
-    (L L_env L_y:data_label) (lab_op:code_label),
+    (L L_env:hdl_label) (L_y:data_label) (lab_op:code_label),
     var_deref E v1 = L -> C lab_op = func 2 t' ->
     var_deref E v2 = L_y ->
     step C (H,K' ++ [h_f (handler_f L L_env lab_op abort)] ++ K,E,
@@ -262,4 +232,3 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
     step C (H,K,E,bind (exit v) t)
       (H,(a_f (act_f E t)) :: K,[var_deref E v],halt).
 Close Scope Lexi_scope.
-(*  *)

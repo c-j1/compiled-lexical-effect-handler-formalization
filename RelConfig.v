@@ -174,8 +174,8 @@ Inductive LS_rel_hdl_led_ctx : list L.frame ->
     -> LS_rel_hdl_led_ctx Ks 
        (loc_w (hloc L 0), stack s',H_stack,L_out,s_out) ->
     LS_rel_hdl_led_ctx
-    ((h_f (handler_f (hand_lab L)
-      (hand_lab L_env) Clab_op general)) :: Flst ++ Ks)
+    ((h_f (handler_f (hdl_lab L)
+      (hdl_lab L_env) Clab_op general)) :: Flst ++ Ks)
     (loc_w (hloc L_in 0), stack s_in,
       hloc_str L_in !->s stack s_in ; H_stack,
       L_out, s_out)
@@ -187,8 +187,8 @@ Inductive LS_rel_hdl_led_ctx : list L.frame ->
     -> LS_rel_hdl_led_ctx Ks 
        (loc_w (hloc L_in 0), stack s',H_stack,L_out,s_out) ->
     LS_rel_hdl_led_ctx
-    ((h_f (handler_f (hand_lab L)
-      (hand_lab L_env) Clab_op tail)) :: Flst ++ Ks)
+    ((h_f (handler_f (hdl_lab L)
+      (hdl_lab L_env) Clab_op tail)) :: Flst ++ Ks)
     (loc_w (hloc L_in 0), stack s_in, H_stack, L_out, s_out)
   | rel_hdl_abort : forall Flst s s' s_in s_out
     L L_in L_out (L_env Clab_op:string) (H_stack:stack_heap) Ks,
@@ -198,14 +198,14 @@ Inductive LS_rel_hdl_led_ctx : list L.frame ->
     -> LS_rel_hdl_led_ctx Ks
        (loc_w (hloc L_in 0), stack s',H_stack,L_out,s_out) ->
     LS_rel_hdl_led_ctx
-    ((h_f (handler_f (hand_lab L)
-      (hand_lab L_env) Clab_op abort)) :: Flst ++ Ks)
+    ((h_f (handler_f (hdl_lab L)
+      (hdl_lab L_env) Clab_op abort)) :: Flst ++ Ks)
     (loc_w (hloc L_in 0), stack s_in, H_stack, L_out, s_out).
 Definition run_cst_trans (v:L.runtime_const) : word :=
   match v with
   | run_const st_c => static_const_trans st_c
   | obj_lab d => hloc d 0
-  | hand_lab d => hloc d 0
+  | hdl_lab d => hloc d 0
   | L.ns => S.ns
   end.
 Definition val_direct_trans (v:L.value)
@@ -246,7 +246,7 @@ Inductive LS_rel_heap : L.heap -> (S.stack_heap * tuple_heap) -> Prop :=
     LS_rel_heap LH (H_cont,H_tup) ->
     LS_rel_heap
       (obj_lab L_rsp !->h cont (Ks ++ Fs ++
-          [h_f (handler_f (hand_lab L) (hand_lab L_env)
+          [h_f (handler_f (hdl_lab L) (hdl_lab L_env)
             (c_lab Clab_op) general)]);
         LH)%L_scope
       (L !->s stack (s ++
@@ -288,7 +288,6 @@ Inductive LS_rel :
         [(ip,loc_w (cloc Clab len));(sp,loc_w Slsp);(nat_reg 1,o1);
         (nat_reg 2,o2);(nat_reg 3,o3);(nat_reg 4,o4);
         (nat_reg 5,o5);(nat_reg 6,o6)]).
-(* Relation Preserved under reduction for both Lexi and Salt *)
 (*
 in rel_frame, the constructor for insturction sequence
 shouldn't be ::, but should be ;
