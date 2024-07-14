@@ -1,5 +1,7 @@
-From Coq Require Import Lists.List. Import ListNotations.
-From Coq Require Import Strings.String.
+Set Implicit Arguments.
+Require Import Lists.List. Import ListNotations.
+Require Import Strings.String.
+From TLC Require Import LibLN.
 From LSEH Require Import Lexi.
 From LSEH Require Import Salt.
 From LSEH Require Import LexiToSalt.
@@ -25,13 +27,83 @@ Inductive multi_plus {X : Type} (R : X -> X -> Prop) : X -> X -> Prop :=
 (* By Theorem 1 already proven, this is reduced to proving LS_rel satisfying
   the 3 conditions *)
 Ltac automation :=
-  subst;auto;repeat constructor;try reflexivity;
-  try discriminate;subst;try congruence.
+  subst; auto;repeat constructor;subst;try easy;
+  try discriminate;try congruence;try tauto.
+
+Definition fv_val (v : L.value) : vars :=
+  match v with
+  | var_val (free_var x) => \{x}
+  | var_val (dbjind_var i) => \{}
+  | const_val c => \{}
+  end.
+Fixpoint fv_vlst (vlst : list L.value) : vars :=
+  match vlst with
+  | [] => \{}
+  | v :: vlst' => (fv_val v) \u (fv_vlst vlst')
+  end.
+Definition fv_exp (exp : L.expr) : vars :=
+  match exp with
+  | L.val_e val => fv_val val
+  | L.add val1 val2 =>
+      (fv_val val1) \u (fv_val val2)
+  | L.newref val_lst => fv_vlst val_lst
+  | L.pi _ val => fv_val val
+  | L.asgn val1 _ val2 =>
+      (fv_val val1) \u (fv_val val2)
+  | L.app val val_lst => (fv_val val) \u (fv_vlst val_lst)
+  | L.handle _ _ _ val => fv_val val
+  | L.raise _ val1 val2 =>
+      (fv_val val1) \u (fv_val val2)
+  | L.resume val1 val2 =>
+      (fv_val val1) \u (fv_val val2)
+  | L.exit val => fv_val val
+  end.
+Fixpoint fv (tm : L.term) : vars :=
+  match tm with
+  | bind exp t => (fv_exp exp) \u (fv t)
+  | val_term v => (fv_val v)
+  | L.halt => \{}
+  end.
+(* ********************************************************************** *)
+(** ** Instantiation of tactics *)
+
+(** Tactic [gather_vars] returns a set of variables occurring in
+    the context of proofs, including domain of environments and
+    free variables in terms mentionned in the context. *)
+
+Ltac gather_vars :=
+  let A := gather_vars_with (fun x : vars => x) in
+  let B := gather_vars_with (fun x : var => \{x}) in
+  let C := gather_vars_with (fun x : L.value => fv_val x) in
+  let D := gather_vars_with (fun (x : list L.value) => fv_vlst x) in
+  let E := gather_vars_with (fun x : L.expr => fv_exp x) in
+  let F := gather_vars_with (fun x : L.term => fv x) in
+  constr:(A \u B \u C \u D \u E \u F).
+
+(** Tactic [pick_fresh x] adds to the context a new variable x
+    and a proof that it is fresh from all of the other variables
+    gathered by tactic [gather_vars]. *)
+
+Ltac pick_fresh Y :=
+  let L := gather_vars in (pick_fresh_gen L Y).
+
+(** Tactic [apply_fresh T as y] takes a lemma T of the form
+    [forall L ..., (forall x, x \notin L, P x) -> ... -> Q.]
+    instantiate L to be the set of variables occuring in the
+    context (by [gather_vars]), then introduces for the premise
+    with the cofinite quantification the name x as "y" (the second
+    parameter of the tactic), and the proof that x is not in L. *)
+
+Tactic Notation "apply_fresh" constr(T) "as" ident(x) :=
+  apply_fresh_base T gather_vars x.
+Tactic Notation "apply_fresh" constr(T) :=
+  apply_fresh_base T gather_vars ltac_no_arg.
+Hint Constructors lc_term L.step.
 
 Theorem cond1 : forall C1 C2 M1 M2 main_lab init_lab,
   code_trans C1 = C2 ->
   init_L (c_lab init_lab) (letrec C1 (bind (app (c_lab main_lab) [])
-    (bind (exit (ind_val 1)) (val_term 0)))) M1
+    (bind (exit (var_val 1)) (val_term 0)))) M1
   -> init_S (cloc_str init_lab) (cloc_str main_lab) C2 M2 -> LS_rel M1 M2.
 Proof with automation.
   intros. destruct M1 as [[[[LC LH] LK] LE] Lt], M2 as [[SC SH] SR].
@@ -46,6 +118,18 @@ Proof with automation.
       (L_0:=L_stack_str)
       (H_stack:=sh_empty)...
   - unfold S.c_update,S.c_eqb. rewrite eqb_refl...
+  - apply_fresh lc_bind.  as y. apply_fresh_base_simple bind_closed gather_vars. ltac_no_arg.
+    apply_fresh BC as y.
+
+    z : var
+  u : trm
+  H : term u
+  L : fset var
+  t1 : trm
+  H0 : forall x : var, x \notin L -> term (t1 ^ x)
+  H1 : forall x : var, x \notin L -> term ([z ~> u] t1 ^ x)
+  ============================
+  term (trm_abs ([z ~> u] t1))
 Qed.
 
 Theorem cond2 : forall M1 M2 i,

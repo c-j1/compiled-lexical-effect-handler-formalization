@@ -1,6 +1,7 @@
 From Coq Require Import Lists.List. Import ListNotations.
 From Coq Require Import Strings.String.
 From Coq Require Import Program.Basics.
+From TLC Require Import LibLN.
 Declare Scope Lexi_scope.
 Open Scope Lexi_scope.
 
@@ -11,7 +12,7 @@ Open Scope Lexi_scope.
    ------------ ------------ ------------ *)
 Inductive variable := 
   | dbjind_var : nat -> variable
-  | free_var : string -> variable.
+  | free_var : var -> variable.
 Inductive code_label := c_lab : string -> code_label.
 Inductive data_label : Type := 
   | obj_lab : string -> data_label
@@ -64,7 +65,7 @@ Inductive program : Type :=
   letrec : code -> term -> program.
 (* Coercions *)
 Coercion dbjind_var : nat >-> variable.
-Coercion free_var : string >-> variable.
+Coercion free_var : var >-> variable.
 Coercion c_lab : string >-> code_label.
 Coercion nat_const : nat >-> static_const.
 Coercion c_lab_const : code_label >-> static_const.
@@ -186,7 +187,7 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
   | L_new : forall H K E t (lst:list value) (L:data_label),
     H L = empty_hconst ->
     step C (H,K,E, bind (newref lst) t)
-      (L !->h tuple (map (var_deref E) lst); H, K, (d_lab_const L) :: E, t)
+      (L !->h tuple (List.map (var_deref E) lst); H, K, (d_lab_const L) :: E, t)
   | L_get : forall H K E t (i:nat) (v:value)
     (L:data_label) (lst:list runtime_const),
     var_deref E v = L -> H L = tuple lst ->
@@ -219,7 +220,7 @@ Inductive step (C:code) : (heap * eval_context * local_env * term)
     C lab = func n t' ->
     step C (H,K,E,bind (app v v_lst) t)
       (H, (a_f(act_f E t)) :: K,
-      rev (map (var_deref E) v_lst),t')
+      rev (List.map (var_deref E) v_lst),t')
   | L_ret : forall H K E E' t (v:value),
     step C (H,(a_f(act_f E t)) :: K,E',val_term v)
       (H,K,(var_deref E' v) :: E,t)

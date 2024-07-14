@@ -19,8 +19,8 @@ Fixpoint zip_map {A B C: Type} (func:A->B->C) lst1 lst2 :=
 Fixpoint zip {A: Type} (lst1 lst2 : list A) :=
   match lst1,lst2 with
   | cons x lst1', cons y lst2' => [x; y] ++ (zip lst1' lst2')
-  | nil, lst => lst2
-  | lst, nil => lst1
+  | nil, _ => lst2
+  | _, nil => lst1
   end.
 
 (* -------------- Actual Translations ----------------- *)

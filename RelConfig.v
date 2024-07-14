@@ -3,7 +3,6 @@ From Coq Require Import Strings.String.
 From LSEH Require Import Lexi.
 From LSEH Require Import Salt.
 From LSEH Require Import LexiToSalt.
-Compute is_in.
 From TLC Require Import LibLN.
 Module L := Lexi. Module S := Salt. Module LS := LexiToSalt.
 Delimit Scope Lexi_scope with L_scope.
@@ -21,23 +20,23 @@ Definition open_val (k : nat) (u : L.variable) (v : L.value)
   | var_val (free_var str) => var_val (free_var str)
   end.
 Definition open_exp (k : nat) (u : L.variable) (exp : L.expr)
-  : expr :=
+  : L.expr :=
   match exp with
   | L.val_e val => L.val_e (open_val k u val)
   | L.add val1 val2 =>
-    L.add (open_val k u val1) (open_val k u val2)
-  | L.newref val_lst => L.newref (map (open_val k u) val_lst)
+      L.add (open_val k u val1) (open_val k u val2)
+  | L.newref val_lst => L.newref (List.map (open_val k u) val_lst)
   | L.pi n val => L.pi n (open_val k u val)
   | L.asgn val1 i val2 =>
-    L.asgn (open_val k u val1) i (open_val k u val2)
+      L.asgn (open_val k u val1) i (open_val k u val2)
   | L.app val val_lst =>
-    L.app (open_val k u val) (map (open_val k u) val_lst)
+      L.app (open_val k u val) (List.map (open_val k u) val_lst)
   | L.handle c_lab1 c_lab2 A val =>
-    L.handle c_lab1 c_lab2 A (open_val k u val)
+      L.handle c_lab1 c_lab2 A (open_val k u val)
   | L.raise A val1 val2 =>
-    L.raise A (open_val k u val1) (open_val k u val2)
+      L.raise A (open_val k u val1) (open_val k u val2)
   | L.resume val1 val2 =>
-    L.resume (open_val k u val1) (open_val k u val2)
+      L.resume (open_val k u val1) (open_val k u val2)
   | L.exit val => L.exit (open_val k u val)
   end.
 Fixpoint open_tm (k : nat) (u : L.variable) (t : L.term)
@@ -47,12 +46,40 @@ Fixpoint open_tm (k : nat) (u : L.variable) (t : L.term)
   | val_term val => val_term (open_val k u val)
   | L.halt => L.halt
   end.
+Definition open var tm := open_tm 0 var tm.
+Inductive lc_val : L.value -> Prop :=
+| lc_fvar : forall x, lc_val (var_val (free_var x))
+| lc_const : forall c, lc_val (const_val c).
+Inductive lc_exp : L.expr -> Prop :=
+| lc_val_e : forall v, lc_val v -> lc_exp (L.val_e v)
+| lc_add : forall v1 v2,
+    lc_val v1 -> lc_val v2 -> lc_exp (L.add v1 v2)
+| lc_newref_nil : lc_exp (newref [])
+| lc_newref_cons : forall lst v,
+    lc_exp (newref lst) -> lc_val v -> lc_exp (newref (v::lst))
+| lc_pi : forall n v, lc_val v -> lc_exp (pi n v)
+| lc_asgn : forall v1 v2 i,
+    lc_val v1 -> lc_val v2 -> lc_exp (asgn v1 i v2)
+| lc_app_nil : forall v, lc_val v -> lc_exp (app v [])
+| lc_app_cons : forall v v' lst,
+    lc_val v -> lc_exp (app v lst)
+    -> lc_exp (app v (v'::lst))
+| lc_handle : forall c_lab1 c_lab2 A v,
+    lc_val v -> lc_exp (handle c_lab1 c_lab2 A v)
+| lc_raise : forall A v1 v2,
+    lc_val v1 -> lc_val v2 ->
+    lc_exp (raise A v1 v2)
+| lc_resume : forall v1 v2,
+    lc_val v1 -> lc_val v2 ->
+    lc_exp (resume v1 v2)
+| lc_exit : forall v, lc_val v -> lc_exp (exit v).
 
-Inductive locally_closed : trm -> Prop :=
-  | fvar_closed : forall str, locally_closed (free_var x)
-  | bind_closed : forall exp t L, locally_closed exp ->
-    (forall x, x \notin L, locally_closed (open x t))
-    -> locally_closed (bind exp t).
+Inductive lc_term : L.term -> Prop :=
+  | lc_bind : forall L exp t,
+    (forall x, x \notin L -> lc_term (open x t))
+    -> lc_exp exp -> lc_term (bind exp t)
+  | lc_val_tm : forall v, lc_val v -> lc_term (val_term v)
+  | lc_halt : lc_term L.halt.
 
 
 (* ----------------------------------------------------------
@@ -77,7 +104,7 @@ Inductive init_L (init_lab:code_label): L.program -> (L.code * L.heap *
   L.eval_context * L.local_env * L.term) -> Prop :=
   mk_init_L : forall C (H:L.heap) main_lab init_tm,
     init_tm = bind (app (c_lab main_lab) [])
-        (bind (exit (ind_val 1)) (val_term 000)) ->
+        (bind (exit (var_val 1)) (val_term 000)) ->
     init_L init_lab
       (letrec C init_tm)
       (init_lab !->c func 0 init_tm ; C, L.h_empty, [] ,[],
@@ -85,7 +112,7 @@ Inductive init_L (init_lab:code_label): L.program -> (L.code * L.heap *
 Inductive final_L : (L.code * L.heap * L.eval_context *
   L.local_env * L.term) -> nat -> Prop :=
   mk_final_L : forall C H (i:nat),
-    final_L (C,H,[],[st_run_cst i],L.halt) i.
+    final_L (C,H,[],[run_const i],L.halt) i.
 Inductive final_S : (S.program * S.heap * reg_file) -> word -> Prop :=
   mk_final_S : forall p H_stk H_cont H_tup R (l:code_location)
     (i:nat) lsp S,
@@ -97,14 +124,14 @@ Inductive final_S : (S.program * S.heap * reg_file) -> word -> Prop :=
 (* ----------------------------------------------------------
             Relate configurations of Lexi and Salt 
    ---------------------------------------------------------- *)
-Inductive LS_rel_val : L.runtime_cst -> S.word -> Prop :=
+Inductive LS_rel_val : L.runtime_const -> S.word -> Prop :=
   | rel_ns : LS_rel_val L.ns S.ns
   | rel_num : forall (i:nat), LS_rel_val (L.nat_const i) (S.int_w i)
   | rel_clab : forall (str:string),
     LS_rel_val (L.c_lab str) (S.cloc str 0)
   | rel_dlab : forall (str:string),
     LS_rel_val (L.obj_lab str) (S.hloc str 0).
-Inductive LS_rel_vals : list L.runtime_cst -> list S.word -> Prop :=
+Inductive LS_rel_vals : list L.runtime_const -> list S.word -> Prop :=
   | rel_noval : LS_rel_vals [] []
   | rel_vals : forall v v' lstv lstv',
     LS_rel_val v v' -> LS_rel_vals lstv lstv'
@@ -174,20 +201,21 @@ Inductive LS_rel_hdl_led_ctx : list L.frame ->
     ((h_f (handler_f (hand_lab L)
       (hand_lab L_env) Clab_op abort)) :: Flst ++ Ks)
     (loc_w (hloc L_in 0), stack s_in, H_stack, L_out, s_out).
-Definition run_cst_trans (v:L.runtime_cst) : word :=
+Definition run_cst_trans (v:L.runtime_const) : word :=
   match v with
-  | st_run_cst st_c => static_const_trans st_c
+  | run_const st_c => static_const_trans st_c
   | obj_lab d => hloc d 0
   | hand_lab d => hloc d 0
   | L.ns => S.ns
   end.
-Definition val_direct_trans (v:L.static_val)
+Definition val_direct_trans (v:L.value)
   (stk_lst:list word) : S.word :=
   match v with
-  | L.ind_val (dind n) =>
-    nth n stk_lst ns
-  | L.st_cst_val (nat_const n) => n
-  | L.st_cst_val (c_lab_const (c_lab c)) => cloc c 0
+  | var_val (dbjind_var n) =>
+      nth n stk_lst ns
+  | var_val (free_var _) => ns
+  | L.const_val (nat_const n) => n
+  | L.const_val (c_lab_const (c_lab c)) => cloc c 0
   end.
 Inductive LS_rel_context : (L.eval_context * L.local_env) ->
   (S.stack_heap * S.heap_location) -> Prop :=
@@ -197,13 +225,13 @@ Inductive LS_rel_context : (L.eval_context * L.local_env) ->
     LS_rel_hdl_led_ctx Ks
       (loc_w (hloc L_0 0),stack s,H_stack,
        loc_w (hloc L_out 0),stack s_out) ->
-    s' = (map run_cst_trans E) ++ s_out ->
+    s' = (List.map run_cst_trans E) ++ s_out ->
     LS_rel_context (Ks ++ Flst, E)
       ((L_out, stack s') :: H_stack, hloc L_out (List.length s')).
 Inductive LS_rel_heap : L.heap -> (S.stack_heap * tuple_heap) -> Prop :=
   | rel_empty_heap :
     LS_rel_heap L.h_empty (sh_empty,th_empty)
-  | rel_heap_tup : forall (vs:list runtime_cst) (vs':list word)
+  | rel_heap_tup : forall (vs:list runtime_const) (vs':list word)
     (L:string) L_tup (LH:L.heap) (H_cont:stack_heap) (H_tup:tuple_heap),
     LS_rel_vals vs vs' -> LS_rel_heap LH (H_cont,H_tup) ->
     LS_rel_heap
@@ -254,6 +282,7 @@ Inductive LS_rel :
     LS_rel_context (LK,LE) (SH_stack,Slsp) ->
     LS_rel_heap LH (SH_cont,SH_tup) -> LS_rel_code LC SC ->
     SC Clab = ins_seq (lst ++ SIlst) -> List.length lst = len ->
+    lc_term Lt ->
     LS_rel (LC, LH, LK, LE, Lt)
       (SC, (SH_stack,SH_cont,SH_tup),
         [(ip,loc_w (cloc Clab len));(sp,loc_w Slsp);(nat_reg 1,o1);
