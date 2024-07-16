@@ -36,6 +36,13 @@ Definition static_const_trans (c:L.static_const)
   | nat_const n => n
   | c_lab_const (c_lab c) => cloc c 0
   end.
+Definition run_cst_trans (v:L.runtime_const) : word :=
+  match v with
+  | run_const st_c => static_const_trans st_c
+  | obj_lab d => hloc d 0
+  | hdl_lab d => hloc d 0
+  | L.ns => S.ns
+  end.
 Definition val_direct_trans (v:L.value)
   (stk_lst:list word) : S.word :=
   match v with

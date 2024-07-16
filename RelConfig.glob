@@ -1,4 +1,4 @@
-DIGEST 23222aae8e2c5fbc388977dea3108903
+DIGEST 3d7743ac110d0af6ac886438bb13d54f
 FLSEH.RelConfig
 R24:33 Coq.Lists.List <> <> lib
 R43:55 Coq.Lists.List ListNotations <> mod
@@ -143,1511 +143,1427 @@ binder 1875:1876 <> tm:15
 R1881:1887 LSEH.RelConfig <> open_tm def
 R1891:1893 LSEH.RelConfig <> var:14 var
 R1895:1896 LSEH.RelConfig <> tm:15 var
-ind 1909:1914 <> lc_val
-constr 1939:1945 <> lc_fvar
-constr 1991:1998 <> lc_const
-R1925:1928 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R1918:1924 LSEH.RelConfig <> value ind
-binder 1956:1956 <> x:18
-R1959:1964 LSEH.RelConfig <> lc_val:16 ind
-R1967:1973 LSEH.Lexi <> var_val constr
-R1976:1983 LSEH.Lexi <> free_var constr
-R1985:1985 LSEH.RelConfig <> x:18 var
-binder 2009:2009 <> c:19
-R2012:2017 LSEH.RelConfig <> lc_val:16 ind
-R2020:2028 LSEH.Lexi <> const_val constr
-R2030:2030 LSEH.RelConfig <> c:19 var
-scheme 1909:1914 <> lc_val_ind
-scheme 1909:1914 <> lc_val_sind
-ind 2044:2049 <> lc_exp
-constr 2073:2080 <> lc_val_e
-constr 2127:2132 <> lc_add
-constr 2203:2215 <> lc_newref_nil
-constr 2240:2253 <> lc_newref_cons
-constr 2337:2341 <> lc_pi
-constr 2387:2393 <> lc_asgn
-constr 2467:2476 <> lc_app_nil
-constr 2522:2532 <> lc_app_cons
-constr 2622:2630 <> lc_handle
-constr 2712:2719 <> lc_raise
-constr 2798:2806 <> lc_resume
-constr 2882:2888 <> lc_exit
-R2059:2062 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2053:2058 LSEH.RelConfig <> expr ind
-binder 2091:2091 <> v:22
+R1920:1923 LSEH.RelConfig <> open def
+R1926:1933 LSEH.Lexi <> free_var constr
+not 1908:1908 <> :::x_'^'_x
+ind 1952:1957 <> lc_val
+constr 1982:1988 <> lc_fvar
+constr 2034:2041 <> lc_const
+R1968:1971 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1961:1967 LSEH.RelConfig <> value ind
+binder 1999:1999 <> x:18
+R2002:2007 LSEH.RelConfig <> lc_val:16 ind
+R2010:2016 LSEH.Lexi <> var_val constr
+R2019:2026 LSEH.Lexi <> free_var constr
+R2028:2028 LSEH.RelConfig <> x:18 var
+binder 2052:2052 <> c:19
+R2055:2060 LSEH.RelConfig <> lc_val:16 ind
+R2063:2071 LSEH.Lexi <> const_val constr
+R2073:2073 LSEH.RelConfig <> c:19 var
+scheme 1952:1957 <> lc_val_ind
+scheme 1952:1957 <> lc_val_sind
+ind 2087:2092 <> lc_exp
+constr 2116:2123 <> lc_val_e
+constr 2170:2175 <> lc_add
+constr 2246:2258 <> lc_newref_nil
+constr 2283:2296 <> lc_newref_cons
+constr 2380:2384 <> lc_pi
+constr 2430:2436 <> lc_asgn
+constr 2510:2519 <> lc_app_nil
+constr 2565:2575 <> lc_app_cons
+constr 2665:2673 <> lc_handle
+constr 2755:2762 <> lc_raise
+constr 2841:2849 <> lc_resume
+constr 2925:2931 <> lc_exit
 R2102:2105 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2094:2099 LSEH.RelConfig <> lc_val ind
-R2101:2101 LSEH.RelConfig <> v:22 var
-R2106:2111 LSEH.RelConfig <> lc_exp:20 ind
-R2114:2120 LSEH.RelConfig <> val_e constr
-R2122:2122 LSEH.RelConfig <> v:22 var
-binder 2143:2144 <> v1:23
-binder 2146:2147 <> v2:24
-R2163:2166 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2154:2159 LSEH.RelConfig <> lc_val ind
-R2161:2162 LSEH.RelConfig <> v1:23 var
-R2176:2179 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2167:2172 LSEH.RelConfig <> lc_val ind
-R2174:2175 LSEH.RelConfig <> v2:24 var
-R2180:2185 LSEH.RelConfig <> lc_exp:20 ind
-R2188:2192 LSEH.RelConfig <> add constr
-R2194:2195 LSEH.RelConfig <> v1:23 var
-R2197:2198 LSEH.RelConfig <> v2:24 var
-R2219:2224 LSEH.RelConfig <> lc_exp:20 ind
-R2227:2232 LSEH.Lexi <> newref constr
-R2234:2235 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-binder 2264:2266 <> lst:25
-binder 2268:2268 <> v:26
-R2294:2297 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2275:2280 LSEH.RelConfig <> lc_exp:20 ind
-R2283:2288 LSEH.Lexi <> newref constr
-R2290:2292 LSEH.RelConfig <> lst:25 var
-R2306:2309 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2298:2303 LSEH.RelConfig <> lc_val ind
-R2305:2305 LSEH.RelConfig <> v:26 var
-R2310:2315 LSEH.RelConfig <> lc_exp:20 ind
-R2318:2323 LSEH.Lexi <> newref constr
-R2327:2328 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R2326:2326 LSEH.RelConfig <> v:26 var
-R2329:2331 LSEH.RelConfig <> lst:25 var
-binder 2352:2352 <> n:27
-binder 2354:2354 <> v:28
-R2365:2368 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2357:2362 LSEH.RelConfig <> lc_val ind
-R2364:2364 LSEH.RelConfig <> v:28 var
-R2369:2374 LSEH.RelConfig <> lc_exp:20 ind
-R2377:2378 LSEH.Lexi <> pi constr
-R2380:2380 LSEH.RelConfig <> n:27 var
-R2382:2382 LSEH.RelConfig <> v:28 var
-binder 2404:2405 <> v1:29
-binder 2407:2408 <> v2:30
-binder 2410:2410 <> i:31
-R2426:2429 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2417:2422 LSEH.RelConfig <> lc_val ind
-R2424:2425 LSEH.RelConfig <> v1:29 var
-R2439:2442 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2430:2435 LSEH.RelConfig <> lc_val ind
-R2437:2438 LSEH.RelConfig <> v2:30 var
-R2443:2448 LSEH.RelConfig <> lc_exp:20 ind
-R2451:2454 LSEH.Lexi <> asgn constr
-R2456:2457 LSEH.RelConfig <> v1:29 var
-R2459:2459 LSEH.RelConfig <> i:31 var
-R2461:2462 LSEH.RelConfig <> v2:30 var
-binder 2487:2487 <> v:32
-R2498:2501 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2490:2495 LSEH.RelConfig <> lc_val ind
-R2497:2497 LSEH.RelConfig <> v:32 var
-R2502:2507 LSEH.RelConfig <> lc_exp:20 ind
-R2510:2512 LSEH.Lexi <> app constr
-R2514:2514 LSEH.RelConfig <> v:32 var
-R2516:2517 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-binder 2543:2543 <> v:33
-binder 2545:2546 <> v':34
-binder 2548:2550 <> lst:35
-R2565:2568 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2557:2562 LSEH.RelConfig <> lc_val ind
-R2564:2564 LSEH.RelConfig <> v:33 var
-R2587:2594 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2569:2574 LSEH.RelConfig <> lc_exp:20 ind
-R2577:2579 LSEH.Lexi <> app constr
-R2581:2581 LSEH.RelConfig <> v:33 var
-R2583:2585 LSEH.RelConfig <> lst:35 var
-R2595:2600 LSEH.RelConfig <> lc_exp:20 ind
-R2603:2605 LSEH.Lexi <> app constr
+R2096:2101 LSEH.RelConfig <> expr ind
+binder 2134:2134 <> v:22
+R2145:2148 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2137:2142 LSEH.RelConfig <> lc_val ind
+R2144:2144 LSEH.RelConfig <> v:22 var
+R2149:2154 LSEH.RelConfig <> lc_exp:20 ind
+R2157:2163 LSEH.RelConfig <> val_e constr
+R2165:2165 LSEH.RelConfig <> v:22 var
+binder 2186:2187 <> v1:23
+binder 2189:2190 <> v2:24
+R2206:2209 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2197:2202 LSEH.RelConfig <> lc_val ind
+R2204:2205 LSEH.RelConfig <> v1:23 var
+R2219:2222 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2210:2215 LSEH.RelConfig <> lc_val ind
+R2217:2218 LSEH.RelConfig <> v2:24 var
+R2223:2228 LSEH.RelConfig <> lc_exp:20 ind
+R2231:2235 LSEH.RelConfig <> add constr
+R2237:2238 LSEH.RelConfig <> v1:23 var
+R2240:2241 LSEH.RelConfig <> v2:24 var
+R2262:2267 LSEH.RelConfig <> lc_exp:20 ind
+R2270:2275 LSEH.Lexi <> newref constr
+R2277:2278 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+binder 2307:2309 <> lst:25
+binder 2311:2311 <> v:26
+R2337:2340 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2318:2323 LSEH.RelConfig <> lc_exp:20 ind
+R2326:2331 LSEH.Lexi <> newref constr
+R2333:2335 LSEH.RelConfig <> lst:25 var
+R2349:2352 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2341:2346 LSEH.RelConfig <> lc_val ind
+R2348:2348 LSEH.RelConfig <> v:26 var
+R2353:2358 LSEH.RelConfig <> lc_exp:20 ind
+R2361:2366 LSEH.Lexi <> newref constr
+R2370:2371 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2369:2369 LSEH.RelConfig <> v:26 var
+R2372:2374 LSEH.RelConfig <> lst:25 var
+binder 2395:2395 <> n:27
+binder 2397:2397 <> v:28
+R2408:2411 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2400:2405 LSEH.RelConfig <> lc_val ind
+R2407:2407 LSEH.RelConfig <> v:28 var
+R2412:2417 LSEH.RelConfig <> lc_exp:20 ind
+R2420:2421 LSEH.Lexi <> pi constr
+R2423:2423 LSEH.RelConfig <> n:27 var
+R2425:2425 LSEH.RelConfig <> v:28 var
+binder 2447:2448 <> v1:29
+binder 2450:2451 <> v2:30
+binder 2453:2453 <> i:31
+R2469:2472 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2460:2465 LSEH.RelConfig <> lc_val ind
+R2467:2468 LSEH.RelConfig <> v1:29 var
+R2482:2485 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2473:2478 LSEH.RelConfig <> lc_val ind
+R2480:2481 LSEH.RelConfig <> v2:30 var
+R2486:2491 LSEH.RelConfig <> lc_exp:20 ind
+R2494:2497 LSEH.Lexi <> asgn constr
+R2499:2500 LSEH.RelConfig <> v1:29 var
+R2502:2502 LSEH.RelConfig <> i:31 var
+R2504:2505 LSEH.RelConfig <> v2:30 var
+binder 2530:2530 <> v:32
+R2541:2544 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2533:2538 LSEH.RelConfig <> lc_val ind
+R2540:2540 LSEH.RelConfig <> v:32 var
+R2545:2550 LSEH.RelConfig <> lc_exp:20 ind
+R2553:2555 LSEH.Lexi <> app constr
+R2557:2557 LSEH.RelConfig <> v:32 var
+R2559:2560 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+binder 2586:2586 <> v:33
+binder 2588:2589 <> v':34
+binder 2591:2593 <> lst:35
+R2608:2611 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2600:2605 LSEH.RelConfig <> lc_val ind
 R2607:2607 LSEH.RelConfig <> v:33 var
-R2612:2613 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R2610:2611 LSEH.RelConfig <> v':34 var
-R2614:2616 LSEH.RelConfig <> lst:35 var
-binder 2641:2646 <> c_lab1:36
-binder 2648:2653 <> c_lab2:37
-binder 2655:2655 <> A:38
-binder 2657:2657 <> v:39
-R2672:2675 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2664:2669 LSEH.RelConfig <> lc_val ind
-R2671:2671 LSEH.RelConfig <> v:39 var
-R2676:2681 LSEH.RelConfig <> lc_exp:20 ind
-R2684:2689 LSEH.Lexi <> handle constr
-R2691:2696 LSEH.RelConfig <> c_lab1:36 var
-R2698:2703 LSEH.RelConfig <> c_lab2:37 var
-R2705:2705 LSEH.RelConfig <> A:38 var
-R2707:2707 LSEH.RelConfig <> v:39 var
-binder 2730:2730 <> A:40
-binder 2732:2733 <> v1:41
-binder 2735:2736 <> v2:42
-R2752:2755 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2743:2748 LSEH.RelConfig <> lc_val ind
-R2750:2751 LSEH.RelConfig <> v1:41 var
-R2765:2772 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2756:2761 LSEH.RelConfig <> lc_val ind
-R2763:2764 LSEH.RelConfig <> v2:42 var
-R2773:2778 LSEH.RelConfig <> lc_exp:20 ind
-R2781:2785 LSEH.Lexi <> raise constr
-R2787:2787 LSEH.RelConfig <> A:40 var
-R2789:2790 LSEH.RelConfig <> v1:41 var
-R2792:2793 LSEH.RelConfig <> v2:42 var
-binder 2817:2818 <> v1:43
-binder 2820:2821 <> v2:44
-R2837:2840 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2828:2833 LSEH.RelConfig <> lc_val ind
-R2835:2836 LSEH.RelConfig <> v1:43 var
-R2850:2857 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2841:2846 LSEH.RelConfig <> lc_val ind
-R2848:2849 LSEH.RelConfig <> v2:44 var
-R2858:2863 LSEH.RelConfig <> lc_exp:20 ind
-R2866:2871 LSEH.Lexi <> resume constr
-R2873:2874 LSEH.RelConfig <> v1:43 var
-R2876:2877 LSEH.RelConfig <> v2:44 var
-binder 2899:2899 <> v:45
-R2910:2913 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2902:2907 LSEH.RelConfig <> lc_val ind
-R2909:2909 LSEH.RelConfig <> v:45 var
-R2914:2919 LSEH.RelConfig <> lc_exp:20 ind
-R2922:2925 LSEH.Lexi <> exit constr
-R2927:2927 LSEH.RelConfig <> v:45 var
-scheme 2044:2049 <> lc_exp_ind
-scheme 2044:2049 <> lc_exp_sind
-ind 2942:2948 <> lc_term
-constr 2974:2980 <> lc_bind
-constr 3095:3103 <> lc_val_tm
-constr 3154:3160 <> lc_halt
-R2958:2961 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2952:2957 LSEH.RelConfig <> term ind
-binder 2991:2991 <> L:48
-binder 2993:2995 <> exp:49
-binder 2997:2997 <> t:50
-R3004:3004 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R3047:3055 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-binder 3012:3012 <> x:51
-R3025:3028 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R3016:3023 TLC.LibFset FsetSig ::fset_scope:x_'\notin'_x not
-R3015:3015 LSEH.RelConfig <> x:51 var
-R3024:3024 LSEH.RelConfig <> L:48 var
-R3029:3035 LSEH.RelConfig <> lc_term:46 ind
-R3038:3041 LSEH.RelConfig <> open def
-R3043:3043 LSEH.RelConfig <> x:51 var
-R3045:3045 LSEH.RelConfig <> t:50 var
-R3066:3069 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R3056:3061 LSEH.RelConfig <> lc_exp ind
-R3063:3065 LSEH.RelConfig <> exp:49 var
-R3070:3076 LSEH.RelConfig <> lc_term:46 ind
-R3079:3082 LSEH.Lexi <> bind constr
-R3084:3086 LSEH.RelConfig <> exp:49 var
-R3088:3088 LSEH.RelConfig <> t:50 var
-binder 3114:3114 <> v:52
-R3125:3128 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R3117:3122 LSEH.RelConfig <> lc_val ind
-R3124:3124 LSEH.RelConfig <> v:52 var
-R3129:3135 LSEH.RelConfig <> lc_term:46 ind
-R3138:3145 LSEH.Lexi <> val_term constr
-R3147:3147 LSEH.RelConfig <> v:52 var
-R3164:3170 LSEH.RelConfig <> lc_term:46 ind
-R3172:3177 LSEH.RelConfig <> halt constr
-scheme 2942:2948 <> lc_term_ind
-scheme 2942:2948 <> lc_term_sind
-ind 3370:3375 <> init_S
-constr 3467:3475 <> mk_init_S
-R3396:3403 LSEH.Salt <> code_loc ind
-binder 3378:3385 <> init_lab:53
-binder 3387:3394 <> main_lab:54
-R3416:3421 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R3407:3415 LSEH.RelConfig <> program def
-R3422:3422 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R3452:3456 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R3441:3443 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R3432:3434 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R3423:3431 LSEH.RelConfig <> program def
-R3435:3440 LSEH.RelConfig <> heap def
-R3444:3451 LSEH.Salt <> reg_file def
-R3489:3495 LSEH.Salt <> program def
-binder 3487:3487 <> p:57
-binder 3498:3504 <> L_stack:58
-R3509:3514 LSEH.RelConfig <> init_S:55 ind
-R3540:3540 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3658:3665 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3709:3716 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3881:3881 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3549:3562 LSEH.Salt <> :::x_'!->c'_x_';'_x not
-R3655:3656 LSEH.Salt <> :::x_'!->c'_x_';'_x not
-R3657:3657 LSEH.RelConfig <> p:57 var
-R3541:3548 LSEH.RelConfig <> init_lab:53 var
-R3563:3569 LSEH.Salt <> ins_seq constr
-R3571:3571 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3595:3596 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3603:3614 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3629:3630 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3648:3649 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3654:3654 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3572:3574 LSEH.Salt <> mov constr
-R3579:3582 LSEH.Salt <> cloc constr
-R3584:3591 LSEH.RelConfig <> main_lab:54 var
-R3597:3600 LSEH.Salt <> call constr
-R3615:3618 LSEH.Salt <> push constr
-R3621:3625 LSEH.Salt <> reg_o constr
-R3631:3634 LSEH.Salt <> load constr
-R3638:3639 LSEH.Salt <> sp constr
-R3641:3645 Coq.Init.Datatypes <> false constr
-R3650:3653 LSEH.Salt <> halt constr
-R3666:3666 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3689:3689 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3698:3699 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3708:3708 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3685:3686 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3667:3667 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3675:3675 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3684:3684 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3668:3674 LSEH.RelConfig <> L_stack:58 var
-R3676:3680 LSEH.Salt <> stack constr
-R3682:3683 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R3687:3688 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R3690:3697 LSEH.Salt <> sh_empty def
-R3700:3707 LSEH.Salt <> th_empty def
-R3717:3717 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3746:3746 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3774:3774 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3789:3797 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3812:3812 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3827:3827 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3842:3850 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3865:3865 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3880:3880 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3718:3718 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3721:3721 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3745:3745 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3719:3720 LSEH.Salt <> ip constr
-R3722:3726 LSEH.Salt <> loc_w constr
-R3729:3732 LSEH.Salt <> cloc constr
-R3734:3741 LSEH.RelConfig <> init_lab:53 var
-R3747:3747 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3750:3750 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3773:3773 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3748:3749 LSEH.Salt <> sp constr
-R3751:3755 LSEH.Salt <> loc_w constr
-R3758:3761 LSEH.Salt <> hloc constr
-R3763:3769 LSEH.RelConfig <> L_stack:58 var
-R3775:3775 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R2630:2637 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2612:2617 LSEH.RelConfig <> lc_exp:20 ind
+R2620:2622 LSEH.Lexi <> app constr
+R2624:2624 LSEH.RelConfig <> v:33 var
+R2626:2628 LSEH.RelConfig <> lst:35 var
+R2638:2643 LSEH.RelConfig <> lc_exp:20 ind
+R2646:2648 LSEH.Lexi <> app constr
+R2650:2650 LSEH.RelConfig <> v:33 var
+R2655:2656 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2653:2654 LSEH.RelConfig <> v':34 var
+R2657:2659 LSEH.RelConfig <> lst:35 var
+binder 2684:2689 <> c_lab1:36
+binder 2691:2696 <> c_lab2:37
+binder 2698:2698 <> A:38
+binder 2700:2700 <> v:39
+R2715:2718 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2707:2712 LSEH.RelConfig <> lc_val ind
+R2714:2714 LSEH.RelConfig <> v:39 var
+R2719:2724 LSEH.RelConfig <> lc_exp:20 ind
+R2727:2732 LSEH.Lexi <> handle constr
+R2734:2739 LSEH.RelConfig <> c_lab1:36 var
+R2741:2746 LSEH.RelConfig <> c_lab2:37 var
+R2748:2748 LSEH.RelConfig <> A:38 var
+R2750:2750 LSEH.RelConfig <> v:39 var
+binder 2773:2773 <> A:40
+binder 2775:2776 <> v1:41
+binder 2778:2779 <> v2:42
+R2795:2798 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2786:2791 LSEH.RelConfig <> lc_val ind
+R2793:2794 LSEH.RelConfig <> v1:41 var
+R2808:2815 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2799:2804 LSEH.RelConfig <> lc_val ind
+R2806:2807 LSEH.RelConfig <> v2:42 var
+R2816:2821 LSEH.RelConfig <> lc_exp:20 ind
+R2824:2828 LSEH.Lexi <> raise constr
+R2830:2830 LSEH.RelConfig <> A:40 var
+R2832:2833 LSEH.RelConfig <> v1:41 var
+R2835:2836 LSEH.RelConfig <> v2:42 var
+binder 2860:2861 <> v1:43
+binder 2863:2864 <> v2:44
+R2880:2883 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2871:2876 LSEH.RelConfig <> lc_val ind
+R2878:2879 LSEH.RelConfig <> v1:43 var
+R2893:2900 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2884:2889 LSEH.RelConfig <> lc_val ind
+R2891:2892 LSEH.RelConfig <> v2:44 var
+R2901:2906 LSEH.RelConfig <> lc_exp:20 ind
+R2909:2914 LSEH.Lexi <> resume constr
+R2916:2917 LSEH.RelConfig <> v1:43 var
+R2919:2920 LSEH.RelConfig <> v2:44 var
+binder 2942:2942 <> v:45
+R2953:2956 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2945:2950 LSEH.RelConfig <> lc_val ind
+R2952:2952 LSEH.RelConfig <> v:45 var
+R2957:2962 LSEH.RelConfig <> lc_exp:20 ind
+R2965:2968 LSEH.Lexi <> exit constr
+R2970:2970 LSEH.RelConfig <> v:45 var
+scheme 2087:2092 <> lc_exp_ind
+scheme 2087:2092 <> lc_exp_sind
+ind 2985:2991 <> lc_term
+constr 3017:3023 <> lc_bind
+constr 3135:3143 <> lc_val_tm
+constr 3194:3200 <> lc_halt
+R3001:3004 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2995:3000 LSEH.RelConfig <> term ind
+binder 3034:3034 <> L:48
+binder 3036:3038 <> exp:49
+binder 3040:3040 <> t:50
+R3047:3047 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3087:3095 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 3055:3055 <> x:51
+R3068:3071 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3059:3066 TLC.LibFset FsetSig ::fset_scope:x_'\notin'_x not
+R3058:3058 LSEH.RelConfig <> x:51 var
+R3067:3067 LSEH.RelConfig <> L:48 var
+R3072:3078 LSEH.RelConfig <> lc_term:46 ind
+R3082:3084 LSEH.RelConfig <> :::x_'^'_x not
+R3085:3085 LSEH.RelConfig <> x:51 var
+R3081:3081 LSEH.RelConfig <> t:50 var
+R3106:3109 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3096:3101 LSEH.RelConfig <> lc_exp ind
+R3103:3105 LSEH.RelConfig <> exp:49 var
+R3110:3116 LSEH.RelConfig <> lc_term:46 ind
+R3119:3122 LSEH.Lexi <> bind constr
+R3124:3126 LSEH.RelConfig <> exp:49 var
+R3128:3128 LSEH.RelConfig <> t:50 var
+binder 3154:3154 <> v:52
+R3165:3168 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3157:3162 LSEH.RelConfig <> lc_val ind
+R3164:3164 LSEH.RelConfig <> v:52 var
+R3169:3175 LSEH.RelConfig <> lc_term:46 ind
+R3178:3185 LSEH.Lexi <> val_term constr
+R3187:3187 LSEH.RelConfig <> v:52 var
+R3204:3210 LSEH.RelConfig <> lc_term:46 ind
+R3212:3217 LSEH.RelConfig <> halt constr
+scheme 2985:2991 <> lc_term_ind
+scheme 2985:2991 <> lc_term_sind
+ind 3410:3415 <> init_S
+constr 3507:3515 <> mk_init_S
+R3436:3443 LSEH.Salt <> code_loc ind
+binder 3418:3425 <> init_lab:53
+binder 3427:3434 <> main_lab:54
+R3456:3461 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3447:3455 LSEH.RelConfig <> program def
+R3462:3462 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3492:3496 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3481:3483 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R3472:3474 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R3463:3471 LSEH.RelConfig <> program def
+R3475:3480 LSEH.RelConfig <> heap def
+R3484:3491 LSEH.Salt <> reg_file def
+R3529:3535 LSEH.Salt <> program def
+binder 3527:3527 <> p:57
+binder 3538:3544 <> L_stack:58
+R3549:3554 LSEH.RelConfig <> init_S:55 ind
+R3580:3580 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3698:3705 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3749:3756 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3921:3921 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3589:3602 LSEH.Salt <> :::x_'!->c'_x_';'_x not
+R3695:3696 LSEH.Salt <> :::x_'!->c'_x_';'_x not
+R3697:3697 LSEH.RelConfig <> p:57 var
+R3581:3588 LSEH.RelConfig <> init_lab:53 var
+R3603:3609 LSEH.Salt <> ins_seq constr
+R3611:3611 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3635:3636 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3643:3654 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3669:3670 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3688:3689 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3694:3694 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3612:3614 LSEH.Salt <> mov constr
+R3619:3622 LSEH.Salt <> cloc constr
+R3624:3631 LSEH.RelConfig <> main_lab:54 var
+R3637:3640 LSEH.Salt <> call constr
+R3655:3658 LSEH.Salt <> push constr
+R3661:3665 LSEH.Salt <> reg_o constr
+R3671:3674 LSEH.Salt <> load constr
+R3678:3679 LSEH.Salt <> sp constr
+R3681:3685 Coq.Init.Datatypes <> false constr
+R3690:3693 LSEH.Salt <> halt constr
+R3706:3706 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3729:3729 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3738:3739 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3748:3748 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3725:3726 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3707:3707 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3715:3715 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3724:3724 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3708:3714 LSEH.RelConfig <> L_stack:58 var
+R3716:3720 LSEH.Salt <> stack constr
+R3722:3723 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3727:3728 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3730:3737 LSEH.Salt <> sh_empty def
+R3740:3747 LSEH.Salt <> th_empty def
+R3757:3757 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3786:3786 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3814:3814 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3829:3837 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3852:3852 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3867:3867 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3882:3890 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3905:3905 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3920:3920 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3758:3758 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3761:3761 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3785:3785 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3788:3788 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3776:3782 LSEH.Salt <> nat_reg constr
-R3786:3787 LSEH.Salt <> ns constr
-R3798:3798 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3808:3808 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3811:3811 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3799:3805 LSEH.Salt <> nat_reg constr
-R3809:3810 LSEH.Salt <> ns constr
+R3759:3760 LSEH.Salt <> ip constr
+R3762:3766 LSEH.Salt <> loc_w constr
+R3769:3772 LSEH.Salt <> cloc constr
+R3774:3781 LSEH.RelConfig <> init_lab:53 var
+R3787:3787 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3790:3790 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3813:3813 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3823:3823 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3826:3826 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3814:3820 LSEH.Salt <> nat_reg constr
-R3824:3825 LSEH.Salt <> ns constr
+R3788:3789 LSEH.Salt <> sp constr
+R3791:3795 LSEH.Salt <> loc_w constr
+R3798:3801 LSEH.Salt <> hloc constr
+R3803:3809 LSEH.RelConfig <> L_stack:58 var
+R3815:3815 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3825:3825 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3828:3828 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3816:3822 LSEH.Salt <> nat_reg constr
+R3826:3827 LSEH.Salt <> ns constr
 R3838:3838 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3841:3841 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3829:3835 LSEH.Salt <> nat_reg constr
-R3839:3840 LSEH.Salt <> ns constr
+R3848:3848 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3851:3851 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3861:3861 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3864:3864 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3852:3858 LSEH.Salt <> nat_reg constr
-R3862:3863 LSEH.Salt <> ns constr
+R3839:3845 LSEH.Salt <> nat_reg constr
+R3849:3850 LSEH.Salt <> ns constr
+R3853:3853 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3863:3863 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3866:3866 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3876:3876 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3879:3879 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3867:3873 LSEH.Salt <> nat_reg constr
-R3877:3878 LSEH.Salt <> ns constr
-R3538:3538 LSEH.RelConfig <> p:57 var
-R3525:3532 LSEH.RelConfig <> main_lab:54 var
-R3516:3523 LSEH.RelConfig <> init_lab:53 var
-scheme 3370:3375 <> init_S_ind
-scheme 3370:3375 <> init_S_sind
-ind 4038:4043 <> init_L
-constr 4154:4162 <> mk_init_L
-R4055:4064 LSEH.Lexi <> code_label ind
-binder 4046:4053 <> init_lab:59
-R4077:4080 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4068:4076 LSEH.RelConfig <> program ind
-R4081:4081 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4139:4143 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4130:4132 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4116:4118 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4097:4101 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4088:4090 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4082:4087 LSEH.RelConfig <> code def
-R4091:4096 LSEH.RelConfig <> heap def
-R4102:4115 LSEH.RelConfig <> eval_context def
-R4119:4129 LSEH.RelConfig <> local_env def
-R4133:4138 LSEH.RelConfig <> term ind
-binder 4173:4173 <> C:62
-R4178:4183 LSEH.RelConfig <> heap def
-binder 4176:4176 <> H:63
-binder 4186:4193 <> main_lab:64
-binder 4195:4201 <> init_tm:65
-R4297:4304 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4215:4217 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R4208:4214 LSEH.RelConfig <> init_tm:65 var
-R4218:4221 LSEH.Lexi <> bind constr
-R4224:4226 LSEH.Lexi <> app constr
-R4229:4233 LSEH.Lexi <> c_lab constr
-R4235:4242 LSEH.RelConfig <> main_lab:64 var
-R4245:4246 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3854:3860 LSEH.Salt <> nat_reg constr
+R3864:3865 LSEH.Salt <> ns constr
+R3868:3868 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3878:3878 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3881:3881 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3869:3875 LSEH.Salt <> nat_reg constr
+R3879:3880 LSEH.Salt <> ns constr
+R3891:3891 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3901:3901 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3904:3904 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3892:3898 LSEH.Salt <> nat_reg constr
+R3902:3903 LSEH.Salt <> ns constr
+R3906:3906 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3916:3916 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3919:3919 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3907:3913 LSEH.Salt <> nat_reg constr
+R3917:3918 LSEH.Salt <> ns constr
+R3578:3578 LSEH.RelConfig <> p:57 var
+R3565:3572 LSEH.RelConfig <> main_lab:54 var
+R3556:3563 LSEH.RelConfig <> init_lab:53 var
+scheme 3410:3415 <> init_S_ind
+scheme 3410:3415 <> init_S_sind
+ind 4078:4083 <> init_L
+constr 4194:4202 <> mk_init_L
+R4095:4104 LSEH.Lexi <> code_label ind
+binder 4086:4093 <> init_lab:59
+R4117:4120 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4108:4116 LSEH.RelConfig <> program ind
+R4121:4121 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4179:4183 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4170:4172 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4156:4158 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4137:4141 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4128:4130 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4122:4127 LSEH.RelConfig <> code def
+R4131:4136 LSEH.RelConfig <> heap def
+R4142:4155 LSEH.RelConfig <> eval_context def
+R4159:4169 LSEH.RelConfig <> local_env def
+R4173:4178 LSEH.RelConfig <> term ind
+binder 4213:4213 <> C:62
+R4218:4223 LSEH.RelConfig <> heap def
+binder 4216:4216 <> H:63
+binder 4226:4233 <> main_lab:64
+binder 4235:4241 <> init_tm:65
+R4337:4344 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4255:4257 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R4248:4254 LSEH.RelConfig <> init_tm:65 var
 R4258:4261 LSEH.Lexi <> bind constr
-R4264:4267 LSEH.Lexi <> exit constr
-R4270:4276 LSEH.Lexi <> var_val constr
-R4283:4290 LSEH.Lexi <> val_term constr
-R4305:4310 LSEH.RelConfig <> init_L:60 ind
-R4352:4352 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4385:4386 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4396:4397 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4400:4401 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4404:4413 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4421:4421 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4361:4366 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
-R4381:4383 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
-R4384:4384 LSEH.RelConfig <> C:62 var
-R4353:4360 LSEH.RelConfig <> init_lab:59 var
-R4367:4370 LSEH.Lexi <> func constr
-R4374:4380 LSEH.RelConfig <> init_tm:65 var
-R4387:4395 LSEH.RelConfig <> h_empty def
-R4398:4399 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R4402:4403 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4264:4266 LSEH.Lexi <> app constr
+R4269:4273 LSEH.Lexi <> c_lab constr
+R4275:4282 LSEH.RelConfig <> main_lab:64 var
+R4285:4286 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4298:4301 LSEH.Lexi <> bind constr
+R4304:4307 LSEH.Lexi <> exit constr
+R4310:4316 LSEH.Lexi <> var_val constr
+R4323:4330 LSEH.Lexi <> val_term constr
+R4345:4350 LSEH.RelConfig <> init_L:60 ind
+R4392:4392 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4425:4426 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4436:4437 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4440:4441 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4444:4453 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4461:4461 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4401:4406 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
+R4421:4423 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
+R4424:4424 LSEH.RelConfig <> C:62 var
+R4393:4400 LSEH.RelConfig <> init_lab:59 var
+R4407:4410 LSEH.Lexi <> func constr
 R4414:4420 LSEH.RelConfig <> init_tm:65 var
-R4328:4333 LSEH.Lexi <> letrec constr
-R4335:4335 LSEH.RelConfig <> C:62 var
-R4337:4343 LSEH.RelConfig <> init_tm:65 var
-R4312:4319 LSEH.RelConfig <> init_lab:59 var
-scheme 4038:4043 <> init_L_ind
-scheme 4038:4043 <> init_L_sind
-ind 4442:4448 <> final_L
-constr 4532:4541 <> mk_final_L
-R4452:4452 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4510:4514 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4501:4503 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4485:4489 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4468:4470 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4459:4461 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4453:4458 LSEH.RelConfig <> code def
-R4462:4467 LSEH.RelConfig <> heap def
-R4471:4484 LSEH.RelConfig <> eval_context def
-R4490:4500 LSEH.RelConfig <> local_env def
-R4504:4509 LSEH.RelConfig <> term ind
-R4518:4521 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4515:4517 Coq.Init.Datatypes <> nat ind
-binder 4552:4552 <> C:68
-binder 4554:4554 <> H:69
-R4559:4561 Coq.Init.Datatypes <> nat ind
-binder 4557:4557 <> i:70
-R4569:4575 LSEH.RelConfig <> final_L:66 ind
-R4607:4607 LSEH.RelConfig <> i:70 var
-R4577:4577 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4579:4579 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4581:4581 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4584:4584 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4598:4598 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4605:4605 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4578:4578 LSEH.RelConfig <> C:68 var
-R4580:4580 LSEH.RelConfig <> H:69 var
-R4582:4583 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R4585:4585 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
-R4597:4597 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
-R4586:4594 LSEH.Lexi <> run_const constr
-R4596:4596 LSEH.RelConfig <> i:70 var
-R4599:4604 LSEH.RelConfig <> halt constr
-scheme 4442:4448 <> final_L_ind
-scheme 4442:4448 <> final_L_sind
-ind 4620:4626 <> final_S
-constr 4683:4692 <> mk_final_S
-R4630:4630 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4660:4664 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4649:4651 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4640:4642 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R4631:4639 LSEH.RelConfig <> program def
-R4643:4648 LSEH.RelConfig <> heap def
-R4652:4659 LSEH.Salt <> reg_file def
-R4669:4672 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4665:4668 LSEH.Salt <> word ind
-binder 4703:4703 <> p:73
-binder 4705:4709 <> H_stk:74
-binder 4711:4716 <> H_cont:75
-binder 4718:4722 <> H_tup:76
-binder 4724:4724 <> R:77
-R4729:4741 LSEH.Salt <> code_location ind
-binder 4727:4727 <> l:78
-R4751:4753 Coq.Init.Datatypes <> nat ind
-binder 4749:4749 <> i:79
-binder 4756:4758 <> lsp:80
-binder 4760:4760 <> S:81
-R4789:4796 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R4782:4784 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R4767:4777 LSEH.Salt <> fetch_instr def
-R4779:4779 LSEH.RelConfig <> l:78 var
-R4781:4781 LSEH.RelConfig <> p:73 var
-R4785:4788 LSEH.Salt <> halt constr
-R4797:4803 LSEH.RelConfig <> final_S:71 ind
-R4930:4930 LSEH.RelConfig <> i:79 var
-R4805:4805 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4807:4807 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4859:4864 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4928:4928 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4806:4806 LSEH.RelConfig <> p:73 var
-R4808:4808 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4427:4435 LSEH.RelConfig <> h_empty def
+R4438:4439 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4442:4443 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4454:4460 LSEH.RelConfig <> init_tm:65 var
+R4368:4373 LSEH.Lexi <> letrec constr
+R4375:4375 LSEH.RelConfig <> C:62 var
+R4377:4383 LSEH.RelConfig <> init_tm:65 var
+R4352:4359 LSEH.RelConfig <> init_lab:59 var
+scheme 4078:4083 <> init_L_ind
+scheme 4078:4083 <> init_L_sind
+ind 4482:4488 <> final_L
+constr 4572:4581 <> mk_final_L
+R4492:4492 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4550:4554 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4541:4543 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4525:4529 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4508:4510 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4499:4501 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4493:4498 LSEH.RelConfig <> code def
+R4502:4507 LSEH.RelConfig <> heap def
+R4511:4524 LSEH.RelConfig <> eval_context def
+R4530:4540 LSEH.RelConfig <> local_env def
+R4544:4549 LSEH.RelConfig <> term ind
+R4558:4561 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4555:4557 Coq.Init.Datatypes <> nat ind
+binder 4592:4592 <> C:68
+binder 4594:4594 <> H:69
+R4599:4601 Coq.Init.Datatypes <> nat ind
+binder 4597:4597 <> i:70
+R4609:4615 LSEH.RelConfig <> final_L:66 ind
+R4647:4647 LSEH.RelConfig <> i:70 var
+R4617:4617 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4619:4619 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4621:4621 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4624:4624 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4638:4638 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4645:4645 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4618:4618 LSEH.RelConfig <> C:68 var
+R4620:4620 LSEH.RelConfig <> H:69 var
+R4622:4623 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4625:4625 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R4637:4637 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R4626:4634 LSEH.Lexi <> run_const constr
+R4636:4636 LSEH.RelConfig <> i:70 var
+R4639:4644 LSEH.RelConfig <> halt constr
+scheme 4482:4488 <> final_L_ind
+scheme 4482:4488 <> final_L_sind
+ind 4660:4666 <> final_S
+constr 4723:4732 <> mk_final_S
+R4670:4670 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4700:4704 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4689:4691 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4680:4682 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R4671:4679 LSEH.RelConfig <> program def
+R4683:4688 LSEH.RelConfig <> heap def
+R4692:4699 LSEH.Salt <> reg_file def
+R4709:4712 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4705:4708 LSEH.Salt <> word ind
+binder 4743:4743 <> p:73
+binder 4745:4749 <> H_stk:74
+binder 4751:4756 <> H_cont:75
+binder 4758:4762 <> H_tup:76
+binder 4764:4764 <> R:77
+R4769:4781 LSEH.Salt <> code_location ind
+binder 4767:4767 <> l:78
+R4791:4793 Coq.Init.Datatypes <> nat ind
+binder 4789:4789 <> i:79
+binder 4796:4798 <> lsp:80
+binder 4800:4800 <> S:81
+R4829:4836 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4822:4824 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R4807:4817 LSEH.Salt <> fetch_instr def
+R4819:4819 LSEH.RelConfig <> l:78 var
+R4821:4821 LSEH.RelConfig <> p:73 var
+R4825:4828 LSEH.Salt <> halt constr
+R4837:4843 LSEH.RelConfig <> final_S:71 ind
+R4970:4970 LSEH.RelConfig <> i:79 var
 R4845:4845 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4852:4852 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4858:4858 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4837:4839 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4809:4809 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4813:4813 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4836:4836 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4810:4812 LSEH.RelConfig <> lsp:80 var
-R4814:4818 LSEH.Salt <> stack constr
-R4821:4821 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4829:4833 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4822:4826 LSEH.Salt <> int_w constr
-R4828:4828 LSEH.RelConfig <> i:79 var
-R4834:4834 LSEH.RelConfig <> S:81 var
-R4840:4844 LSEH.RelConfig <> H_stk:74 var
-R4846:4851 LSEH.RelConfig <> H_cont:75 var
-R4853:4857 LSEH.RelConfig <> H_tup:76 var
-R4923:4926 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R4865:4865 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R4878:4878 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R4922:4922 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R4866:4866 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4869:4869 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4877:4877 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4867:4868 LSEH.Salt <> ip constr
-R4870:4874 LSEH.Salt <> loc_w constr
-R4876:4876 LSEH.RelConfig <> l:78 var
-R4879:4879 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4882:4882 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4921:4921 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4880:4881 LSEH.Salt <> sp constr
-R4883:4887 LSEH.Salt <> loc_w constr
-R4890:4893 LSEH.Salt <> hloc constr
-R4895:4897 LSEH.RelConfig <> lsp:80 var
-R4901:4904 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R4918:4918 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R4905:4915 Coq.Lists.List <> length abbrev
-R4917:4917 LSEH.RelConfig <> S:81 var
-R4927:4927 LSEH.RelConfig <> R:77 var
-scheme 4620:4626 <> final_S_ind
-scheme 4620:4626 <> final_S_sind
-ind 5124:5133 <> LS_rel_val
-constr 5178:5183 <> rel_ns
-constr 5212:5218 <> rel_num
-constr 5281:5288 <> rel_clab
-constr 5361:5368 <> rel_dlab
-R5152:5155 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5137:5151 LSEH.RelConfig <> runtime_const ind
-R5162:5165 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5156:5161 LSEH.RelConfig <> word ind
-R5187:5196 LSEH.RelConfig <> LS_rel_val:82 ind
-R5203:5206 LSEH.RelConfig <> ns constr
-R5198:5201 LSEH.RelConfig <> ns constr
-R5232:5234 Coq.Init.Datatypes <> nat ind
-binder 5230:5230 <> i:84
-R5238:5247 LSEH.RelConfig <> LS_rel_val:82 ind
-R5266:5272 LSEH.RelConfig <> int_w constr
-R5274:5274 LSEH.RelConfig <> i:84 var
-R5250:5260 LSEH.RelConfig <> nat_const constr
-R5262:5262 LSEH.RelConfig <> i:84 var
-R5304:5309 Coq.Strings.String <> string ind
-binder 5300:5302 <> str:85
-R5317:5326 LSEH.RelConfig <> LS_rel_val:82 ind
-R5343:5348 LSEH.RelConfig <> cloc constr
-R5350:5352 LSEH.RelConfig <> str:85 var
-R5329:5335 LSEH.RelConfig <> c_lab constr
-R5337:5339 LSEH.RelConfig <> str:85 var
-R5384:5389 Coq.Strings.String <> string ind
-binder 5380:5382 <> str:86
-R5397:5406 LSEH.RelConfig <> LS_rel_val:82 ind
-R5425:5430 LSEH.RelConfig <> hloc constr
-R5432:5434 LSEH.RelConfig <> str:86 var
-R5409:5417 LSEH.RelConfig <> obj_lab constr
-R5419:5421 LSEH.RelConfig <> str:86 var
-scheme 5124:5133 <> LS_rel_val_ind
-scheme 5124:5133 <> LS_rel_val_sind
-ind 5450:5460 <> LS_rel_vals
-constr 5515:5523 <> rel_noval
-constr 5549:5556 <> rel_vals
-R5484:5487 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5464:5467 Coq.Init.Datatypes <> list ind
-R5469:5483 LSEH.RelConfig <> runtime_const ind
-R5499:5502 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5488:5491 Coq.Init.Datatypes <> list ind
-R5493:5498 LSEH.RelConfig <> word ind
-R5527:5537 LSEH.RelConfig <> LS_rel_vals:87 ind
-R5542:5543 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R5539:5540 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-binder 5567:5567 <> v:89
-binder 5569:5570 <> v':90
-binder 5572:5575 <> lstv:91
-binder 5577:5581 <> lstv':92
-R5603:5606 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5588:5597 LSEH.RelConfig <> LS_rel_val ind
-R5599:5599 LSEH.RelConfig <> v:89 var
-R5601:5602 LSEH.RelConfig <> v':90 var
-R5629:5636 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5607:5617 LSEH.RelConfig <> LS_rel_vals:87 ind
-R5624:5628 LSEH.RelConfig <> lstv':92 var
-R5619:5622 LSEH.RelConfig <> lstv:91 var
-R5637:5647 LSEH.RelConfig <> LS_rel_vals:87 ind
-R5664:5667 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R5662:5663 LSEH.RelConfig <> v':90 var
-R5668:5672 LSEH.RelConfig <> lstv':92 var
-R5651:5654 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R5650:5650 LSEH.RelConfig <> v:89 var
-R5655:5658 LSEH.RelConfig <> lstv:91 var
-scheme 5450:5460 <> LS_rel_vals_ind
-scheme 5450:5460 <> LS_rel_vals_sind
-ind 5686:5695 <> LS_rel_env
-constr 5746:5757 <> rel_env_base
-constr 5790:5801 <> rel_env_cons
-R5710:5713 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5699:5709 LSEH.RelConfig <> local_env def
-R5730:5733 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5714:5729 LSEH.RelConfig <> stack_heap_val ind
-R5761:5770 LSEH.RelConfig <> LS_rel_env:93 ind
-R5776:5780 LSEH.Salt <> stack constr
-R5782:5783 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R5772:5773 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-binder 5812:5812 <> v:95
-binder 5814:5815 <> v':96
-binder 5817:5819 <> env:97
-binder 5821:5823 <> lst:98
-R5845:5848 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5830:5839 LSEH.RelConfig <> LS_rel_val ind
-R5841:5841 LSEH.RelConfig <> v:95 var
-R5843:5844 LSEH.RelConfig <> v':96 var
-R5875:5882 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5849:5858 LSEH.RelConfig <> LS_rel_env:93 ind
-R5865:5869 LSEH.Salt <> stack constr
-R5871:5873 LSEH.RelConfig <> lst:98 var
-R5860:5862 LSEH.RelConfig <> env:97 var
-R5883:5892 LSEH.RelConfig <> LS_rel_env:93 ind
-R5907:5911 LSEH.Salt <> stack constr
-R5916:5919 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R5914:5915 LSEH.RelConfig <> v':96 var
-R5920:5922 LSEH.RelConfig <> lst:98 var
-R5896:5899 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R5895:5895 LSEH.RelConfig <> v:95 var
-R5900:5902 LSEH.RelConfig <> env:97 var
-scheme 5686:5695 <> LS_rel_env_ind
-scheme 5686:5695 <> LS_rel_env_sind
-ind 5937:5946 <> LS_rel_ins
-constr 5999:6004 <> rel_tm
-R5950:5950 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5969:5973 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5962:5962 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R5951:5961 LSEH.RelConfig <> local_env def
-R5963:5968 LSEH.RelConfig <> term ind
-R5985:5988 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R5974:5984 LSEH.RelConfig <> instr_seq ind
-binder 6015:6015 <> E:101
-binder 6017:6017 <> t:102
-R6024:6033 LSEH.RelConfig <> LS_rel_ins:99 ind
-R6048:6054 LSEH.Salt <> ins_seq constr
-R6057:6074 LSEH.RelConfig <> func_term_trans def
-R6077:6087 Coq.Lists.List <> length abbrev
-R6089:6089 LSEH.RelConfig <> E:101 var
-R6092:6092 LSEH.RelConfig <> t:102 var
-R6035:6035 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6037:6037 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6039:6039 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6036:6036 LSEH.RelConfig <> E:101 var
-R6038:6038 LSEH.RelConfig <> t:102 var
-scheme 5937:5946 <> LS_rel_ins_ind
-scheme 5937:5946 <> LS_rel_ins_sind
-ind 6108:6119 <> LS_rel_frame
-constr 6166:6174 <> rel_frame
-R6132:6135 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6123:6131 LSEH.RelConfig <> a_frame ind
-R6152:6155 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6136:6151 LSEH.RelConfig <> stack_heap_val ind
-binder 6185:6185 <> E:105
-binder 6187:6187 <> t:106
-binder 6189:6192 <> Ilst:107
-binder 6194:6198 <> C_mem:108
-binder 6200:6204 <> C_lab:109
-binder 6206:6206 <> i:110
-binder 6208:6210 <> lst:111
-binder 6212:6212 <> s:112
-R6250:6257 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6219:6228 LSEH.RelConfig <> LS_rel_ins ind
-R6230:6230 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6232:6232 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6234:6234 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6231:6231 LSEH.RelConfig <> E:105 var
-R6233:6233 LSEH.RelConfig <> t:106 var
-R6237:6243 LSEH.Salt <> ins_seq constr
-R6245:6248 LSEH.RelConfig <> Ilst:107 var
-R6293:6323 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6269:6271 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R6258:6262 LSEH.RelConfig <> C_mem:108 var
-R6264:6268 LSEH.RelConfig <> C_lab:109 var
-R6272:6278 LSEH.Salt <> ins_seq constr
-R6284:6287 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R6281:6283 LSEH.RelConfig <> lst:111 var
-R6288:6291 LSEH.RelConfig <> Ilst:107 var
-R6343:6346 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6339:6341 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R6324:6334 Coq.Lists.List <> length abbrev
-R6336:6338 LSEH.RelConfig <> lst:111 var
-R6342:6342 LSEH.RelConfig <> i:110 var
-R6369:6376 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6347:6356 LSEH.RelConfig <> LS_rel_env ind
-R6358:6358 LSEH.RelConfig <> E:105 var
-R6361:6365 LSEH.Salt <> stack constr
-R6367:6367 LSEH.RelConfig <> s:112 var
-R6377:6388 LSEH.RelConfig <> LS_rel_frame:103 ind
-R6407:6411 LSEH.Salt <> stack constr
-R6414:6414 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R6435:6439 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R6415:6419 LSEH.Salt <> loc_w constr
-R6422:6425 LSEH.Salt <> cloc constr
-R6427:6431 LSEH.RelConfig <> C_lab:109 var
-R6433:6433 LSEH.RelConfig <> i:110 var
-R6440:6440 LSEH.RelConfig <> s:112 var
-R6391:6395 LSEH.Lexi <> act_f constr
-R6397:6397 LSEH.RelConfig <> E:105 var
-R6399:6399 LSEH.RelConfig <> t:106 var
-scheme 6108:6119 <> LS_rel_frame_ind
-scheme 6108:6119 <> LS_rel_frame_sind
-ind 6455:6467 <> LS_rel_frames
-constr 6523:6533 <> rel_noframe
-constr 6569:6582 <> rel_frame_cons
-R6471:6471 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6484:6490 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6472:6475 Coq.Init.Datatypes <> list ind
-R6477:6483 LSEH.RelConfig <> frame ind
-R6507:6510 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6491:6506 LSEH.RelConfig <> stack_heap_val ind
-R6537:6549 LSEH.RelConfig <> LS_rel_frames:113 ind
-R6555:6559 LSEH.Salt <> stack constr
-R6561:6562 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R6551:6552 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-binder 6593:6594 <> Fi:115
-binder 6596:6597 <> si:116
-binder 6599:6602 <> Flst:117
-binder 6604:6605 <> s':118
-R6638:6645 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6612:6623 LSEH.RelConfig <> LS_rel_frame ind
-R6625:6626 LSEH.RelConfig <> Fi:115 var
-R6629:6633 LSEH.Salt <> stack constr
-R6635:6636 LSEH.RelConfig <> si:116 var
-R6675:6682 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6646:6658 LSEH.RelConfig <> LS_rel_frames:113 ind
-R6666:6670 LSEH.Salt <> stack constr
-R6672:6673 LSEH.RelConfig <> s':118 var
-R6660:6663 LSEH.RelConfig <> Flst:117 var
-R6683:6695 LSEH.RelConfig <> LS_rel_frames:113 ind
-R6717:6721 LSEH.Salt <> stack constr
-R6726:6729 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R6724:6725 LSEH.RelConfig <> si:116 var
-R6730:6731 LSEH.RelConfig <> s':118 var
-R6698:6698 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R6705:6709 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R6699:6701 LSEH.Lexi <> a_f constr
-R6703:6704 LSEH.RelConfig <> Fi:115 var
-R6710:6713 LSEH.RelConfig <> Flst:117 var
-scheme 6455:6467 <> LS_rel_frames_ind
-scheme 6455:6467 <> LS_rel_frames_sind
-ind 6746:6763 <> LS_rel_hdl_led_ctx
-constr 6873:6884 <> rel_hdl_base
-constr 6949:6963 <> rel_hdl_general
-constr 7550:7561 <> rel_hdl_tail
-constr 8055:8067 <> rel_hdl_abort
-R6779:6784 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6767:6770 Coq.Init.Datatypes <> list ind
-R6772:6778 LSEH.RelConfig <> frame ind
-R6785:6785 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6856:6860 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R6837:6839 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R6826:6830 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R6811:6813 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R6792:6794 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R6786:6791 LSEH.RelConfig <> word ind
-R6795:6810 LSEH.RelConfig <> stack_heap_val ind
-R6814:6825 LSEH.RelConfig <> stack_heap def
-R6831:6836 LSEH.RelConfig <> word ind
-R6840:6855 LSEH.RelConfig <> stack_heap_val ind
-binder 6895:6895 <> L:121
-binder 6897:6897 <> s:122
-R6904:6921 LSEH.RelConfig <> LS_rel_hdl_led_ctx:119 ind
-R6926:6926 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6928:6928 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6930:6930 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6939:6939 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6941:6941 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6943:6943 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R6927:6927 LSEH.RelConfig <> L:121 var
-R6929:6929 LSEH.RelConfig <> s:122 var
-R6931:6938 LSEH.Salt <> sh_empty def
-R6940:6940 LSEH.RelConfig <> L:121 var
-R6942:6942 LSEH.RelConfig <> s:122 var
-R6923:6924 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-binder 6974:6977 <> Flst:123
-R6987:6990 Coq.Init.Datatypes <> list ind
-R6992:6997 LSEH.RelConfig <> word ind
-binder 6980:6980 <> s:124
-binder 6982:6983 <> s':125
-binder 7000:7003 <> s_in:126
-binder 7005:7009 <> s_out:127
-R7037:7042 Coq.Strings.String <> string ind
-binder 7016:7016 <> L:128
-binder 7018:7022 <> L_env:129
-binder 7024:7030 <> Clab_op:130
-binder 7032:7035 <> L_in:131
-binder 7045:7049 <> L_out:132
-R7061:7070 LSEH.Salt <> stack_heap def
-binder 7053:7059 <> H_stack:133
-binder 7073:7074 <> Ks:134
-R7109:7116 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R7081:7093 LSEH.RelConfig <> LS_rel_frames ind
-R7095:7098 LSEH.RelConfig <> Flst:123 var
-R7101:7105 LSEH.Salt <> stack constr
-R7107:7107 LSEH.RelConfig <> s:124 var
-R7240:7247 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R7119:7121 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R7117:7118 LSEH.RelConfig <> s':125 var
-R7123:7126 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R7122:7122 LSEH.RelConfig <> s:124 var
-R7127:7127 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7164:7171 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7179:7180 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7201:7208 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7239:7239 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R4847:4847 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4899:4904 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4968:4968 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4846:4846 LSEH.RelConfig <> p:73 var
+R4848:4848 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4885:4885 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4892:4892 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4898:4898 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4877:4879 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4849:4849 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4853:4853 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4876:4876 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4850:4852 LSEH.RelConfig <> lsp:80 var
+R4854:4858 LSEH.Salt <> stack constr
+R4861:4861 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4869:4873 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4862:4866 LSEH.Salt <> int_w constr
+R4868:4868 LSEH.RelConfig <> i:79 var
+R4874:4874 LSEH.RelConfig <> S:81 var
+R4880:4884 LSEH.RelConfig <> H_stk:74 var
+R4886:4891 LSEH.RelConfig <> H_cont:75 var
+R4893:4897 LSEH.RelConfig <> H_tup:76 var
+R4963:4966 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R4905:4905 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R4918:4918 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R4962:4962 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R4906:4906 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4909:4909 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4917:4917 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4907:4908 LSEH.Salt <> ip constr
+R4910:4914 LSEH.Salt <> loc_w constr
+R4916:4916 LSEH.RelConfig <> l:78 var
+R4919:4919 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4922:4922 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4961:4961 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4920:4921 LSEH.Salt <> sp constr
+R4923:4927 LSEH.Salt <> loc_w constr
+R4930:4933 LSEH.Salt <> hloc constr
+R4935:4937 LSEH.RelConfig <> lsp:80 var
+R4941:4944 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R4958:4958 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R4945:4955 Coq.Lists.List <> length abbrev
+R4957:4957 LSEH.RelConfig <> S:81 var
+R4967:4967 LSEH.RelConfig <> R:77 var
+scheme 4660:4666 <> final_S_ind
+scheme 4660:4666 <> final_S_sind
+ind 5164:5177 <> LS_rel_run_cst
+constr 5222:5232 <> rel_run_cst
+R5198:5201 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5183:5197 LSEH.RelConfig <> runtime_const ind
+R5208:5211 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5202:5207 LSEH.RelConfig <> word ind
+binder 5245:5247 <> cst:84
+R5250:5263 LSEH.RelConfig <> LS_rel_run_cst:82 ind
+R5270:5282 LSEH.LexiToSalt <> run_cst_trans def
+R5284:5286 LSEH.RelConfig <> cst:84 var
+R5265:5267 LSEH.RelConfig <> cst:84 var
+scheme 5164:5177 <> LS_rel_run_cst_ind
+scheme 5164:5177 <> LS_rel_run_cst_sind
+ind 5322:5336 <> LS_rel_run_csts
+constr 5391:5402 <> rel_run_csts
+R5362:5365 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5342:5345 Coq.Init.Datatypes <> list ind
+R5347:5361 LSEH.RelConfig <> runtime_const ind
+R5377:5380 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5366:5369 Coq.Init.Datatypes <> list ind
+R5371:5376 LSEH.RelConfig <> word ind
+binder 5413:5416 <> lstv:87
+R5423:5437 LSEH.RelConfig <> LS_rel_run_csts:85 ind
+R5445:5452 Coq.Lists.List <> map def
+R5468:5471 LSEH.RelConfig <> lstv:87 var
+R5454:5466 LSEH.LexiToSalt <> run_cst_trans def
+R5439:5442 LSEH.RelConfig <> lstv:87 var
+scheme 5322:5336 <> LS_rel_run_csts_ind
+scheme 5322:5336 <> LS_rel_run_csts_sind
+ind 5486:5495 <> LS_rel_env
+constr 5544:5550 <> rel_env
+R5510:5513 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5499:5509 LSEH.RelConfig <> local_env def
+R5530:5533 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5514:5529 LSEH.RelConfig <> stack_heap_val ind
+binder 5561:5566 <> envlst:90
+R5573:5582 LSEH.RelConfig <> LS_rel_env:88 ind
+R5592:5596 LSEH.Salt <> stack constr
+R5599:5606 Coq.Lists.List <> map def
+R5622:5627 LSEH.RelConfig <> envlst:90 var
+R5608:5620 LSEH.LexiToSalt <> run_cst_trans def
+R5584:5589 LSEH.RelConfig <> envlst:90 var
+scheme 5486:5495 <> LS_rel_env_ind
+scheme 5486:5495 <> LS_rel_env_sind
+ind 5642:5651 <> LS_rel_ins
+constr 5704:5709 <> rel_tm
+R5655:5655 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5674:5678 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5667:5667 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R5656:5666 LSEH.RelConfig <> local_env def
+R5668:5673 LSEH.RelConfig <> term ind
+R5690:5693 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5679:5689 LSEH.RelConfig <> instr_seq ind
+binder 5720:5720 <> E:93
+binder 5722:5722 <> t:94
+R5729:5738 LSEH.RelConfig <> LS_rel_ins:91 ind
+R5753:5759 LSEH.Salt <> ins_seq constr
+R5762:5779 LSEH.RelConfig <> func_term_trans def
+R5782:5792 Coq.Lists.List <> length abbrev
+R5794:5794 LSEH.RelConfig <> E:93 var
+R5797:5797 LSEH.RelConfig <> t:94 var
+R5740:5740 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5742:5742 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5744:5744 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5741:5741 LSEH.RelConfig <> E:93 var
+R5743:5743 LSEH.RelConfig <> t:94 var
+scheme 5642:5651 <> LS_rel_ins_ind
+scheme 5642:5651 <> LS_rel_ins_sind
+ind 5813:5824 <> LS_rel_frame
+constr 5871:5879 <> rel_frame
+R5837:5840 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5828:5836 LSEH.RelConfig <> a_frame ind
+R5857:5860 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5841:5856 LSEH.RelConfig <> stack_heap_val ind
+binder 5890:5890 <> E:97
+binder 5892:5892 <> t:98
+binder 5894:5897 <> Ilst:99
+binder 5899:5903 <> C_mem:100
+binder 5905:5909 <> C_lab:101
+binder 5911:5911 <> i:102
+binder 5913:5915 <> lst:103
+binder 5917:5917 <> s:104
+R5955:5962 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5924:5933 LSEH.RelConfig <> LS_rel_ins ind
+R5935:5935 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5937:5937 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5939:5939 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5936:5936 LSEH.RelConfig <> E:97 var
+R5938:5938 LSEH.RelConfig <> t:98 var
+R5942:5948 LSEH.Salt <> ins_seq constr
+R5950:5953 LSEH.RelConfig <> Ilst:99 var
+R5998:6005 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5974:5976 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5963:5967 LSEH.RelConfig <> C_mem:100 var
+R5969:5973 LSEH.RelConfig <> C_lab:101 var
+R5977:5983 LSEH.Salt <> ins_seq constr
+R5989:5992 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R5986:5988 LSEH.RelConfig <> lst:103 var
+R5993:5996 LSEH.RelConfig <> Ilst:99 var
+R6025:6028 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6021:6023 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R6006:6016 Coq.Lists.List <> length abbrev
+R6018:6020 LSEH.RelConfig <> lst:103 var
+R6024:6024 LSEH.RelConfig <> i:102 var
+R6051:6058 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6029:6038 LSEH.RelConfig <> LS_rel_env ind
+R6040:6040 LSEH.RelConfig <> E:97 var
+R6043:6047 LSEH.Salt <> stack constr
+R6049:6049 LSEH.RelConfig <> s:104 var
+R6059:6070 LSEH.RelConfig <> LS_rel_frame:95 ind
+R6089:6093 LSEH.Salt <> stack constr
+R6096:6096 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6117:6121 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6097:6101 LSEH.Salt <> loc_w constr
+R6104:6107 LSEH.Salt <> cloc constr
+R6109:6113 LSEH.RelConfig <> C_lab:101 var
+R6115:6115 LSEH.RelConfig <> i:102 var
+R6122:6122 LSEH.RelConfig <> s:104 var
+R6073:6077 LSEH.Lexi <> act_f constr
+R6079:6079 LSEH.RelConfig <> E:97 var
+R6081:6081 LSEH.RelConfig <> t:98 var
+scheme 5813:5824 <> LS_rel_frame_ind
+scheme 5813:5824 <> LS_rel_frame_sind
+ind 6137:6149 <> LS_rel_frames
+constr 6205:6215 <> rel_noframe
+constr 6251:6264 <> rel_frame_cons
+R6153:6153 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6166:6172 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6154:6157 Coq.Init.Datatypes <> list ind
+R6159:6165 LSEH.RelConfig <> frame ind
+R6189:6192 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6173:6188 LSEH.RelConfig <> stack_heap_val ind
+R6219:6231 LSEH.RelConfig <> LS_rel_frames:105 ind
+R6237:6241 LSEH.Salt <> stack constr
+R6243:6244 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R6233:6234 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+binder 6275:6276 <> Fi:107
+binder 6278:6279 <> si:108
+binder 6281:6284 <> Flst:109
+binder 6286:6287 <> s':110
+R6320:6327 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6294:6305 LSEH.RelConfig <> LS_rel_frame ind
+R6307:6308 LSEH.RelConfig <> Fi:107 var
+R6311:6315 LSEH.Salt <> stack constr
+R6317:6318 LSEH.RelConfig <> si:108 var
+R6357:6364 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6328:6340 LSEH.RelConfig <> LS_rel_frames:105 ind
+R6348:6352 LSEH.Salt <> stack constr
+R6354:6355 LSEH.RelConfig <> s':110 var
+R6342:6345 LSEH.RelConfig <> Flst:109 var
+R6365:6377 LSEH.RelConfig <> LS_rel_frames:105 ind
+R6399:6403 LSEH.Salt <> stack constr
+R6408:6411 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R6406:6407 LSEH.RelConfig <> si:108 var
+R6412:6413 LSEH.RelConfig <> s':110 var
+R6380:6380 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6387:6391 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6381:6383 LSEH.Lexi <> a_f constr
+R6385:6386 LSEH.RelConfig <> Fi:107 var
+R6392:6395 LSEH.RelConfig <> Flst:109 var
+scheme 6137:6149 <> LS_rel_frames_ind
+scheme 6137:6149 <> LS_rel_frames_sind
+ind 6428:6445 <> LS_rel_hdl_led_ctx
+constr 6555:6566 <> rel_hdl_base
+constr 6631:6645 <> rel_hdl_general
+constr 7232:7243 <> rel_hdl_tail
+constr 7737:7749 <> rel_hdl_abort
+R6461:6466 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6449:6452 Coq.Init.Datatypes <> list ind
+R6454:6460 LSEH.RelConfig <> frame ind
+R6467:6467 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6538:6542 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6519:6521 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R6508:6512 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R6493:6495 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R6474:6476 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R6468:6473 LSEH.RelConfig <> word ind
+R6477:6492 LSEH.RelConfig <> stack_heap_val ind
+R6496:6507 LSEH.RelConfig <> stack_heap def
+R6513:6518 LSEH.RelConfig <> word ind
+R6522:6537 LSEH.RelConfig <> stack_heap_val ind
+binder 6577:6577 <> L:113
+binder 6579:6579 <> s:114
+R6586:6603 LSEH.RelConfig <> LS_rel_hdl_led_ctx:111 ind
+R6608:6608 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6610:6610 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6612:6612 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6621:6621 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6623:6623 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6625:6625 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6609:6609 LSEH.RelConfig <> L:113 var
+R6611:6611 LSEH.RelConfig <> s:114 var
+R6613:6620 LSEH.Salt <> sh_empty def
+R6622:6622 LSEH.RelConfig <> L:113 var
+R6624:6624 LSEH.RelConfig <> s:114 var
+R6605:6606 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+binder 6656:6659 <> Flst:115
+R6669:6672 Coq.Init.Datatypes <> list ind
+R6674:6679 LSEH.RelConfig <> word ind
+binder 6662:6662 <> s:116
+binder 6664:6665 <> s':117
+binder 6682:6685 <> s_in:118
+binder 6687:6691 <> s_out:119
+R6719:6724 Coq.Strings.String <> string ind
+binder 6698:6698 <> L:120
+binder 6700:6704 <> L_env:121
+binder 6706:6712 <> Clab_op:122
+binder 6714:6717 <> L_in:123
+binder 6727:6731 <> L_out:124
+R6743:6752 LSEH.Salt <> stack_heap def
+binder 6735:6741 <> H_stack:125
+binder 6755:6756 <> Ks:126
+R6791:6798 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6763:6775 LSEH.RelConfig <> LS_rel_frames ind
+R6777:6780 LSEH.RelConfig <> Flst:115 var
+R6783:6787 LSEH.Salt <> stack constr
+R6789:6789 LSEH.RelConfig <> s:116 var
+R6922:6929 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6801:6803 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R6799:6800 LSEH.RelConfig <> s':117 var
+R6805:6808 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R6804:6804 LSEH.RelConfig <> s:116 var
+R6809:6809 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R6846:6853 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R6861:6862 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R6883:6890 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R6921:6921 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R6810:6814 LSEH.Salt <> loc_w constr
+R6817:6820 LSEH.Salt <> hloc constr
+R6822:6825 LSEH.RelConfig <> L_in:123 var
+R6828:6838 Coq.Lists.List <> length abbrev
+R6840:6843 LSEH.RelConfig <> s_in:118 var
+R6854:6858 LSEH.Salt <> int_w constr
+R6863:6867 LSEH.Salt <> loc_w constr
+R6870:6873 LSEH.Salt <> hloc constr
+R6875:6879 LSEH.RelConfig <> L_env:121 var
+R6891:6895 LSEH.Salt <> loc_w constr
+R6898:6902 LSEH.Salt <> c_loc constr
+R6905:6908 LSEH.Salt <> cloc constr
+R6910:6916 LSEH.RelConfig <> Clab_op:122 var
+R7008:7015 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6930:6947 LSEH.RelConfig <> LS_rel_hdl_led_ctx:111 ind
+R6960:6960 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6977:6978 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6987:6987 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6995:6995 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7001:7001 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7007:7007 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R6961:6965 LSEH.Salt <> loc_w constr
+R6968:6971 LSEH.Salt <> hloc constr
+R6973:6973 LSEH.RelConfig <> L:120 var
+R6979:6983 LSEH.Salt <> stack constr
+R6985:6986 LSEH.RelConfig <> s':117 var
+R6988:6994 LSEH.RelConfig <> H_stack:125 var
+R6996:7000 LSEH.RelConfig <> L_out:124 var
+R7002:7006 LSEH.RelConfig <> s_out:119 var
+R6949:6950 LSEH.RelConfig <> Ks:126 var
+R7016:7033 LSEH.RelConfig <> LS_rel_hdl_led_ctx:111 ind
+R7127:7127 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7147:7148 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7159:7166 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7206:7213 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7219:7220 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7226:7226 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R7128:7132 LSEH.Salt <> loc_w constr
 R7135:7138 LSEH.Salt <> hloc constr
-R7140:7143 LSEH.RelConfig <> L_in:131 var
-R7146:7156 Coq.Lists.List <> length abbrev
-R7158:7161 LSEH.RelConfig <> s_in:126 var
-R7172:7176 LSEH.Salt <> int_w constr
-R7181:7185 LSEH.Salt <> loc_w constr
-R7188:7191 LSEH.Salt <> hloc constr
-R7193:7197 LSEH.RelConfig <> L_env:129 var
-R7209:7213 LSEH.Salt <> loc_w constr
-R7216:7220 LSEH.Salt <> c_loc constr
-R7223:7226 LSEH.Salt <> cloc constr
-R7228:7234 LSEH.RelConfig <> Clab_op:130 var
-R7326:7333 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R7248:7265 LSEH.RelConfig <> LS_rel_hdl_led_ctx:119 ind
-R7278:7278 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7295:7296 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7305:7305 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7313:7313 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7319:7319 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7325:7325 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7279:7283 LSEH.Salt <> loc_w constr
-R7286:7289 LSEH.Salt <> hloc constr
-R7291:7291 LSEH.RelConfig <> L:128 var
-R7297:7301 LSEH.Salt <> stack constr
-R7303:7304 LSEH.RelConfig <> s':125 var
-R7306:7312 LSEH.RelConfig <> H_stack:133 var
-R7314:7318 LSEH.RelConfig <> L_out:132 var
-R7320:7324 LSEH.RelConfig <> s_out:127 var
-R7267:7268 LSEH.RelConfig <> Ks:134 var
-R7334:7351 LSEH.RelConfig <> LS_rel_hdl_led_ctx:119 ind
-R7445:7445 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7465:7466 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7477:7484 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7524:7531 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7537:7538 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7544:7544 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7446:7450 LSEH.Salt <> loc_w constr
-R7453:7456 LSEH.Salt <> hloc constr
-R7458:7461 LSEH.RelConfig <> L_in:131 var
-R7467:7471 LSEH.Salt <> stack constr
-R7473:7476 LSEH.RelConfig <> s_in:126 var
-R7498:7503 LSEH.Salt <> :::x_'!->s'_x_';'_x not
-R7514:7516 LSEH.Salt <> :::x_'!->s'_x_';'_x not
-R7517:7523 LSEH.RelConfig <> H_stack:133 var
-R7485:7492 LSEH.Salt <> hloc_str constr
-R7494:7497 LSEH.RelConfig <> L_in:131 var
-R7504:7508 LSEH.Salt <> stack constr
-R7510:7513 LSEH.RelConfig <> s_in:126 var
-R7532:7536 LSEH.RelConfig <> L_out:132 var
-R7539:7543 LSEH.RelConfig <> s_out:127 var
-R7358:7358 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R7424:7428 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R7359:7361 LSEH.Lexi <> h_f constr
-R7364:7372 LSEH.Lexi <> handler_f constr
-R7375:7381 LSEH.Lexi <> hdl_lab constr
-R7383:7383 LSEH.RelConfig <> L:128 var
-R7393:7399 LSEH.Lexi <> hdl_lab constr
-R7401:7405 LSEH.RelConfig <> L_env:129 var
-R7408:7414 LSEH.RelConfig <> Clab_op:130 var
-R7416:7422 LSEH.Lexi <> general constr
-R7433:7436 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R7429:7432 LSEH.RelConfig <> Flst:123 var
-R7437:7438 LSEH.RelConfig <> Ks:134 var
-binder 7572:7575 <> Flst:135
-binder 7577:7577 <> s:136
-binder 7579:7580 <> s':137
-binder 7582:7585 <> s_in:138
-binder 7587:7591 <> s_out:139
-binder 7597:7597 <> L:140
-binder 7599:7602 <> L_in:141
-binder 7604:7608 <> L_out:142
-R7625:7630 Coq.Strings.String <> string ind
-binder 7611:7615 <> L_env:143
-binder 7617:7623 <> Clab_op:144
-R7642:7651 LSEH.Salt <> stack_heap def
-binder 7634:7640 <> H_stack:145
-binder 7654:7655 <> Ks:146
-R7690:7697 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R7662:7674 LSEH.RelConfig <> LS_rel_frames ind
-R7676:7679 LSEH.RelConfig <> Flst:135 var
-R7682:7686 LSEH.Salt <> stack constr
-R7688:7688 LSEH.RelConfig <> s:136 var
-R7789:7796 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R7700:7702 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R7698:7699 LSEH.RelConfig <> s':137 var
-R7704:7707 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R7703:7703 LSEH.RelConfig <> s:136 var
-R7781:7784 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R7708:7708 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7711:7712 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7720:7721 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7742:7749 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7780:7780 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R7709:7710 LSEH.Salt <> ns constr
-R7713:7717 LSEH.Salt <> int_w constr
-R7722:7726 LSEH.Salt <> loc_w constr
-R7729:7732 LSEH.Salt <> hloc constr
-R7734:7738 LSEH.RelConfig <> L_env:143 var
-R7750:7754 LSEH.Salt <> loc_w constr
-R7757:7761 LSEH.Salt <> c_loc constr
-R7764:7767 LSEH.Salt <> cloc constr
-R7769:7775 LSEH.RelConfig <> Clab_op:144 var
-R7785:7788 LSEH.RelConfig <> s_in:138 var
+R7140:7143 LSEH.RelConfig <> L_in:123 var
+R7149:7153 LSEH.Salt <> stack constr
+R7155:7158 LSEH.RelConfig <> s_in:118 var
+R7180:7185 LSEH.Salt <> :::x_'!->s'_x_';'_x not
+R7196:7198 LSEH.Salt <> :::x_'!->s'_x_';'_x not
+R7199:7205 LSEH.RelConfig <> H_stack:125 var
+R7167:7174 LSEH.Salt <> hloc_str constr
+R7176:7179 LSEH.RelConfig <> L_in:123 var
+R7186:7190 LSEH.Salt <> stack constr
+R7192:7195 LSEH.RelConfig <> s_in:118 var
+R7214:7218 LSEH.RelConfig <> L_out:124 var
+R7221:7225 LSEH.RelConfig <> s_out:119 var
+R7040:7040 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7106:7110 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7041:7043 LSEH.Lexi <> h_f constr
+R7046:7054 LSEH.Lexi <> handler_f constr
+R7057:7063 LSEH.Lexi <> hdl_lab constr
+R7065:7065 LSEH.RelConfig <> L:120 var
+R7075:7081 LSEH.Lexi <> hdl_lab constr
+R7083:7087 LSEH.RelConfig <> L_env:121 var
+R7090:7096 LSEH.RelConfig <> Clab_op:122 var
+R7098:7104 LSEH.Lexi <> general constr
+R7115:7118 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R7111:7114 LSEH.RelConfig <> Flst:115 var
+R7119:7120 LSEH.RelConfig <> Ks:126 var
+binder 7254:7257 <> Flst:127
+binder 7259:7259 <> s:128
+binder 7261:7262 <> s':129
+binder 7264:7267 <> s_in:130
+binder 7269:7273 <> s_out:131
+binder 7279:7279 <> L:132
+binder 7281:7284 <> L_in:133
+binder 7286:7290 <> L_out:134
+R7307:7312 Coq.Strings.String <> string ind
+binder 7293:7297 <> L_env:135
+binder 7299:7305 <> Clab_op:136
+R7324:7333 LSEH.Salt <> stack_heap def
+binder 7316:7322 <> H_stack:137
+binder 7336:7337 <> Ks:138
+R7372:7379 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7344:7356 LSEH.RelConfig <> LS_rel_frames ind
+R7358:7361 LSEH.RelConfig <> Flst:127 var
+R7364:7368 LSEH.Salt <> stack constr
+R7370:7370 LSEH.RelConfig <> s:128 var
+R7471:7478 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7382:7384 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R7380:7381 LSEH.RelConfig <> s':129 var
+R7386:7389 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R7385:7385 LSEH.RelConfig <> s:128 var
+R7463:7466 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R7390:7390 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7393:7394 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7402:7403 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7424:7431 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7462:7462 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7391:7392 LSEH.Salt <> ns constr
+R7395:7399 LSEH.Salt <> int_w constr
+R7404:7408 LSEH.Salt <> loc_w constr
+R7411:7414 LSEH.Salt <> hloc constr
+R7416:7420 LSEH.RelConfig <> L_env:135 var
+R7432:7436 LSEH.Salt <> loc_w constr
+R7439:7443 LSEH.Salt <> c_loc constr
+R7446:7449 LSEH.Salt <> cloc constr
+R7451:7457 LSEH.RelConfig <> Clab_op:136 var
+R7467:7470 LSEH.RelConfig <> s_in:130 var
+R7560:7567 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7479:7496 LSEH.RelConfig <> LS_rel_hdl_led_ctx:111 ind
+R7509:7509 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7529:7530 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7539:7539 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7547:7547 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7553:7553 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7559:7559 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7510:7514 LSEH.Salt <> loc_w constr
+R7517:7520 LSEH.Salt <> hloc constr
+R7522:7525 LSEH.RelConfig <> L_in:133 var
+R7531:7535 LSEH.Salt <> stack constr
+R7537:7538 LSEH.RelConfig <> s':129 var
+R7540:7546 LSEH.RelConfig <> H_stack:137 var
+R7548:7552 LSEH.RelConfig <> L_out:134 var
+R7554:7558 LSEH.RelConfig <> s_out:131 var
+R7498:7499 LSEH.RelConfig <> Ks:138 var
+R7568:7585 LSEH.RelConfig <> LS_rel_hdl_led_ctx:111 ind
+R7676:7676 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7696:7697 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7708:7709 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7717:7718 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7724:7725 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7731:7731 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7677:7681 LSEH.Salt <> loc_w constr
+R7684:7687 LSEH.Salt <> hloc constr
+R7689:7692 LSEH.RelConfig <> L_in:133 var
+R7698:7702 LSEH.Salt <> stack constr
+R7704:7707 LSEH.RelConfig <> s_in:130 var
+R7710:7716 LSEH.RelConfig <> H_stack:137 var
+R7719:7723 LSEH.RelConfig <> L_out:134 var
+R7726:7730 LSEH.RelConfig <> s_out:131 var
+R7592:7592 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7655:7659 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7593:7595 LSEH.Lexi <> h_f constr
+R7598:7606 LSEH.Lexi <> handler_f constr
+R7609:7615 LSEH.Lexi <> hdl_lab constr
+R7617:7617 LSEH.RelConfig <> L:132 var
+R7627:7633 LSEH.Lexi <> hdl_lab constr
+R7635:7639 LSEH.RelConfig <> L_env:135 var
+R7642:7648 LSEH.RelConfig <> Clab_op:136 var
+R7650:7653 LSEH.Lexi <> tail constr
+R7664:7667 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R7660:7663 LSEH.RelConfig <> Flst:127 var
+R7668:7669 LSEH.RelConfig <> Ks:138 var
+binder 7760:7763 <> Flst:139
+binder 7765:7765 <> s:140
+binder 7767:7768 <> s':141
+binder 7770:7773 <> s_in:142
+binder 7775:7779 <> s_out:143
+binder 7785:7785 <> L:144
+binder 7787:7790 <> L_in:145
+binder 7792:7796 <> L_out:146
+R7813:7818 Coq.Strings.String <> string ind
+binder 7799:7803 <> L_env:147
+binder 7805:7811 <> Clab_op:148
+R7830:7839 LSEH.Salt <> stack_heap def
+binder 7822:7828 <> H_stack:149
+binder 7842:7843 <> Ks:150
 R7878:7885 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R7797:7814 LSEH.RelConfig <> LS_rel_hdl_led_ctx:119 ind
-R7827:7827 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7847:7848 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7857:7857 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7865:7865 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7871:7871 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7877:7877 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7828:7832 LSEH.Salt <> loc_w constr
-R7835:7838 LSEH.Salt <> hloc constr
-R7840:7843 LSEH.RelConfig <> L_in:141 var
-R7849:7853 LSEH.Salt <> stack constr
-R7855:7856 LSEH.RelConfig <> s':137 var
-R7858:7864 LSEH.RelConfig <> H_stack:145 var
-R7866:7870 LSEH.RelConfig <> L_out:142 var
-R7872:7876 LSEH.RelConfig <> s_out:139 var
-R7816:7817 LSEH.RelConfig <> Ks:146 var
-R7886:7903 LSEH.RelConfig <> LS_rel_hdl_led_ctx:119 ind
-R7994:7994 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8014:8015 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8026:8027 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8035:8036 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8042:8043 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8049:8049 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7995:7999 LSEH.Salt <> loc_w constr
-R8002:8005 LSEH.Salt <> hloc constr
-R8007:8010 LSEH.RelConfig <> L_in:141 var
-R8016:8020 LSEH.Salt <> stack constr
-R8022:8025 LSEH.RelConfig <> s_in:138 var
-R8028:8034 LSEH.RelConfig <> H_stack:145 var
-R8037:8041 LSEH.RelConfig <> L_out:142 var
-R8044:8048 LSEH.RelConfig <> s_out:139 var
-R7910:7910 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R7973:7977 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R7911:7913 LSEH.Lexi <> h_f constr
-R7916:7924 LSEH.Lexi <> handler_f constr
-R7927:7933 LSEH.Lexi <> hdl_lab constr
-R7935:7935 LSEH.RelConfig <> L:140 var
-R7945:7951 LSEH.Lexi <> hdl_lab constr
-R7953:7957 LSEH.RelConfig <> L_env:143 var
-R7960:7966 LSEH.RelConfig <> Clab_op:144 var
-R7968:7971 LSEH.Lexi <> tail constr
-R7982:7985 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R7978:7981 LSEH.RelConfig <> Flst:135 var
-R7986:7987 LSEH.RelConfig <> Ks:146 var
-binder 8078:8081 <> Flst:147
-binder 8083:8083 <> s:148
-binder 8085:8086 <> s':149
-binder 8088:8091 <> s_in:150
-binder 8093:8097 <> s_out:151
-binder 8103:8103 <> L:152
-binder 8105:8108 <> L_in:153
-binder 8110:8114 <> L_out:154
-R8131:8136 Coq.Strings.String <> string ind
-binder 8117:8121 <> L_env:155
-binder 8123:8129 <> Clab_op:156
-R8148:8157 LSEH.Salt <> stack_heap def
-binder 8140:8146 <> H_stack:157
-binder 8160:8161 <> Ks:158
-R8196:8203 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R8168:8180 LSEH.RelConfig <> LS_rel_frames ind
-R8182:8185 LSEH.RelConfig <> Flst:147 var
-R8188:8192 LSEH.Salt <> stack constr
-R8194:8194 LSEH.RelConfig <> s:148 var
-R8295:8302 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R8206:8208 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R8204:8205 LSEH.RelConfig <> s':149 var
-R8210:8213 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R8209:8209 LSEH.RelConfig <> s:148 var
-R8287:8290 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R8214:8214 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R8217:8218 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R8226:8227 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R8248:8255 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R8286:8286 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R8215:8216 LSEH.Salt <> ns constr
-R8219:8223 LSEH.Salt <> int_w constr
-R8228:8232 LSEH.Salt <> loc_w constr
-R8235:8238 LSEH.Salt <> hloc constr
-R8240:8244 LSEH.RelConfig <> L_env:155 var
-R8256:8260 LSEH.Salt <> loc_w constr
-R8263:8267 LSEH.Salt <> c_loc constr
-R8270:8273 LSEH.Salt <> cloc constr
-R8275:8281 LSEH.RelConfig <> Clab_op:156 var
-R8291:8294 LSEH.RelConfig <> s_in:150 var
-R8383:8390 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R8303:8320 LSEH.RelConfig <> LS_rel_hdl_led_ctx:119 ind
-R8332:8332 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8352:8353 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8362:8362 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8370:8370 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8376:8376 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8382:8382 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8333:8337 LSEH.Salt <> loc_w constr
-R8340:8343 LSEH.Salt <> hloc constr
-R8345:8348 LSEH.RelConfig <> L_in:153 var
-R8354:8358 LSEH.Salt <> stack constr
-R8360:8361 LSEH.RelConfig <> s':149 var
-R8363:8369 LSEH.RelConfig <> H_stack:157 var
-R8371:8375 LSEH.RelConfig <> L_out:154 var
-R8377:8381 LSEH.RelConfig <> s_out:151 var
-R8322:8323 LSEH.RelConfig <> Ks:158 var
-R8391:8408 LSEH.RelConfig <> LS_rel_hdl_led_ctx:119 ind
-R8500:8500 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8520:8521 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8532:8533 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8541:8542 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8548:8549 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8555:8555 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8501:8505 LSEH.Salt <> loc_w constr
-R8508:8511 LSEH.Salt <> hloc constr
-R8513:8516 LSEH.RelConfig <> L_in:153 var
-R8522:8526 LSEH.Salt <> stack constr
-R8528:8531 LSEH.RelConfig <> s_in:150 var
-R8534:8540 LSEH.RelConfig <> H_stack:157 var
-R8543:8547 LSEH.RelConfig <> L_out:154 var
-R8550:8554 LSEH.RelConfig <> s_out:151 var
-R8415:8415 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R8479:8483 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R8416:8418 LSEH.Lexi <> h_f constr
-R8421:8429 LSEH.Lexi <> handler_f constr
-R8432:8438 LSEH.Lexi <> hdl_lab constr
-R8440:8440 LSEH.RelConfig <> L:152 var
-R8450:8456 LSEH.Lexi <> hdl_lab constr
-R8458:8462 LSEH.RelConfig <> L_env:155 var
-R8465:8471 LSEH.RelConfig <> Clab_op:156 var
-R8473:8477 LSEH.Lexi <> abort constr
-R8488:8491 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R8484:8487 LSEH.RelConfig <> Flst:147 var
-R8492:8493 LSEH.RelConfig <> Ks:158 var
-scheme 6746:6763 <> LS_rel_hdl_led_ctx_ind
-scheme 6746:6763 <> LS_rel_hdl_led_ctx_sind
-def 8569:8581 <> run_cst_trans
-R8586:8600 LSEH.RelConfig <> runtime_const ind
-binder 8584:8584 <> v:159
-R8605:8608 LSEH.Salt <> word ind
-R8621:8621 LSEH.RelConfig <> v:159 var
-R8632:8640 LSEH.Lexi <> run_const constr
-R8650:8667 LSEH.LexiToSalt <> static_const_trans def
-R8678:8684 LSEH.Lexi <> obj_lab constr
-R8691:8694 LSEH.Salt <> hloc constr
-R8704:8710 LSEH.Lexi <> hdl_lab constr
-R8717:8720 LSEH.Salt <> hloc constr
-R8730:8733 LSEH.RelConfig <> ns constr
-R8738:8741 LSEH.RelConfig <> ns constr
-def 8761:8776 <> val_direct_trans
-R8781:8787 LSEH.RelConfig <> value ind
-binder 8779:8779 <> v:161
-R8801:8804 Coq.Init.Datatypes <> list ind
-R8806:8809 LSEH.Salt <> word ind
-binder 8793:8799 <> stk_lst:162
-R8814:8819 LSEH.RelConfig <> word ind
-R8832:8832 LSEH.RelConfig <> v:161 var
-R8843:8849 LSEH.Lexi <> var_val constr
-R8852:8861 LSEH.Lexi <> dbjind_var constr
-R8875:8877 Coq.Lists.List <> nth def
-R8889:8890 LSEH.Salt <> ns constr
-R8881:8887 LSEH.RelConfig <> stk_lst:162 var
-R8896:8902 LSEH.Lexi <> var_val constr
-R8905:8912 LSEH.Lexi <> free_var constr
-R8920:8921 LSEH.Salt <> ns constr
-R8927:8937 LSEH.RelConfig <> const_val constr
-R8940:8948 LSEH.Lexi <> nat_const constr
-R8962:8972 LSEH.RelConfig <> const_val constr
-R8975:8985 LSEH.Lexi <> c_lab_const constr
-R8988:8992 LSEH.Lexi <> c_lab constr
-R9001:9004 LSEH.Salt <> cloc constr
-ind 9027:9040 <> LS_rel_context
-constr 9126:9136 <> rel_context
-R9044:9044 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9073:9079 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9059:9061 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R9045:9058 LSEH.RelConfig <> eval_context def
-R9062:9072 LSEH.RelConfig <> local_env def
-R9080:9080 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9111:9115 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9093:9095 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R9081:9092 LSEH.RelConfig <> stack_heap def
-R9096:9110 LSEH.RelConfig <> heap_location ind
-binder 9147:9150 <> Flst:166
-binder 9152:9152 <> s:167
-binder 9154:9155 <> s':168
-binder 9157:9161 <> s_out:169
-binder 9163:9164 <> Ks:170
-binder 9166:9168 <> L_0:171
-binder 9170:9174 <> L_out:172
-R9183:9193 LSEH.RelConfig <> local_env def
-binder 9181:9181 <> E:173
-R9205:9214 LSEH.Salt <> stack_heap def
-binder 9197:9203 <> H_stack:174
-R9250:9257 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9222:9234 LSEH.RelConfig <> LS_rel_frames ind
-R9236:9239 LSEH.RelConfig <> Flst:166 var
-R9242:9246 LSEH.Salt <> stack constr
-R9248:9248 LSEH.RelConfig <> s:167 var
-R9363:9370 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9258:9275 LSEH.RelConfig <> LS_rel_hdl_led_ctx ind
-R9277:9278 LSEH.RelConfig <> Ks:170 var
-R9286:9286 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9305:9305 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9313:9313 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9321:9329 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9350:9350 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9362:9362 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9287:9291 LSEH.Salt <> loc_w constr
-R9294:9297 LSEH.Salt <> hloc constr
-R9299:9301 LSEH.RelConfig <> L_0:171 var
-R9306:9310 LSEH.Salt <> stack constr
-R9312:9312 LSEH.RelConfig <> s:167 var
-R9314:9320 LSEH.RelConfig <> H_stack:174 var
-R9330:9334 LSEH.Salt <> loc_w constr
-R9337:9340 LSEH.Salt <> hloc constr
-R9342:9346 LSEH.RelConfig <> L_out:172 var
-R9351:9355 LSEH.Salt <> stack constr
-R9357:9361 LSEH.RelConfig <> s_out:169 var
-R9411:9418 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9373:9375 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9371:9372 LSEH.RelConfig <> s':168 var
-R9376:9376 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R9401:9405 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R9377:9384 Coq.Lists.List <> map def
-R9400:9400 LSEH.RelConfig <> E:173 var
-R9386:9398 LSEH.RelConfig <> run_cst_trans def
-R9406:9410 LSEH.RelConfig <> s_out:169 var
-R9419:9432 LSEH.RelConfig <> LS_rel_context:164 ind
-R9456:9456 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9485:9486 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9514:9514 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9474:9477 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R9457:9457 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9463:9464 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9473:9473 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9458:9462 LSEH.RelConfig <> L_out:172 var
-R9465:9469 LSEH.Salt <> stack constr
-R9471:9472 LSEH.RelConfig <> s':168 var
-R9478:9484 LSEH.RelConfig <> H_stack:174 var
-R9487:9490 LSEH.Salt <> hloc constr
-R9492:9496 LSEH.RelConfig <> L_out:172 var
-R9499:9509 Coq.Lists.List <> length abbrev
-R9511:9512 LSEH.RelConfig <> s':168 var
-R9434:9434 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9445:9446 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9448:9448 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9437:9440 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R9435:9436 LSEH.RelConfig <> Ks:170 var
-R9441:9444 LSEH.RelConfig <> Flst:166 var
-R9447:9447 LSEH.RelConfig <> E:173 var
-scheme 9027:9040 <> LS_rel_context_ind
-scheme 9027:9040 <> LS_rel_context_sind
-ind 9527:9537 <> LS_rel_heap
-constr 9594:9607 <> rel_empty_heap
-constr 9661:9672 <> rel_heap_tup
-constr 9969:9981 <> rel_heap_cont
-R9547:9550 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9541:9546 LSEH.RelConfig <> heap def
-R9551:9551 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9577:9581 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9564:9566 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R9552:9563 LSEH.RelConfig <> stack_heap def
-R9567:9576 LSEH.Salt <> tuple_heap def
-R9615:9625 LSEH.RelConfig <> LS_rel_heap:175 ind
-R9637:9637 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9646:9646 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9655:9655 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9638:9645 LSEH.Salt <> sh_empty def
-R9647:9654 LSEH.Salt <> th_empty def
-R9627:9635 LSEH.RelConfig <> h_empty def
-R9687:9690 Coq.Init.Datatypes <> list ind
-R9692:9704 LSEH.Lexi <> runtime_const ind
-binder 9684:9685 <> vs:177
-R9712:9715 Coq.Init.Datatypes <> list ind
-R9717:9720 LSEH.Salt <> word ind
-binder 9708:9710 <> vs':178
-R9730:9735 Coq.Strings.String <> string ind
-binder 9728:9728 <> L:179
-binder 9738:9742 <> L_tup:180
-R9748:9753 LSEH.RelConfig <> heap def
-binder 9745:9746 <> LH:181
-R9764:9773 LSEH.Salt <> stack_heap def
-binder 9757:9762 <> H_cont:182
-R9783:9792 LSEH.Salt <> tuple_heap def
-binder 9777:9781 <> H_tup:183
-R9818:9821 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9800:9810 LSEH.RelConfig <> LS_rel_vals ind
-R9812:9813 LSEH.RelConfig <> vs:177 var
-R9815:9817 LSEH.RelConfig <> vs':178 var
-R9851:9858 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9822:9832 LSEH.RelConfig <> LS_rel_heap:175 ind
-R9837:9837 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9844:9844 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9850:9850 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9838:9843 LSEH.RelConfig <> H_cont:182 var
-R9845:9849 LSEH.RelConfig <> H_tup:183 var
-R9834:9835 LSEH.RelConfig <> LH:181 var
-R9859:9869 LSEH.RelConfig <> LS_rel_heap:175 ind
-R9927:9927 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9934:9935 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9963:9963 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9928:9933 LSEH.RelConfig <> H_cont:182 var
-R9941:9946 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R9956:9957 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R9958:9962 LSEH.RelConfig <> H_tup:183 var
-R9936:9940 LSEH.RelConfig <> L_tup:180 var
-R9947:9951 LSEH.Salt <> tuple constr
-R9953:9955 LSEH.RelConfig <> vs':178 var
-R9891:9896 LSEH.Lexi <> ::Lexi_scope:x_'!->h'_x_';'_x not
-R9907:9908 LSEH.Lexi <> ::Lexi_scope:x_'!->h'_x_';'_x not
-R9909:9910 LSEH.RelConfig <> LH:181 var
-R9878:9884 LSEH.Lexi <> obj_lab constr
-R9886:9890 LSEH.RelConfig <> L_tup:180 var
-R9897:9903 LSEH.RelConfig <> tuple constr
-R9905:9906 LSEH.RelConfig <> vs:177 var
-binder 9992:9993 <> Fs:184
-R9998:10003 Coq.Strings.String <> string ind
-binder 9996:9996 <> L:185
-binder 10006:10010 <> L_out:186
-binder 10012:10016 <> L_env:187
-binder 10022:10026 <> L_rsp:188
-binder 10028:10028 <> s:189
-binder 10030:10034 <> s_out:190
-R10044:10053 LSEH.Salt <> stack_heap def
-binder 10037:10042 <> H_cont:191
-R10063:10072 LSEH.Salt <> tuple_heap def
-binder 10057:10061 <> H_tup:192
-R10079:10084 LSEH.RelConfig <> heap def
-binder 10076:10077 <> LH:193
-binder 10091:10092 <> Ks:194
-binder 10094:10100 <> Clab_op:195
-R10133:10140 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10107:10119 LSEH.RelConfig <> LS_rel_frames ind
-R10121:10122 LSEH.RelConfig <> Fs:184 var
-R10125:10129 LSEH.Salt <> stack constr
-R10131:10131 LSEH.RelConfig <> s:189 var
-R10237:10244 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10141:10158 LSEH.RelConfig <> LS_rel_hdl_led_ctx ind
-R10160:10161 LSEH.RelConfig <> Ks:194 var
-R10163:10163 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10180:10180 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10188:10195 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10202:10202 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10223:10224 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10236:10236 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10164:10168 LSEH.Salt <> loc_w constr
-R10171:10174 LSEH.Salt <> hloc constr
-R10176:10176 LSEH.RelConfig <> L:185 var
-R10181:10185 LSEH.Salt <> stack constr
-R10187:10187 LSEH.RelConfig <> s:189 var
-R10196:10201 LSEH.RelConfig <> H_cont:191 var
-R10203:10207 LSEH.Salt <> loc_w constr
-R10210:10213 LSEH.Salt <> hloc constr
-R10215:10219 LSEH.RelConfig <> L_out:186 var
-R10225:10229 LSEH.Salt <> stack constr
-R10231:10235 LSEH.RelConfig <> s_out:190 var
-R10274:10281 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10245:10255 LSEH.RelConfig <> LS_rel_heap:175 ind
-R10260:10260 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10267:10267 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10273:10273 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10261:10266 LSEH.RelConfig <> H_cont:191 var
-R10268:10272 LSEH.RelConfig <> H_tup:192 var
-R10257:10258 LSEH.RelConfig <> LH:193 var
-R10282:10292 LSEH.RelConfig <> LS_rel_heap:175 ind
-R10458:10458 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10634:10643 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10685:10685 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10460:10465 LSEH.Salt <> :::x_'!->s'_x_';'_x not
-R10594:10603 LSEH.Salt <> :::x_'!->s'_x_';'_x not
-R10609:10614 LSEH.Salt <> :::x_'!->s'_x_';'_x not
-R10626:10627 LSEH.Salt <> :::x_'!->s'_x_';'_x not
-R10628:10633 LSEH.RelConfig <> H_cont:191 var
-R10604:10608 LSEH.RelConfig <> L_out:186 var
-R10615:10619 LSEH.Salt <> stack constr
-R10621:10625 LSEH.RelConfig <> s_out:190 var
-R10459:10459 LSEH.RelConfig <> L:185 var
-R10466:10470 LSEH.Salt <> stack constr
-R10474:10487 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R10473:10473 LSEH.RelConfig <> s:189 var
-R10488:10488 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R10527:10540 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R10548:10548 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R10569:10569 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R10592:10592 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R10489:10493 LSEH.Salt <> loc_w constr
-R10496:10499 LSEH.Salt <> hloc constr
-R10501:10505 LSEH.RelConfig <> L_out:186 var
-R10508:10518 Coq.Lists.List <> length abbrev
-R10520:10524 LSEH.RelConfig <> s_out:190 var
-R10541:10545 LSEH.Salt <> int_w constr
-R10549:10553 LSEH.Salt <> loc_w constr
-R10556:10559 LSEH.Salt <> hloc constr
-R10561:10565 LSEH.RelConfig <> L_env:187 var
-R10570:10574 LSEH.Salt <> loc_w constr
-R10577:10580 LSEH.Salt <> cloc constr
-R10582:10588 LSEH.RelConfig <> Clab_op:195 var
-R10649:10654 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R10679:10679 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R10680:10684 LSEH.RelConfig <> H_tup:192 var
-R10644:10648 LSEH.RelConfig <> L_rsp:188 var
-R10655:10659 LSEH.Salt <> tuple constr
-R10661:10661 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
-R10678:10678 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
-R10662:10666 LSEH.Salt <> loc_w constr
-R10669:10672 LSEH.Salt <> hloc constr
-R10674:10674 LSEH.RelConfig <> L:185 var
-R10314:10319 LSEH.Lexi <> ::Lexi_scope:x_'!->h'_x_';'_x not
-R10430:10439 LSEH.Lexi <> ::Lexi_scope:x_'!->h'_x_';'_x not
-R10440:10441 LSEH.RelConfig <> LH:193 var
-R10301:10307 LSEH.Lexi <> obj_lab constr
-R10309:10313 LSEH.RelConfig <> L_rsp:188 var
-R10320:10323 LSEH.Lexi <> cont constr
-R10328:10331 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R10326:10327 LSEH.RelConfig <> Ks:194 var
-R10334:10347 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R10332:10333 LSEH.RelConfig <> Fs:184 var
-R10348:10348 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
-R10428:10428 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
-R10349:10351 LSEH.Lexi <> h_f constr
-R10354:10362 LSEH.Lexi <> handler_f constr
-R10365:10371 LSEH.Lexi <> hdl_lab constr
-R10373:10373 LSEH.RelConfig <> L:185 var
-R10377:10383 LSEH.Lexi <> hdl_lab constr
-R10385:10389 LSEH.RelConfig <> L_env:187 var
-R10405:10409 LSEH.Lexi <> c_lab constr
-R10411:10417 LSEH.RelConfig <> Clab_op:195 var
-R10420:10426 LSEH.Lexi <> general constr
-scheme 9527:9537 <> LS_rel_heap_ind
-scheme 9527:9537 <> LS_rel_heap_sind
-ind 10698:10708 <> LS_rel_code
-constr 10747:10754 <> rel_code
-constr 10801:10813 <> rel_code_func
-R10718:10721 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10712:10717 LSEH.RelConfig <> code def
-R10731:10734 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10722:10730 LSEH.RelConfig <> program def
-binder 10765:10765 <> C:198
-R10768:10778 LSEH.RelConfig <> LS_rel_code:196 ind
-R10783:10792 LSEH.LexiToSalt <> code_trans def
-R10794:10794 LSEH.RelConfig <> C:198 var
-R10780:10780 LSEH.RelConfig <> C:198 var
-binder 10824:10824 <> f:199
-R10829:10834 Coq.Strings.String <> string ind
-binder 10827:10827 <> x:200
-binder 10837:10837 <> C:201
-R10844:10854 LSEH.RelConfig <> LS_rel_code:196 ind
-R10896:10901 LSEH.Salt <> :::x_'!->c'_x_';'_x not
-R10914:10916 LSEH.Salt <> :::x_'!->c'_x_';'_x not
-R10929:10929 LSEH.Salt <> :::x_'!->c'_x_';'_x not
-R10917:10926 LSEH.LexiToSalt <> code_trans def
-R10928:10928 LSEH.RelConfig <> C:201 var
-R10886:10893 LSEH.Salt <> cloc_str constr
-R10895:10895 LSEH.RelConfig <> x:200 var
-R10902:10911 LSEH.LexiToSalt <> func_trans def
-R10913:10913 LSEH.RelConfig <> f:199 var
-R10858:10863 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
-R10865:10867 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
-R10868:10868 LSEH.RelConfig <> C:201 var
-R10857:10857 LSEH.RelConfig <> x:200 var
-R10864:10864 LSEH.RelConfig <> f:199 var
-scheme 10698:10708 <> LS_rel_code_ind
-scheme 10698:10708 <> LS_rel_code_sind
-ind 11530:11535 <> LS_rel
-constr 11649:11654 <> rel_LS
-R11541:11541 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11597:11603 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11588:11590 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R11574:11576 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R11557:11559 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R11548:11550 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R11542:11547 LSEH.RelConfig <> code def
-R11551:11556 LSEH.RelConfig <> heap def
-R11560:11573 LSEH.RelConfig <> eval_context def
-R11577:11587 LSEH.RelConfig <> local_env def
-R11591:11596 LSEH.RelConfig <> term ind
-R11604:11604 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11634:11638 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11623:11625 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R11614:11616 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R11605:11613 LSEH.RelConfig <> program def
-R11617:11622 LSEH.RelConfig <> heap def
-R11626:11633 LSEH.Salt <> reg_file def
-binder 11665:11667 <> len:204
-binder 11669:11671 <> lst:205
-binder 11673:11677 <> SIlst:206
-binder 11683:11684 <> LC:207
-binder 11686:11687 <> LH:208
-binder 11689:11690 <> LK:209
-binder 11692:11693 <> LE:210
-binder 11695:11696 <> Lt:211
-binder 11698:11699 <> SC:212
-binder 11701:11702 <> o1:213
-binder 11704:11705 <> o2:214
-binder 11707:11708 <> o3:215
-binder 11710:11711 <> o4:216
-binder 11713:11714 <> o5:217
-binder 11716:11717 <> o6:218
-R11733:11742 LSEH.Salt <> stack_heap def
-binder 11724:11731 <> SH_stack:219
-R11754:11763 LSEH.Salt <> stack_heap def
-binder 11746:11752 <> SH_cont:220
-R11778:11787 LSEH.Salt <> tuple_heap def
-binder 11771:11776 <> SH_tup:221
-R11800:11812 LSEH.Salt <> heap_location ind
-binder 11795:11798 <> Slsp:222
-binder 11815:11818 <> Clab:223
-R11859:11866 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11825:11834 LSEH.RelConfig <> LS_rel_ins ind
-R11836:11836 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11839:11839 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11842:11842 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11837:11838 LSEH.RelConfig <> LE:210 var
-R11840:11841 LSEH.RelConfig <> Lt:211 var
-R11845:11851 LSEH.Salt <> ins_seq constr
-R11853:11857 LSEH.RelConfig <> SIlst:206 var
-R11905:11912 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11867:11880 LSEH.RelConfig <> LS_rel_context ind
-R11882:11882 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11885:11885 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11888:11888 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11883:11884 LSEH.RelConfig <> LK:209 var
-R11886:11887 LSEH.RelConfig <> LE:210 var
-R11890:11890 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11899:11899 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11904:11904 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11891:11898 LSEH.RelConfig <> SH_stack:219 var
-R11900:11903 LSEH.RelConfig <> Slsp:222 var
-R11944:11947 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11913:11923 LSEH.RelConfig <> LS_rel_heap ind
-R11925:11926 LSEH.RelConfig <> LH:208 var
-R11928:11928 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11936:11936 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11943:11943 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11929:11935 LSEH.RelConfig <> SH_cont:220 var
-R11937:11942 LSEH.RelConfig <> SH_tup:221 var
-R11965:11972 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11948:11958 LSEH.RelConfig <> LS_rel_code ind
-R11960:11961 LSEH.RelConfig <> LC:207 var
-R11963:11964 LSEH.RelConfig <> SC:212 var
-R12005:12008 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11980:11982 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11973:11974 LSEH.RelConfig <> SC:212 var
-R11976:11979 LSEH.RelConfig <> Clab:223 var
-R11983:11989 LSEH.Salt <> ins_seq constr
-R11995:11998 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R11992:11994 LSEH.RelConfig <> lst:205 var
-R11999:12003 LSEH.RelConfig <> SIlst:206 var
-R12030:12037 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12024:12026 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12009:12019 Coq.Lists.List <> length abbrev
-R12021:12023 LSEH.RelConfig <> lst:205 var
-R12027:12029 LSEH.RelConfig <> len:204 var
-R12048:12055 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12038:12044 LSEH.RelConfig <> lc_term ind
-R12046:12047 LSEH.RelConfig <> Lt:211 var
-R12056:12061 LSEH.RelConfig <> LS_rel:202 ind
-R12090:12090 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12093:12094 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12120:12129 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12282:12282 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12091:12092 LSEH.RelConfig <> SC:212 var
-R12095:12095 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12104:12104 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12112:12112 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12119:12119 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12096:12103 LSEH.RelConfig <> SH_stack:219 var
-R12105:12111 LSEH.RelConfig <> SH_cont:220 var
-R12113:12118 LSEH.RelConfig <> SH_tup:221 var
-R12130:12130 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12157:12157 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12173:12173 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12188:12197 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12212:12212 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12227:12227 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12242:12251 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12266:12266 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12281:12281 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R12131:12131 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12134:12134 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12156:12156 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12132:12133 LSEH.Salt <> ip constr
-R12135:12139 LSEH.Salt <> loc_w constr
-R12142:12145 LSEH.Salt <> cloc constr
-R12147:12150 LSEH.RelConfig <> Clab:223 var
-R12152:12154 LSEH.RelConfig <> len:204 var
-R12158:12158 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12161:12161 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12172:12172 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12159:12160 LSEH.Salt <> sp constr
-R12162:12166 LSEH.Salt <> loc_w constr
-R12168:12171 LSEH.RelConfig <> Slsp:222 var
-R12174:12174 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12184:12184 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12187:12187 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12175:12181 LSEH.Salt <> nat_reg constr
-R12185:12186 LSEH.RelConfig <> o1:213 var
-R12198:12198 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12208:12208 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12211:12211 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12199:12205 LSEH.Salt <> nat_reg constr
-R12209:12210 LSEH.RelConfig <> o2:214 var
-R12213:12213 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12223:12223 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12226:12226 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12214:12220 LSEH.Salt <> nat_reg constr
-R12224:12225 LSEH.RelConfig <> o3:215 var
-R12228:12228 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12238:12238 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12241:12241 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12229:12235 LSEH.Salt <> nat_reg constr
-R12239:12240 LSEH.RelConfig <> o4:216 var
-R12252:12252 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12262:12262 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12265:12265 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12253:12259 LSEH.Salt <> nat_reg constr
-R12263:12264 LSEH.RelConfig <> o5:217 var
-R12267:12267 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12277:12277 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12280:12280 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12268:12274 LSEH.Salt <> nat_reg constr
-R12278:12279 LSEH.RelConfig <> o6:218 var
-R12063:12063 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12066:12067 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12070:12071 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12074:12075 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12078:12079 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12082:12082 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12064:12065 LSEH.RelConfig <> LC:207 var
-R12068:12069 LSEH.RelConfig <> LH:208 var
-R12072:12073 LSEH.RelConfig <> LK:209 var
-R12076:12077 LSEH.RelConfig <> LE:210 var
-R12080:12081 LSEH.RelConfig <> Lt:211 var
-scheme 11530:11535 <> LS_rel_ind
-scheme 11530:11535 <> LS_rel_sind
+R7850:7862 LSEH.RelConfig <> LS_rel_frames ind
+R7864:7867 LSEH.RelConfig <> Flst:139 var
+R7870:7874 LSEH.Salt <> stack constr
+R7876:7876 LSEH.RelConfig <> s:140 var
+R7977:7984 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7888:7890 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R7886:7887 LSEH.RelConfig <> s':141 var
+R7892:7895 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R7891:7891 LSEH.RelConfig <> s:140 var
+R7969:7972 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R7896:7896 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7899:7900 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7908:7909 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7930:7937 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7968:7968 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R7897:7898 LSEH.Salt <> ns constr
+R7901:7905 LSEH.Salt <> int_w constr
+R7910:7914 LSEH.Salt <> loc_w constr
+R7917:7920 LSEH.Salt <> hloc constr
+R7922:7926 LSEH.RelConfig <> L_env:147 var
+R7938:7942 LSEH.Salt <> loc_w constr
+R7945:7949 LSEH.Salt <> c_loc constr
+R7952:7955 LSEH.Salt <> cloc constr
+R7957:7963 LSEH.RelConfig <> Clab_op:148 var
+R7973:7976 LSEH.RelConfig <> s_in:142 var
+R8065:8072 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7985:8002 LSEH.RelConfig <> LS_rel_hdl_led_ctx:111 ind
+R8014:8014 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8034:8035 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8044:8044 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8052:8052 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8058:8058 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8064:8064 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8015:8019 LSEH.Salt <> loc_w constr
+R8022:8025 LSEH.Salt <> hloc constr
+R8027:8030 LSEH.RelConfig <> L_in:145 var
+R8036:8040 LSEH.Salt <> stack constr
+R8042:8043 LSEH.RelConfig <> s':141 var
+R8045:8051 LSEH.RelConfig <> H_stack:149 var
+R8053:8057 LSEH.RelConfig <> L_out:146 var
+R8059:8063 LSEH.RelConfig <> s_out:143 var
+R8004:8005 LSEH.RelConfig <> Ks:150 var
+R8073:8090 LSEH.RelConfig <> LS_rel_hdl_led_ctx:111 ind
+R8182:8182 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8202:8203 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8214:8215 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8223:8224 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8230:8231 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8237:8237 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8183:8187 LSEH.Salt <> loc_w constr
+R8190:8193 LSEH.Salt <> hloc constr
+R8195:8198 LSEH.RelConfig <> L_in:145 var
+R8204:8208 LSEH.Salt <> stack constr
+R8210:8213 LSEH.RelConfig <> s_in:142 var
+R8216:8222 LSEH.RelConfig <> H_stack:149 var
+R8225:8229 LSEH.RelConfig <> L_out:146 var
+R8232:8236 LSEH.RelConfig <> s_out:143 var
+R8097:8097 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8161:8165 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8098:8100 LSEH.Lexi <> h_f constr
+R8103:8111 LSEH.Lexi <> handler_f constr
+R8114:8120 LSEH.Lexi <> hdl_lab constr
+R8122:8122 LSEH.RelConfig <> L:144 var
+R8132:8138 LSEH.Lexi <> hdl_lab constr
+R8140:8144 LSEH.RelConfig <> L_env:147 var
+R8147:8153 LSEH.RelConfig <> Clab_op:148 var
+R8155:8159 LSEH.Lexi <> abort constr
+R8170:8173 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R8166:8169 LSEH.RelConfig <> Flst:139 var
+R8174:8175 LSEH.RelConfig <> Ks:150 var
+scheme 6428:6445 <> LS_rel_hdl_led_ctx_ind
+scheme 6428:6445 <> LS_rel_hdl_led_ctx_sind
+ind 8251:8264 <> LS_rel_context
+constr 8350:8360 <> rel_context
+R8268:8268 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8297:8303 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8283:8285 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R8269:8282 LSEH.RelConfig <> eval_context def
+R8286:8296 LSEH.RelConfig <> local_env def
+R8304:8304 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8335:8339 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8317:8319 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R8305:8316 LSEH.RelConfig <> stack_heap def
+R8320:8334 LSEH.RelConfig <> heap_location ind
+binder 8371:8374 <> Flst:153
+binder 8376:8376 <> s:154
+binder 8378:8379 <> s':155
+binder 8381:8385 <> s_out:156
+binder 8387:8388 <> Ks:157
+binder 8390:8392 <> L_0:158
+binder 8394:8398 <> L_out:159
+R8407:8417 LSEH.RelConfig <> local_env def
+binder 8405:8405 <> E:160
+R8429:8438 LSEH.Salt <> stack_heap def
+binder 8421:8427 <> H_stack:161
+R8474:8481 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8446:8458 LSEH.RelConfig <> LS_rel_frames ind
+R8460:8463 LSEH.RelConfig <> Flst:153 var
+R8466:8470 LSEH.Salt <> stack constr
+R8472:8472 LSEH.RelConfig <> s:154 var
+R8587:8594 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8482:8499 LSEH.RelConfig <> LS_rel_hdl_led_ctx ind
+R8501:8502 LSEH.RelConfig <> Ks:157 var
+R8510:8510 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8529:8529 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8537:8537 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8545:8553 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8574:8574 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8586:8586 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8511:8515 LSEH.Salt <> loc_w constr
+R8518:8521 LSEH.Salt <> hloc constr
+R8523:8525 LSEH.RelConfig <> L_0:158 var
+R8530:8534 LSEH.Salt <> stack constr
+R8536:8536 LSEH.RelConfig <> s:154 var
+R8538:8544 LSEH.RelConfig <> H_stack:161 var
+R8554:8558 LSEH.Salt <> loc_w constr
+R8561:8564 LSEH.Salt <> hloc constr
+R8566:8570 LSEH.RelConfig <> L_out:159 var
+R8575:8579 LSEH.Salt <> stack constr
+R8581:8585 LSEH.RelConfig <> s_out:156 var
+R8635:8642 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8597:8599 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8595:8596 LSEH.RelConfig <> s':155 var
+R8600:8600 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R8625:8629 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R8601:8608 Coq.Lists.List <> map def
+R8624:8624 LSEH.RelConfig <> E:160 var
+R8610:8622 LSEH.LexiToSalt <> run_cst_trans def
+R8630:8634 LSEH.RelConfig <> s_out:156 var
+R8643:8656 LSEH.RelConfig <> LS_rel_context:151 ind
+R8680:8680 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8709:8710 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8738:8738 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8698:8701 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8681:8681 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8687:8688 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8697:8697 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8682:8686 LSEH.RelConfig <> L_out:159 var
+R8689:8693 LSEH.Salt <> stack constr
+R8695:8696 LSEH.RelConfig <> s':155 var
+R8702:8708 LSEH.RelConfig <> H_stack:161 var
+R8711:8714 LSEH.Salt <> hloc constr
+R8716:8720 LSEH.RelConfig <> L_out:159 var
+R8723:8733 Coq.Lists.List <> length abbrev
+R8735:8736 LSEH.RelConfig <> s':155 var
+R8658:8658 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8669:8670 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8672:8672 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8661:8664 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R8659:8660 LSEH.RelConfig <> Ks:157 var
+R8665:8668 LSEH.RelConfig <> Flst:153 var
+R8671:8671 LSEH.RelConfig <> E:160 var
+scheme 8251:8264 <> LS_rel_context_ind
+scheme 8251:8264 <> LS_rel_context_sind
+ind 8751:8765 <> LS_rel_tup_heap
+constr 8809:8820 <> rel_tup_heap
+R8779:8782 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8769:8778 LSEH.RelConfig <> tup_heap def
+R8795:8798 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8783:8794 LSEH.RelConfig <> tuple_heap def
+R8843:8852 LSEH.RelConfig <> tup_heap def
+binder 8836:8841 <> LH_tup:164
+R8863:8874 LSEH.RelConfig <> tuple_heap def
+binder 8856:8861 <> SH_tup:165
+R8882:8882 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9012:9020 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8897:8902 Coq.Strings.String <> string ind
+binder 8891:8895 <> L_tup:166
+binder 8905:8906 <> vs:167
+R8952:8963 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8939:8941 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8917:8922 LSEH.RelConfig <> LH_tup:164 var
+R8925:8931 LSEH.Lexi <> obj_lab constr
+R8933:8937 LSEH.RelConfig <> L_tup:166 var
+R8942:8948 LSEH.RelConfig <> tuple constr
+R8950:8951 LSEH.RelConfig <> vs:167 var
+R8976:8978 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8964:8969 LSEH.RelConfig <> SH_tup:165 var
+R8971:8975 LSEH.RelConfig <> L_tup:166 var
+R8979:8983 LSEH.Salt <> tuple constr
+R8986:8993 Coq.Lists.List <> map def
+R9009:9010 LSEH.RelConfig <> vs:167 var
+R8995:9007 LSEH.LexiToSalt <> run_cst_trans def
+R9021:9035 LSEH.RelConfig <> LS_rel_tup_heap:162 ind
+R9044:9049 LSEH.RelConfig <> SH_tup:165 var
+R9037:9042 LSEH.RelConfig <> LH_tup:164 var
+scheme 8751:8765 <> LS_rel_tup_heap_ind
+scheme 8751:8765 <> LS_rel_tup_heap_sind
+ind 9062:9072 <> LS_rel_heap
+constr 9127:9140 <> rel_empty_heap
+constr 9263:9275 <> rel_cont_heap
+R9082:9085 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9076:9081 LSEH.RelConfig <> heap def
+R9086:9086 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9112:9116 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9099:9101 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R9087:9098 LSEH.RelConfig <> stack_heap def
+R9102:9111 LSEH.Salt <> tuple_heap def
+binder 9151:9156 <> LH_tup:170
+binder 9158:9163 <> SH_tup:171
+R9201:9210 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9172:9186 LSEH.RelConfig <> LS_rel_tup_heap ind
+R9188:9193 LSEH.RelConfig <> LH_tup:170 var
+R9195:9200 LSEH.RelConfig <> SH_tup:171 var
+R9211:9221 LSEH.RelConfig <> LS_rel_heap:168 ind
+R9243:9243 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9252:9252 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9259:9259 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9244:9251 LSEH.Salt <> sh_empty def
+R9253:9258 LSEH.RelConfig <> SH_tup:171 var
+R9223:9223 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9230:9230 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9241:9241 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9224:9229 LSEH.RelConfig <> LH_tup:170 var
+R9231:9240 LSEH.RelConfig <> ch_empty def
+binder 9288:9289 <> Fs:172
+R9294:9299 Coq.Strings.String <> string ind
+binder 9292:9292 <> L:173
+binder 9302:9306 <> L_out:174
+binder 9308:9312 <> L_env:175
+binder 9315:9320 <> LH_tup:176
+binder 9322:9327 <> SH_tup:177
+binder 9338:9342 <> L_rsp:178
+binder 9344:9344 <> s:179
+binder 9346:9350 <> s_out:180
+R9361:9370 LSEH.Salt <> stack_heap def
+binder 9353:9359 <> SH_cont:181
+R9382:9392 LSEH.RelConfig <> cont_heap def
+binder 9374:9380 <> LH_cont:182
+binder 9404:9405 <> Ks:183
+binder 9407:9413 <> Clab_op:184
+R9446:9453 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9420:9432 LSEH.RelConfig <> LS_rel_frames ind
+R9434:9435 LSEH.RelConfig <> Fs:172 var
+R9438:9442 LSEH.Salt <> stack constr
+R9444:9444 LSEH.RelConfig <> s:179 var
+R9553:9560 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9454:9471 LSEH.RelConfig <> LS_rel_hdl_led_ctx ind
+R9473:9474 LSEH.RelConfig <> Ks:183 var
+R9476:9476 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9493:9493 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9501:9510 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9518:9518 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9539:9540 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9552:9552 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9477:9481 LSEH.Salt <> loc_w constr
+R9484:9487 LSEH.Salt <> hloc constr
+R9489:9489 LSEH.RelConfig <> L:173 var
+R9494:9498 LSEH.Salt <> stack constr
+R9500:9500 LSEH.RelConfig <> s:179 var
+R9511:9517 LSEH.RelConfig <> SH_cont:181 var
+R9519:9523 LSEH.Salt <> loc_w constr
+R9526:9529 LSEH.Salt <> hloc constr
+R9531:9535 LSEH.RelConfig <> L_out:174 var
+R9541:9545 LSEH.Salt <> stack constr
+R9547:9551 LSEH.RelConfig <> s_out:180 var
+R9606:9613 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9561:9571 LSEH.RelConfig <> LS_rel_heap:168 ind
+R9590:9590 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9598:9598 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9605:9605 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9591:9597 LSEH.RelConfig <> SH_cont:181 var
+R9599:9604 LSEH.RelConfig <> SH_tup:177 var
+R9573:9573 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9580:9580 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9588:9588 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9574:9579 LSEH.RelConfig <> LH_tup:176 var
+R9581:9587 LSEH.RelConfig <> LH_cont:182 var
+R9614:9624 LSEH.RelConfig <> LS_rel_heap:168 ind
+R9836:9836 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10021:10029 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10072:10072 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9838:9852 LSEH.Salt <> :::x_'!->s'_x_';'_x not
+R9981:9989 LSEH.Salt <> :::x_'!->s'_x_';'_x not
+R9995:10000 LSEH.Salt <> :::x_'!->s'_x_';'_x not
+R10012:10013 LSEH.Salt <> :::x_'!->s'_x_';'_x not
+R10014:10020 LSEH.RelConfig <> SH_cont:181 var
+R9990:9994 LSEH.RelConfig <> L_out:174 var
+R10001:10005 LSEH.Salt <> stack constr
+R10007:10011 LSEH.RelConfig <> s_out:180 var
+R9837:9837 LSEH.RelConfig <> L:173 var
+R9853:9857 LSEH.Salt <> stack constr
+R9861:9864 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R9860:9860 LSEH.RelConfig <> s:179 var
+R9865:9865 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R9904:9927 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R9935:9935 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R9956:9956 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R9979:9979 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R9866:9870 LSEH.Salt <> loc_w constr
+R9873:9876 LSEH.Salt <> hloc constr
+R9878:9882 LSEH.RelConfig <> L_out:174 var
+R9885:9895 Coq.Lists.List <> length abbrev
+R9897:9901 LSEH.RelConfig <> s_out:180 var
+R9928:9932 LSEH.Salt <> int_w constr
+R9936:9940 LSEH.Salt <> loc_w constr
+R9943:9946 LSEH.Salt <> hloc constr
+R9948:9952 LSEH.RelConfig <> L_env:175 var
+R9957:9961 LSEH.Salt <> loc_w constr
+R9964:9967 LSEH.Salt <> cloc constr
+R9969:9975 LSEH.RelConfig <> Clab_op:184 var
+R10035:10040 LSEH.Salt <> :::x_'!->t'_x_';'_x not
+R10065:10065 LSEH.Salt <> :::x_'!->t'_x_';'_x not
+R10066:10071 LSEH.RelConfig <> SH_tup:177 var
+R10030:10034 LSEH.RelConfig <> L_rsp:178 var
+R10041:10045 LSEH.Salt <> tuple constr
+R10047:10047 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10064:10064 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10048:10052 LSEH.Salt <> loc_w constr
+R10055:10058 LSEH.Salt <> hloc constr
+R10060:10060 LSEH.RelConfig <> L:173 var
+R9632:9632 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9639:9648 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9820:9820 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9633:9638 LSEH.RelConfig <> LH_tup:176 var
+R9662:9678 LSEH.Lexi <> ::Lexi_scope:x_'!->ch'_x_';'_x not
+R9811:9812 LSEH.Lexi <> ::Lexi_scope:x_'!->ch'_x_';'_x not
+R9813:9819 LSEH.RelConfig <> LH_cont:182 var
+R9649:9655 LSEH.Lexi <> obj_lab constr
+R9657:9661 LSEH.RelConfig <> L_rsp:178 var
+R9679:9682 LSEH.Lexi <> cont constr
+R9687:9690 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R9685:9686 LSEH.RelConfig <> Ks:183 var
+R9693:9714 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R9691:9692 LSEH.RelConfig <> Fs:172 var
+R9715:9715 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R9809:9809 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R9716:9718 LSEH.Lexi <> h_f constr
+R9721:9729 LSEH.Lexi <> handler_f constr
+R9732:9738 LSEH.Lexi <> hdl_lab constr
+R9740:9740 LSEH.RelConfig <> L:173 var
+R9744:9750 LSEH.Lexi <> hdl_lab constr
+R9752:9756 LSEH.RelConfig <> L_env:175 var
+R9786:9790 LSEH.Lexi <> c_lab constr
+R9792:9798 LSEH.RelConfig <> Clab_op:184 var
+R9801:9807 LSEH.Lexi <> general constr
+scheme 9062:9072 <> LS_rel_heap_ind
+scheme 9062:9072 <> LS_rel_heap_sind
+ind 10085:10095 <> LS_rel_code
+constr 10134:10141 <> rel_code
+constr 10188:10200 <> rel_code_func
+R10105:10108 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10099:10104 LSEH.RelConfig <> code def
+R10118:10121 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10109:10117 LSEH.RelConfig <> program def
+binder 10152:10152 <> C:187
+R10155:10165 LSEH.RelConfig <> LS_rel_code:185 ind
+R10170:10179 LSEH.LexiToSalt <> code_trans def
+R10181:10181 LSEH.RelConfig <> C:187 var
+R10167:10167 LSEH.RelConfig <> C:187 var
+binder 10211:10211 <> f:188
+R10216:10221 Coq.Strings.String <> string ind
+binder 10214:10214 <> x:189
+binder 10224:10224 <> C:190
+R10231:10241 LSEH.RelConfig <> LS_rel_code:185 ind
+R10283:10288 LSEH.Salt <> :::x_'!->c'_x_';'_x not
+R10301:10303 LSEH.Salt <> :::x_'!->c'_x_';'_x not
+R10316:10316 LSEH.Salt <> :::x_'!->c'_x_';'_x not
+R10304:10313 LSEH.LexiToSalt <> code_trans def
+R10315:10315 LSEH.RelConfig <> C:190 var
+R10273:10280 LSEH.Salt <> cloc_str constr
+R10282:10282 LSEH.RelConfig <> x:189 var
+R10289:10298 LSEH.LexiToSalt <> func_trans def
+R10300:10300 LSEH.RelConfig <> f:188 var
+R10245:10250 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
+R10252:10254 LSEH.Lexi <> ::Lexi_scope:x_'!->c'_x_';'_x not
+R10255:10255 LSEH.RelConfig <> C:190 var
+R10244:10244 LSEH.RelConfig <> x:189 var
+R10251:10251 LSEH.RelConfig <> f:188 var
+scheme 10085:10095 <> LS_rel_code_ind
+scheme 10085:10095 <> LS_rel_code_sind
+ind 10917:10922 <> LS_rel
+constr 11036:11041 <> rel_LS
+R10928:10928 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10984:10990 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10975:10977 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10961:10963 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10944:10946 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10935:10937 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10929:10934 LSEH.RelConfig <> code def
+R10938:10943 LSEH.RelConfig <> heap def
+R10947:10960 LSEH.RelConfig <> eval_context def
+R10964:10974 LSEH.RelConfig <> local_env def
+R10978:10983 LSEH.RelConfig <> term ind
+R10991:10991 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11021:11025 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11010:11012 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R11001:11003 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10992:11000 LSEH.RelConfig <> program def
+R11004:11009 LSEH.RelConfig <> heap def
+R11013:11020 LSEH.Salt <> reg_file def
+binder 11052:11054 <> len:193
+binder 11056:11058 <> lst:194
+binder 11060:11064 <> SIlst:195
+binder 11070:11071 <> LC:196
+binder 11073:11074 <> LH:197
+binder 11076:11077 <> LK:198
+binder 11079:11080 <> LE:199
+binder 11082:11083 <> Lt:200
+binder 11085:11086 <> SC:201
+binder 11088:11089 <> o1:202
+binder 11091:11092 <> o2:203
+binder 11094:11095 <> o3:204
+binder 11097:11098 <> o4:205
+binder 11100:11101 <> o5:206
+binder 11103:11104 <> o6:207
+R11120:11129 LSEH.Salt <> stack_heap def
+binder 11111:11118 <> SH_stack:208
+R11141:11150 LSEH.Salt <> stack_heap def
+binder 11133:11139 <> SH_cont:209
+R11165:11174 LSEH.Salt <> tuple_heap def
+binder 11158:11163 <> SH_tup:210
+R11187:11199 LSEH.Salt <> heap_location ind
+binder 11182:11185 <> Slsp:211
+binder 11202:11205 <> Clab:212
+R11246:11253 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11212:11221 LSEH.RelConfig <> LS_rel_ins ind
+R11223:11223 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11226:11226 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11229:11229 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11224:11225 LSEH.RelConfig <> LE:199 var
+R11227:11228 LSEH.RelConfig <> Lt:200 var
+R11232:11238 LSEH.Salt <> ins_seq constr
+R11240:11244 LSEH.RelConfig <> SIlst:195 var
+R11292:11299 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11254:11267 LSEH.RelConfig <> LS_rel_context ind
+R11269:11269 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11272:11272 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11275:11275 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11270:11271 LSEH.RelConfig <> LK:198 var
+R11273:11274 LSEH.RelConfig <> LE:199 var
+R11277:11277 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11286:11286 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11291:11291 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11278:11285 LSEH.RelConfig <> SH_stack:208 var
+R11287:11290 LSEH.RelConfig <> Slsp:211 var
+R11331:11334 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11300:11310 LSEH.RelConfig <> LS_rel_heap ind
+R11312:11313 LSEH.RelConfig <> LH:197 var
+R11315:11315 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11323:11323 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11330:11330 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11316:11322 LSEH.RelConfig <> SH_cont:209 var
+R11324:11329 LSEH.RelConfig <> SH_tup:210 var
+R11352:11359 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11335:11345 LSEH.RelConfig <> LS_rel_code ind
+R11347:11348 LSEH.RelConfig <> LC:196 var
+R11350:11351 LSEH.RelConfig <> SC:201 var
+R11392:11395 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11367:11369 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11360:11361 LSEH.RelConfig <> SC:201 var
+R11363:11366 LSEH.RelConfig <> Clab:212 var
+R11370:11376 LSEH.Salt <> ins_seq constr
+R11382:11385 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R11379:11381 LSEH.RelConfig <> lst:194 var
+R11386:11390 LSEH.RelConfig <> SIlst:195 var
+R11417:11424 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11411:11413 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11396:11406 Coq.Lists.List <> length abbrev
+R11408:11410 LSEH.RelConfig <> lst:194 var
+R11414:11416 LSEH.RelConfig <> len:193 var
+R11435:11442 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11425:11431 LSEH.RelConfig <> lc_term ind
+R11433:11434 LSEH.RelConfig <> Lt:200 var
+R11443:11448 LSEH.RelConfig <> LS_rel:191 ind
+R11477:11477 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11480:11481 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11507:11516 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11669:11669 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11478:11479 LSEH.RelConfig <> SC:201 var
+R11482:11482 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11491:11491 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11499:11499 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11506:11506 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11483:11490 LSEH.RelConfig <> SH_stack:208 var
+R11492:11498 LSEH.RelConfig <> SH_cont:209 var
+R11500:11505 LSEH.RelConfig <> SH_tup:210 var
+R11517:11517 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11544:11544 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11560:11560 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11575:11584 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11599:11599 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11614:11614 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11629:11638 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11653:11653 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11668:11668 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11518:11518 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11521:11521 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11543:11543 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11519:11520 LSEH.Salt <> ip constr
+R11522:11526 LSEH.Salt <> loc_w constr
+R11529:11532 LSEH.Salt <> cloc constr
+R11534:11537 LSEH.RelConfig <> Clab:212 var
+R11539:11541 LSEH.RelConfig <> len:193 var
+R11545:11545 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11548:11548 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11559:11559 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11546:11547 LSEH.Salt <> sp constr
+R11549:11553 LSEH.Salt <> loc_w constr
+R11555:11558 LSEH.RelConfig <> Slsp:211 var
+R11561:11561 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11571:11571 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11574:11574 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11562:11568 LSEH.Salt <> nat_reg constr
+R11572:11573 LSEH.RelConfig <> o1:202 var
+R11585:11585 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11595:11595 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11598:11598 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11586:11592 LSEH.Salt <> nat_reg constr
+R11596:11597 LSEH.RelConfig <> o2:203 var
+R11600:11600 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11610:11610 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11613:11613 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11601:11607 LSEH.Salt <> nat_reg constr
+R11611:11612 LSEH.RelConfig <> o3:204 var
+R11615:11615 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11625:11625 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11628:11628 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11616:11622 LSEH.Salt <> nat_reg constr
+R11626:11627 LSEH.RelConfig <> o4:205 var
+R11639:11639 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11649:11649 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11652:11652 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11640:11646 LSEH.Salt <> nat_reg constr
+R11650:11651 LSEH.RelConfig <> o5:206 var
+R11654:11654 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11664:11664 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11667:11667 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11655:11661 LSEH.Salt <> nat_reg constr
+R11665:11666 LSEH.RelConfig <> o6:207 var
+R11450:11450 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11453:11454 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11457:11458 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11461:11462 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11465:11466 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11469:11469 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11451:11452 LSEH.RelConfig <> LC:196 var
+R11455:11456 LSEH.RelConfig <> LH:197 var
+R11459:11460 LSEH.RelConfig <> LK:198 var
+R11463:11464 LSEH.RelConfig <> LE:199 var
+R11467:11468 LSEH.RelConfig <> Lt:200 var
+scheme 10917:10922 <> LS_rel_ind
+scheme 10917:10922 <> LS_rel_sind
