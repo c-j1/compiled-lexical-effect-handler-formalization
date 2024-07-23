@@ -1,5 +1,6 @@
 Require Import Lists.List. Import ListNotations.
 Require Import Strings.String.
+Require Import Logic.FunctionalExtensionality.
 From TLC Require Import LibLN.
 From LSEH Require Import Lexi.
 From LSEH Require Import Salt.
@@ -45,6 +46,11 @@ Proof. intros. unfold h_eqb. destruct a. apply eqb_refl. Qed.
 Lemma c_eqb_refl : forall (a:code_loc), a = a -> c_eqb a a = true.
 Proof. intros. unfold h_eqb. destruct a. apply eqb_refl. Qed.
 
+Theorem heap_front_update : forall H a v1 v2,
+  (a !->t v1; a !->t v2; H) = (a !->t v1; H).
+Proof with super_a.
+  intros. unfold th_update. extensionality x. destruct (h_eqb a x)...
+Qed.
 (* ---------------------------------------------------------
    ---- Helper Functions & Tactics for Locally Nameless ----
    --------------------------------------------------------- *)

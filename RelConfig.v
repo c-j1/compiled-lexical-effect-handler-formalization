@@ -9,6 +9,51 @@ Delimit Scope Lexi_scope with L_scope.
 
 (* All salt heaps start with every label allocating 0 space *)
 (* ----------------------------------------------------------
+            Traversal of Lexi terms
+   ---------------------------------------------------------- *)
+Inductive trav_exp (p : L.value -> Prop)
+  : L.expr -> Prop :=
+| trav_val_e : forall v, p v -> trav_exp p (L.val_e v)
+| trav_add : forall v1 v2,
+    p v1 -> p v2 -> trav_exp p (L.add v1 v2)
+| trav_newref : forall lst,
+    (forall v, In v lst -> p v) ->
+    trav_exp p (newref lst)
+| trav_pi : forall n v, p v -> trav_exp p (pi n v)
+| trav_asgn : forall v1 v2 i,
+    p v1 -> p v2 -> trav_exp p (asgn v1 i v2)
+| trav_app : forall v lst,
+    (forall v', In v' lst -> p v') ->
+    p v -> trav_exp p (app v lst)
+| trav_handle : forall c_lab1 c_lab2 A v,
+    p v -> trav_exp p (handle c_lab1 c_lab2 A v)
+| trav_raise : forall A v1 v2,
+    p v1 -> p v2 ->
+    trav_exp p (raise A v1 v2)
+| trav_resume : forall v1 v2,
+    p v1 -> p v2 ->
+    trav_exp p (resume v1 v2)
+| trav_exit : forall v, p v -> trav_exp p (exit v).
+Inductive trav_tm (p : nat -> L.value -> Prop)
+  : nat -> L.term -> Prop :=
+| trav_halt : forall k, trav_tm p k L.halt
+| trav_val_tm : forall v k,
+    p k v -> trav_tm p k (val_term v)
+| trav_bind : forall exp t k, 
+    trav_exp (p k) exp -> trav_tm p (1+k) t ->
+    trav_tm p k (bind exp t).
+(* ----------------------------------------------------------
+                   Possibly don't need locally nameless     
+   ---------------------------------------------------------- *)
+Inductive wf_val : nat -> L.value -> Prop :=
+| wf_ind : forall k ind,
+    ind < k ->
+    wf_val k (var_val (dbjind_var ind))
+| wf_fvar : forall k fvar, wf_val k (var_val (free_var fvar))
+| wf_cst : forall k cst, wf_val k (const_val cst).
+Definition wf_tm (E:local_env) t := trav_tm wf_val (List.length E) t.
+
+(* ----------------------------------------------------------
             Local Closure of Lexi terms
    ---------------------------------------------------------- *)
 Definition open_val (k : nat) (u : L.variable) (v : L.value)
@@ -81,7 +126,8 @@ Inductive lc_term : L.term -> Prop :=
     -> lc_exp exp -> lc_term (bind exp t)
   | lc_val_tm : forall v, lc_val v -> lc_term (val_term v)
   | lc_halt : lc_term L.halt.
-
+Definition body t :=
+  exists L, forall x, x \notin L -> lc_term (t ^ x).
 
 (* ----------------------------------------------------------
     Initial & Final Predicates for Lexi and Salt 
@@ -92,12 +138,13 @@ Inductive init_S (init_lab main_lab:code_loc): S.program ->
   mk_init_S : forall (p:program) L_stack,
   init_S init_lab main_lab
     p (init_lab !->c
-        ins_seq [mov 0 (cloc main_lab 0); call 0;
+        ins_seq [mov 0 (cloc main_lab 0); call (reg_o 0);
           push (reg_o 1); load 1 sp false 0; halt]; p,
-      ((L_stack,stack [])::[],sh_empty, th_empty),
-      [(ip,loc_w (cloc init_lab 0));(sp,loc_w (hloc L_stack 0));(nat_reg 1,ns);
-       (nat_reg 2,ns);(nat_reg 3,ns);(nat_reg 4,ns);
-       (nat_reg 5,ns);(nat_reg 6,ns)]).
+      ((L_stack,stack [])::[],th_empty,(sh_empty, th_empty)),
+         [(ip,loc_w (cloc init_lab 0));(sp,loc_w (hloc L_stack 0));
+          (nat_reg 0,ns);(nat_reg 1,ns);
+          (nat_reg 2,ns);(nat_reg 3,ns);(nat_reg 4,ns);
+          (nat_reg 5,ns);(nat_reg 6,ns)]).
 (* note that the value returned after the "exit" doesn't
    matter to the translated program, so we just choose
    000 as an arbitrary value *)
@@ -115,10 +162,10 @@ Inductive final_L : (L.code * L.heap * L.eval_context *
   mk_final_L : forall C H (i:nat),
     final_L (C,H,[],[run_const i],L.halt) i.
 Inductive final_S : (S.program * S.heap * reg_file) -> word -> Prop :=
-  mk_final_S : forall p H_stk H_cont H_tup R (l:code_location)
+  mk_final_S : forall p H_stk H_conts H_tup R (l:code_location)
     (i:nat) lsp S,
     fetch_instr l p = halt ->
-    final_S (p,((lsp,stack ((int_w i) :: S)):: H_stk,H_cont,H_tup),
+    final_S (p,((lsp,stack ((int_w i) :: S)):: H_stk,H_tup,H_conts),
     [(ip,loc_w l);(sp,loc_w (hloc lsp (1 + (List.length S))))] ++ R) i.
 
 
@@ -217,29 +264,34 @@ Inductive LS_rel_tup_heap : L.tup_heap -> S.tuple_heap -> Prop :=
         LH_tup (obj_lab L_tup) = L.tuple vs
         -> SH_tup L_tup = tuple (List.map run_cst_trans vs)) ->
     LS_rel_tup_heap LH_tup SH_tup.
-Inductive LS_rel_heap : L.heap -> (S.stack_heap * tuple_heap) -> Prop :=
-| rel_empty_heap : forall LH_tup SH_tup,
-      LS_rel_tup_heap LH_tup SH_tup ->
-      LS_rel_heap (LH_tup,L.ch_empty) (sh_empty,SH_tup)
-| rel_cont_heap :
-  forall Fs (L:string) L_out L_env  LH_tup SH_tup
-         L_rsp s s_out (SH_cont:stack_heap) (LH_cont:L.cont_heap)
-         Ks Clab_op,
-    LS_rel_frames Fs (stack s) ->
-    LS_rel_hdl_led_ctx Ks (loc_w (hloc L 0),stack s,
-        SH_cont,loc_w (hloc L_out 0), stack s_out) ->
-    LS_rel_heap (LH_tup,LH_cont) (SH_cont,SH_tup) ->
-    LS_rel_heap
-      (LH_tup,
-        obj_lab L_rsp !->ch
-          cont (Ks ++ Fs ++
-                  [h_f (handler_f (hdl_lab L) (hdl_lab L_env)
-                          (c_lab Clab_op) general)]); LH_cont)%L_scope
-      (L !->s
-         stack (s ++ [loc_w (hloc L_out (List.length s_out));
-                      int_w 0;loc_w (hloc L_env 0);loc_w (cloc Clab_op 0)]);
-       L_out !->s stack s_out; SH_cont,
-       L_rsp !->t tuple [loc_w (hloc L 4)];SH_tup).
+Inductive LS_rel_cont_heap :
+  L.cont_heap -> (S.stack_heap * S.tuple_heap) -> Prop :=
+  rel_cont_heap :
+    forall LH_cont SH_cont (SH_ctup:S.tuple_heap),
+      (forall (L_rsp:string) Fs (L:string) L_out L_env  
+           s s_out Ks Clab_op,
+      LH_cont (obj_lab L_rsp) =
+        cont (Ks ++ Fs ++
+                [h_f (handler_f (hdl_lab L) (hdl_lab L_env)
+                        (c_lab Clab_op) general)]) ->
+      LS_rel_frames Fs (stack s) ->
+      LS_rel_hdl_led_ctx Ks
+        (loc_w (hloc L 0),stack s,
+          SH_cont,loc_w (hloc L_out 0), stack s_out) ->
+      SH_ctup L_rsp = tuple [loc_w (hloc L 4)]
+      /\ stk_heap_app SH_cont L_out = stack s_out
+      /\ stk_heap_app SH_cont L =
+           stack (s ++ [loc_w (hloc L_out (List.length s_out));
+                        int_w 0;loc_w (hloc L_env 0);loc_w (cloc Clab_op 0)]))
+      -> LS_rel_cont_heap LH_cont (SH_cont,SH_ctup).
+Inductive LS_rel_heap :
+  L.heap -> (S.stack_heap * tuple_heap * tuple_heap) -> Prop :=
+  rel_heap :
+  forall LH_tup SH_tup
+         (SH_conts:stack_heap * tuple_heap) (LH_cont:L.cont_heap),
+    LS_rel_tup_heap LH_tup SH_tup ->
+    LS_rel_cont_heap LH_cont SH_conts ->
+    LS_rel_heap (LH_tup,LH_cont) (SH_conts,SH_tup).
 Inductive LS_rel_code : L.code -> S.program -> Prop :=
   | rel_code : forall C, LS_rel_code C (code_trans C)
   | rel_code_func : forall f (x:string) C,
@@ -260,20 +312,22 @@ Inductive LS_rel :
   (L.code * L.heap * L.eval_context * L.local_env * L.term)
   -> (S.program * S.heap * reg_file) -> Prop :=
   rel_LS : forall len lst SIlst
-    LC LH LK LE Lt SC o1 o2 o3 o4 o5 o6
-    (SH_stack:stack_heap) (SH_cont:stack_heap)
+    LC LH LK LE Lt SC o0 o1 o2 o3 o4 o5 o6
+    (SH_stack:stack_heap) (SH_conts:stack_heap * tuple_heap)
     (SH_tup:tuple_heap)
     (Slsp:heap_location) Clab,
     LS_rel_ins (LE,Lt) (ins_seq SIlst) ->
     LS_rel_context (LK,LE) (SH_stack,Slsp) ->
-    LS_rel_heap LH (SH_cont,SH_tup) -> LS_rel_code LC SC ->
+    LS_rel_heap LH (SH_conts,SH_tup) -> LS_rel_code LC SC ->
     SC Clab = ins_seq (lst ++ SIlst) -> List.length lst = len ->
-    lc_term Lt ->
+    (*lc_term Lt \/ body Lt*)
+    wf_tm LE Lt ->
     LS_rel (LC, LH, LK, LE, Lt)
-      (SC, (SH_stack,SH_cont,SH_tup),
-        [(ip,loc_w (cloc Clab len));(sp,loc_w Slsp);(nat_reg 1,o1);
-        (nat_reg 2,o2);(nat_reg 3,o3);(nat_reg 4,o4);
-        (nat_reg 5,o5);(nat_reg 6,o6)]).
+      (SC, (SH_stack,SH_tup,SH_conts),
+        [(ip,loc_w (cloc Clab len));(sp,loc_w Slsp);
+         (nat_reg 0,o0);(nat_reg 1,o1);
+         (nat_reg 2,o2);(nat_reg 3,o3);(nat_reg 4,o4);
+         (nat_reg 5,o5);(nat_reg 6,o6)]).
 (*
 in rel_frame, the constructor for insturction sequence
 shouldn't be ::, but should be ;

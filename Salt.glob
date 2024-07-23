@@ -1,4 +1,4 @@
-DIGEST 8e716fdc7a8b180ca5372144a4791503
+DIGEST a4af073805d76c4c3712c4fcc3c2ec3a
 FLSEH.Salt
 R24:33 Coq.Lists.List <> <> lib
 R43:55 Coq.Lists.List ListNotations <> mod
@@ -216,1993 +216,1992 @@ R1861:1864 Coq.Init.Logic <> ::type_scope:x_'->'_x not
 R1853:1860 LSEH.Salt <> heap_loc ind
 R1865:1878 LSEH.Salt <> tuple_heap_val ind
 def 1942:1945 <> heap
-R1983:1985 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R1983:1986 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R2010:2010 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
 R1970:1972 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
 R1960:1969 LSEH.Salt <> stack_heap def
-R1973:1982 LSEH.Salt <> stack_heap def
-R1986:1995 LSEH.Salt <> tuple_heap def
-def 2010:2016 <> program
-R2036:2039 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R2028:2035 LSEH.Salt <> code_loc ind
-R2040:2048 LSEH.Salt <> instr_seq ind
-R2068:2106 LSEH.Salt <> hloc_str constr
-R2109:2147 LSEH.Salt <> cloc_str constr
-R2150:2184 LSEH.Salt <> nat_reg constr
-R2187:2229 LSEH.Salt <> h_loc constr
-R2232:2274 LSEH.Salt <> c_loc constr
-R2277:2310 LSEH.Salt <> loc_w constr
-R2313:2341 LSEH.Salt <> int_w constr
-R2344:2375 LSEH.Salt <> wd_o constr
-def 2793:2799 <> reg_eqb
-binder 2801:2801 <> a:25
-binder 2803:2803 <> b:26
-R2818:2818 LSEH.Salt <> b:26 var
-R2816:2816 LSEH.Salt <> a:25 var
-R2829:2835 LSEH.Salt <> nat_reg constr
-R2840:2846 LSEH.Salt <> nat_reg constr
-R2855:2861 Coq.Init.Nat <> eqb def
-R2873:2874 LSEH.Salt <> ip constr
-R2877:2878 LSEH.Salt <> ip constr
-R2883:2886 Coq.Init.Datatypes <> true constr
-R2892:2893 LSEH.Salt <> sp constr
-R2896:2897 LSEH.Salt <> sp constr
-R2902:2905 Coq.Init.Datatypes <> true constr
-R2918:2922 Coq.Init.Datatypes <> false constr
-def 2986:2995 <> reg_update
-R3003:3010 LSEH.Salt <> reg_file def
-binder 2998:2999 <> rf:29
-R3018:3025 LSEH.Salt <> register ind
-binder 3014:3014 <> x:30
-R3035:3038 LSEH.Salt <> word ind
-binder 3031:3031 <> v:31
-R3054:3055 LSEH.Salt <> rf:29 var
-R3052:3052 LSEH.Salt <> x:30 var
-R3068:3070 Coq.Init.Datatypes <> nil constr
-R3080:3083 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3075:3075 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3077:3077 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3079:3079 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3076:3076 LSEH.Salt <> x:30 var
-R3078:3078 LSEH.Salt <> v:31 var
-R3084:3086 Coq.Init.Datatypes <> nil constr
-R3092:3093 LSEH.Salt <> ip constr
-R3102:3105 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3096:3096 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3099:3099 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3101:3101 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3097:3098 LSEH.Salt <> ip constr
-R3119:3122 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3113:3113 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1973:1982 LSEH.Salt <> tuple_heap def
+R1997:1999 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R1987:1996 LSEH.Salt <> stack_heap def
+R2000:2009 LSEH.Salt <> tuple_heap def
+def 2025:2031 <> program
+R2051:2054 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2043:2050 LSEH.Salt <> code_loc ind
+R2055:2063 LSEH.Salt <> instr_seq ind
+R2083:2121 LSEH.Salt <> hloc_str constr
+R2124:2162 LSEH.Salt <> cloc_str constr
+R2165:2199 LSEH.Salt <> nat_reg constr
+R2202:2244 LSEH.Salt <> h_loc constr
+R2247:2289 LSEH.Salt <> c_loc constr
+R2292:2325 LSEH.Salt <> loc_w constr
+R2328:2356 LSEH.Salt <> int_w constr
+R2359:2390 LSEH.Salt <> wd_o constr
+def 2808:2814 <> reg_eqb
+binder 2816:2816 <> a:25
+binder 2818:2818 <> b:26
+R2833:2833 LSEH.Salt <> b:26 var
+R2831:2831 LSEH.Salt <> a:25 var
+R2844:2850 LSEH.Salt <> nat_reg constr
+R2855:2861 LSEH.Salt <> nat_reg constr
+R2870:2876 Coq.Init.Nat <> eqb def
+R2888:2889 LSEH.Salt <> ip constr
+R2892:2893 LSEH.Salt <> ip constr
+R2898:2901 Coq.Init.Datatypes <> true constr
+R2907:2908 LSEH.Salt <> sp constr
+R2911:2912 LSEH.Salt <> sp constr
+R2917:2920 Coq.Init.Datatypes <> true constr
+R2933:2937 Coq.Init.Datatypes <> false constr
+def 3001:3010 <> reg_update
+R3018:3025 LSEH.Salt <> reg_file def
+binder 3013:3014 <> rf:29
+R3033:3040 LSEH.Salt <> register ind
+binder 3029:3029 <> x:30
+R3050:3053 LSEH.Salt <> word ind
+binder 3046:3046 <> v:31
+R3069:3070 LSEH.Salt <> rf:29 var
+R3067:3067 LSEH.Salt <> x:30 var
+R3083:3085 Coq.Init.Datatypes <> nil constr
+R3095:3098 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3090:3090 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3092:3092 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3094:3094 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3091:3091 LSEH.Salt <> x:30 var
+R3093:3093 LSEH.Salt <> v:31 var
+R3099:3101 Coq.Init.Datatypes <> nil constr
+R3107:3108 LSEH.Salt <> ip constr
+R3117:3120 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3111:3111 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3114:3114 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3116:3116 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3118:3118 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3114:3115 LSEH.Salt <> ip constr
-R3117:3117 LSEH.Salt <> v:31 var
-R3131:3132 LSEH.Salt <> sp constr
-R3141:3144 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3135:3135 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3138:3138 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3140:3140 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3136:3137 LSEH.Salt <> sp constr
-R3158:3161 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3152:3152 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3112:3113 LSEH.Salt <> ip constr
+R3134:3137 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3128:3128 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3131:3131 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3133:3133 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3129:3130 LSEH.Salt <> ip constr
+R3132:3132 LSEH.Salt <> v:31 var
+R3146:3147 LSEH.Salt <> sp constr
+R3156:3159 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3150:3150 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3153:3153 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3155:3155 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3157:3157 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3153:3154 LSEH.Salt <> sp constr
-R3156:3156 LSEH.Salt <> v:31 var
-R3170:3171 LSEH.Salt <> ip constr
-R3180:3183 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3174:3174 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3177:3177 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3179:3179 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3175:3176 LSEH.Salt <> sp constr
-R3197:3200 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3191:3191 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3151:3152 LSEH.Salt <> sp constr
+R3173:3176 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3167:3167 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3170:3170 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3172:3172 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3168:3169 LSEH.Salt <> sp constr
+R3171:3171 LSEH.Salt <> v:31 var
+R3185:3186 LSEH.Salt <> ip constr
+R3195:3198 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3189:3189 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3192:3192 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3194:3194 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3196:3196 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3192:3193 LSEH.Salt <> ip constr
-R3195:3195 LSEH.Salt <> v:31 var
-R3201:3202 LSEH.Salt <> rf:29 var
-R3208:3209 LSEH.Salt <> ip constr
-R3227:3230 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3212:3213 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3223:3224 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3226:3226 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3214:3220 LSEH.Salt <> nat_reg constr
-R3244:3247 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3238:3238 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3190:3191 LSEH.Salt <> sp constr
+R3212:3215 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3206:3206 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3209:3209 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3211:3211 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3207:3208 LSEH.Salt <> ip constr
+R3210:3210 LSEH.Salt <> v:31 var
+R3216:3217 LSEH.Salt <> rf:29 var
+R3223:3224 LSEH.Salt <> ip constr
+R3242:3245 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3227:3228 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3238:3239 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3241:3241 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3243:3243 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3239:3240 LSEH.Salt <> ip constr
-R3242:3242 LSEH.Salt <> v:31 var
-R3248:3249 LSEH.Salt <> rf:29 var
-R3255:3256 LSEH.Salt <> sp constr
-R3274:3277 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3259:3260 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3270:3271 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3273:3273 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3261:3267 LSEH.Salt <> nat_reg constr
-R3291:3294 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3285:3285 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3229:3235 LSEH.Salt <> nat_reg constr
+R3259:3262 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3253:3253 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3256:3256 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3258:3258 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3254:3255 LSEH.Salt <> ip constr
+R3257:3257 LSEH.Salt <> v:31 var
+R3263:3264 LSEH.Salt <> rf:29 var
+R3270:3271 LSEH.Salt <> sp constr
+R3289:3292 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3274:3275 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3285:3286 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
 R3288:3288 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3290:3290 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3286:3287 LSEH.Salt <> sp constr
-R3289:3289 LSEH.Salt <> v:31 var
-R3295:3296 LSEH.Salt <> rf:29 var
-R3302:3308 LSEH.Salt <> nat_reg constr
-R3329:3332 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3313:3314 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3325:3326 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3328:3328 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3315:3321 LSEH.Salt <> nat_reg constr
-R3347:3353 Coq.Init.Nat <> eqb def
-R3391:3397 Coq.Init.Nat <> ltb def
-R3448:3452 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3471:3471 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3432:3433 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3444:3445 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3447:3447 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3434:3440 LSEH.Salt <> nat_reg constr
-R3453:3462 LSEH.Salt <> reg_update:32 def
-R3470:3470 LSEH.Salt <> v:31 var
-R3468:3468 LSEH.Salt <> x:30 var
-R3414:3417 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3409:3409 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3411:3411 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3413:3413 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3410:3410 LSEH.Salt <> x:30 var
-R3412:3412 LSEH.Salt <> v:31 var
-R3418:3419 LSEH.Salt <> rf:29 var
-R3370:3373 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3365:3365 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3367:3367 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3369:3369 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3366:3366 LSEH.Salt <> x:30 var
-R3368:3368 LSEH.Salt <> v:31 var
-R3486:3489 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3481:3481 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3483:3483 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3485:3485 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3502:3506 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3525:3525 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R3497:3497 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3499:3499 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3501:3501 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3507:3516 LSEH.Salt <> reg_update:32 def
-R3524:3524 LSEH.Salt <> v:31 var
-R3522:3522 LSEH.Salt <> x:30 var
-def 3543:3549 <> reg_app
-R3555:3562 LSEH.Salt <> reg_file def
-binder 3552:3553 <> rf:35
-binder 3565:3565 <> r:36
-R3578:3579 LSEH.Salt <> rf:35 var
-R3590:3593 Coq.Init.Datatypes <> cons constr
-R3595:3595 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3597:3597 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3599:3599 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3611:3617 LSEH.Salt <> reg_eqb def
-R3621:3621 LSEH.Salt <> r:36 var
-R3635:3641 LSEH.Salt <> reg_app:37 def
-R3647:3647 LSEH.Salt <> r:36 var
-R3653:3655 Coq.Init.Datatypes <> nil constr
-R3660:3661 LSEH.Salt <> ns constr
-R3702:3711 LSEH.Salt <> reg_update def
-not 3679:3679 <> :::x_'!->r'_x_';'_x
-def 3787:3791 <> h_eqb
-binder 3793:3793 <> a:39
-binder 3795:3795 <> b:40
-R3810:3810 LSEH.Salt <> b:40 var
-R3808:3808 LSEH.Salt <> a:39 var
-R3821:3828 LSEH.Salt <> hloc_str constr
-R3834:3841 LSEH.Salt <> hloc_str constr
-R3849:3851 Coq.Strings.String <> eqb def
-def 3877:3884 <> sh_empty
-R3888:3897 LSEH.Salt <> stack_heap def
-R3902:3904 Coq.Init.Datatypes <> nil constr
-def 3918:3925 <> th_empty
-R3929:3938 LSEH.Salt <> tuple_heap def
-R3952:3956 LSEH.Salt <> tuple constr
-R3958:3960 Coq.Init.Datatypes <> nil constr
-def 3974:3980 <> h_empty
-R3984:3987 LSEH.Salt <> heap def
-R3992:3992 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4001:4002 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4011:4012 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4021:4021 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R3993:4000 LSEH.Salt <> sh_empty def
-R4003:4010 LSEH.Salt <> sh_empty def
-R4013:4020 LSEH.Salt <> th_empty def
-def 4033:4041 <> sh_update
-R4047:4056 LSEH.Salt <> stack_heap def
-binder 4044:4045 <> sh:43
-R4062:4069 LSEH.Salt <> heap_loc ind
-binder 4060:4060 <> x:44
-R4077:4090 LSEH.Salt <> stack_heap_val ind
-binder 4075:4075 <> v:45
-R4104:4105 LSEH.Salt <> sh:43 var
-R4116:4118 Coq.Init.Datatypes <> nil constr
-R4128:4131 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4123:4123 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4125:4125 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4127:4127 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4124:4124 LSEH.Salt <> x:44 var
-R4126:4126 LSEH.Salt <> v:45 var
-R4132:4134 Coq.Init.Datatypes <> nil constr
-R4148:4151 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4140:4140 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4143:4143 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4147:4147 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4162:4166 LSEH.Salt <> h_eqb def
-R4171:4171 LSEH.Salt <> x:44 var
-R4228:4232 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4250:4250 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4220:4220 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4223:4223 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4227:4227 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4233:4241 LSEH.Salt <> sh_update:46 def
-R4249:4249 LSEH.Salt <> v:45 var
-R4247:4247 LSEH.Salt <> x:44 var
-R4184:4187 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R4178:4178 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4181:4181 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4183:4183 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R4182:4182 LSEH.Salt <> v:45 var
-def 4270:4278 <> th_update
-R4284:4293 LSEH.Salt <> tuple_heap def
-binder 4281:4282 <> th:48
-R4299:4306 LSEH.Salt <> heap_loc ind
-binder 4297:4297 <> x:49
-R4314:4327 LSEH.Salt <> tuple_heap_val ind
-binder 4312:4312 <> v:50
-binder 4340:4341 <> x':51
-R4349:4353 LSEH.Salt <> h_eqb def
-R4355:4355 LSEH.Salt <> x:49 var
-R4357:4358 LSEH.Salt <> x':51 var
-R4372:4373 LSEH.Salt <> th:48 var
-R4375:4376 LSEH.Salt <> x':51 var
-R4365:4365 LSEH.Salt <> v:50 var
-R4822:4830 LSEH.Salt <> sh_update def
-not 4799:4799 <> :::x_'!->s'_x_';'_x
-R4927:4935 LSEH.Salt <> th_update def
-not 4904:4904 <> :::x_'!->t'_x_';'_x
-def 5012:5016 <> c_eqb
-binder 5018:5018 <> a:52
-binder 5020:5020 <> b:53
-R5035:5035 LSEH.Salt <> b:53 var
-R5033:5033 LSEH.Salt <> a:52 var
-R5046:5053 LSEH.Salt <> cloc_str constr
-R5059:5066 LSEH.Salt <> cloc_str constr
-R5074:5076 Coq.Strings.String <> eqb def
-def 5102:5109 <> c_update
-R5116:5122 LSEH.Salt <> program def
-binder 5112:5112 <> m:56
-R5130:5137 LSEH.Salt <> code_loc ind
-binder 5126:5126 <> x:57
-R5147:5155 LSEH.Salt <> instr_seq ind
-binder 5143:5143 <> v:58
-binder 5167:5168 <> x':59
-R5176:5180 LSEH.Salt <> c_eqb def
-R5182:5182 LSEH.Salt <> x:57 var
-R5184:5185 LSEH.Salt <> x':59 var
-R5199:5199 LSEH.Salt <> m:56 var
-R5201:5202 LSEH.Salt <> x':59 var
-R5192:5192 LSEH.Salt <> v:58 var
-R5430:5437 LSEH.Salt <> c_update def
-not 5407:5407 <> :::x_'!->c'_x_';'_x
-def 5699:5707 <> next_cloc
-binder 5709:5710 <> cl:60
-R5723:5724 LSEH.Salt <> cl:60 var
-R5731:5734 LSEH.Salt <> cloc constr
-R5745:5748 LSEH.Salt <> cloc constr
-R5755:5755 Coq.Init.Datatypes <> S constr
-def 5776:5784 <> next_hloc
-R5790:5802 LSEH.Salt <> heap_location ind
-binder 5787:5788 <> hl:62
-R5807:5819 LSEH.Salt <> heap_location ind
-R5832:5833 LSEH.Salt <> hl:62 var
-R5840:5843 LSEH.Salt <> hloc constr
-R5854:5857 LSEH.Salt <> hloc constr
-R5864:5864 Coq.Init.Datatypes <> S constr
-def 5883:5891 <> incr_cloc
-binder 5893:5893 <> n:64
-R5899:5911 LSEH.Salt <> code_location ind
-binder 5896:5897 <> cl:65
-R5916:5928 LSEH.Salt <> code_location ind
-R5941:5941 LSEH.Salt <> n:64 var
-R5957:5958 LSEH.Salt <> cl:65 var
-R5964:5964 Coq.Init.Datatypes <> S constr
-R5972:5980 LSEH.Salt <> incr_cloc:66 def
-R5986:5994 LSEH.Salt <> next_cloc def
-R5996:5997 LSEH.Salt <> cl:65 var
-def 6016:6024 <> incr_hloc
-binder 6026:6026 <> n:68
-R6032:6044 LSEH.Salt <> heap_location ind
-binder 6029:6030 <> hl:69
-R6049:6061 LSEH.Salt <> heap_location ind
-R6074:6074 LSEH.Salt <> n:68 var
-R6090:6091 LSEH.Salt <> hl:69 var
-R6097:6097 Coq.Init.Datatypes <> S constr
-R6105:6113 LSEH.Salt <> incr_hloc:70 def
-R6119:6127 LSEH.Salt <> next_hloc def
-R6129:6130 LSEH.Salt <> hl:69 var
-def 6204:6209 <> n_cons
-binder 6212:6212 <> A:72
-binder 6220:6220 <> n:73
-binder 6222:6222 <> v:74
-R6229:6232 Coq.Init.Datatypes <> list ind
-R6234:6234 LSEH.Salt <> A:72 var
-binder 6225:6227 <> lst:75
-R6248:6248 LSEH.Salt <> n:73 var
-R6264:6266 LSEH.Salt <> lst:75 var
-R6272:6272 Coq.Init.Datatypes <> S constr
-R6280:6285 LSEH.Salt <> n_cons:76 def
-R6293:6296 Coq.Init.Datatypes <> cons constr
-R6300:6302 LSEH.Salt <> lst:75 var
-R6298:6298 LSEH.Salt <> v:74 var
-R6290:6290 LSEH.Salt <> v:74 var
-def 6322:6328 <> cdr_nth
-binder 6331:6331 <> A:78
-R6344:6346 Coq.Init.Datatypes <> nat ind
-binder 6341:6341 <> n:79
-R6355:6358 Coq.Init.Datatypes <> list ind
-R6360:6360 LSEH.Salt <> A:78 var
-binder 6350:6352 <> lst:80
-R6377:6379 LSEH.Salt <> lst:80 var
-R6374:6374 LSEH.Salt <> n:79 var
-R6410:6410 Coq.Init.Datatypes <> S constr
-R6416:6418 Coq.Init.Datatypes <> nil constr
-R6423:6425 Coq.Init.Datatypes <> nil constr
-R6431:6431 Coq.Init.Datatypes <> S constr
-R6437:6440 Coq.Init.Datatypes <> cons constr
-R6452:6458 LSEH.Salt <> cdr_nth:81 def
-def 6484:6493 <> update_nth
-binder 6496:6496 <> A:84
-R6508:6510 Coq.Init.Datatypes <> nat ind
-binder 6506:6506 <> n:85
-R6518:6521 Coq.Init.Datatypes <> list ind
-R6523:6523 LSEH.Salt <> A:84 var
-binder 6514:6516 <> lst:86
-R6529:6529 LSEH.Salt <> A:84 var
-binder 6527:6527 <> v:87
-R6546:6548 LSEH.Salt <> lst:86 var
-R6543:6543 LSEH.Salt <> n:85 var
-R6562:6565 Coq.Init.Datatypes <> cons constr
-R6577:6580 Coq.Init.Datatypes <> cons constr
-R6582:6582 LSEH.Salt <> v:87 var
-R6596:6598 Coq.Init.Datatypes <> nil constr
-R6603:6605 Coq.Init.Datatypes <> nil constr
-R6611:6611 Coq.Init.Datatypes <> S constr
-R6617:6620 Coq.Init.Datatypes <> cons constr
-R6632:6641 LSEH.Salt <> update_nth:88 def
-R6651:6651 LSEH.Salt <> v:87 var
-def 6858:6870 <> fetch_instr_h
-R6878:6890 LSEH.Salt <> code_location ind
-binder 6873:6874 <> cl:91
-R6898:6904 LSEH.Salt <> program def
-binder 6894:6894 <> p:92
-R6921:6925 LSEH.Salt <> instr ind
-binder 6911:6919 <> otherwise:93
-R6930:6934 LSEH.Salt <> instr ind
-R6945:6946 LSEH.Salt <> cl:91 var
-R6953:6956 LSEH.Salt <> cloc constr
-R6977:6977 LSEH.Salt <> p:92 var
-R6990:6996 LSEH.Salt <> ins_seq constr
-R7007:7009 Coq.Lists.List <> nth def
-R7017:7025 LSEH.Salt <> otherwise:93 var
-def 7049:7059 <> fetch_instr
-binder 7061:7062 <> cl:95
-binder 7064:7064 <> p:96
-R7069:7081 LSEH.Salt <> fetch_instr_h def
-R7083:7084 LSEH.Salt <> cl:95 var
-R7086:7086 LSEH.Salt <> p:96 var
-R7088:7093 LSEH.Salt <> ns_ins constr
-def 7323:7335 <> operand_value
-binder 7337:7337 <> o:97
-R7347:7354 LSEH.Salt <> reg_file def
-binder 7340:7345 <> r_file:98
-R7368:7368 LSEH.Salt <> o:97 var
-R7379:7383 LSEH.Salt <> reg_o constr
-R7390:7396 LSEH.Salt <> reg_app def
-R7398:7403 LSEH.Salt <> r_file:98 var
-R7411:7414 LSEH.Salt <> wd_o constr
-def 7575:7586 <> stk_heap_app
-R7593:7602 LSEH.Salt <> stack_heap def
-binder 7589:7590 <> sh:100
-R7611:7618 LSEH.Salt <> heap_loc ind
-binder 7606:7608 <> loc:101
-R7632:7633 LSEH.Salt <> sh:100 var
-R7649:7652 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R7644:7644 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7646:7646 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7648:7648 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7667:7671 LSEH.Salt <> h_eqb def
-R7675:7677 LSEH.Salt <> loc:101 var
-R7691:7702 LSEH.Salt <> stk_heap_app:102 def
-R7708:7710 LSEH.Salt <> loc:101 var
-R7716:7717 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R7722:7730 LSEH.Salt <> no_stacks constr
-def 7750:7754 <> fresh
-R7759:7762 LSEH.Salt <> heap def
-binder 7757:7757 <> h:104
-R7770:7777 LSEH.Salt <> heap_loc ind
-binder 7766:7768 <> loc:105
-R7782:7785 Coq.Init.Datatypes <> bool ind
-R7798:7798 LSEH.Salt <> h:104 var
-R7805:7805 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7808:7808 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7811:7811 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7813:7813 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R7872:7874 LSEH.Salt <> loc:105 var
-R7849:7860 LSEH.Salt <> stk_heap_app def
-R7865:7867 LSEH.Salt <> loc:105 var
-R7828:7839 LSEH.Salt <> stk_heap_app def
-R7844:7846 LSEH.Salt <> loc:105 var
-R7887:7895 LSEH.Salt <> no_stacks constr
-R7898:7906 LSEH.Salt <> no_stacks constr
-R7909:7913 LSEH.Salt <> tuple constr
-R7915:7917 Coq.Init.Datatypes <> nil constr
-R7922:7925 Coq.Init.Datatypes <> true constr
-R7942:7946 Coq.Init.Datatypes <> false constr
-def 8626:8635 <> fetch_heap
-R8642:8649 LSEH.Salt <> heap_loc ind
-binder 8638:8640 <> loc:107
-R8655:8657 Coq.Init.Datatypes <> nat ind
-binder 8653:8653 <> i:108
-R8663:8666 LSEH.Salt <> heap def
-binder 8661:8661 <> h:109
-R8680:8680 LSEH.Salt <> h:109 var
-R8687:8687 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8692:8692 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8697:8697 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8701:8701 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R8771:8773 LSEH.Salt <> loc:107 var
-R8745:8756 LSEH.Salt <> stk_heap_app def
-R8763:8765 LSEH.Salt <> loc:107 var
-R8716:8727 LSEH.Salt <> stk_heap_app def
-R8734:8736 LSEH.Salt <> loc:107 var
-R8786:8790 LSEH.Salt <> stack constr
-R8796:8804 LSEH.Salt <> no_stacks constr
-R8806:8810 LSEH.Salt <> tuple constr
-R8812:8813 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R8824:8826 Coq.Lists.List <> nth def
-R8854:8855 LSEH.Salt <> ns constr
-R8829:8829 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R8845:8846 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R8830:8840 Coq.Lists.List <> length abbrev
-R8847:8847 LSEH.Salt <> i:108 var
-R8863:8871 LSEH.Salt <> no_stacks constr
-R8873:8877 LSEH.Salt <> stack constr
-R8883:8887 LSEH.Salt <> tuple constr
-R8889:8890 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R8901:8903 Coq.Lists.List <> nth def
-R8931:8932 LSEH.Salt <> ns constr
-R8906:8906 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R8922:8923 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R8907:8917 Coq.Lists.List <> length abbrev
-R8924:8924 LSEH.Salt <> i:108 var
-R8940:8948 LSEH.Salt <> no_stacks constr
-R8950:8958 LSEH.Salt <> no_stacks constr
-R8960:8964 LSEH.Salt <> tuple constr
-R8973:8975 Coq.Lists.List <> nth def
-R8983:8984 LSEH.Salt <> ns constr
-R8977:8977 LSEH.Salt <> i:108 var
-R9001:9002 LSEH.Salt <> ns constr
-ind 9162:9165 <> step
-constr 9235:9239 <> S_add
-constr 9526:9532 <> S_mkstk
-constr 9883:9890 <> S_salloc
-constr 10348:10353 <> S_push
-constr 10839:10845 <> S_sfree
-constr 11310:11314 <> S_pop
-constr 11824:11831 <> S_malloc
-constr 12180:12184 <> S_mov
-constr 12396:12409 <> S_mov_sp_raise
-constr 12929:12943 <> S_mov_sp_resume
-constr 13469:13482 <> S_mov_sp_lvhdl
-constr 13984:13993 <> S_load_stk
-constr 14616:14625 <> S_load_tup
-constr 15003:15009 <> S_store
-constr 15440:15445 <> S_call
-constr 15923:15927 <> S_jmp
-constr 16120:16124 <> S_ret
-R9170:9176 LSEH.Salt <> program def
-binder 9168:9168 <> P:111
-R9181:9181 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9197:9201 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9186:9188 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R9182:9185 LSEH.Salt <> heap def
-R9189:9196 LSEH.Salt <> reg_file def
-R9202:9202 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9218:9222 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9207:9209 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R9203:9206 LSEH.Salt <> heap def
-R9210:9217 LSEH.Salt <> reg_file def
-R9253:9256 LSEH.Salt <> heap def
-binder 9251:9251 <> H:114
-R9262:9269 LSEH.Salt <> reg_file def
-binder 9260:9260 <> R:115
-R9275:9287 LSEH.Salt <> code_location ind
-binder 9273:9273 <> l:116
-R9299:9306 LSEH.Salt <> register ind
-binder 9295:9297 <> reg:117
-R9312:9318 LSEH.Salt <> operand ind
-binder 9310:9310 <> o:118
-R9329:9331 Coq.Init.Datatypes <> nat ind
-binder 9322:9323 <> w1:119
-binder 9325:9326 <> w2:120
-R9355:9358 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9351:9353 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9339:9345 LSEH.Salt <> reg_app def
-R9347:9347 LSEH.Salt <> R:115 var
-R9349:9350 LSEH.Salt <> ip constr
-R9354:9354 LSEH.Salt <> l:116 var
-R9386:9393 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9374:9376 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9359:9369 LSEH.Salt <> fetch_instr def
-R9371:9371 LSEH.Salt <> l:116 var
-R9373:9373 LSEH.Salt <> P:111 var
-R9377:9379 LSEH.Salt <> add constr
-R9381:9383 LSEH.Salt <> reg:117 var
-R9385:9385 LSEH.Salt <> o:118 var
-R9418:9421 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9407:9409 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9394:9400 LSEH.Salt <> reg_app def
-R9402:9402 LSEH.Salt <> R:115 var
-R9404:9406 LSEH.Salt <> reg:117 var
-R9410:9414 LSEH.Salt <> int_w constr
-R9416:9417 LSEH.Salt <> w1:119 var
-R9450:9457 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9439:9441 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9422:9434 LSEH.Salt <> operand_value def
-R9436:9436 LSEH.Salt <> o:118 var
-R9438:9438 LSEH.Salt <> R:115 var
-R9442:9446 LSEH.Salt <> int_w constr
-R9448:9449 LSEH.Salt <> w2:120 var
-R9458:9461 LSEH.Salt <> step:112 ind
-R9477:9477 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9479:9480 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9520:9520 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9478:9478 LSEH.Salt <> H:114 var
-R9483:9488 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9500:9501 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9505:9510 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9516:9518 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9519:9519 LSEH.Salt <> R:115 var
-R9502:9504 LSEH.Salt <> reg:117 var
-R9513:9513 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R9511:9512 LSEH.Salt <> w1:119 var
-R9514:9515 LSEH.Salt <> w2:120 var
-R9481:9482 LSEH.Salt <> ip constr
-R9489:9497 LSEH.Salt <> next_cloc def
-R9499:9499 LSEH.Salt <> l:116 var
-R9465:9465 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3276:3282 LSEH.Salt <> nat_reg constr
+R3306:3309 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3300:3300 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3303:3303 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3305:3305 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3301:3302 LSEH.Salt <> sp constr
+R3304:3304 LSEH.Salt <> v:31 var
+R3310:3311 LSEH.Salt <> rf:29 var
+R3317:3323 LSEH.Salt <> nat_reg constr
+R3344:3347 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3328:3329 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3340:3341 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3343:3343 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3330:3336 LSEH.Salt <> nat_reg constr
+R3362:3368 Coq.Init.Nat <> eqb def
+R3406:3412 Coq.Init.Nat <> ltb def
+R3463:3467 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3486:3486 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3447:3448 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3459:3460 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3462:3462 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3449:3455 LSEH.Salt <> nat_reg constr
+R3468:3477 LSEH.Salt <> reg_update:32 def
+R3485:3485 LSEH.Salt <> v:31 var
+R3483:3483 LSEH.Salt <> x:30 var
+R3429:3432 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3424:3424 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3426:3426 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3428:3428 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3425:3425 LSEH.Salt <> x:30 var
+R3427:3427 LSEH.Salt <> v:31 var
+R3433:3434 LSEH.Salt <> rf:29 var
+R3385:3388 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3380:3380 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3382:3382 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3384:3384 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3381:3381 LSEH.Salt <> x:30 var
+R3383:3383 LSEH.Salt <> v:31 var
+R3501:3504 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3496:3496 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3498:3498 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3500:3500 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3517:3521 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3540:3540 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3512:3512 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3514:3514 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3516:3516 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3522:3531 LSEH.Salt <> reg_update:32 def
+R3539:3539 LSEH.Salt <> v:31 var
+R3537:3537 LSEH.Salt <> x:30 var
+def 3558:3564 <> reg_app
+R3570:3577 LSEH.Salt <> reg_file def
+binder 3567:3568 <> rf:35
+binder 3580:3580 <> r:36
+R3593:3594 LSEH.Salt <> rf:35 var
+R3605:3608 Coq.Init.Datatypes <> cons constr
+R3610:3610 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3612:3612 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3614:3614 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3626:3632 LSEH.Salt <> reg_eqb def
+R3636:3636 LSEH.Salt <> r:36 var
+R3650:3656 LSEH.Salt <> reg_app:37 def
+R3662:3662 LSEH.Salt <> r:36 var
+R3668:3670 Coq.Init.Datatypes <> nil constr
+R3675:3676 LSEH.Salt <> ns constr
+R3717:3726 LSEH.Salt <> reg_update def
+not 3694:3694 <> :::x_'!->r'_x_';'_x
+def 3802:3806 <> h_eqb
+binder 3808:3808 <> a:39
+binder 3810:3810 <> b:40
+R3825:3825 LSEH.Salt <> b:40 var
+R3823:3823 LSEH.Salt <> a:39 var
+R3836:3843 LSEH.Salt <> hloc_str constr
+R3849:3856 LSEH.Salt <> hloc_str constr
+R3864:3866 Coq.Strings.String <> eqb def
+def 3892:3899 <> sh_empty
+R3903:3912 LSEH.Salt <> stack_heap def
+R3917:3919 Coq.Init.Datatypes <> nil constr
+def 3933:3940 <> th_empty
+R3944:3953 LSEH.Salt <> tuple_heap def
+R3967:3971 LSEH.Salt <> tuple constr
+R3973:3975 Coq.Init.Datatypes <> nil constr
+def 3989:3995 <> h_empty
+R3999:4002 LSEH.Salt <> heap def
+R4009:4009 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4018:4019 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4028:4029 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4050:4050 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4010:4017 LSEH.Salt <> sh_empty def
+R4020:4027 LSEH.Salt <> th_empty def
+R4030:4030 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4039:4040 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4049:4049 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4031:4038 LSEH.Salt <> sh_empty def
+R4041:4048 LSEH.Salt <> th_empty def
+def 4062:4070 <> sh_update
+R4076:4085 LSEH.Salt <> stack_heap def
+binder 4073:4074 <> sh:43
+R4091:4098 LSEH.Salt <> heap_loc ind
+binder 4089:4089 <> x:44
+R4106:4119 LSEH.Salt <> stack_heap_val ind
+binder 4104:4104 <> v:45
+R4133:4134 LSEH.Salt <> sh:43 var
+R4145:4147 Coq.Init.Datatypes <> nil constr
+R4157:4160 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4152:4152 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4154:4154 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4156:4156 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4153:4153 LSEH.Salt <> x:44 var
+R4155:4155 LSEH.Salt <> v:45 var
+R4161:4163 Coq.Init.Datatypes <> nil constr
+R4177:4180 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4169:4169 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4172:4172 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4176:4176 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4191:4195 LSEH.Salt <> h_eqb def
+R4200:4200 LSEH.Salt <> x:44 var
+R4257:4261 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4279:4279 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4249:4249 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4252:4252 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4256:4256 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4262:4270 LSEH.Salt <> sh_update:46 def
+R4278:4278 LSEH.Salt <> v:45 var
+R4276:4276 LSEH.Salt <> x:44 var
+R4213:4216 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4207:4207 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4210:4210 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4212:4212 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4211:4211 LSEH.Salt <> v:45 var
+def 4299:4307 <> th_update
+R4313:4322 LSEH.Salt <> tuple_heap def
+binder 4310:4311 <> th:48
+R4328:4335 LSEH.Salt <> heap_loc ind
+binder 4326:4326 <> x:49
+R4343:4356 LSEH.Salt <> tuple_heap_val ind
+binder 4341:4341 <> v:50
+binder 4369:4370 <> x':51
+R4378:4382 LSEH.Salt <> h_eqb def
+R4384:4384 LSEH.Salt <> x:49 var
+R4386:4387 LSEH.Salt <> x':51 var
+R4401:4402 LSEH.Salt <> th:48 var
+R4404:4405 LSEH.Salt <> x':51 var
+R4394:4394 LSEH.Salt <> v:50 var
+R4851:4859 LSEH.Salt <> sh_update def
+not 4828:4828 <> :::x_'!->s'_x_';'_x
+R4956:4964 LSEH.Salt <> th_update def
+not 4933:4933 <> :::x_'!->t'_x_';'_x
+def 5041:5045 <> c_eqb
+binder 5047:5047 <> a:52
+binder 5049:5049 <> b:53
+R5064:5064 LSEH.Salt <> b:53 var
+R5062:5062 LSEH.Salt <> a:52 var
+R5075:5082 LSEH.Salt <> cloc_str constr
+R5088:5095 LSEH.Salt <> cloc_str constr
+R5103:5105 Coq.Strings.String <> eqb def
+def 5131:5138 <> c_update
+R5145:5151 LSEH.Salt <> program def
+binder 5141:5141 <> m:56
+R5159:5166 LSEH.Salt <> code_loc ind
+binder 5155:5155 <> x:57
+R5176:5184 LSEH.Salt <> instr_seq ind
+binder 5172:5172 <> v:58
+binder 5196:5197 <> x':59
+R5205:5209 LSEH.Salt <> c_eqb def
+R5211:5211 LSEH.Salt <> x:57 var
+R5213:5214 LSEH.Salt <> x':59 var
+R5228:5228 LSEH.Salt <> m:56 var
+R5230:5231 LSEH.Salt <> x':59 var
+R5221:5221 LSEH.Salt <> v:58 var
+R5459:5466 LSEH.Salt <> c_update def
+not 5436:5436 <> :::x_'!->c'_x_';'_x
+def 5728:5736 <> next_cloc
+binder 5738:5739 <> cl:60
+R5752:5753 LSEH.Salt <> cl:60 var
+R5760:5763 LSEH.Salt <> cloc constr
+R5774:5777 LSEH.Salt <> cloc constr
+R5784:5784 Coq.Init.Datatypes <> S constr
+def 5805:5813 <> next_hloc
+R5819:5831 LSEH.Salt <> heap_location ind
+binder 5816:5817 <> hl:62
+R5836:5848 LSEH.Salt <> heap_location ind
+R5861:5862 LSEH.Salt <> hl:62 var
+R5869:5872 LSEH.Salt <> hloc constr
+R5883:5886 LSEH.Salt <> hloc constr
+R5893:5893 Coq.Init.Datatypes <> S constr
+def 5912:5920 <> incr_cloc
+binder 5922:5922 <> n:64
+R5928:5940 LSEH.Salt <> code_location ind
+binder 5925:5926 <> cl:65
+R5945:5957 LSEH.Salt <> code_location ind
+R5970:5970 LSEH.Salt <> n:64 var
+R5986:5987 LSEH.Salt <> cl:65 var
+R5993:5993 Coq.Init.Datatypes <> S constr
+R6001:6009 LSEH.Salt <> incr_cloc:66 def
+R6015:6023 LSEH.Salt <> next_cloc def
+R6025:6026 LSEH.Salt <> cl:65 var
+def 6045:6053 <> incr_hloc
+binder 6055:6055 <> n:68
+R6061:6073 LSEH.Salt <> heap_location ind
+binder 6058:6059 <> hl:69
+R6078:6090 LSEH.Salt <> heap_location ind
+R6103:6103 LSEH.Salt <> n:68 var
+R6119:6120 LSEH.Salt <> hl:69 var
+R6126:6126 Coq.Init.Datatypes <> S constr
+R6134:6142 LSEH.Salt <> incr_hloc:70 def
+R6148:6156 LSEH.Salt <> next_hloc def
+R6158:6159 LSEH.Salt <> hl:69 var
+def 6233:6238 <> n_cons
+binder 6241:6241 <> A:72
+binder 6249:6249 <> n:73
+binder 6251:6251 <> v:74
+R6258:6261 Coq.Init.Datatypes <> list ind
+R6263:6263 LSEH.Salt <> A:72 var
+binder 6254:6256 <> lst:75
+R6277:6277 LSEH.Salt <> n:73 var
+R6293:6295 LSEH.Salt <> lst:75 var
+R6301:6301 Coq.Init.Datatypes <> S constr
+R6309:6314 LSEH.Salt <> n_cons:76 def
+R6322:6325 Coq.Init.Datatypes <> cons constr
+R6329:6331 LSEH.Salt <> lst:75 var
+R6327:6327 LSEH.Salt <> v:74 var
+R6319:6319 LSEH.Salt <> v:74 var
+def 6351:6357 <> cdr_nth
+binder 6360:6360 <> A:78
+R6373:6375 Coq.Init.Datatypes <> nat ind
+binder 6370:6370 <> n:79
+R6384:6387 Coq.Init.Datatypes <> list ind
+R6389:6389 LSEH.Salt <> A:78 var
+binder 6379:6381 <> lst:80
+R6406:6408 LSEH.Salt <> lst:80 var
+R6403:6403 LSEH.Salt <> n:79 var
+R6439:6439 Coq.Init.Datatypes <> S constr
+R6445:6447 Coq.Init.Datatypes <> nil constr
+R6452:6454 Coq.Init.Datatypes <> nil constr
+R6460:6460 Coq.Init.Datatypes <> S constr
+R6466:6469 Coq.Init.Datatypes <> cons constr
+R6481:6487 LSEH.Salt <> cdr_nth:81 def
+def 6513:6522 <> update_nth
+binder 6525:6525 <> A:84
+R6537:6539 Coq.Init.Datatypes <> nat ind
+binder 6535:6535 <> n:85
+R6547:6550 Coq.Init.Datatypes <> list ind
+R6552:6552 LSEH.Salt <> A:84 var
+binder 6543:6545 <> lst:86
+R6558:6558 LSEH.Salt <> A:84 var
+binder 6556:6556 <> v:87
+R6575:6577 LSEH.Salt <> lst:86 var
+R6572:6572 LSEH.Salt <> n:85 var
+R6591:6594 Coq.Init.Datatypes <> cons constr
+R6606:6609 Coq.Init.Datatypes <> cons constr
+R6611:6611 LSEH.Salt <> v:87 var
+R6625:6627 Coq.Init.Datatypes <> nil constr
+R6632:6634 Coq.Init.Datatypes <> nil constr
+R6640:6640 Coq.Init.Datatypes <> S constr
+R6646:6649 Coq.Init.Datatypes <> cons constr
+R6661:6670 LSEH.Salt <> update_nth:88 def
+R6680:6680 LSEH.Salt <> v:87 var
+def 6887:6899 <> fetch_instr_h
+R6907:6919 LSEH.Salt <> code_location ind
+binder 6902:6903 <> cl:91
+R6927:6933 LSEH.Salt <> program def
+binder 6923:6923 <> p:92
+R6950:6954 LSEH.Salt <> instr ind
+binder 6940:6948 <> otherwise:93
+R6959:6963 LSEH.Salt <> instr ind
+R6974:6975 LSEH.Salt <> cl:91 var
+R6982:6985 LSEH.Salt <> cloc constr
+R7006:7006 LSEH.Salt <> p:92 var
+R7019:7025 LSEH.Salt <> ins_seq constr
+R7036:7038 Coq.Lists.List <> nth def
+R7046:7054 LSEH.Salt <> otherwise:93 var
+def 7078:7088 <> fetch_instr
+binder 7090:7091 <> cl:95
+binder 7093:7093 <> p:96
+R7098:7110 LSEH.Salt <> fetch_instr_h def
+R7112:7113 LSEH.Salt <> cl:95 var
+R7115:7115 LSEH.Salt <> p:96 var
+R7117:7122 LSEH.Salt <> ns_ins constr
+def 7352:7364 <> operand_value
+binder 7366:7366 <> o:97
+R7376:7383 LSEH.Salt <> reg_file def
+binder 7369:7374 <> r_file:98
+R7397:7397 LSEH.Salt <> o:97 var
+R7408:7412 LSEH.Salt <> reg_o constr
+R7419:7425 LSEH.Salt <> reg_app def
+R7427:7432 LSEH.Salt <> r_file:98 var
+R7440:7443 LSEH.Salt <> wd_o constr
+def 7604:7615 <> stk_heap_app
+R7622:7631 LSEH.Salt <> stack_heap def
+binder 7618:7619 <> sh:100
+R7640:7647 LSEH.Salt <> heap_loc ind
+binder 7635:7637 <> loc:101
+R7661:7662 LSEH.Salt <> sh:100 var
+R7678:7681 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7673:7673 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7675:7675 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7677:7677 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7696:7700 LSEH.Salt <> h_eqb def
+R7704:7706 LSEH.Salt <> loc:101 var
+R7720:7731 LSEH.Salt <> stk_heap_app:102 def
+R7737:7739 LSEH.Salt <> loc:101 var
+R7745:7746 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R7751:7759 LSEH.Salt <> no_stacks constr
+ind 8786:8789 <> step
+constr 8859:8863 <> S_add
+constr 9155:9161 <> S_mkstk
+constr 9557:9564 <> S_salloc
+constr 10068:10073 <> S_push
+constr 10607:10613 <> S_sfree
+constr 11124:11128 <> S_pop
+constr 11685:11692 <> S_malloc
+constr 12102:12106 <> S_mov
+constr 12329:12342 <> S_mov_sp_raise
+constr 12897:12911 <> S_mov_sp_resume
+constr 13472:13485 <> S_mov_sp_lvhdl
+constr 14035:14044 <> S_load_stk
+constr 14709:14718 <> S_load_tup
+constr 15143:15149 <> S_store
+constr 15646:15651 <> S_call
+constr 16198:16202 <> S_jmp
+constr 16400:16404 <> S_ret
+R8794:8800 LSEH.Salt <> program def
+binder 8792:8792 <> P:104
+R8807:8807 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8823:8827 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8812:8814 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R8808:8811 LSEH.Salt <> heap def
+R8815:8822 LSEH.Salt <> reg_file def
+R8828:8828 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8844:8848 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8833:8835 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R8829:8832 LSEH.Salt <> heap def
+R8836:8843 LSEH.Salt <> reg_file def
+R8879:8882 LSEH.Salt <> heap def
+binder 8877:8877 <> H:107
+R8888:8895 LSEH.Salt <> reg_file def
+binder 8886:8886 <> R:108
+R8901:8913 LSEH.Salt <> code_location ind
+binder 8899:8899 <> l:109
+R8930:8937 LSEH.Salt <> register ind
+binder 8926:8928 <> reg:110
+R8943:8949 LSEH.Salt <> operand ind
+binder 8941:8941 <> o:111
+R8960:8962 Coq.Init.Datatypes <> nat ind
+binder 8953:8954 <> w1:112
+binder 8956:8957 <> w2:113
+R8986:8989 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8982:8984 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8970:8976 LSEH.Salt <> reg_app def
+R8978:8978 LSEH.Salt <> R:108 var
+R8980:8981 LSEH.Salt <> ip constr
+R8985:8985 LSEH.Salt <> l:109 var
+R9017:9024 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9005:9007 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8990:9000 LSEH.Salt <> fetch_instr def
+R9002:9002 LSEH.Salt <> l:109 var
+R9004:9004 LSEH.Salt <> P:104 var
+R9008:9010 LSEH.Salt <> add constr
+R9012:9014 LSEH.Salt <> reg:110 var
+R9016:9016 LSEH.Salt <> o:111 var
+R9049:9052 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9038:9040 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9025:9031 LSEH.Salt <> reg_app def
+R9033:9033 LSEH.Salt <> R:108 var
+R9035:9037 LSEH.Salt <> reg:110 var
+R9041:9045 LSEH.Salt <> int_w constr
+R9047:9048 LSEH.Salt <> w1:112 var
+R9081:9088 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9070:9072 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9053:9065 LSEH.Salt <> operand_value def
+R9067:9067 LSEH.Salt <> o:111 var
+R9069:9069 LSEH.Salt <> R:108 var
+R9073:9077 LSEH.Salt <> int_w constr
+R9079:9080 LSEH.Salt <> w2:113 var
+R9089:9092 LSEH.Salt <> step:105 ind
+R9108:9108 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9110:9111 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9151:9151 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9109:9109 LSEH.Salt <> H:107 var
+R9114:9119 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9131:9132 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9136:9141 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9147:9149 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9150:9150 LSEH.Salt <> R:108 var
+R9133:9135 LSEH.Salt <> reg:110 var
+R9144:9144 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9142:9143 LSEH.Salt <> w1:112 var
+R9145:9146 LSEH.Salt <> w2:113 var
+R9112:9113 LSEH.Salt <> ip constr
+R9120:9128 LSEH.Salt <> next_cloc def
+R9130:9130 LSEH.Salt <> l:109 var
+R9096:9096 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9098:9098 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9100:9100 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9097:9097 LSEH.Salt <> H:107 var
+R9099:9099 LSEH.Salt <> R:108 var
+R9094:9094 LSEH.Salt <> P:104 var
+R9181:9190 LSEH.Salt <> stack_heap def
+binder 9175:9179 <> H_stk:114
+R9200:9209 LSEH.Salt <> tuple_heap def
+binder 9194:9198 <> H_tup:115
+R9240:9242 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R9230:9239 LSEH.Salt <> stack_heap def
+R9243:9252 LSEH.Salt <> tuple_heap def
+binder 9222:9228 <> H_conts:116
+R9267:9274 LSEH.Salt <> reg_file def
+binder 9265:9265 <> R:117
+R9280:9292 LSEH.Salt <> code_location ind
+binder 9278:9278 <> l:118
+R9300:9307 LSEH.Salt <> register ind
+binder 9296:9298 <> reg:119
+R9313:9320 LSEH.Salt <> heap_loc ind
+binder 9311:9311 <> L:120
+R9344:9347 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9340:9342 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9328:9334 LSEH.Salt <> reg_app def
+R9336:9336 LSEH.Salt <> R:117 var
+R9338:9339 LSEH.Salt <> ip constr
+R9343:9343 LSEH.Salt <> l:118 var
+R9375:9429 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9363:9365 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9348:9358 LSEH.Salt <> fetch_instr def
+R9360:9360 LSEH.Salt <> l:118 var
+R9362:9362 LSEH.Salt <> P:104 var
+R9366:9370 LSEH.Salt <> mkstk constr
+R9372:9374 LSEH.Salt <> reg:119 var
+R9430:9433 LSEH.Salt <> step:105 ind
 R9467:9467 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9469:9469 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9466:9466 LSEH.Salt <> H:114 var
-R9468:9468 LSEH.Salt <> R:115 var
-R9463:9463 LSEH.Salt <> P:111 var
-R9557:9566 LSEH.Salt <> stack_heap def
-binder 9544:9548 <> H_stk:121
-binder 9550:9555 <> H_cont:122
-R9576:9585 LSEH.Salt <> tuple_heap def
-binder 9570:9574 <> H_tup:123
-R9597:9604 LSEH.Salt <> reg_file def
-binder 9595:9595 <> R:124
-R9610:9622 LSEH.Salt <> code_location ind
-binder 9608:9608 <> l:125
-R9630:9637 LSEH.Salt <> register ind
-binder 9626:9628 <> reg:126
-R9643:9650 LSEH.Salt <> heap_loc ind
-binder 9641:9641 <> L:127
-R9674:9677 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9670:9672 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9658:9664 LSEH.Salt <> reg_app def
-R9666:9666 LSEH.Salt <> R:124 var
-R9668:9669 LSEH.Salt <> ip constr
-R9673:9673 LSEH.Salt <> l:125 var
-R9705:9712 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9693:9695 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9678:9688 LSEH.Salt <> fetch_instr def
-R9690:9690 LSEH.Salt <> l:125 var
-R9692:9692 LSEH.Salt <> P:111 var
-R9696:9700 LSEH.Salt <> mkstk constr
-R9702:9704 LSEH.Salt <> reg:126 var
-R9748:9755 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R9741:9743 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R9713:9717 LSEH.Salt <> fresh def
-R9719:9719 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9725:9725 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9732:9732 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9738:9738 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9720:9724 LSEH.Salt <> H_stk:121 var
-R9726:9731 LSEH.Salt <> H_cont:122 var
-R9733:9737 LSEH.Salt <> H_tup:123 var
-R9740:9740 LSEH.Salt <> L:127 var
-R9744:9747 Coq.Init.Datatypes <> true constr
-R9756:9759 LSEH.Salt <> step:112 ind
-R9792:9792 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9815:9815 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9822:9822 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9828:9835 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9877:9877 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9806:9809 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R9793:9793 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9795:9795 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9805:9805 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9794:9794 LSEH.Salt <> L:127 var
-R9796:9800 LSEH.Salt <> stack constr
-R9802:9804 Coq.Init.Datatypes <> nil constr
-R9810:9814 LSEH.Salt <> H_stk:121 var
-R9816:9821 LSEH.Salt <> H_cont:122 var
-R9823:9827 LSEH.Salt <> H_tup:123 var
-R9838:9843 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9855:9856 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9860:9865 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9874:9875 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R9876:9876 LSEH.Salt <> R:124 var
-R9857:9859 LSEH.Salt <> reg:126 var
-R9866:9869 LSEH.Salt <> hloc constr
-R9871:9871 LSEH.Salt <> L:127 var
-R9836:9837 LSEH.Salt <> ip constr
-R9844:9852 LSEH.Salt <> next_cloc def
-R9854:9854 LSEH.Salt <> l:125 var
-R9763:9763 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9769:9769 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9776:9776 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9782:9782 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9784:9784 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9764:9768 LSEH.Salt <> H_stk:121 var
-R9770:9775 LSEH.Salt <> H_cont:122 var
-R9777:9781 LSEH.Salt <> H_tup:123 var
-R9783:9783 LSEH.Salt <> R:124 var
-R9761:9761 LSEH.Salt <> P:111 var
-R9922:9931 LSEH.Salt <> stack_heap def
-binder 9902:9906 <> H_stk:128
-binder 9908:9913 <> H_stk':129
-binder 9915:9920 <> H_cont:130
-R9947:9956 LSEH.Salt <> tuple_heap def
-binder 9941:9945 <> H_tup:131
-R9962:9969 LSEH.Salt <> reg_file def
-binder 9960:9960 <> R:132
-R9975:9987 LSEH.Salt <> code_location ind
-binder 9973:9973 <> l:133
-R9995:9997 Coq.Init.Datatypes <> nat ind
-binder 9991:9991 <> n:134
-binder 9993:9993 <> j:135
-R10011:10018 LSEH.Salt <> heap_loc ind
-binder 10007:10009 <> lsp:136
-R10026:10029 Coq.Init.Datatypes <> list ind
-R10031:10034 LSEH.Salt <> word ind
-binder 10022:10024 <> lst:137
-R10058:10061 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10054:10056 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10042:10048 LSEH.Salt <> reg_app def
-R10050:10050 LSEH.Salt <> R:132 var
-R10052:10053 LSEH.Salt <> ip constr
-R10057:10057 LSEH.Salt <> l:133 var
-R10088:10095 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10077:10079 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10062:10072 LSEH.Salt <> fetch_instr def
-R10074:10074 LSEH.Salt <> l:133 var
-R10076:10076 LSEH.Salt <> P:111 var
-R10080:10085 LSEH.Salt <> salloc constr
-R10087:10087 LSEH.Salt <> n:134 var
-R10121:10128 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10108:10110 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10096:10102 LSEH.Salt <> reg_app def
-R10104:10104 LSEH.Salt <> R:132 var
-R10106:10107 LSEH.Salt <> sp constr
-R10111:10114 LSEH.Salt <> hloc constr
-R10116:10118 LSEH.Salt <> lsp:136 var
-R10120:10120 LSEH.Salt <> j:135 var
-R10163:10170 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10134:10136 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10129:10133 LSEH.Salt <> H_stk:128 var
-R10153:10156 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R10137:10137 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10141:10142 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10152:10152 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10138:10140 LSEH.Salt <> lsp:136 var
-R10143:10147 LSEH.Salt <> stack constr
-R10149:10151 LSEH.Salt <> lst:137 var
-R10157:10162 LSEH.Salt <> H_stk':129 var
-R10190:10197 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10186:10188 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10171:10181 Coq.Lists.List <> length abbrev
-R10183:10185 LSEH.Salt <> lst:137 var
-R10189:10189 LSEH.Salt <> j:135 var
-R10198:10201 LSEH.Salt <> step:112 ind
-R10234:10234 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10274:10274 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10281:10281 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10287:10294 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10342:10342 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10264:10267 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R10235:10235 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10239:10239 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10263:10263 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10236:10238 LSEH.Salt <> lsp:136 var
-R10240:10244 LSEH.Salt <> stack constr
-R10247:10252 LSEH.Salt <> n_cons def
-R10259:10261 LSEH.Salt <> lst:137 var
-R10256:10257 LSEH.Salt <> ns constr
-R10254:10254 LSEH.Salt <> n:134 var
-R10268:10273 LSEH.Salt <> H_stk':129 var
-R10275:10280 LSEH.Salt <> H_cont:130 var
-R10282:10286 LSEH.Salt <> H_tup:131 var
-R10297:10302 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10314:10315 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10318:10324 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10339:10340 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10341:10341 LSEH.Salt <> R:132 var
-R10316:10317 LSEH.Salt <> sp constr
-R10325:10328 LSEH.Salt <> hloc constr
-R10330:10332 LSEH.Salt <> lsp:136 var
-R10336:10336 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R10335:10335 LSEH.Salt <> j:135 var
-R10337:10337 LSEH.Salt <> n:134 var
-R10295:10296 LSEH.Salt <> ip constr
-R10303:10311 LSEH.Salt <> next_cloc def
-R10313:10313 LSEH.Salt <> l:133 var
-R10205:10205 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10211:10211 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10218:10218 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10224:10224 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10226:10226 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10206:10210 LSEH.Salt <> H_stk:128 var
-R10212:10217 LSEH.Salt <> H_cont:130 var
-R10219:10223 LSEH.Salt <> H_tup:131 var
-R10225:10225 LSEH.Salt <> R:132 var
-R10203:10203 LSEH.Salt <> P:111 var
-R10385:10394 LSEH.Salt <> stack_heap def
-binder 10365:10369 <> H_stk:138
-binder 10371:10376 <> H_stk':139
-binder 10378:10383 <> H_cont:140
-R10410:10419 LSEH.Salt <> tuple_heap def
-binder 10404:10408 <> H_tup:141
-R10425:10432 LSEH.Salt <> reg_file def
-binder 10423:10423 <> R:142
-R10438:10450 LSEH.Salt <> code_location ind
-binder 10436:10436 <> l:143
-R10462:10468 LSEH.Salt <> operand ind
-binder 10460:10460 <> o:144
-R10474:10476 Coq.Init.Datatypes <> nat ind
-binder 10472:10472 <> j:145
-R10484:10491 LSEH.Salt <> heap_loc ind
-binder 10480:10482 <> lsp:146
-R10499:10502 Coq.Init.Datatypes <> list ind
-R10504:10507 LSEH.Salt <> word ind
-binder 10495:10497 <> lst:147
-R10531:10534 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10527:10529 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10515:10521 LSEH.Salt <> reg_app def
-R10523:10523 LSEH.Salt <> R:142 var
-R10525:10526 LSEH.Salt <> ip constr
-R10530:10530 LSEH.Salt <> l:143 var
-R10559:10566 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10550:10552 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10535:10545 LSEH.Salt <> fetch_instr def
-R10547:10547 LSEH.Salt <> l:143 var
-R10549:10549 LSEH.Salt <> P:111 var
-R10553:10556 LSEH.Salt <> push constr
-R10558:10558 LSEH.Salt <> o:144 var
-R10592:10599 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10579:10581 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10567:10573 LSEH.Salt <> reg_app def
-R10575:10575 LSEH.Salt <> R:142 var
-R10577:10578 LSEH.Salt <> sp constr
-R10582:10585 LSEH.Salt <> hloc constr
-R10587:10589 LSEH.Salt <> lsp:146 var
-R10591:10591 LSEH.Salt <> j:145 var
-R10634:10641 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10605:10607 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10600:10604 LSEH.Salt <> H_stk:138 var
-R10624:10627 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R10608:10608 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10612:10613 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10623:10623 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10609:10611 LSEH.Salt <> lsp:146 var
-R10614:10618 LSEH.Salt <> stack constr
-R10620:10622 LSEH.Salt <> lst:147 var
-R10628:10633 LSEH.Salt <> H_stk':139 var
-R10661:10668 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R10657:10659 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10642:10652 Coq.Lists.List <> length abbrev
-R10654:10656 LSEH.Salt <> lst:147 var
-R10660:10660 LSEH.Salt <> j:145 var
-R10669:10672 LSEH.Salt <> step:112 ind
-R10705:10705 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10758:10765 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10772:10773 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10779:10786 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10833:10833 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10748:10751 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R10706:10706 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10710:10710 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10747:10747 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10707:10709 LSEH.Salt <> lsp:146 var
-R10711:10715 LSEH.Salt <> stack constr
-R10718:10721 Coq.Init.Datatypes <> cons constr
-R10743:10745 LSEH.Salt <> lst:147 var
-R10724:10736 LSEH.Salt <> operand_value def
-R10738:10738 LSEH.Salt <> o:144 var
-R10740:10740 LSEH.Salt <> R:142 var
-R10752:10757 LSEH.Salt <> H_stk':139 var
-R10766:10771 LSEH.Salt <> H_cont:140 var
-R10774:10778 LSEH.Salt <> H_tup:141 var
-R10789:10794 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10806:10807 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10810:10815 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10830:10831 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R10832:10832 LSEH.Salt <> R:142 var
-R10808:10809 LSEH.Salt <> sp constr
-R10816:10819 LSEH.Salt <> hloc constr
-R10821:10823 LSEH.Salt <> lsp:146 var
-R10827:10827 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R10828:10828 LSEH.Salt <> j:145 var
-R10787:10788 LSEH.Salt <> ip constr
-R10795:10803 LSEH.Salt <> next_cloc def
-R10805:10805 LSEH.Salt <> l:143 var
-R10676:10676 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10682:10682 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10689:10689 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10695:10695 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10697:10697 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R10677:10681 LSEH.Salt <> H_stk:138 var
-R10683:10688 LSEH.Salt <> H_cont:140 var
-R10690:10694 LSEH.Salt <> H_tup:141 var
-R10696:10696 LSEH.Salt <> R:142 var
-R10674:10674 LSEH.Salt <> P:111 var
-R10877:10886 LSEH.Salt <> stack_heap def
-binder 10857:10861 <> H_stk:148
-binder 10863:10868 <> H_stk':149
-binder 10870:10875 <> H_cont:150
-R10902:10911 LSEH.Salt <> tuple_heap def
-binder 10896:10900 <> H_tup:151
-R10917:10924 LSEH.Salt <> reg_file def
-binder 10915:10915 <> R:152
-R10930:10942 LSEH.Salt <> code_location ind
-binder 10928:10928 <> l:153
-R10956:10958 Coq.Init.Datatypes <> nat ind
-binder 10952:10952 <> j:154
-binder 10954:10954 <> n:155
-R10966:10973 LSEH.Salt <> heap_loc ind
-binder 10962:10964 <> lsp:156
-R10981:10984 Coq.Init.Datatypes <> list ind
-R10986:10989 LSEH.Salt <> word ind
-binder 10977:10979 <> lst:157
-R11013:11016 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11009:11011 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R10997:11003 LSEH.Salt <> reg_app def
-R11005:11005 LSEH.Salt <> R:152 var
-R11007:11008 LSEH.Salt <> ip constr
-R11012:11012 LSEH.Salt <> l:153 var
-R11042:11049 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11032:11034 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11017:11027 LSEH.Salt <> fetch_instr def
-R11029:11029 LSEH.Salt <> l:153 var
-R11031:11031 LSEH.Salt <> P:111 var
-R11035:11039 LSEH.Salt <> sfree constr
-R11041:11041 LSEH.Salt <> n:155 var
-R11075:11082 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11062:11064 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11050:11056 LSEH.Salt <> reg_app def
-R11058:11058 LSEH.Salt <> R:152 var
-R11060:11061 LSEH.Salt <> sp constr
-R11065:11068 LSEH.Salt <> hloc constr
-R11070:11072 LSEH.Salt <> lsp:156 var
-R11074:11074 LSEH.Salt <> j:154 var
-R11117:11124 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11088:11090 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11083:11087 LSEH.Salt <> H_stk:148 var
-R11107:11110 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R11091:11091 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11095:11096 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11106:11106 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11092:11094 LSEH.Salt <> lsp:156 var
-R11097:11101 LSEH.Salt <> stack constr
-R11103:11105 LSEH.Salt <> lst:157 var
-R11111:11116 LSEH.Salt <> H_stk':149 var
-R11131:11134 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11126:11129 Coq.Init.Peano <> ::nat_scope:x_'>='_x not
-R11125:11125 LSEH.Salt <> j:154 var
-R11130:11130 LSEH.Salt <> n:155 var
-R11154:11161 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11150:11152 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11135:11145 Coq.Lists.List <> length abbrev
-R11147:11149 LSEH.Salt <> lst:157 var
-R11153:11153 LSEH.Salt <> j:154 var
-R11162:11165 LSEH.Salt <> step:112 ind
-R11198:11198 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11236:11236 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11243:11243 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11249:11256 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11304:11304 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11226:11229 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R11199:11199 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11203:11203 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11225:11225 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11200:11202 LSEH.Salt <> lsp:156 var
-R11204:11208 LSEH.Salt <> stack constr
-R11211:11217 LSEH.Salt <> cdr_nth def
-R11221:11223 LSEH.Salt <> lst:157 var
-R11219:11219 LSEH.Salt <> n:155 var
-R11230:11235 LSEH.Salt <> H_stk':149 var
-R11237:11242 LSEH.Salt <> H_cont:150 var
-R11244:11248 LSEH.Salt <> H_tup:151 var
-R11259:11264 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11276:11277 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11280:11286 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11301:11302 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11303:11303 LSEH.Salt <> R:152 var
-R11278:11279 LSEH.Salt <> sp constr
-R11287:11290 LSEH.Salt <> hloc constr
-R11292:11294 LSEH.Salt <> lsp:156 var
-R11298:11298 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R11297:11297 LSEH.Salt <> j:154 var
-R11299:11299 LSEH.Salt <> n:155 var
-R11257:11258 LSEH.Salt <> ip constr
-R11265:11273 LSEH.Salt <> next_cloc def
-R11275:11275 LSEH.Salt <> l:153 var
-R11169:11169 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11175:11175 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11182:11182 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11188:11188 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11190:11190 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11170:11174 LSEH.Salt <> H_stk:148 var
-R11176:11181 LSEH.Salt <> H_cont:150 var
-R11183:11187 LSEH.Salt <> H_tup:151 var
-R11189:11189 LSEH.Salt <> R:152 var
-R11167:11167 LSEH.Salt <> P:111 var
-R11346:11355 LSEH.Salt <> stack_heap def
-binder 11326:11330 <> H_stk:158
-binder 11332:11337 <> H_stk':159
-binder 11339:11344 <> H_cont:160
-R11371:11380 LSEH.Salt <> tuple_heap def
-binder 11365:11369 <> H_tup:161
-R11386:11393 LSEH.Salt <> reg_file def
-binder 11384:11384 <> R:162
-R11399:11411 LSEH.Salt <> code_location ind
-binder 11397:11397 <> l:163
-R11423:11425 Coq.Init.Datatypes <> nat ind
-binder 11421:11421 <> j:164
-R11433:11440 LSEH.Salt <> register ind
-binder 11429:11431 <> reg:165
-R11448:11455 LSEH.Salt <> heap_loc ind
-binder 11444:11446 <> lsp:166
-R11463:11466 Coq.Init.Datatypes <> list ind
-R11468:11471 LSEH.Salt <> word ind
-binder 11459:11461 <> lst:167
-R11495:11498 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11491:11493 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11479:11485 LSEH.Salt <> reg_app def
-R11487:11487 LSEH.Salt <> R:162 var
-R11489:11490 LSEH.Salt <> ip constr
-R11494:11494 LSEH.Salt <> l:163 var
-R11524:11531 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11514:11516 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11499:11509 LSEH.Salt <> fetch_instr def
-R11511:11511 LSEH.Salt <> l:163 var
-R11513:11513 LSEH.Salt <> P:111 var
-R11517:11519 LSEH.Salt <> pop constr
-R11521:11523 LSEH.Salt <> reg:165 var
-R11557:11564 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11544:11546 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11532:11538 LSEH.Salt <> reg_app def
-R11540:11540 LSEH.Salt <> R:162 var
-R11542:11543 LSEH.Salt <> sp constr
-R11547:11550 LSEH.Salt <> hloc constr
-R11552:11554 LSEH.Salt <> lsp:166 var
-R11556:11556 LSEH.Salt <> j:164 var
-R11599:11606 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11570:11572 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11565:11569 LSEH.Salt <> H_stk:158 var
-R11589:11592 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R11573:11573 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11577:11578 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11588:11588 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11574:11576 LSEH.Salt <> lsp:166 var
-R11579:11583 LSEH.Salt <> stack constr
-R11585:11587 LSEH.Salt <> lst:167 var
-R11593:11598 LSEH.Salt <> H_stk':159 var
-R11612:11615 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11608:11610 Coq.Init.Peano <> ::nat_scope:x_'>'_x not
-R11607:11607 LSEH.Salt <> j:164 var
-R11635:11642 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11631:11633 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11616:11626 Coq.Lists.List <> length abbrev
-R11628:11630 LSEH.Salt <> lst:167 var
-R11634:11634 LSEH.Salt <> j:164 var
-R11643:11646 LSEH.Salt <> step:112 ind
-R11679:11679 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11717:11717 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11724:11724 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11730:11737 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11818:11818 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11707:11710 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R11680:11680 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11684:11684 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11706:11706 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11681:11683 LSEH.Salt <> lsp:166 var
-R11685:11689 LSEH.Salt <> stack constr
-R11692:11698 LSEH.Salt <> cdr_nth def
-R11702:11704 LSEH.Salt <> lst:167 var
-R11711:11716 LSEH.Salt <> H_stk':159 var
-R11718:11723 LSEH.Salt <> H_cont:160 var
-R11725:11729 LSEH.Salt <> H_tup:161 var
-R11740:11745 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11757:11758 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11762:11768 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11783:11791 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11794:11800 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11815:11816 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R11817:11817 LSEH.Salt <> R:162 var
-R11792:11793 LSEH.Salt <> sp constr
-R11801:11804 LSEH.Salt <> hloc constr
-R11806:11808 LSEH.Salt <> lsp:166 var
-R11812:11812 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R11811:11811 LSEH.Salt <> j:164 var
-R11759:11761 LSEH.Salt <> reg:165 var
-R11769:11775 Coq.Lists.List <> hd def
-R11780:11782 LSEH.Salt <> lst:167 var
-R11777:11778 LSEH.Salt <> ns constr
-R11738:11739 LSEH.Salt <> ip constr
-R11746:11754 LSEH.Salt <> next_cloc def
-R11756:11756 LSEH.Salt <> l:163 var
-R11650:11650 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11656:11656 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11663:11663 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11669:11669 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11671:11671 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R11651:11655 LSEH.Salt <> H_stk:158 var
-R11657:11662 LSEH.Salt <> H_cont:160 var
-R11664:11668 LSEH.Salt <> H_tup:161 var
-R11670:11670 LSEH.Salt <> R:162 var
-R11648:11648 LSEH.Salt <> P:111 var
-R11860:11862 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R11850:11859 LSEH.Salt <> stack_heap def
-R11863:11872 LSEH.Salt <> stack_heap def
-binder 11843:11848 <> H_stks:168
-R11882:11891 LSEH.Salt <> tuple_heap def
-binder 11876:11880 <> H_tup:169
-R11901:11908 LSEH.Salt <> reg_file def
-binder 11899:11899 <> R:170
-R11914:11926 LSEH.Salt <> code_location ind
-binder 11912:11912 <> l:171
-R11934:11936 Coq.Init.Datatypes <> nat ind
-binder 11930:11930 <> i:172
-binder 11932:11932 <> d:173
-R11942:11949 LSEH.Salt <> heap_loc ind
-binder 11940:11940 <> L:174
-R11973:11976 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11969:11971 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11957:11963 LSEH.Salt <> reg_app def
-R11965:11965 LSEH.Salt <> R:170 var
-R11967:11968 LSEH.Salt <> ip constr
-R11972:11972 LSEH.Salt <> l:171 var
-R12005:12012 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R11992:11994 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R11977:11987 LSEH.Salt <> fetch_instr def
-R11989:11989 LSEH.Salt <> l:171 var
-R11991:11991 LSEH.Salt <> P:111 var
-R11995:12000 LSEH.Salt <> malloc constr
-R12002:12002 LSEH.Salt <> d:173 var
-R12004:12004 LSEH.Salt <> i:172 var
-R12042:12049 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12035:12037 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12013:12017 LSEH.Salt <> fresh def
-R12019:12019 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12026:12026 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12032:12032 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12020:12025 LSEH.Salt <> H_stks:168 var
-R12027:12031 LSEH.Salt <> H_tup:169 var
-R12034:12034 LSEH.Salt <> L:174 var
-R12038:12041 Coq.Init.Datatypes <> true constr
-R12050:12053 LSEH.Salt <> step:112 ind
-R12080:12080 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12087:12087 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12126:12133 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12174:12174 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12081:12086 LSEH.Salt <> H_stks:168 var
-R12089:12094 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R12118:12120 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R12121:12125 LSEH.Salt <> H_tup:169 var
-R12088:12088 LSEH.Salt <> L:174 var
-R12095:12099 LSEH.Salt <> tuple constr
-R12102:12107 LSEH.Salt <> n_cons def
-R12114:12116 Coq.Init.Datatypes <> nil constr
-R12111:12112 LSEH.Salt <> ns constr
-R12109:12109 LSEH.Salt <> i:172 var
-R12136:12141 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12153:12155 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12157:12162 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12171:12172 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12173:12173 LSEH.Salt <> R:170 var
-R12156:12156 LSEH.Salt <> d:173 var
-R12163:12166 LSEH.Salt <> hloc constr
-R12168:12168 LSEH.Salt <> L:174 var
-R12134:12135 LSEH.Salt <> ip constr
-R12142:12150 LSEH.Salt <> next_cloc def
-R12152:12152 LSEH.Salt <> l:171 var
-R12057:12057 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12064:12064 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12070:12070 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12072:12072 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12058:12063 LSEH.Salt <> H_stks:168 var
-R12065:12069 LSEH.Salt <> H_tup:169 var
-R12071:12071 LSEH.Salt <> R:170 var
-R12055:12055 LSEH.Salt <> P:111 var
-R12198:12201 LSEH.Salt <> heap def
-binder 12196:12196 <> H:175
-R12207:12214 LSEH.Salt <> reg_file def
-binder 12205:12205 <> R:176
-R12220:12232 LSEH.Salt <> code_location ind
-binder 12218:12218 <> l:177
-R12242:12244 Coq.Init.Datatypes <> nat ind
-binder 12240:12240 <> d:178
-R12250:12256 LSEH.Salt <> operand ind
-binder 12248:12248 <> o:179
-R12280:12283 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12276:12278 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12264:12270 LSEH.Salt <> reg_app def
-R12272:12272 LSEH.Salt <> R:176 var
-R12274:12275 LSEH.Salt <> ip constr
-R12279:12279 LSEH.Salt <> l:177 var
-R12309:12316 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12299:12301 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12284:12294 LSEH.Salt <> fetch_instr def
-R12296:12296 LSEH.Salt <> l:177 var
-R12298:12298 LSEH.Salt <> P:111 var
-R12302:12304 LSEH.Salt <> mov constr
-R12306:12306 LSEH.Salt <> d:178 var
-R12308:12308 LSEH.Salt <> o:179 var
-R12317:12320 LSEH.Salt <> step:112 ind
-R12336:12336 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12338:12339 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12390:12390 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12337:12337 LSEH.Salt <> H:175 var
-R12342:12347 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12359:12360 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12362:12368 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12386:12388 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12389:12389 LSEH.Salt <> R:176 var
-R12361:12361 LSEH.Salt <> d:178 var
-R12369:12381 LSEH.Salt <> operand_value def
-R12383:12383 LSEH.Salt <> o:179 var
-R12385:12385 LSEH.Salt <> R:176 var
-R12340:12341 LSEH.Salt <> ip constr
-R12348:12356 LSEH.Salt <> next_cloc def
-R12358:12358 LSEH.Salt <> l:177 var
-R12324:12324 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12326:12326 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12328:12328 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12325:12325 LSEH.Salt <> H:175 var
-R12327:12327 LSEH.Salt <> R:176 var
-R12322:12322 LSEH.Salt <> P:111 var
-R12450:12459 LSEH.Salt <> stack_heap def
-binder 12421:12425 <> H_stk:180
-binder 12427:12434 <> H_stk_hd:181
-binder 12436:12441 <> H_stk':182
-binder 12443:12448 <> H_cont:183
-R12475:12484 LSEH.Salt <> tuple_heap def
-binder 12469:12473 <> H_tup:184
-R12490:12497 LSEH.Salt <> reg_file def
-binder 12488:12488 <> R:185
-R12503:12515 LSEH.Salt <> code_location ind
-binder 12501:12501 <> l:186
-R12527:12533 LSEH.Salt <> operand ind
-binder 12525:12525 <> o:187
-R12539:12546 LSEH.Salt <> heap_loc ind
-binder 12537:12537 <> L:188
-R12554:12557 Coq.Init.Datatypes <> list ind
-R12559:12562 LSEH.Salt <> word ind
-binder 12550:12552 <> lst:189
-R12570:12572 Coq.Init.Datatypes <> nat ind
-binder 12566:12566 <> j:190
-binder 12568:12568 <> k:191
-R12596:12599 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12592:12594 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12580:12586 LSEH.Salt <> reg_app def
-R12588:12588 LSEH.Salt <> R:185 var
-R12590:12591 LSEH.Salt <> ip constr
-R12595:12595 LSEH.Salt <> l:186 var
-R12626:12633 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12615:12617 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12600:12610 LSEH.Salt <> fetch_instr def
-R12612:12612 LSEH.Salt <> l:186 var
-R12614:12614 LSEH.Salt <> P:111 var
-R12618:12620 LSEH.Salt <> mov constr
-R12622:12623 LSEH.Salt <> sp constr
-R12625:12625 LSEH.Salt <> o:187 var
+R9490:9490 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9496:9496 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9504:9511 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9553:9553 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9481:9484 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9468:9468 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9470:9470 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9480:9480 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9469:9469 LSEH.Salt <> L:120 var
+R9471:9475 LSEH.Salt <> stack constr
+R9477:9479 Coq.Init.Datatypes <> nil constr
+R9485:9489 LSEH.Salt <> H_stk:114 var
+R9491:9495 LSEH.Salt <> H_tup:115 var
+R9497:9503 LSEH.Salt <> H_conts:116 var
+R9514:9519 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9531:9532 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9536:9541 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9550:9551 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R9552:9552 LSEH.Salt <> R:117 var
+R9533:9535 LSEH.Salt <> reg:119 var
+R9542:9545 LSEH.Salt <> hloc constr
+R9547:9547 LSEH.Salt <> L:120 var
+R9512:9513 LSEH.Salt <> ip constr
+R9520:9528 LSEH.Salt <> next_cloc def
+R9530:9530 LSEH.Salt <> l:118 var
+R9437:9437 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9443:9443 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9449:9449 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9457:9457 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9459:9459 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9438:9442 LSEH.Salt <> H_stk:114 var
+R9444:9448 LSEH.Salt <> H_tup:115 var
+R9450:9456 LSEH.Salt <> H_conts:116 var
+R9458:9458 LSEH.Salt <> R:117 var
+R9435:9435 LSEH.Salt <> P:104 var
+R9591:9600 LSEH.Salt <> stack_heap def
+binder 9578:9582 <> H_stk:121
+binder 9584:9589 <> H_stk':122
+R9610:9619 LSEH.Salt <> tuple_heap def
+binder 9604:9608 <> H_tup:123
+R9650:9652 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R9640:9649 LSEH.Salt <> stack_heap def
+R9653:9662 LSEH.Salt <> tuple_heap def
+binder 9632:9638 <> H_conts:124
+R9677:9684 LSEH.Salt <> reg_file def
+binder 9675:9675 <> R:125
+R9690:9702 LSEH.Salt <> code_location ind
+binder 9688:9688 <> l:126
+R9710:9712 Coq.Init.Datatypes <> nat ind
+binder 9706:9706 <> n:127
+binder 9708:9708 <> j:128
+R9729:9736 LSEH.Salt <> heap_loc ind
+binder 9725:9727 <> lsp:129
+R9744:9747 Coq.Init.Datatypes <> list ind
+R9749:9752 LSEH.Salt <> word ind
+binder 9740:9742 <> lst:130
+R9776:9779 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9772:9774 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9760:9766 LSEH.Salt <> reg_app def
+R9768:9768 LSEH.Salt <> R:125 var
+R9770:9771 LSEH.Salt <> ip constr
+R9775:9775 LSEH.Salt <> l:126 var
+R9806:9813 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9795:9797 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9780:9790 LSEH.Salt <> fetch_instr def
+R9792:9792 LSEH.Salt <> l:126 var
+R9794:9794 LSEH.Salt <> P:104 var
+R9798:9803 LSEH.Salt <> salloc constr
+R9805:9805 LSEH.Salt <> n:127 var
+R9839:9846 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9826:9828 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9814:9820 LSEH.Salt <> reg_app def
+R9822:9822 LSEH.Salt <> R:125 var
+R9824:9825 LSEH.Salt <> sp constr
+R9829:9832 LSEH.Salt <> hloc constr
+R9834:9836 LSEH.Salt <> lsp:129 var
+R9838:9838 LSEH.Salt <> j:128 var
+R9881:9888 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9852:9854 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9847:9851 LSEH.Salt <> H_stk:121 var
+R9871:9874 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9855:9855 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9859:9860 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9870:9870 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9856:9858 LSEH.Salt <> lsp:129 var
+R9861:9865 LSEH.Salt <> stack constr
+R9867:9869 LSEH.Salt <> lst:130 var
+R9875:9880 LSEH.Salt <> H_stk':122 var
+R9908:9915 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9904:9906 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9889:9899 Coq.Lists.List <> length abbrev
+R9901:9903 LSEH.Salt <> lst:130 var
+R9907:9907 LSEH.Salt <> j:128 var
+R9916:9919 LSEH.Salt <> step:105 ind
+R9953:9953 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9993:9993 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9999:9999 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10007:10016 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10064:10064 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9983:9986 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9954:9954 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9958:9958 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9982:9982 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9955:9957 LSEH.Salt <> lsp:129 var
+R9959:9963 LSEH.Salt <> stack constr
+R9966:9971 LSEH.Salt <> n_cons def
+R9978:9980 LSEH.Salt <> lst:130 var
+R9975:9976 LSEH.Salt <> ns constr
+R9973:9973 LSEH.Salt <> n:127 var
+R9987:9992 LSEH.Salt <> H_stk':122 var
+R9994:9998 LSEH.Salt <> H_tup:123 var
+R10000:10006 LSEH.Salt <> H_conts:124 var
+R10019:10024 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10036:10037 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10040:10046 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10061:10062 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10063:10063 LSEH.Salt <> R:125 var
+R10038:10039 LSEH.Salt <> sp constr
+R10047:10050 LSEH.Salt <> hloc constr
+R10052:10054 LSEH.Salt <> lsp:129 var
+R10058:10058 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R10057:10057 LSEH.Salt <> j:128 var
+R10059:10059 LSEH.Salt <> n:127 var
+R10017:10018 LSEH.Salt <> ip constr
+R10025:10033 LSEH.Salt <> next_cloc def
+R10035:10035 LSEH.Salt <> l:126 var
+R9923:9923 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9929:9929 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9935:9935 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9943:9943 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9945:9945 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9924:9928 LSEH.Salt <> H_stk:121 var
+R9930:9934 LSEH.Salt <> H_tup:123 var
+R9936:9942 LSEH.Salt <> H_conts:124 var
+R9944:9944 LSEH.Salt <> R:125 var
+R9921:9921 LSEH.Salt <> P:104 var
+R10100:10109 LSEH.Salt <> stack_heap def
+binder 10087:10091 <> H_stk:131
+binder 10093:10098 <> H_stk':132
+R10119:10128 LSEH.Salt <> tuple_heap def
+binder 10113:10117 <> H_tup:133
+R10159:10161 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10149:10158 LSEH.Salt <> stack_heap def
+R10162:10171 LSEH.Salt <> tuple_heap def
+binder 10141:10147 <> H_conts:134
+R10186:10193 LSEH.Salt <> reg_file def
+binder 10184:10184 <> R:135
+R10199:10211 LSEH.Salt <> code_location ind
+binder 10197:10197 <> l:136
+R10226:10232 LSEH.Salt <> operand ind
+binder 10224:10224 <> o:137
+R10238:10240 Coq.Init.Datatypes <> nat ind
+binder 10236:10236 <> j:138
+R10248:10255 LSEH.Salt <> heap_loc ind
+binder 10244:10246 <> lsp:139
+R10263:10266 Coq.Init.Datatypes <> list ind
+R10268:10271 LSEH.Salt <> word ind
+binder 10259:10261 <> lst:140
+R10295:10298 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10291:10293 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10279:10285 LSEH.Salt <> reg_app def
+R10287:10287 LSEH.Salt <> R:135 var
+R10289:10290 LSEH.Salt <> ip constr
+R10294:10294 LSEH.Salt <> l:136 var
+R10323:10330 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10314:10316 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10299:10309 LSEH.Salt <> fetch_instr def
+R10311:10311 LSEH.Salt <> l:136 var
+R10313:10313 LSEH.Salt <> P:104 var
+R10317:10320 LSEH.Salt <> push constr
+R10322:10322 LSEH.Salt <> o:137 var
+R10356:10363 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10343:10345 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10331:10337 LSEH.Salt <> reg_app def
+R10339:10339 LSEH.Salt <> R:135 var
+R10341:10342 LSEH.Salt <> sp constr
+R10346:10349 LSEH.Salt <> hloc constr
+R10351:10353 LSEH.Salt <> lsp:139 var
+R10355:10355 LSEH.Salt <> j:138 var
+R10398:10405 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10369:10371 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10364:10368 LSEH.Salt <> H_stk:131 var
+R10388:10391 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10372:10372 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10376:10377 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10387:10387 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10373:10375 LSEH.Salt <> lsp:139 var
+R10378:10382 LSEH.Salt <> stack constr
+R10384:10386 LSEH.Salt <> lst:140 var
+R10392:10397 LSEH.Salt <> H_stk':132 var
+R10425:10432 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10421:10423 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10406:10416 Coq.Lists.List <> length abbrev
+R10418:10420 LSEH.Salt <> lst:140 var
+R10424:10424 LSEH.Salt <> j:138 var
+R10433:10436 LSEH.Salt <> step:105 ind
+R10470:10470 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10523:10532 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10538:10539 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10547:10556 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10603:10603 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10513:10516 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10471:10471 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10475:10475 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10512:10512 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10472:10474 LSEH.Salt <> lsp:139 var
+R10476:10480 LSEH.Salt <> stack constr
+R10483:10486 Coq.Init.Datatypes <> cons constr
+R10508:10510 LSEH.Salt <> lst:140 var
+R10489:10501 LSEH.Salt <> operand_value def
+R10503:10503 LSEH.Salt <> o:137 var
+R10505:10505 LSEH.Salt <> R:135 var
+R10517:10522 LSEH.Salt <> H_stk':132 var
+R10533:10537 LSEH.Salt <> H_tup:133 var
+R10540:10546 LSEH.Salt <> H_conts:134 var
+R10559:10564 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10576:10577 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10580:10585 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10600:10601 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R10602:10602 LSEH.Salt <> R:135 var
+R10578:10579 LSEH.Salt <> sp constr
+R10586:10589 LSEH.Salt <> hloc constr
+R10591:10593 LSEH.Salt <> lsp:139 var
+R10597:10597 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R10598:10598 LSEH.Salt <> j:138 var
+R10557:10558 LSEH.Salt <> ip constr
+R10565:10573 LSEH.Salt <> next_cloc def
+R10575:10575 LSEH.Salt <> l:136 var
+R10440:10440 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10446:10446 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10452:10452 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10460:10460 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10462:10462 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10441:10445 LSEH.Salt <> H_stk:131 var
+R10447:10451 LSEH.Salt <> H_tup:133 var
+R10453:10459 LSEH.Salt <> H_conts:134 var
+R10461:10461 LSEH.Salt <> R:135 var
+R10438:10438 LSEH.Salt <> P:104 var
+R10640:10649 LSEH.Salt <> stack_heap def
+binder 10627:10631 <> H_stk:141
+binder 10633:10638 <> H_stk':142
+R10659:10668 LSEH.Salt <> tuple_heap def
+binder 10653:10657 <> H_tup:143
+R10699:10701 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R10689:10698 LSEH.Salt <> stack_heap def
+R10702:10711 LSEH.Salt <> tuple_heap def
+binder 10681:10687 <> H_conts:144
+R10726:10733 LSEH.Salt <> reg_file def
+binder 10724:10724 <> R:145
+R10739:10751 LSEH.Salt <> code_location ind
+binder 10737:10737 <> l:146
+R10768:10770 Coq.Init.Datatypes <> nat ind
+binder 10764:10764 <> j:147
+binder 10766:10766 <> n:148
+R10778:10785 LSEH.Salt <> heap_loc ind
+binder 10774:10776 <> lsp:149
+R10793:10796 Coq.Init.Datatypes <> list ind
+R10798:10801 LSEH.Salt <> word ind
+binder 10789:10791 <> lst:150
+R10825:10828 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10821:10823 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10809:10815 LSEH.Salt <> reg_app def
+R10817:10817 LSEH.Salt <> R:145 var
+R10819:10820 LSEH.Salt <> ip constr
+R10824:10824 LSEH.Salt <> l:146 var
+R10854:10861 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10844:10846 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10829:10839 LSEH.Salt <> fetch_instr def
+R10841:10841 LSEH.Salt <> l:146 var
+R10843:10843 LSEH.Salt <> P:104 var
+R10847:10851 LSEH.Salt <> sfree constr
+R10853:10853 LSEH.Salt <> n:148 var
+R10887:10894 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10874:10876 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10862:10868 LSEH.Salt <> reg_app def
+R10870:10870 LSEH.Salt <> R:145 var
+R10872:10873 LSEH.Salt <> sp constr
+R10877:10880 LSEH.Salt <> hloc constr
+R10882:10884 LSEH.Salt <> lsp:149 var
+R10886:10886 LSEH.Salt <> j:147 var
+R10929:10936 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10900:10902 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10895:10899 LSEH.Salt <> H_stk:141 var
+R10919:10922 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10903:10903 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10907:10908 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10918:10918 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10904:10906 LSEH.Salt <> lsp:149 var
+R10909:10913 LSEH.Salt <> stack constr
+R10915:10917 LSEH.Salt <> lst:150 var
+R10923:10928 LSEH.Salt <> H_stk':142 var
+R10943:10946 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10938:10941 Coq.Init.Peano <> ::nat_scope:x_'>='_x not
+R10937:10937 LSEH.Salt <> j:147 var
+R10942:10942 LSEH.Salt <> n:148 var
+R10966:10973 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10962:10964 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10947:10957 Coq.Lists.List <> length abbrev
+R10959:10961 LSEH.Salt <> lst:150 var
+R10965:10965 LSEH.Salt <> j:147 var
+R10974:10977 LSEH.Salt <> step:105 ind
+R11011:11011 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11049:11049 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11055:11055 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11063:11072 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11120:11120 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11039:11042 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11012:11012 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11016:11016 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11038:11038 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11013:11015 LSEH.Salt <> lsp:149 var
+R11017:11021 LSEH.Salt <> stack constr
+R11024:11030 LSEH.Salt <> cdr_nth def
+R11034:11036 LSEH.Salt <> lst:150 var
+R11032:11032 LSEH.Salt <> n:148 var
+R11043:11048 LSEH.Salt <> H_stk':142 var
+R11050:11054 LSEH.Salt <> H_tup:143 var
+R11056:11062 LSEH.Salt <> H_conts:144 var
+R11075:11080 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11092:11093 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11096:11102 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11117:11118 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11119:11119 LSEH.Salt <> R:145 var
+R11094:11095 LSEH.Salt <> sp constr
+R11103:11106 LSEH.Salt <> hloc constr
+R11108:11110 LSEH.Salt <> lsp:149 var
+R11114:11114 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R11113:11113 LSEH.Salt <> j:147 var
+R11115:11115 LSEH.Salt <> n:148 var
+R11073:11074 LSEH.Salt <> ip constr
+R11081:11089 LSEH.Salt <> next_cloc def
+R11091:11091 LSEH.Salt <> l:146 var
+R10981:10981 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10987:10987 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10993:10993 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11001:11001 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11003:11003 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10982:10986 LSEH.Salt <> H_stk:141 var
+R10988:10992 LSEH.Salt <> H_tup:143 var
+R10994:11000 LSEH.Salt <> H_conts:144 var
+R11002:11002 LSEH.Salt <> R:145 var
+R10979:10979 LSEH.Salt <> P:104 var
+R11155:11164 LSEH.Salt <> stack_heap def
+binder 11142:11146 <> H_stk:151
+binder 11148:11153 <> H_stk':152
+R11174:11183 LSEH.Salt <> tuple_heap def
+binder 11168:11172 <> H_tup:153
+R11214:11216 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R11204:11213 LSEH.Salt <> stack_heap def
+R11217:11226 LSEH.Salt <> tuple_heap def
+binder 11196:11202 <> H_conts:154
+R11241:11248 LSEH.Salt <> reg_file def
+binder 11239:11239 <> R:155
+R11254:11266 LSEH.Salt <> code_location ind
+binder 11252:11252 <> l:156
+R11281:11283 Coq.Init.Datatypes <> nat ind
+binder 11279:11279 <> j:157
+R11291:11298 LSEH.Salt <> register ind
+binder 11287:11289 <> reg:158
+R11306:11313 LSEH.Salt <> heap_loc ind
+binder 11302:11304 <> lsp:159
+R11321:11324 Coq.Init.Datatypes <> list ind
+R11326:11329 LSEH.Salt <> word ind
+binder 11317:11319 <> lst:160
+R11353:11356 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11349:11351 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11337:11343 LSEH.Salt <> reg_app def
+R11345:11345 LSEH.Salt <> R:155 var
+R11347:11348 LSEH.Salt <> ip constr
+R11352:11352 LSEH.Salt <> l:156 var
+R11382:11389 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11372:11374 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11357:11367 LSEH.Salt <> fetch_instr def
+R11369:11369 LSEH.Salt <> l:156 var
+R11371:11371 LSEH.Salt <> P:104 var
+R11375:11377 LSEH.Salt <> pop constr
+R11379:11381 LSEH.Salt <> reg:158 var
+R11415:11422 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11402:11404 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11390:11396 LSEH.Salt <> reg_app def
+R11398:11398 LSEH.Salt <> R:155 var
+R11400:11401 LSEH.Salt <> sp constr
+R11405:11408 LSEH.Salt <> hloc constr
+R11410:11412 LSEH.Salt <> lsp:159 var
+R11414:11414 LSEH.Salt <> j:157 var
+R11457:11464 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11428:11430 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11423:11427 LSEH.Salt <> H_stk:151 var
+R11447:11450 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11431:11431 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11435:11436 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11446:11446 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11432:11434 LSEH.Salt <> lsp:159 var
+R11437:11441 LSEH.Salt <> stack constr
+R11443:11445 LSEH.Salt <> lst:160 var
+R11451:11456 LSEH.Salt <> H_stk':152 var
+R11470:11473 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11466:11468 Coq.Init.Peano <> ::nat_scope:x_'>'_x not
+R11465:11465 LSEH.Salt <> j:157 var
+R11493:11500 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11489:11491 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11474:11484 Coq.Lists.List <> length abbrev
+R11486:11488 LSEH.Salt <> lst:160 var
+R11492:11492 LSEH.Salt <> j:157 var
+R11501:11504 LSEH.Salt <> step:105 ind
+R11538:11538 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11576:11576 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11582:11582 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11590:11599 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11681:11681 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11566:11569 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11539:11539 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11543:11543 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11565:11565 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11540:11542 LSEH.Salt <> lsp:159 var
+R11544:11548 LSEH.Salt <> stack constr
+R11551:11557 LSEH.Salt <> cdr_nth def
+R11561:11563 LSEH.Salt <> lst:160 var
+R11570:11575 LSEH.Salt <> H_stk':152 var
+R11577:11581 LSEH.Salt <> H_tup:153 var
+R11583:11589 LSEH.Salt <> H_conts:154 var
+R11602:11607 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11619:11620 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11624:11630 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11645:11654 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11657:11663 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11678:11679 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R11680:11680 LSEH.Salt <> R:155 var
+R11655:11656 LSEH.Salt <> sp constr
+R11664:11667 LSEH.Salt <> hloc constr
+R11669:11671 LSEH.Salt <> lsp:159 var
+R11675:11675 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R11674:11674 LSEH.Salt <> j:157 var
+R11621:11623 LSEH.Salt <> reg:158 var
+R11631:11637 Coq.Lists.List <> hd def
+R11642:11644 LSEH.Salt <> lst:160 var
+R11639:11640 LSEH.Salt <> ns constr
+R11600:11601 LSEH.Salt <> ip constr
+R11608:11616 LSEH.Salt <> next_cloc def
+R11618:11618 LSEH.Salt <> l:156 var
+R11508:11508 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11514:11514 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11520:11520 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11528:11528 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11530:11530 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11509:11513 LSEH.Salt <> H_stk:151 var
+R11515:11519 LSEH.Salt <> H_tup:153 var
+R11521:11527 LSEH.Salt <> H_conts:154 var
+R11529:11529 LSEH.Salt <> R:155 var
+R11506:11506 LSEH.Salt <> P:104 var
+R11712:11721 LSEH.Salt <> stack_heap def
+binder 11706:11710 <> H_stk:161
+R11731:11740 LSEH.Salt <> tuple_heap def
+binder 11725:11729 <> H_tup:162
+R11771:11773 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R11761:11770 LSEH.Salt <> stack_heap def
+R11774:11783 LSEH.Salt <> tuple_heap def
+binder 11753:11759 <> H_conts:163
+R11798:11805 LSEH.Salt <> reg_file def
+binder 11796:11796 <> R:164
+R11811:11823 LSEH.Salt <> code_location ind
+binder 11809:11809 <> l:165
+R11831:11833 Coq.Init.Datatypes <> nat ind
+binder 11827:11827 <> i:166
+binder 11829:11829 <> d:167
+R11839:11846 LSEH.Salt <> heap_loc ind
+binder 11837:11837 <> L:168
+R11870:11873 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11866:11868 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11854:11860 LSEH.Salt <> reg_app def
+R11862:11862 LSEH.Salt <> R:164 var
+R11864:11865 LSEH.Salt <> ip constr
+R11869:11869 LSEH.Salt <> l:165 var
+R11902:11952 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11889:11891 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11874:11884 LSEH.Salt <> fetch_instr def
+R11886:11886 LSEH.Salt <> l:165 var
+R11888:11888 LSEH.Salt <> P:104 var
+R11892:11897 LSEH.Salt <> malloc constr
+R11899:11899 LSEH.Salt <> d:167 var
+R11901:11901 LSEH.Salt <> i:166 var
+R11953:11956 LSEH.Salt <> step:105 ind
+R11992:11992 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11998:11998 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12037:12037 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12045:12057 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12098:12098 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11993:11997 LSEH.Salt <> H_stk:161 var
+R12000:12005 LSEH.Salt <> :::x_'!->t'_x_';'_x not
+R12029:12031 LSEH.Salt <> :::x_'!->t'_x_';'_x not
+R12032:12036 LSEH.Salt <> H_tup:162 var
+R11999:11999 LSEH.Salt <> L:168 var
+R12006:12010 LSEH.Salt <> tuple constr
+R12013:12018 LSEH.Salt <> n_cons def
+R12025:12027 Coq.Init.Datatypes <> nil constr
+R12022:12023 LSEH.Salt <> ns constr
+R12020:12020 LSEH.Salt <> i:166 var
+R12038:12044 LSEH.Salt <> H_conts:163 var
+R12060:12065 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12077:12079 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12081:12086 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12095:12096 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12097:12097 LSEH.Salt <> R:164 var
+R12080:12080 LSEH.Salt <> d:167 var
+R12087:12090 LSEH.Salt <> hloc constr
+R12092:12092 LSEH.Salt <> L:168 var
+R12058:12059 LSEH.Salt <> ip constr
+R12066:12074 LSEH.Salt <> next_cloc def
+R12076:12076 LSEH.Salt <> l:165 var
+R11960:11960 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11966:11966 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11972:11972 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11980:11980 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11982:11982 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11961:11965 LSEH.Salt <> H_stk:161 var
+R11967:11971 LSEH.Salt <> H_tup:162 var
+R11973:11979 LSEH.Salt <> H_conts:163 var
+R11981:11981 LSEH.Salt <> R:164 var
+R11958:11958 LSEH.Salt <> P:104 var
+R12120:12123 LSEH.Salt <> heap def
+binder 12118:12118 <> H:169
+R12129:12136 LSEH.Salt <> reg_file def
+binder 12127:12127 <> R:170
+R12142:12154 LSEH.Salt <> code_location ind
+binder 12140:12140 <> l:171
+R12177:12179 Coq.Init.Datatypes <> nat ind
+binder 12175:12175 <> d:172
+R12185:12191 LSEH.Salt <> operand ind
+binder 12183:12183 <> o:173
+R12215:12218 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12211:12213 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12199:12205 LSEH.Salt <> reg_app def
+R12207:12207 LSEH.Salt <> R:170 var
+R12209:12210 LSEH.Salt <> ip constr
+R12214:12214 LSEH.Salt <> l:171 var
+R12244:12251 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12234:12236 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12219:12229 LSEH.Salt <> fetch_instr def
+R12231:12231 LSEH.Salt <> l:171 var
+R12233:12233 LSEH.Salt <> P:104 var
+R12237:12239 LSEH.Salt <> mov constr
+R12241:12241 LSEH.Salt <> d:172 var
+R12243:12243 LSEH.Salt <> o:173 var
+R12252:12255 LSEH.Salt <> step:105 ind
+R12271:12271 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12273:12274 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12325:12325 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12272:12272 LSEH.Salt <> H:169 var
+R12277:12282 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12294:12295 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12297:12303 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12321:12323 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12324:12324 LSEH.Salt <> R:170 var
+R12296:12296 LSEH.Salt <> d:172 var
+R12304:12316 LSEH.Salt <> operand_value def
+R12318:12318 LSEH.Salt <> o:173 var
+R12320:12320 LSEH.Salt <> R:170 var
+R12275:12276 LSEH.Salt <> ip constr
+R12283:12291 LSEH.Salt <> next_cloc def
+R12293:12293 LSEH.Salt <> l:171 var
+R12259:12259 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12261:12261 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12263:12263 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12260:12260 LSEH.Salt <> H:169 var
+R12262:12262 LSEH.Salt <> R:170 var
+R12257:12257 LSEH.Salt <> P:104 var
+R12385:12394 LSEH.Salt <> stack_heap def
+binder 12356:12360 <> H_stk:174
+binder 12362:12369 <> H_stk_hd:175
+binder 12371:12376 <> H_stk':176
+binder 12378:12383 <> H_cont:177
+R12420:12429 LSEH.Salt <> tuple_heap def
+binder 12407:12411 <> H_tup:178
+binder 12413:12418 <> H_ctup:179
+R12435:12442 LSEH.Salt <> reg_file def
+binder 12433:12433 <> R:180
+R12448:12460 LSEH.Salt <> code_location ind
+binder 12446:12446 <> l:181
+R12475:12481 LSEH.Salt <> operand ind
+binder 12473:12473 <> o:182
+R12487:12494 LSEH.Salt <> heap_loc ind
+binder 12485:12485 <> L:183
+R12502:12505 Coq.Init.Datatypes <> list ind
+R12507:12510 LSEH.Salt <> word ind
+binder 12498:12500 <> lst:184
+R12518:12520 Coq.Init.Datatypes <> nat ind
+binder 12514:12514 <> j:185
+binder 12516:12516 <> k:186
+R12544:12547 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12540:12542 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12528:12534 LSEH.Salt <> reg_app def
+R12536:12536 LSEH.Salt <> R:180 var
+R12538:12539 LSEH.Salt <> ip constr
+R12543:12543 LSEH.Salt <> l:181 var
+R12574:12581 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12563:12565 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12548:12558 LSEH.Salt <> fetch_instr def
+R12560:12560 LSEH.Salt <> l:181 var
+R12562:12562 LSEH.Salt <> P:104 var
+R12566:12568 LSEH.Salt <> mov constr
+R12570:12571 LSEH.Salt <> sp constr
+R12573:12573 LSEH.Salt <> o:182 var
+R12610:12617 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12599:12601 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12582:12594 LSEH.Salt <> operand_value def
+R12596:12596 LSEH.Salt <> o:182 var
+R12598:12598 LSEH.Salt <> R:180 var
+R12602:12605 LSEH.Salt <> hloc constr
+R12607:12607 LSEH.Salt <> L:183 var
+R12609:12609 LSEH.Salt <> j:185 var
 R12662:12669 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12651:12653 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12634:12646 LSEH.Salt <> operand_value def
-R12648:12648 LSEH.Salt <> o:187 var
-R12650:12650 LSEH.Salt <> R:185 var
-R12654:12657 LSEH.Salt <> hloc constr
-R12659:12659 LSEH.Salt <> L:188 var
-R12661:12661 LSEH.Salt <> j:190 var
-R12714:12721 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12675:12677 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12670:12674 LSEH.Salt <> H_stk:180 var
-R12686:12689 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R12678:12685 LSEH.Salt <> H_stk_hd:181 var
-R12704:12707 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R12690:12690 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12692:12693 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12703:12703 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12691:12691 LSEH.Salt <> L:188 var
-R12694:12698 LSEH.Salt <> stack constr
-R12700:12702 LSEH.Salt <> lst:189 var
-R12708:12713 LSEH.Salt <> H_stk':182 var
-R12741:12744 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12737:12739 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R12722:12732 Coq.Lists.List <> length abbrev
-R12734:12736 LSEH.Salt <> lst:189 var
-R12740:12740 LSEH.Salt <> k:191 var
-R12751:12758 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R12746:12749 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
-R12745:12745 LSEH.Salt <> j:190 var
-R12750:12750 LSEH.Salt <> k:191 var
-R12759:12762 LSEH.Salt <> step:112 ind
-R12795:12795 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12835:12842 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12867:12868 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12874:12881 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12923:12923 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12825:12828 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R12796:12796 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12798:12798 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12824:12824 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12797:12797 LSEH.Salt <> L:188 var
-R12799:12803 LSEH.Salt <> stack constr
-R12806:12812 LSEH.Salt <> cdr_nth def
-R12820:12822 LSEH.Salt <> lst:189 var
-R12816:12816 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R12815:12815 LSEH.Salt <> k:191 var
-R12817:12817 LSEH.Salt <> j:190 var
-R12829:12834 LSEH.Salt <> H_stk':182 var
-R12843:12843 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R12856:12860 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R12844:12846 Coq.Lists.List <> rev def
-R12848:12855 LSEH.Salt <> H_stk_hd:181 var
-R12861:12866 LSEH.Salt <> H_cont:183 var
-R12869:12873 LSEH.Salt <> H_tup:184 var
-R12884:12889 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12901:12902 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12905:12910 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12919:12921 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R12922:12922 LSEH.Salt <> R:185 var
-R12903:12904 LSEH.Salt <> sp constr
-R12911:12914 LSEH.Salt <> hloc constr
-R12916:12916 LSEH.Salt <> L:188 var
-R12918:12918 LSEH.Salt <> j:190 var
-R12882:12883 LSEH.Salt <> ip constr
-R12890:12898 LSEH.Salt <> next_cloc def
-R12900:12900 LSEH.Salt <> l:186 var
-R12766:12766 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12772:12772 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12779:12779 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12785:12785 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12787:12787 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R12767:12771 LSEH.Salt <> H_stk:180 var
-R12773:12778 LSEH.Salt <> H_cont:183 var
-R12780:12784 LSEH.Salt <> H_tup:184 var
-R12786:12786 LSEH.Salt <> R:185 var
-R12764:12764 LSEH.Salt <> P:111 var
-R12986:12995 LSEH.Salt <> stack_heap def
-binder 12955:12959 <> H_stk:192
-binder 12961:12969 <> H_cont_hd:193
-binder 12971:12977 <> H_cont':194
-binder 12979:12984 <> H_cont:195
-R13011:13020 LSEH.Salt <> tuple_heap def
-binder 13005:13009 <> H_tup:196
-R13026:13033 LSEH.Salt <> reg_file def
-binder 13024:13024 <> R:197
-R13039:13051 LSEH.Salt <> code_location ind
-binder 13037:13037 <> l:198
-R13063:13069 LSEH.Salt <> operand ind
-binder 13061:13061 <> o:199
-R13075:13082 LSEH.Salt <> heap_loc ind
-binder 13073:13073 <> L:200
-R13090:13093 Coq.Init.Datatypes <> list ind
-R13095:13098 LSEH.Salt <> word ind
-binder 13086:13088 <> lst:201
-R13106:13108 Coq.Init.Datatypes <> nat ind
-binder 13102:13102 <> j:202
-binder 13104:13104 <> k:203
-R13132:13135 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13128:13130 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13116:13122 LSEH.Salt <> reg_app def
-R13124:13124 LSEH.Salt <> R:197 var
-R13126:13127 LSEH.Salt <> ip constr
-R13131:13131 LSEH.Salt <> l:198 var
-R13162:13169 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13151:13153 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13136:13146 LSEH.Salt <> fetch_instr def
-R13148:13148 LSEH.Salt <> l:198 var
-R13150:13150 LSEH.Salt <> P:111 var
-R13154:13156 LSEH.Salt <> mov constr
-R13158:13159 LSEH.Salt <> sp constr
-R13161:13161 LSEH.Salt <> o:199 var
-R13198:13205 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13187:13189 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13170:13182 LSEH.Salt <> operand_value def
-R13184:13184 LSEH.Salt <> o:199 var
-R13186:13186 LSEH.Salt <> R:197 var
-R13190:13193 LSEH.Salt <> hloc constr
-R13195:13195 LSEH.Salt <> L:200 var
-R13197:13197 LSEH.Salt <> j:202 var
-R13253:13260 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13212:13214 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13206:13211 LSEH.Salt <> H_cont:195 var
-R13224:13227 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R13215:13223 LSEH.Salt <> H_cont_hd:193 var
-R13242:13245 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R13228:13228 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13230:13231 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13241:13241 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13229:13229 LSEH.Salt <> L:200 var
-R13232:13236 LSEH.Salt <> stack constr
-R13238:13240 LSEH.Salt <> lst:201 var
-R13246:13252 LSEH.Salt <> H_cont':194 var
-R13280:13283 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13276:13278 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13261:13271 Coq.Lists.List <> length abbrev
-R13273:13275 LSEH.Salt <> lst:201 var
-R13279:13279 LSEH.Salt <> k:203 var
-R13290:13297 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13285:13288 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
-R13284:13284 LSEH.Salt <> j:202 var
-R13289:13289 LSEH.Salt <> k:203 var
-R13298:13301 LSEH.Salt <> step:112 ind
-R13334:13334 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13392:13399 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13407:13408 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13414:13421 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13463:13463 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13364:13367 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R13335:13335 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13337:13337 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13363:13363 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13336:13336 LSEH.Salt <> L:200 var
-R13338:13342 LSEH.Salt <> stack constr
-R13345:13351 LSEH.Salt <> cdr_nth def
-R13359:13361 LSEH.Salt <> lst:201 var
-R13355:13355 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R13354:13354 LSEH.Salt <> k:203 var
-R13356:13356 LSEH.Salt <> j:202 var
-R13368:13368 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R13382:13386 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R13369:13371 Coq.Lists.List <> rev def
-R13373:13381 LSEH.Salt <> H_cont_hd:193 var
-R13387:13391 LSEH.Salt <> H_stk:192 var
-R13400:13406 LSEH.Salt <> H_cont':194 var
-R13409:13413 LSEH.Salt <> H_tup:196 var
-R13424:13429 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13441:13442 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13445:13450 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13459:13461 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13462:13462 LSEH.Salt <> R:197 var
-R13443:13444 LSEH.Salt <> sp constr
-R13451:13454 LSEH.Salt <> hloc constr
-R13456:13456 LSEH.Salt <> L:200 var
-R13458:13458 LSEH.Salt <> j:202 var
-R13422:13423 LSEH.Salt <> ip constr
-R13430:13438 LSEH.Salt <> next_cloc def
-R13440:13440 LSEH.Salt <> l:198 var
-R13305:13305 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13311:13311 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13318:13318 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13324:13324 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12623:12625 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12618:12622 LSEH.Salt <> H_stk:174 var
+R12634:12637 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R12626:12633 LSEH.Salt <> H_stk_hd:175 var
+R12652:12655 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R12638:12638 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12640:12641 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12651:12651 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12639:12639 LSEH.Salt <> L:183 var
+R12642:12646 LSEH.Salt <> stack constr
+R12648:12650 LSEH.Salt <> lst:184 var
+R12656:12661 LSEH.Salt <> H_stk':176 var
+R12689:12692 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12685:12687 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12670:12680 Coq.Lists.List <> length abbrev
+R12682:12684 LSEH.Salt <> lst:184 var
+R12688:12688 LSEH.Salt <> k:186 var
+R12699:12706 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12694:12697 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R12693:12693 LSEH.Salt <> j:185 var
+R12698:12698 LSEH.Salt <> k:186 var
+R12707:12710 LSEH.Salt <> step:105 ind
+R12752:12752 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12792:12792 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12798:12807 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12842:12851 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12893:12893 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12782:12785 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R12753:12753 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12755:12755 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12781:12781 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12754:12754 LSEH.Salt <> L:183 var
+R12756:12760 LSEH.Salt <> stack constr
+R12763:12769 LSEH.Salt <> cdr_nth def
+R12777:12779 LSEH.Salt <> lst:184 var
+R12773:12773 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R12772:12772 LSEH.Salt <> k:186 var
+R12774:12774 LSEH.Salt <> j:185 var
+R12786:12791 LSEH.Salt <> H_stk':176 var
+R12793:12797 LSEH.Salt <> H_tup:178 var
+R12808:12808 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12833:12834 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12841:12841 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12809:12809 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R12822:12826 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R12810:12812 Coq.Lists.List <> rev def
+R12814:12821 LSEH.Salt <> H_stk_hd:175 var
+R12827:12832 LSEH.Salt <> H_cont:177 var
+R12835:12840 LSEH.Salt <> H_ctup:179 var
+R12854:12859 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12871:12872 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12875:12880 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12889:12891 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R12892:12892 LSEH.Salt <> R:180 var
+R12873:12874 LSEH.Salt <> sp constr
+R12881:12884 LSEH.Salt <> hloc constr
+R12886:12886 LSEH.Salt <> L:183 var
+R12888:12888 LSEH.Salt <> j:185 var
+R12852:12853 LSEH.Salt <> ip constr
+R12860:12868 LSEH.Salt <> next_cloc def
+R12870:12870 LSEH.Salt <> l:181 var
+R12714:12714 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12720:12720 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12726:12726 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12742:12742 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12744:12744 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12715:12719 LSEH.Salt <> H_stk:174 var
+R12721:12725 LSEH.Salt <> H_tup:178 var
+R12727:12727 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12734:12734 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12741:12741 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R12728:12733 LSEH.Salt <> H_cont:177 var
+R12735:12740 LSEH.Salt <> H_ctup:179 var
+R12743:12743 LSEH.Salt <> R:180 var
+R12712:12712 LSEH.Salt <> P:104 var
+R12956:12965 LSEH.Salt <> stack_heap def
+binder 12925:12929 <> H_stk:187
+binder 12931:12939 <> H_cont_hd:188
+binder 12941:12947 <> H_cont':189
+binder 12949:12954 <> H_cont:190
+R12991:13000 LSEH.Salt <> tuple_heap def
+binder 12978:12982 <> H_tup:191
+binder 12984:12989 <> H_ctup:192
+R13006:13013 LSEH.Salt <> reg_file def
+binder 13004:13004 <> R:193
+R13019:13031 LSEH.Salt <> code_location ind
+binder 13017:13017 <> l:194
+R13046:13052 LSEH.Salt <> operand ind
+binder 13044:13044 <> o:195
+R13058:13065 LSEH.Salt <> heap_loc ind
+binder 13056:13056 <> L:196
+R13073:13076 Coq.Init.Datatypes <> list ind
+R13078:13081 LSEH.Salt <> word ind
+binder 13069:13071 <> lst:197
+R13089:13091 Coq.Init.Datatypes <> nat ind
+binder 13085:13085 <> j:198
+binder 13087:13087 <> k:199
+R13115:13118 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13111:13113 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13099:13105 LSEH.Salt <> reg_app def
+R13107:13107 LSEH.Salt <> R:193 var
+R13109:13110 LSEH.Salt <> ip constr
+R13114:13114 LSEH.Salt <> l:194 var
+R13145:13152 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13134:13136 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13119:13129 LSEH.Salt <> fetch_instr def
+R13131:13131 LSEH.Salt <> l:194 var
+R13133:13133 LSEH.Salt <> P:104 var
+R13137:13139 LSEH.Salt <> mov constr
+R13141:13142 LSEH.Salt <> sp constr
+R13144:13144 LSEH.Salt <> o:195 var
+R13181:13188 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13170:13172 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13153:13165 LSEH.Salt <> operand_value def
+R13167:13167 LSEH.Salt <> o:195 var
+R13169:13169 LSEH.Salt <> R:193 var
+R13173:13176 LSEH.Salt <> hloc constr
+R13178:13178 LSEH.Salt <> L:196 var
+R13180:13180 LSEH.Salt <> j:198 var
+R13236:13243 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13195:13197 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13189:13194 LSEH.Salt <> H_cont:190 var
+R13207:13210 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R13198:13206 LSEH.Salt <> H_cont_hd:188 var
+R13225:13228 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13211:13211 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13213:13214 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13224:13224 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13212:13212 LSEH.Salt <> L:196 var
+R13215:13219 LSEH.Salt <> stack constr
+R13221:13223 LSEH.Salt <> lst:197 var
+R13229:13235 LSEH.Salt <> H_cont':189 var
+R13263:13266 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13259:13261 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13244:13254 Coq.Lists.List <> length abbrev
+R13256:13258 LSEH.Salt <> lst:197 var
+R13262:13262 LSEH.Salt <> k:199 var
+R13273:13280 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13268:13271 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R13267:13267 LSEH.Salt <> j:198 var
+R13272:13272 LSEH.Salt <> k:199 var
+R13281:13284 LSEH.Salt <> step:105 ind
 R13326:13326 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13306:13310 LSEH.Salt <> H_stk:192 var
-R13312:13317 LSEH.Salt <> H_cont:195 var
-R13319:13323 LSEH.Salt <> H_tup:196 var
-R13325:13325 LSEH.Salt <> R:197 var
-R13303:13303 LSEH.Salt <> P:111 var
-R13523:13532 LSEH.Salt <> stack_heap def
-binder 13494:13498 <> H_stk:204
-binder 13500:13507 <> H_stk_hd:205
-binder 13509:13514 <> H_stk':206
-binder 13516:13521 <> H_cont:207
-R13548:13557 LSEH.Salt <> tuple_heap def
-binder 13542:13546 <> H_tup:208
-R13563:13570 LSEH.Salt <> reg_file def
-binder 13561:13561 <> R:209
-R13576:13588 LSEH.Salt <> code_location ind
-binder 13574:13574 <> l:210
-R13600:13606 LSEH.Salt <> operand ind
-binder 13598:13598 <> o:211
-R13612:13619 LSEH.Salt <> heap_loc ind
-binder 13610:13610 <> L:212
-R13627:13630 Coq.Init.Datatypes <> list ind
-R13632:13635 LSEH.Salt <> word ind
-binder 13623:13625 <> lst:213
-R13643:13645 Coq.Init.Datatypes <> nat ind
-binder 13639:13639 <> j:214
-binder 13641:13641 <> k:215
-R13669:13672 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13665:13667 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13653:13659 LSEH.Salt <> reg_app def
-R13661:13661 LSEH.Salt <> R:209 var
-R13663:13664 LSEH.Salt <> ip constr
-R13668:13668 LSEH.Salt <> l:210 var
-R13699:13706 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13688:13690 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13673:13683 LSEH.Salt <> fetch_instr def
-R13685:13685 LSEH.Salt <> l:210 var
-R13687:13687 LSEH.Salt <> P:111 var
-R13691:13693 LSEH.Salt <> mov constr
-R13695:13696 LSEH.Salt <> sp constr
-R13698:13698 LSEH.Salt <> o:211 var
-R13735:13742 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13724:13726 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13707:13719 LSEH.Salt <> operand_value def
-R13721:13721 LSEH.Salt <> o:211 var
-R13723:13723 LSEH.Salt <> R:209 var
-R13727:13730 LSEH.Salt <> hloc constr
-R13732:13732 LSEH.Salt <> L:212 var
-R13734:13734 LSEH.Salt <> j:214 var
-R13787:13794 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13748:13750 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13743:13747 LSEH.Salt <> H_stk:204 var
-R13759:13762 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R13751:13758 LSEH.Salt <> H_stk_hd:205 var
-R13777:13780 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R13763:13763 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13765:13766 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13776:13776 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13764:13764 LSEH.Salt <> L:212 var
-R13767:13771 LSEH.Salt <> stack constr
-R13773:13775 LSEH.Salt <> lst:213 var
-R13781:13786 LSEH.Salt <> H_stk':206 var
-R13814:13817 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13810:13812 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R13795:13805 Coq.Lists.List <> length abbrev
-R13807:13809 LSEH.Salt <> lst:213 var
-R13813:13813 LSEH.Salt <> k:215 var
-R13824:13831 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R13819:13822 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
-R13818:13818 LSEH.Salt <> j:214 var
-R13823:13823 LSEH.Salt <> k:215 var
-R13832:13835 LSEH.Salt <> step:112 ind
-R13868:13868 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13908:13915 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13922:13923 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13929:13936 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13978:13978 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13898:13901 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R13869:13869 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13871:13871 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13897:13897 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13870:13870 LSEH.Salt <> L:212 var
-R13872:13876 LSEH.Salt <> stack constr
-R13879:13885 LSEH.Salt <> cdr_nth def
-R13893:13895 LSEH.Salt <> lst:213 var
-R13889:13889 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R13888:13888 LSEH.Salt <> k:215 var
-R13890:13890 LSEH.Salt <> j:214 var
-R13902:13907 LSEH.Salt <> H_stk':206 var
-R13916:13921 LSEH.Salt <> H_cont:207 var
-R13924:13928 LSEH.Salt <> H_tup:208 var
-R13939:13944 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13956:13957 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13960:13965 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13974:13976 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R13977:13977 LSEH.Salt <> R:209 var
-R13958:13959 LSEH.Salt <> sp constr
-R13966:13969 LSEH.Salt <> hloc constr
-R13971:13971 LSEH.Salt <> L:212 var
-R13973:13973 LSEH.Salt <> j:214 var
-R13937:13938 LSEH.Salt <> ip constr
-R13945:13953 LSEH.Salt <> next_cloc def
-R13955:13955 LSEH.Salt <> l:210 var
-R13839:13839 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13845:13845 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13852:13852 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13858:13858 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13860:13860 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R13840:13844 LSEH.Salt <> H_stk:204 var
-R13846:13851 LSEH.Salt <> H_cont:207 var
-R13853:13857 LSEH.Salt <> H_tup:208 var
-R13859:13859 LSEH.Salt <> R:209 var
-R13837:13837 LSEH.Salt <> P:111 var
-R14018:14027 LSEH.Salt <> stack_heap def
-binder 14005:14009 <> H_stk:216
-binder 14011:14016 <> H_cont:217
-R14043:14052 LSEH.Salt <> tuple_heap def
-binder 14037:14041 <> H_tup:218
-R14058:14065 LSEH.Salt <> reg_file def
-binder 14056:14056 <> R:219
-R14071:14083 LSEH.Salt <> code_location ind
-binder 14069:14069 <> l:220
-R14093:14100 LSEH.Salt <> heap_loc ind
-binder 14091:14091 <> L:221
-R14106:14113 LSEH.Salt <> register ind
-binder 14104:14104 <> s:222
-R14125:14127 Coq.Init.Datatypes <> nat ind
-binder 14117:14117 <> d:223
-binder 14119:14121 <> off:224
-binder 14123:14123 <> i:225
-binder 14130:14132 <> lst:226
-R14140:14143 Coq.Init.Datatypes <> bool ind
-binder 14135:14138 <> sign:227
-R14219:14222 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14215:14217 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14203:14209 LSEH.Salt <> reg_app def
-R14211:14211 LSEH.Salt <> R:219 var
-R14213:14214 LSEH.Salt <> ip constr
-R14218:14218 LSEH.Salt <> l:220 var
-R14258:14265 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14238:14240 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14223:14233 LSEH.Salt <> fetch_instr def
-R14235:14235 LSEH.Salt <> l:220 var
-R14237:14237 LSEH.Salt <> P:111 var
-R14241:14244 LSEH.Salt <> load constr
-R14246:14246 LSEH.Salt <> d:223 var
-R14248:14248 LSEH.Salt <> s:222 var
-R14250:14253 LSEH.Salt <> sign:227 var
-R14255:14257 LSEH.Salt <> off:224 var
-R14288:14295 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14277:14279 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14266:14272 LSEH.Salt <> reg_app def
-R14274:14274 LSEH.Salt <> R:219 var
-R14276:14276 LSEH.Salt <> s:222 var
-R14280:14283 LSEH.Salt <> hloc constr
-R14285:14285 LSEH.Salt <> L:221 var
-R14287:14287 LSEH.Salt <> i:225 var
-R14369:14376 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14328:14335 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
-R14316:14318 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14296:14307 LSEH.Salt <> stk_heap_app def
-R14309:14313 LSEH.Salt <> H_stk:216 var
-R14315:14315 LSEH.Salt <> L:221 var
-R14319:14323 LSEH.Salt <> stack constr
-R14325:14327 LSEH.Salt <> lst:226 var
-R14357:14359 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14336:14347 LSEH.Salt <> stk_heap_app def
-R14349:14354 LSEH.Salt <> H_cont:217 var
-R14356:14356 LSEH.Salt <> L:221 var
-R14360:14364 LSEH.Salt <> stack constr
-R14366:14368 LSEH.Salt <> lst:226 var
-R14377:14380 LSEH.Salt <> step:112 ind
-R14413:14413 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14419:14419 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14426:14426 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14432:14433 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14610:14610 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14414:14418 LSEH.Salt <> H_stk:216 var
-R14420:14425 LSEH.Salt <> H_cont:217 var
-R14427:14431 LSEH.Salt <> H_tup:218 var
-R14436:14441 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14453:14460 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14462:14467 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14607:14608 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14609:14609 LSEH.Salt <> R:219 var
-R14461:14461 LSEH.Salt <> d:223 var
-R14468:14470 Coq.Lists.List <> nth def
-R14605:14606 LSEH.Salt <> ns constr
-R14601:14603 LSEH.Salt <> lst:226 var
-R14493:14503 Coq.Lists.List <> length abbrev
-R14505:14507 LSEH.Salt <> lst:226 var
-R14487:14490 LSEH.Salt <> sign:227 var
-R14524:14527 Coq.Init.Datatypes <> true constr
-R14543:14545 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R14539:14541 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R14542:14542 LSEH.Salt <> i:225 var
-R14546:14548 LSEH.Salt <> off:224 var
-R14560:14564 Coq.Init.Datatypes <> false constr
-R14581:14583 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R14577:14579 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R14580:14580 LSEH.Salt <> i:225 var
-R14584:14586 LSEH.Salt <> off:224 var
-R14434:14435 LSEH.Salt <> ip constr
-R14442:14450 LSEH.Salt <> next_cloc def
-R14452:14452 LSEH.Salt <> l:220 var
-R14384:14384 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14390:14390 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14397:14397 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14403:14403 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14405:14405 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14385:14389 LSEH.Salt <> H_stk:216 var
-R14391:14396 LSEH.Salt <> H_cont:217 var
-R14398:14402 LSEH.Salt <> H_tup:218 var
-R14404:14404 LSEH.Salt <> R:219 var
-R14382:14382 LSEH.Salt <> P:111 var
-R14650:14659 LSEH.Salt <> stack_heap def
-binder 14637:14641 <> H_stk:229
-binder 14643:14648 <> H_cont:230
-R14675:14684 LSEH.Salt <> tuple_heap def
-binder 14669:14673 <> H_tup:231
-R14690:14697 LSEH.Salt <> reg_file def
-binder 14688:14688 <> R:232
-R14703:14715 LSEH.Salt <> code_location ind
-binder 14701:14701 <> l:233
-R14725:14732 LSEH.Salt <> heap_loc ind
-binder 14723:14723 <> L:234
-R14738:14745 LSEH.Salt <> register ind
-binder 14736:14736 <> s:235
-R14755:14757 Coq.Init.Datatypes <> nat ind
-binder 14749:14749 <> d:236
-binder 14751:14753 <> off:237
-binder 14760:14762 <> lst:238
-R14785:14788 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14781:14783 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14769:14775 LSEH.Salt <> reg_app def
-R14777:14777 LSEH.Salt <> R:232 var
-R14779:14780 LSEH.Salt <> ip constr
-R14784:14784 LSEH.Salt <> l:233 var
-R14824:14831 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14804:14806 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14789:14799 LSEH.Salt <> fetch_instr def
-R14801:14801 LSEH.Salt <> l:233 var
-R14803:14803 LSEH.Salt <> P:111 var
-R14807:14810 LSEH.Salt <> load constr
-R14812:14812 LSEH.Salt <> d:236 var
-R14814:14814 LSEH.Salt <> s:235 var
-R14816:14819 Coq.Init.Datatypes <> true constr
-R14821:14823 LSEH.Salt <> off:237 var
-R14854:14861 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14843:14845 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14832:14838 LSEH.Salt <> reg_app def
-R14840:14840 LSEH.Salt <> R:232 var
-R14842:14842 LSEH.Salt <> s:235 var
-R14846:14849 LSEH.Salt <> hloc constr
-R14851:14851 LSEH.Salt <> L:234 var
-R14881:14888 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R14869:14871 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R14862:14866 LSEH.Salt <> H_tup:231 var
-R14868:14868 LSEH.Salt <> L:234 var
-R14872:14876 LSEH.Salt <> tuple constr
-R14878:14880 LSEH.Salt <> lst:238 var
-R14889:14892 LSEH.Salt <> step:112 ind
-R14925:14925 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14931:14931 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14938:14938 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14944:14945 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14997:14997 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14926:14930 LSEH.Salt <> H_stk:229 var
-R14932:14937 LSEH.Salt <> H_cont:230 var
-R14939:14943 LSEH.Salt <> H_tup:231 var
-R14948:14953 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14965:14972 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14974:14979 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14994:14995 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R14996:14996 LSEH.Salt <> R:232 var
-R14973:14973 LSEH.Salt <> d:236 var
-R14980:14982 Coq.Lists.List <> nth def
-R14992:14993 LSEH.Salt <> ns constr
-R14988:14990 LSEH.Salt <> lst:238 var
-R14984:14986 LSEH.Salt <> off:237 var
-R14946:14947 LSEH.Salt <> ip constr
-R14954:14962 LSEH.Salt <> next_cloc def
-R14964:14964 LSEH.Salt <> l:233 var
-R14896:14896 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14902:14902 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14909:14909 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14915:14915 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14917:14917 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R14897:14901 LSEH.Salt <> H_stk:229 var
-R14903:14908 LSEH.Salt <> H_cont:230 var
-R14910:14914 LSEH.Salt <> H_tup:231 var
-R14916:14916 LSEH.Salt <> R:232 var
-R14894:14894 LSEH.Salt <> P:111 var
-R15038:15040 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
-R15028:15037 LSEH.Salt <> stack_heap def
-R15041:15050 LSEH.Salt <> stack_heap def
-binder 15021:15026 <> H_stks:239
-R15060:15069 LSEH.Salt <> tuple_heap def
-binder 15054:15058 <> H_tup:240
-R15079:15086 LSEH.Salt <> reg_file def
-binder 15077:15077 <> R:241
-R15092:15104 LSEH.Salt <> code_location ind
-binder 15090:15090 <> l:242
-R15114:15121 LSEH.Salt <> heap_loc ind
-binder 15112:15112 <> L:243
-R15129:15131 Coq.Init.Datatypes <> nat ind
-binder 15125:15125 <> d:244
-binder 15127:15127 <> j:245
-R15137:15143 LSEH.Salt <> operand ind
-binder 15135:15135 <> o:246
-R15151:15154 Coq.Init.Datatypes <> list ind
-R15156:15159 LSEH.Salt <> word ind
-binder 15147:15149 <> lst:247
-R15183:15186 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15179:15181 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15167:15173 LSEH.Salt <> reg_app def
-R15175:15175 LSEH.Salt <> R:241 var
-R15177:15178 LSEH.Salt <> ip constr
-R15182:15182 LSEH.Salt <> l:242 var
-R15216:15223 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15202:15204 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15187:15197 LSEH.Salt <> fetch_instr def
-R15199:15199 LSEH.Salt <> l:242 var
-R15201:15201 LSEH.Salt <> P:111 var
-R15205:15209 LSEH.Salt <> store constr
-R15211:15211 LSEH.Salt <> d:244 var
-R15213:15213 LSEH.Salt <> j:245 var
-R15215:15215 LSEH.Salt <> o:246 var
-R15246:15253 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15235:15237 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15224:15230 LSEH.Salt <> reg_app def
-R15232:15232 LSEH.Salt <> R:241 var
-R15234:15234 LSEH.Salt <> d:244 var
-R15238:15241 LSEH.Salt <> hloc constr
-R15243:15243 LSEH.Salt <> L:243 var
-R15273:15280 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15261:15263 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15254:15258 LSEH.Salt <> H_tup:240 var
-R15260:15260 LSEH.Salt <> L:243 var
-R15264:15268 LSEH.Salt <> tuple constr
-R15270:15272 LSEH.Salt <> lst:247 var
-R15300:15307 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15282:15284 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
-R15281:15281 LSEH.Salt <> j:245 var
-R15285:15295 Coq.Lists.List <> length abbrev
-R15297:15299 LSEH.Salt <> lst:247 var
-R15308:15311 LSEH.Salt <> step:112 ind
-R15338:15338 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15345:15345 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15404:15411 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15434:15434 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15339:15344 LSEH.Salt <> H_stks:239 var
-R15347:15352 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R15397:15398 LSEH.Salt <> :::x_'!->t'_x_';'_x not
-R15399:15403 LSEH.Salt <> H_tup:240 var
-R15346:15346 LSEH.Salt <> L:243 var
-R15353:15357 LSEH.Salt <> tuple constr
-R15360:15369 LSEH.Salt <> update_nth def
-R15378:15390 LSEH.Salt <> operand_value def
-R15392:15392 LSEH.Salt <> o:246 var
-R15394:15394 LSEH.Salt <> R:241 var
-R15373:15375 LSEH.Salt <> lst:247 var
-R15371:15371 LSEH.Salt <> j:245 var
-R15414:15419 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R15431:15432 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R15433:15433 LSEH.Salt <> R:241 var
-R15412:15413 LSEH.Salt <> ip constr
-R15420:15428 LSEH.Salt <> next_cloc def
-R15430:15430 LSEH.Salt <> l:242 var
-R15315:15315 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15322:15322 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15328:15328 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15330:15330 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15316:15321 LSEH.Salt <> H_stks:239 var
-R15323:15327 LSEH.Salt <> H_tup:240 var
-R15329:15329 LSEH.Salt <> R:241 var
-R15313:15313 LSEH.Salt <> P:111 var
-R15477:15486 LSEH.Salt <> stack_heap def
-binder 15457:15461 <> H_stk:248
-binder 15463:15468 <> H_stk':249
-binder 15470:15475 <> H_cont:250
-R15502:15511 LSEH.Salt <> tuple_heap def
-binder 15496:15500 <> H_tup:251
-R15517:15524 LSEH.Salt <> reg_file def
-binder 15515:15515 <> R:252
-R15536:15548 LSEH.Salt <> code_location ind
-binder 15528:15528 <> l:253
-binder 15530:15534 <> l_dst:254
-R15562:15569 LSEH.Salt <> heap_loc ind
-binder 15558:15560 <> lsp:255
-R15575:15577 Coq.Init.Datatypes <> nat ind
-binder 15573:15573 <> j:256
-R15583:15589 LSEH.Salt <> operand ind
-binder 15581:15581 <> o:257
-R15597:15600 Coq.Init.Datatypes <> list ind
-R15602:15605 LSEH.Salt <> word ind
-binder 15593:15595 <> lst:258
-R15629:15632 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15625:15627 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15613:15619 LSEH.Salt <> reg_app def
-R15621:15621 LSEH.Salt <> R:252 var
-R15623:15624 LSEH.Salt <> ip constr
-R15628:15628 LSEH.Salt <> l:253 var
-R15657:15664 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15648:15650 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15633:15643 LSEH.Salt <> fetch_instr def
-R15645:15645 LSEH.Salt <> l:253 var
-R15647:15647 LSEH.Salt <> P:111 var
-R15651:15654 LSEH.Salt <> call constr
-R15656:15656 LSEH.Salt <> o:257 var
-R15690:15693 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15677:15679 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15665:15671 LSEH.Salt <> reg_app def
-R15673:15673 LSEH.Salt <> R:252 var
-R15675:15676 LSEH.Salt <> sp constr
-R15680:15683 LSEH.Salt <> hloc constr
-R15685:15687 LSEH.Salt <> lsp:255 var
-R15689:15689 LSEH.Salt <> j:256 var
-R15727:15734 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15699:15701 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15694:15698 LSEH.Salt <> H_stk:248 var
-R15717:15720 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R15702:15702 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15706:15706 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15716:15716 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15703:15705 LSEH.Salt <> lsp:255 var
-R15707:15711 LSEH.Salt <> stack constr
-R15713:15715 LSEH.Salt <> lst:258 var
-R15721:15726 LSEH.Salt <> H_stk':249 var
-R15754:15757 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15750:15752 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15735:15745 Coq.Lists.List <> length abbrev
-R15747:15749 LSEH.Salt <> lst:258 var
-R15753:15753 LSEH.Salt <> j:256 var
-R15783:15790 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R15775:15777 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R15758:15770 LSEH.Salt <> operand_value def
-R15772:15772 LSEH.Salt <> o:257 var
-R15774:15774 LSEH.Salt <> R:252 var
-R15778:15782 LSEH.Salt <> l_dst:254 var
-R15791:15794 LSEH.Salt <> step:112 ind
-R15827:15827 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15879:15879 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15886:15886 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15892:15899 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15917:15917 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15869:15872 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R15828:15828 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15832:15832 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15868:15868 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15829:15831 LSEH.Salt <> lsp:255 var
-R15833:15837 LSEH.Salt <> stack constr
-R15840:15840 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R15859:15863 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R15841:15845 LSEH.Salt <> loc_w constr
-R15847:15855 LSEH.Salt <> next_cloc def
-R15857:15857 LSEH.Salt <> l:253 var
-R15864:15866 LSEH.Salt <> lst:258 var
-R15873:15878 LSEH.Salt <> H_stk':249 var
-R15880:15885 LSEH.Salt <> H_cont:250 var
-R15887:15891 LSEH.Salt <> H_tup:251 var
-R15902:15907 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R15913:15915 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R15916:15916 LSEH.Salt <> R:252 var
-R15900:15901 LSEH.Salt <> ip constr
-R15908:15912 LSEH.Salt <> l_dst:254 var
-R15798:15798 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15804:15804 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15811:15811 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15817:15817 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15819:15819 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R15799:15803 LSEH.Salt <> H_stk:248 var
-R15805:15810 LSEH.Salt <> H_cont:250 var
-R15812:15816 LSEH.Salt <> H_tup:251 var
-R15818:15818 LSEH.Salt <> R:252 var
-R15796:15796 LSEH.Salt <> P:111 var
-R15941:15944 LSEH.Salt <> heap def
-binder 15939:15939 <> H:259
-R15950:15957 LSEH.Salt <> reg_file def
-binder 15948:15948 <> R:260
-R15966:15978 LSEH.Salt <> code_location ind
-binder 15961:15961 <> l:261
-binder 15963:15964 <> l':262
-R15988:15994 LSEH.Salt <> operand ind
-binder 15986:15986 <> o:263
-R16018:16021 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16014:16016 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16002:16008 LSEH.Salt <> reg_app def
-R16010:16010 LSEH.Salt <> R:260 var
-R16012:16013 LSEH.Salt <> ip constr
-R16017:16017 LSEH.Salt <> l:261 var
-R16045:16052 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16037:16039 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16022:16032 LSEH.Salt <> fetch_instr def
-R16034:16034 LSEH.Salt <> l:261 var
-R16036:16036 LSEH.Salt <> P:111 var
-R16040:16042 LSEH.Salt <> jmp constr
-R16044:16044 LSEH.Salt <> o:263 var
-R16075:16082 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16070:16072 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16053:16065 LSEH.Salt <> operand_value def
-R16067:16067 LSEH.Salt <> o:263 var
-R16069:16069 LSEH.Salt <> R:260 var
-R16073:16074 LSEH.Salt <> l':262 var
-R16083:16086 LSEH.Salt <> step:112 ind
-R16096:16096 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16098:16099 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16114:16114 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16097:16097 LSEH.Salt <> H:259 var
-R16102:16107 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R16110:16112 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R16113:16113 LSEH.Salt <> R:260 var
-R16100:16101 LSEH.Salt <> ip constr
-R16108:16109 LSEH.Salt <> l':262 var
-R16090:16090 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16092:16092 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16094:16094 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16091:16091 LSEH.Salt <> H:259 var
-R16093:16093 LSEH.Salt <> R:260 var
-R16088:16088 LSEH.Salt <> P:111 var
-R16156:16165 LSEH.Salt <> stack_heap def
-binder 16136:16140 <> H_stk:264
-binder 16142:16147 <> H_stk':265
-binder 16149:16154 <> H_cont:266
-R16181:16190 LSEH.Salt <> tuple_heap def
-binder 16175:16179 <> H_tup:267
-R16196:16203 LSEH.Salt <> reg_file def
-binder 16194:16194 <> R:268
-R16212:16224 LSEH.Salt <> code_location ind
-binder 16207:16207 <> l:269
-binder 16209:16210 <> l':270
-R16236:16239 Coq.Init.Datatypes <> list ind
-R16241:16244 LSEH.Salt <> word ind
-binder 16232:16234 <> lst:271
-R16250:16252 Coq.Init.Datatypes <> nat ind
-binder 16248:16248 <> j:272
-R16260:16267 LSEH.Salt <> heap_loc ind
-binder 16256:16258 <> lsp:273
-R16291:16294 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16287:16289 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16275:16281 LSEH.Salt <> reg_app def
-R16283:16283 LSEH.Salt <> R:268 var
-R16285:16286 LSEH.Salt <> ip constr
-R16290:16290 LSEH.Salt <> l:269 var
-R16316:16323 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16310:16312 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16295:16305 LSEH.Salt <> fetch_instr def
-R16307:16307 LSEH.Salt <> l:269 var
-R16309:16309 LSEH.Salt <> P:111 var
-R16313:16315 LSEH.Salt <> ret constr
-R16349:16356 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16336:16338 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16324:16330 LSEH.Salt <> reg_app def
-R16332:16332 LSEH.Salt <> R:268 var
-R16334:16335 LSEH.Salt <> sp constr
-R16339:16342 LSEH.Salt <> hloc constr
-R16344:16346 LSEH.Salt <> lsp:273 var
-R16348:16348 LSEH.Salt <> j:272 var
-R16406:16413 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16362:16364 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16357:16361 LSEH.Salt <> H_stk:264 var
-R16396:16399 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R16365:16365 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16369:16369 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16395:16395 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16366:16368 LSEH.Salt <> lsp:273 var
-R16370:16374 LSEH.Salt <> stack constr
-R16377:16377 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R16386:16390 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R16378:16382 LSEH.Salt <> loc_w constr
-R16384:16385 LSEH.Salt <> l':270 var
-R16391:16393 LSEH.Salt <> lst:271 var
-R16400:16405 LSEH.Salt <> H_stk':265 var
-R16435:16442 Coq.Init.Logic <> ::type_scope:x_'->'_x not
-R16429:16431 Coq.Init.Logic <> ::type_scope:x_'='_x not
-R16414:16424 Coq.Lists.List <> length abbrev
-R16426:16428 LSEH.Salt <> lst:271 var
-R16433:16433 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
-R16432:16432 LSEH.Salt <> j:272 var
-R16443:16446 LSEH.Salt <> step:112 ind
-R16479:16479 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16503:16503 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16510:16510 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16516:16517 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16532:16532 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16495:16496 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
-R16480:16480 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16484:16484 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16494:16494 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16481:16483 LSEH.Salt <> lsp:273 var
-R16485:16489 LSEH.Salt <> stack constr
-R16491:16493 LSEH.Salt <> lst:271 var
-R16497:16502 LSEH.Salt <> H_stk':265 var
-R16504:16509 LSEH.Salt <> H_cont:266 var
-R16511:16515 LSEH.Salt <> H_tup:267 var
-R16520:16525 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R16528:16530 LSEH.Salt <> :::x_'!->r'_x_';'_x not
-R16531:16531 LSEH.Salt <> R:268 var
-R16518:16519 LSEH.Salt <> ip constr
-R16526:16527 LSEH.Salt <> l':270 var
-R16450:16450 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16456:16456 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16463:16463 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16469:16469 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16471:16471 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R16451:16455 LSEH.Salt <> H_stk:264 var
-R16457:16462 LSEH.Salt <> H_cont:266 var
-R16464:16468 LSEH.Salt <> H_tup:267 var
-R16470:16470 LSEH.Salt <> R:268 var
-R16448:16448 LSEH.Salt <> P:111 var
-scheme 9162:9165 <> step_ind
-scheme 9162:9165 <> step_sind
+R13384:13393 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13399:13399 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13417:13426 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13468:13468 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13356:13359 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13327:13327 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13329:13329 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13355:13355 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13328:13328 LSEH.Salt <> L:196 var
+R13330:13334 LSEH.Salt <> stack constr
+R13337:13343 LSEH.Salt <> cdr_nth def
+R13351:13353 LSEH.Salt <> lst:197 var
+R13347:13347 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R13346:13346 LSEH.Salt <> k:199 var
+R13348:13348 LSEH.Salt <> j:198 var
+R13360:13360 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R13374:13378 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R13361:13363 Coq.Lists.List <> rev def
+R13365:13373 LSEH.Salt <> H_cont_hd:188 var
+R13379:13383 LSEH.Salt <> H_stk:187 var
+R13394:13398 LSEH.Salt <> H_tup:191 var
+R13400:13400 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13408:13409 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13416:13416 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13401:13407 LSEH.Salt <> H_cont':189 var
+R13410:13415 LSEH.Salt <> H_ctup:192 var
+R13429:13434 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R13446:13447 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R13450:13455 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R13464:13466 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R13467:13467 LSEH.Salt <> R:193 var
+R13448:13449 LSEH.Salt <> sp constr
+R13456:13459 LSEH.Salt <> hloc constr
+R13461:13461 LSEH.Salt <> L:196 var
+R13463:13463 LSEH.Salt <> j:198 var
+R13427:13428 LSEH.Salt <> ip constr
+R13435:13443 LSEH.Salt <> next_cloc def
+R13445:13445 LSEH.Salt <> l:194 var
+R13288:13288 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13294:13294 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13300:13300 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13316:13316 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13318:13318 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13289:13293 LSEH.Salt <> H_stk:187 var
+R13295:13299 LSEH.Salt <> H_tup:191 var
+R13301:13301 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13308:13308 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13315:13315 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13302:13307 LSEH.Salt <> H_cont:190 var
+R13309:13314 LSEH.Salt <> H_ctup:192 var
+R13317:13317 LSEH.Salt <> R:193 var
+R13286:13286 LSEH.Salt <> P:104 var
+R13521:13530 LSEH.Salt <> stack_heap def
+binder 13499:13503 <> H_stk:200
+binder 13505:13512 <> H_stk_hd:201
+binder 13514:13519 <> H_stk':202
+R13540:13549 LSEH.Salt <> tuple_heap def
+binder 13534:13538 <> H_tup:203
+R13580:13582 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R13570:13579 LSEH.Salt <> stack_heap def
+R13583:13592 LSEH.Salt <> tuple_heap def
+binder 13562:13568 <> H_conts:204
+R13607:13614 LSEH.Salt <> reg_file def
+binder 13605:13605 <> R:205
+R13620:13632 LSEH.Salt <> code_location ind
+binder 13618:13618 <> l:206
+R13647:13653 LSEH.Salt <> operand ind
+binder 13645:13645 <> o:207
+R13659:13666 LSEH.Salt <> heap_loc ind
+binder 13657:13657 <> L:208
+R13674:13677 Coq.Init.Datatypes <> list ind
+R13679:13682 LSEH.Salt <> word ind
+binder 13670:13672 <> lst:209
+R13690:13692 Coq.Init.Datatypes <> nat ind
+binder 13686:13686 <> j:210
+binder 13688:13688 <> k:211
+R13716:13719 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13712:13714 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13700:13706 LSEH.Salt <> reg_app def
+R13708:13708 LSEH.Salt <> R:205 var
+R13710:13711 LSEH.Salt <> ip constr
+R13715:13715 LSEH.Salt <> l:206 var
+R13746:13753 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13735:13737 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13720:13730 LSEH.Salt <> fetch_instr def
+R13732:13732 LSEH.Salt <> l:206 var
+R13734:13734 LSEH.Salt <> P:104 var
+R13738:13740 LSEH.Salt <> mov constr
+R13742:13743 LSEH.Salt <> sp constr
+R13745:13745 LSEH.Salt <> o:207 var
+R13782:13789 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13771:13773 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13754:13766 LSEH.Salt <> operand_value def
+R13768:13768 LSEH.Salt <> o:207 var
+R13770:13770 LSEH.Salt <> R:205 var
+R13774:13777 LSEH.Salt <> hloc constr
+R13779:13779 LSEH.Salt <> L:208 var
+R13781:13781 LSEH.Salt <> j:210 var
+R13834:13841 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13795:13797 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13790:13794 LSEH.Salt <> H_stk:200 var
+R13806:13809 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R13798:13805 LSEH.Salt <> H_stk_hd:201 var
+R13824:13827 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13810:13810 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13812:13813 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13823:13823 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13811:13811 LSEH.Salt <> L:208 var
+R13814:13818 LSEH.Salt <> stack constr
+R13820:13822 LSEH.Salt <> lst:209 var
+R13828:13833 LSEH.Salt <> H_stk':202 var
+R13861:13864 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13857:13859 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13842:13852 Coq.Lists.List <> length abbrev
+R13854:13856 LSEH.Salt <> lst:209 var
+R13860:13860 LSEH.Salt <> k:211 var
+R13871:13878 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13866:13869 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R13865:13865 LSEH.Salt <> j:210 var
+R13870:13870 LSEH.Salt <> k:211 var
+R13879:13882 LSEH.Salt <> step:105 ind
+R13916:13916 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13956:13965 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13971:13972 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13980:13989 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14031:14031 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13946:13949 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13917:13917 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13919:13919 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13945:13945 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13918:13918 LSEH.Salt <> L:208 var
+R13920:13924 LSEH.Salt <> stack constr
+R13927:13933 LSEH.Salt <> cdr_nth def
+R13941:13943 LSEH.Salt <> lst:209 var
+R13937:13937 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R13936:13936 LSEH.Salt <> k:211 var
+R13938:13938 LSEH.Salt <> j:210 var
+R13950:13955 LSEH.Salt <> H_stk':202 var
+R13966:13970 LSEH.Salt <> H_tup:203 var
+R13973:13979 LSEH.Salt <> H_conts:204 var
+R13992:13997 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14009:14010 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14013:14018 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14027:14029 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14030:14030 LSEH.Salt <> R:205 var
+R14011:14012 LSEH.Salt <> sp constr
+R14019:14022 LSEH.Salt <> hloc constr
+R14024:14024 LSEH.Salt <> L:208 var
+R14026:14026 LSEH.Salt <> j:210 var
+R13990:13991 LSEH.Salt <> ip constr
+R13998:14006 LSEH.Salt <> next_cloc def
+R14008:14008 LSEH.Salt <> l:206 var
+R13886:13886 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13892:13892 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13898:13898 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13906:13906 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13908:13908 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R13887:13891 LSEH.Salt <> H_stk:200 var
+R13893:13897 LSEH.Salt <> H_tup:203 var
+R13899:13905 LSEH.Salt <> H_conts:204 var
+R13907:13907 LSEH.Salt <> R:205 var
+R13884:13884 LSEH.Salt <> P:104 var
+R14071:14080 LSEH.Salt <> stack_heap def
+binder 14058:14062 <> H_stk:212
+binder 14064:14069 <> H_cont:213
+R14097:14106 LSEH.Salt <> tuple_heap def
+binder 14084:14088 <> H_tup:214
+binder 14090:14095 <> H_ctup:215
+R14121:14128 LSEH.Salt <> reg_file def
+binder 14119:14119 <> R:216
+R14134:14146 LSEH.Salt <> code_location ind
+binder 14132:14132 <> l:217
+R14161:14168 LSEH.Salt <> heap_loc ind
+binder 14159:14159 <> L:218
+R14174:14181 LSEH.Salt <> register ind
+binder 14172:14172 <> s:219
+R14193:14195 Coq.Init.Datatypes <> nat ind
+binder 14185:14185 <> d:220
+binder 14187:14189 <> off:221
+binder 14191:14191 <> i:222
+binder 14198:14200 <> lst:223
+R14208:14211 Coq.Init.Datatypes <> bool ind
+binder 14203:14206 <> sign:224
+R14287:14290 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14283:14285 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14271:14277 LSEH.Salt <> reg_app def
+R14279:14279 LSEH.Salt <> R:216 var
+R14281:14282 LSEH.Salt <> ip constr
+R14286:14286 LSEH.Salt <> l:217 var
+R14326:14333 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14306:14308 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14291:14301 LSEH.Salt <> fetch_instr def
+R14303:14303 LSEH.Salt <> l:217 var
+R14305:14305 LSEH.Salt <> P:104 var
+R14309:14312 LSEH.Salt <> load constr
+R14314:14314 LSEH.Salt <> d:220 var
+R14316:14316 LSEH.Salt <> s:219 var
+R14318:14321 LSEH.Salt <> sign:224 var
+R14323:14325 LSEH.Salt <> off:221 var
+R14356:14363 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14345:14347 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14334:14340 LSEH.Salt <> reg_app def
+R14342:14342 LSEH.Salt <> R:216 var
+R14344:14344 LSEH.Salt <> s:219 var
+R14348:14351 LSEH.Salt <> hloc constr
+R14353:14353 LSEH.Salt <> L:218 var
+R14355:14355 LSEH.Salt <> i:222 var
+R14439:14446 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14396:14405 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R14384:14386 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14364:14375 LSEH.Salt <> stk_heap_app def
+R14377:14381 LSEH.Salt <> H_stk:212 var
+R14383:14383 LSEH.Salt <> L:218 var
+R14387:14391 LSEH.Salt <> stack constr
+R14393:14395 LSEH.Salt <> lst:223 var
+R14427:14429 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14406:14417 LSEH.Salt <> stk_heap_app def
+R14419:14424 LSEH.Salt <> H_cont:213 var
+R14426:14426 LSEH.Salt <> L:218 var
+R14430:14434 LSEH.Salt <> stack constr
+R14436:14438 LSEH.Salt <> lst:223 var
+R14447:14450 LSEH.Salt <> step:105 ind
+R14492:14492 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14498:14498 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14504:14504 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14520:14521 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14705:14705 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14493:14497 LSEH.Salt <> H_stk:212 var
+R14499:14503 LSEH.Salt <> H_tup:214 var
+R14505:14505 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14512:14512 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14519:14519 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14506:14511 LSEH.Salt <> H_cont:213 var
+R14513:14518 LSEH.Salt <> H_ctup:215 var
+R14524:14529 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14541:14549 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14551:14556 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14702:14703 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R14704:14704 LSEH.Salt <> R:216 var
+R14550:14550 LSEH.Salt <> d:220 var
+R14557:14559 Coq.Lists.List <> nth def
+R14700:14701 LSEH.Salt <> ns constr
+R14696:14698 LSEH.Salt <> lst:223 var
+R14583:14593 Coq.Lists.List <> length abbrev
+R14595:14597 LSEH.Salt <> lst:223 var
+R14577:14580 LSEH.Salt <> sign:224 var
+R14616:14619 Coq.Init.Datatypes <> true constr
+R14635:14637 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R14631:14633 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R14634:14634 LSEH.Salt <> i:222 var
+R14638:14640 LSEH.Salt <> off:221 var
+R14654:14658 Coq.Init.Datatypes <> false constr
+R14675:14677 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R14671:14673 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R14674:14674 LSEH.Salt <> i:222 var
+R14678:14680 LSEH.Salt <> off:221 var
+R14522:14523 LSEH.Salt <> ip constr
+R14530:14538 LSEH.Salt <> next_cloc def
+R14540:14540 LSEH.Salt <> l:217 var
+R14454:14454 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14460:14460 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14466:14466 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14482:14482 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14484:14484 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14455:14459 LSEH.Salt <> H_stk:212 var
+R14461:14465 LSEH.Salt <> H_tup:214 var
+R14467:14467 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14474:14474 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14481:14481 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14468:14473 LSEH.Salt <> H_cont:213 var
+R14475:14480 LSEH.Salt <> H_ctup:215 var
+R14483:14483 LSEH.Salt <> R:216 var
+R14452:14452 LSEH.Salt <> P:104 var
+R14738:14747 LSEH.Salt <> stack_heap def
+binder 14732:14736 <> H_stk:226
+R14757:14766 LSEH.Salt <> tuple_heap def
+binder 14751:14755 <> H_tup:227
+R14797:14799 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R14787:14796 LSEH.Salt <> stack_heap def
+R14800:14809 LSEH.Salt <> tuple_heap def
+binder 14779:14785 <> H_conts:228
+R14824:14831 LSEH.Salt <> reg_file def
+binder 14822:14822 <> R:229
+R14837:14849 LSEH.Salt <> code_location ind
+binder 14835:14835 <> l:230
+R14864:14871 LSEH.Salt <> heap_loc ind
+binder 14862:14862 <> L:231
+R14877:14884 LSEH.Salt <> register ind
+binder 14875:14875 <> s:232
+R14894:14896 Coq.Init.Datatypes <> nat ind
+binder 14888:14888 <> d:233
+binder 14890:14892 <> off:234
+binder 14899:14901 <> lst:235
+R14924:14927 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14920:14922 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14908:14914 LSEH.Salt <> reg_app def
+R14916:14916 LSEH.Salt <> R:229 var
+R14918:14919 LSEH.Salt <> ip constr
+R14923:14923 LSEH.Salt <> l:230 var
+R14963:14970 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14943:14945 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14928:14938 LSEH.Salt <> fetch_instr def
+R14940:14940 LSEH.Salt <> l:230 var
+R14942:14942 LSEH.Salt <> P:104 var
+R14946:14949 LSEH.Salt <> load constr
+R14951:14951 LSEH.Salt <> d:233 var
+R14953:14953 LSEH.Salt <> s:232 var
+R14955:14958 Coq.Init.Datatypes <> true constr
+R14960:14962 LSEH.Salt <> off:234 var
+R14993:15000 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14982:14984 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14971:14977 LSEH.Salt <> reg_app def
+R14979:14979 LSEH.Salt <> R:229 var
+R14981:14981 LSEH.Salt <> s:232 var
+R14985:14988 LSEH.Salt <> hloc constr
+R14990:14990 LSEH.Salt <> L:231 var
+R15020:15027 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15008:15010 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15001:15005 LSEH.Salt <> H_tup:227 var
+R15007:15007 LSEH.Salt <> L:231 var
+R15011:15015 LSEH.Salt <> tuple constr
+R15017:15019 LSEH.Salt <> lst:235 var
+R15028:15031 LSEH.Salt <> step:105 ind
+R15065:15065 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15071:15071 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15077:15077 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15085:15086 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15139:15139 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15066:15070 LSEH.Salt <> H_stk:226 var
+R15072:15076 LSEH.Salt <> H_tup:227 var
+R15078:15084 LSEH.Salt <> H_conts:228 var
+R15089:15094 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R15106:15114 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R15116:15121 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R15136:15137 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R15138:15138 LSEH.Salt <> R:229 var
+R15115:15115 LSEH.Salt <> d:233 var
+R15122:15124 Coq.Lists.List <> nth def
+R15134:15135 LSEH.Salt <> ns constr
+R15130:15132 LSEH.Salt <> lst:235 var
+R15126:15128 LSEH.Salt <> off:234 var
+R15087:15088 LSEH.Salt <> ip constr
+R15095:15103 LSEH.Salt <> next_cloc def
+R15105:15105 LSEH.Salt <> l:230 var
+R15035:15035 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15041:15041 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15047:15047 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15055:15055 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15057:15057 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15036:15040 LSEH.Salt <> H_stk:226 var
+R15042:15046 LSEH.Salt <> H_tup:227 var
+R15048:15054 LSEH.Salt <> H_conts:228 var
+R15056:15056 LSEH.Salt <> R:229 var
+R15033:15033 LSEH.Salt <> P:104 var
+R15181:15183 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R15171:15180 LSEH.Salt <> stack_heap def
+R15184:15193 LSEH.Salt <> tuple_heap def
+binder 15163:15169 <> H_conts:236
+R15212:15221 LSEH.Salt <> stack_heap def
+binder 15206:15210 <> H_stk:237
+R15231:15240 LSEH.Salt <> tuple_heap def
+binder 15225:15229 <> H_tup:238
+R15255:15262 LSEH.Salt <> reg_file def
+binder 15253:15253 <> R:239
+R15268:15280 LSEH.Salt <> code_location ind
+binder 15266:15266 <> l:240
+R15295:15302 LSEH.Salt <> heap_loc ind
+binder 15293:15293 <> L:241
+R15310:15312 Coq.Init.Datatypes <> nat ind
+binder 15306:15306 <> d:242
+binder 15308:15308 <> j:243
+R15318:15324 LSEH.Salt <> operand ind
+binder 15316:15316 <> o:244
+R15332:15335 Coq.Init.Datatypes <> list ind
+R15337:15340 LSEH.Salt <> word ind
+binder 15328:15330 <> lst:245
+R15364:15367 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15360:15362 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15348:15354 LSEH.Salt <> reg_app def
+R15356:15356 LSEH.Salt <> R:239 var
+R15358:15359 LSEH.Salt <> ip constr
+R15363:15363 LSEH.Salt <> l:240 var
+R15397:15404 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15383:15385 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15368:15378 LSEH.Salt <> fetch_instr def
+R15380:15380 LSEH.Salt <> l:240 var
+R15382:15382 LSEH.Salt <> P:104 var
+R15386:15390 LSEH.Salt <> store constr
+R15392:15392 LSEH.Salt <> d:242 var
+R15394:15394 LSEH.Salt <> j:243 var
+R15396:15396 LSEH.Salt <> o:244 var
+R15427:15434 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15416:15418 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15405:15411 LSEH.Salt <> reg_app def
+R15413:15413 LSEH.Salt <> R:239 var
+R15415:15415 LSEH.Salt <> d:242 var
+R15419:15422 LSEH.Salt <> hloc constr
+R15424:15424 LSEH.Salt <> L:241 var
+R15454:15461 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15442:15444 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15435:15439 LSEH.Salt <> H_tup:238 var
+R15441:15441 LSEH.Salt <> L:241 var
+R15445:15449 LSEH.Salt <> tuple constr
+R15451:15453 LSEH.Salt <> lst:245 var
+R15481:15488 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15463:15465 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R15462:15462 LSEH.Salt <> j:243 var
+R15466:15476 Coq.Lists.List <> length abbrev
+R15478:15480 LSEH.Salt <> lst:245 var
+R15489:15492 LSEH.Salt <> step:105 ind
+R15526:15526 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15532:15532 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15591:15601 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15609:15619 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15642:15642 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15527:15531 LSEH.Salt <> H_stk:237 var
+R15534:15539 LSEH.Salt <> :::x_'!->t'_x_';'_x not
+R15584:15585 LSEH.Salt <> :::x_'!->t'_x_';'_x not
+R15586:15590 LSEH.Salt <> H_tup:238 var
+R15533:15533 LSEH.Salt <> L:241 var
+R15540:15544 LSEH.Salt <> tuple constr
+R15547:15556 LSEH.Salt <> update_nth def
+R15565:15577 LSEH.Salt <> operand_value def
+R15579:15579 LSEH.Salt <> o:244 var
+R15581:15581 LSEH.Salt <> R:239 var
+R15560:15562 LSEH.Salt <> lst:245 var
+R15558:15558 LSEH.Salt <> j:243 var
+R15602:15608 LSEH.Salt <> H_conts:236 var
+R15622:15627 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R15639:15640 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R15641:15641 LSEH.Salt <> R:239 var
+R15620:15621 LSEH.Salt <> ip constr
+R15628:15636 LSEH.Salt <> next_cloc def
+R15638:15638 LSEH.Salt <> l:240 var
+R15496:15496 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15502:15502 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15508:15508 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15516:15516 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15518:15518 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15497:15501 LSEH.Salt <> H_stk:237 var
+R15503:15507 LSEH.Salt <> H_tup:238 var
+R15509:15515 LSEH.Salt <> H_conts:236 var
+R15517:15517 LSEH.Salt <> R:239 var
+R15494:15494 LSEH.Salt <> P:104 var
+R15678:15687 LSEH.Salt <> stack_heap def
+binder 15665:15669 <> H_stk:246
+binder 15671:15676 <> H_stk':247
+R15697:15706 LSEH.Salt <> tuple_heap def
+binder 15691:15695 <> H_tup:248
+R15737:15739 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R15727:15736 LSEH.Salt <> stack_heap def
+R15740:15749 LSEH.Salt <> tuple_heap def
+binder 15719:15725 <> H_conts:249
+R15764:15771 LSEH.Salt <> reg_file def
+binder 15762:15762 <> R:250
+R15783:15795 LSEH.Salt <> code_location ind
+binder 15775:15775 <> l:251
+binder 15777:15781 <> l_dst:252
+R15812:15819 LSEH.Salt <> heap_loc ind
+binder 15808:15810 <> lsp:253
+R15825:15827 Coq.Init.Datatypes <> nat ind
+binder 15823:15823 <> j:254
+R15833:15839 LSEH.Salt <> operand ind
+binder 15831:15831 <> o:255
+R15847:15850 Coq.Init.Datatypes <> list ind
+R15852:15855 LSEH.Salt <> word ind
+binder 15843:15845 <> lst:256
+R15879:15882 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15875:15877 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15863:15869 LSEH.Salt <> reg_app def
+R15871:15871 LSEH.Salt <> R:250 var
+R15873:15874 LSEH.Salt <> ip constr
+R15878:15878 LSEH.Salt <> l:251 var
+R15907:15914 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15898:15900 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15883:15893 LSEH.Salt <> fetch_instr def
+R15895:15895 LSEH.Salt <> l:251 var
+R15897:15897 LSEH.Salt <> P:104 var
+R15901:15904 LSEH.Salt <> call constr
+R15906:15906 LSEH.Salt <> o:255 var
+R15940:15943 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15927:15929 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15915:15921 LSEH.Salt <> reg_app def
+R15923:15923 LSEH.Salt <> R:250 var
+R15925:15926 LSEH.Salt <> sp constr
+R15930:15933 LSEH.Salt <> hloc constr
+R15935:15937 LSEH.Salt <> lsp:253 var
+R15939:15939 LSEH.Salt <> j:254 var
+R15977:15984 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15949:15951 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15944:15948 LSEH.Salt <> H_stk:246 var
+R15967:15970 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R15952:15952 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15956:15956 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15966:15966 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R15953:15955 LSEH.Salt <> lsp:253 var
+R15957:15961 LSEH.Salt <> stack constr
+R15963:15965 LSEH.Salt <> lst:256 var
+R15971:15976 LSEH.Salt <> H_stk':247 var
+R16004:16007 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16000:16002 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15985:15995 Coq.Lists.List <> length abbrev
+R15997:15999 LSEH.Salt <> lst:256 var
+R16003:16003 LSEH.Salt <> j:254 var
+R16033:16040 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16025:16027 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16008:16020 LSEH.Salt <> operand_value def
+R16022:16022 LSEH.Salt <> o:255 var
+R16024:16024 LSEH.Salt <> R:250 var
+R16028:16032 LSEH.Salt <> l_dst:252 var
+R16041:16044 LSEH.Salt <> step:105 ind
+R16078:16078 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16130:16130 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16136:16136 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16144:16153 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16194:16194 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16120:16123 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R16079:16079 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16083:16083 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16119:16119 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16080:16082 LSEH.Salt <> lsp:253 var
+R16084:16088 LSEH.Salt <> stack constr
+R16091:16091 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R16110:16114 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R16092:16096 LSEH.Salt <> loc_w constr
+R16098:16106 LSEH.Salt <> next_cloc def
+R16108:16108 LSEH.Salt <> l:251 var
+R16115:16117 LSEH.Salt <> lst:256 var
+R16124:16129 LSEH.Salt <> H_stk':247 var
+R16131:16135 LSEH.Salt <> H_tup:248 var
+R16137:16143 LSEH.Salt <> H_conts:249 var
+R16156:16161 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16167:16168 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16171:16176 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16191:16192 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16193:16193 LSEH.Salt <> R:250 var
+R16169:16170 LSEH.Salt <> sp constr
+R16177:16180 LSEH.Salt <> hloc constr
+R16182:16184 LSEH.Salt <> lsp:253 var
+R16187:16187 Coq.Init.Datatypes <> S constr
+R16189:16189 LSEH.Salt <> j:254 var
+R16154:16155 LSEH.Salt <> ip constr
+R16162:16166 LSEH.Salt <> l_dst:252 var
+R16048:16048 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16054:16054 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16060:16060 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16068:16068 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16070:16070 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16049:16053 LSEH.Salt <> H_stk:246 var
+R16055:16059 LSEH.Salt <> H_tup:248 var
+R16061:16067 LSEH.Salt <> H_conts:249 var
+R16069:16069 LSEH.Salt <> R:250 var
+R16046:16046 LSEH.Salt <> P:104 var
+R16218:16221 LSEH.Salt <> heap def
+binder 16216:16216 <> H:257
+R16227:16234 LSEH.Salt <> reg_file def
+binder 16225:16225 <> R:258
+R16243:16255 LSEH.Salt <> code_location ind
+binder 16238:16238 <> l:259
+binder 16240:16241 <> l':260
+R16270:16276 LSEH.Salt <> operand ind
+binder 16268:16268 <> o:261
+R16300:16303 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16296:16298 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16284:16290 LSEH.Salt <> reg_app def
+R16292:16292 LSEH.Salt <> R:258 var
+R16294:16295 LSEH.Salt <> ip constr
+R16299:16299 LSEH.Salt <> l:259 var
+R16327:16334 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16319:16321 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16304:16314 LSEH.Salt <> fetch_instr def
+R16316:16316 LSEH.Salt <> l:259 var
+R16318:16318 LSEH.Salt <> P:104 var
+R16322:16324 LSEH.Salt <> jmp constr
+R16326:16326 LSEH.Salt <> o:261 var
+R16357:16364 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16352:16354 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16335:16347 LSEH.Salt <> operand_value def
+R16349:16349 LSEH.Salt <> o:261 var
+R16351:16351 LSEH.Salt <> R:258 var
+R16355:16356 LSEH.Salt <> l':260 var
+R16365:16368 LSEH.Salt <> step:105 ind
+R16378:16378 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16380:16381 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16396:16396 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16379:16379 LSEH.Salt <> H:257 var
+R16384:16389 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16392:16394 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16395:16395 LSEH.Salt <> R:258 var
+R16382:16383 LSEH.Salt <> ip constr
+R16390:16391 LSEH.Salt <> l':260 var
+R16372:16372 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16374:16374 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16376:16376 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16373:16373 LSEH.Salt <> H:257 var
+R16375:16375 LSEH.Salt <> R:258 var
+R16370:16370 LSEH.Salt <> P:104 var
+R16431:16440 LSEH.Salt <> stack_heap def
+binder 16418:16422 <> H_stk:262
+binder 16424:16429 <> H_stk':263
+R16450:16459 LSEH.Salt <> tuple_heap def
+binder 16444:16448 <> H_tup:264
+R16490:16492 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R16480:16489 LSEH.Salt <> stack_heap def
+R16493:16502 LSEH.Salt <> tuple_heap def
+binder 16472:16478 <> H_conts:265
+R16517:16524 LSEH.Salt <> reg_file def
+binder 16515:16515 <> R:266
+R16533:16545 LSEH.Salt <> code_location ind
+binder 16528:16528 <> l:267
+binder 16530:16531 <> l':268
+R16562:16565 Coq.Init.Datatypes <> list ind
+R16567:16570 LSEH.Salt <> word ind
+binder 16558:16560 <> lst:269
+R16576:16578 Coq.Init.Datatypes <> nat ind
+binder 16574:16574 <> j:270
+R16586:16593 LSEH.Salt <> heap_loc ind
+binder 16582:16584 <> lsp:271
+R16617:16620 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16613:16615 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16601:16607 LSEH.Salt <> reg_app def
+R16609:16609 LSEH.Salt <> R:266 var
+R16611:16612 LSEH.Salt <> ip constr
+R16616:16616 LSEH.Salt <> l:267 var
+R16642:16649 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16636:16638 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16621:16631 LSEH.Salt <> fetch_instr def
+R16633:16633 LSEH.Salt <> l:267 var
+R16635:16635 LSEH.Salt <> P:104 var
+R16639:16641 LSEH.Salt <> ret constr
+R16675:16682 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16662:16664 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16650:16656 LSEH.Salt <> reg_app def
+R16658:16658 LSEH.Salt <> R:266 var
+R16660:16661 LSEH.Salt <> sp constr
+R16665:16668 LSEH.Salt <> hloc constr
+R16670:16672 LSEH.Salt <> lsp:271 var
+R16674:16674 LSEH.Salt <> j:270 var
+R16732:16739 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16688:16690 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16683:16687 LSEH.Salt <> H_stk:262 var
+R16722:16725 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R16691:16691 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16695:16695 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16721:16721 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16692:16694 LSEH.Salt <> lsp:271 var
+R16696:16700 LSEH.Salt <> stack constr
+R16703:16703 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R16712:16716 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R16704:16708 LSEH.Salt <> loc_w constr
+R16710:16711 LSEH.Salt <> l':268 var
+R16717:16719 LSEH.Salt <> lst:269 var
+R16726:16731 LSEH.Salt <> H_stk':263 var
+R16761:16768 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16755:16757 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16740:16750 Coq.Lists.List <> length abbrev
+R16752:16754 LSEH.Salt <> lst:269 var
+R16759:16759 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R16758:16758 LSEH.Salt <> j:270 var
+R16769:16772 LSEH.Salt <> step:105 ind
+R16806:16806 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16830:16830 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16836:16836 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16844:16853 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16891:16891 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16822:16823 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R16807:16807 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16811:16811 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16821:16821 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16808:16810 LSEH.Salt <> lsp:271 var
+R16812:16816 LSEH.Salt <> stack constr
+R16818:16820 LSEH.Salt <> lst:269 var
+R16824:16829 LSEH.Salt <> H_stk':263 var
+R16831:16835 LSEH.Salt <> H_tup:264 var
+R16837:16843 LSEH.Salt <> H_conts:265 var
+R16856:16861 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16864:16865 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16868:16873 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16888:16889 LSEH.Salt <> :::x_'!->r'_x_';'_x not
+R16890:16890 LSEH.Salt <> R:266 var
+R16866:16867 LSEH.Salt <> sp constr
+R16874:16877 LSEH.Salt <> hloc constr
+R16879:16881 LSEH.Salt <> lsp:271 var
+R16885:16885 Coq.Init.Peano <> ::nat_scope:x_'-'_x not
+R16884:16884 LSEH.Salt <> j:270 var
+R16854:16855 LSEH.Salt <> ip constr
+R16862:16863 LSEH.Salt <> l':268 var
+R16776:16776 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16782:16782 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16788:16788 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16796:16796 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16798:16798 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R16777:16781 LSEH.Salt <> H_stk:262 var
+R16783:16787 LSEH.Salt <> H_tup:264 var
+R16789:16795 LSEH.Salt <> H_conts:265 var
+R16797:16797 LSEH.Salt <> R:266 var
+R16774:16774 LSEH.Salt <> P:104 var
+scheme 8786:8789 <> step_ind
+scheme 8786:8789 <> step_sind

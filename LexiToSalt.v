@@ -67,11 +67,11 @@ Definition expr_trans exp : list instr :=
     (rev (zip_map (val_trans)
       (map nat_reg (iota (List.length lst)))
       lst))
-    ++ [call 0])
+    ++ [call (reg_o 0)])
   | L.newref h_v =>
-    ([malloc 2 (List.length h_v)] ++
-    zip (map (val_trans 1) h_v)
-      (map (fun x => store 2 (x-1) (reg_o 1))
+    ([malloc 1 (List.length h_v)] ++
+    zip (map (val_trans 2) h_v)
+      (map (fun x => store 1 (x-1) (reg_o 2))
         (iota (List.length h_v))))
   | L.pi i v => [val_trans 1 v; load 1 1 true i]
   | L.asgn v1 i v2 =>
@@ -136,4 +136,6 @@ Definition code_trans (c:L.code) : S.program :=
 (*
 All changes made
 0. register 1 and register 2 are swapped in addition and assignment
+1. in newref, malloc uses register r1 and values use r2, so that
+   we actually have L label on the stack, matching Lexi semantics
 *)
