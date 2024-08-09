@@ -118,8 +118,9 @@ Fixpoint num_let tm :=
   end.
 Definition func_term_trans (n:nat) (t:L.term) : list instr :=
   term_trans t ++
-  match last (term_trans t) S.halt with
+  match last (term_trans t) ret with
   | S.halt => []
+  | S.jmp o => []
   | _ => [sfree (n + (num_let t)); ret]
   end.
 Definition func_trans (f:L.function) : instr_seq :=

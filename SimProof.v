@@ -1,8 +1,9 @@
 Require Import Lists.List. Import ListNotations.
 Require Import Strings.String.
+Require Import Logic.FunctionalExtensionality.
 From TLC Require Import LibLN.
 From LSEH Require Import Lexi.
-From LSEH Require Import Salt.
+From LSEH  Require Import Salt.
 From LSEH Require Import LexiToSalt.
 From LSEH Require Import RelConfig.
 From LSEH Require Import Infrastructure.
@@ -36,18 +37,31 @@ Theorem cond1 : forall C1 C2 M1 M2 main_lab init_lab,
 Proof with super_a.
   intros. destruct M1 as [[[[LC LH] LK] LE] Lt], M2 as [[SC SH] SR].
   inversion H1... inversion H0...
-  apply rel_LS with (len:=0) (Clab:=init_lab) (lst:=[])
+  apply rel_LS with
     (SIlst:=[mov 0 (cloc main_lab 0); call (reg_o 0);
-    push (reg_o 1); load 1 sp false 0; halt])
-    (Slsp:=hloc L_stack 0)...
+             push (reg_o 1); load 1 sp false 0; halt])
+    (lst:=[])...
   - destruct L_stack as [L_stack_str].
-    apply rel_context with (Ks:=[]) (Flst:=[]) (E:=[])
-      (s:=[]) (s':=[]) (s_out:=[]) (L_out:=L_stack_str) 
-      (L_0:=L_stack_str)
-      (H_stack:=sh_empty)...
+    apply rel_env_context with
+      (s_out:=[ns_hloc;int_w 0; ns_hloc; ns_cloc])...
+    apply rel_hdl_stk_lst with
+      (H:=[]) (Ks:=[]) (K:=[h_f (handler_f ns_hdl_lab ns_hdl_lab ns_clab general)])
+      (s:=[ns_hloc;int_w 0; ns_hloc; ns_cloc])...
+    apply rel_hdl_stk_base with
+      (Flst:=[]) (s:=[])...
+    cbv. apply rel_hdl_general with
+      (L:=""%string) (L_env:=""%string) (Clab_op:=""%string)
+      (L_prev:=""%string) (s_prev:=[]).
   - intros... cbv in H. injection H. intros...
-  - unfold c_update. rewrite c_eqb_refl... 
-  (*- repeat apply_fresh lc_bind...*)
+  - extensionality x. destruct x as [str]. 
+    unfold c_update,L.c_update.
+    unfold c_eqb,L.c_eqb.
+    destruct (eqb init_lab str) as []eqn:?;cbn;rewrite Heqb...
+  - intros. unfold wf_func_tm,L.c_update.
+    destruct (L.c_eqb init_lab x)...
+    specialize H12 with x. unfold wf_func_tm in H12...
+  - unfold c_update... rewrite eqb_refl...
+    (*- repeat apply_fresh lc_bind...*)
 Qed.
 
 Theorem cond2 : forall M1 M2 i,
@@ -80,7 +94,6 @@ Proof with automate.
   - apply app_cons_not_nil.
   - destruct a...
 Qed.
-Check app_nth2_plus.
 Lemma ins_verify : forall (A : Type) (l l' : list A) (d : A) (n : nat),
        nth (n + Datatypes.length l) (l ++ l') d = nth n l' d.
 Proof.
@@ -97,12 +110,12 @@ Proof with super_a.
   rewrite app_nth1... specialize H with n.
   rewrite map_length...  
 Qed.
-Lemma update_nth_map: forall {A B:Type} ind (f:A->B) lst v,
+(*Lemma update_nth_map: forall {A B:Type} ind (f:A->B) lst v,
     update_nth ind (List.map f lst) (f v)
     = (List.map f (L.update_nth ind lst v)).
 Proof with super_a.
 intros. Search (List.map _ _=_(List.map _ _)). Admitted.
-  (* Lemma Sn_n1 : forall n m, S n = n + 1.
+  Lemma Sn_n1 : forall n m, S n = n + 1.
 Proof. intros.  Qed.
 Lemma SSn_n2 : forall n, S (S n) = n + 2.*)
   
@@ -184,13 +197,11 @@ Proof with super_a.
     (* prove LS_rel for L_add *)
     + unfold incr_cloc,next_cloc... apply rel_LS with
       (lst:=lst ++ firstn 4 SIlst)
-      (SIlst:= tl (tl (tl (tl SIlst))));inversion H11;automate.
+      (SIlst:= tl (tl (tl (tl SIlst))));inversion H11...
       * pose proof term_trans_not_nil as NN. specialize NN with
-        (tm:=t1'). cbn. destruct (RelConfig.LS.term_trans t1')as []eqn:?;automate.
-        rewrite <- Heql. rewrite <- PeanoNat.Nat.add_succ_comm.
-        apply rel_tm with (E:=L.run_const (i1 + i2) :: E1) (t:=t1').
-      * apply rel_context with (s:=s) (s_out:=s_out)
-        (L_0:=L_0)...
+          (tm:=t1'). cbn. destruct (RelConfig.LS.term_trans t1')as []eqn:?;automate.
+        rewrite <- Heql. rewrite <- PeanoNat.Nat.add_succ_comm...        
+      * apply rel_env_context with (s_out:=s_out)...
       * rewrite H15... assert (AssocIns: forall (x1:instr) x2 x3 x4 tl,
           [x1;x2;x3;x4] ++ tl = x1::x2::x3::x4::tl). { intros... }
         rewrite <- AssocIns,app_assoc...
@@ -257,8 +268,8 @@ Proof with super_a.
         (RelConfig.LS.term_trans t1')as []eqn:?;automate. rewrite <- Heql.
         rewrite <- PeanoNat.Nat.add_succ_comm.
         apply rel_tm with (E:=L.var_deref E1 v :: E1) (t:=t1').
-      * apply rel_context with (s:=s) (s_out:=s_out)
-        (L_0:=L_0)... destruct v as [cst|[ind|str]]...
+      * apply rel_env_context with (s_out:=s_out)...
+        destruct v as [cst|[ind|str]]...
         rewrite <- map_nth with (d:=L.ns). rewrite app_nth1...
         inversion H17... inversion H4... inversion H2...
         rewrite List.map_length...
@@ -379,19 +390,18 @@ Proof with super_a.
         (tm:=t1'). cbn. destruct (RelConfig.LS.term_trans t1')as []eqn:?;automate.
         rewrite <- Heql. rewrite <- PeanoNat.Nat.add_succ_comm.
         apply rel_tm with (E:=L.d_lab_const (L.obj_lab L_str) :: E1) (t:=t1').
-      * apply rel_context with (s:=s) (s_out:=s_out)
-        (L_0:=L_0)...
+      * apply rel_env_context with (s_out:=s_out)...
       * unfold th_update,L.th_update,L.h_eqb,h_eqb.
         intros. destruct (String.eqb L_str L_tup)...
         -- inversion H1... destruct v as [|[|]]...
            rewrite <- map_nth with (d:=L.ns)...
-           rewrite app_nth1... inversion H17... inversion H8...
-           specialize H4 with (v:=L.var_val n).
+           rewrite app_nth1... inversion H17...
+           inversion H7...
+           specialize H3 with (v:=L.var_val n).
            assert (Temp:In (L.var_val n) [L.var_val (L.dbjind_var n)]).
-           { super_a. } apply H4 in Temp. inversion Temp...
+           { super_a. } apply H3 in Temp. inversion Temp...
            rewrite List.map_length...
-        -- inversion H13... inversion H8...
-      * inversion H13...
+        -- inversion H13... inversion H3...
       * rewrite H15... assert (AssocIns: forall (x1:instr) x2 x3 x4 tl,
           [x1;x2;x3;x4] ++ tl = x1::x2::x3::x4::tl). { intros... }
         rewrite <- AssocIns,app_assoc...
@@ -457,8 +467,8 @@ Proof with super_a.
           inversion H4... rewrite app_nth1.
           rewrite map_nth with (d:=L.ns).
           rewrite H2... rewrite map_length.
-          inversion H17... inversion H8... inversion H3...
-        - inversion H13... inversion H5... }
+          inversion H17... inversion H7... inversion H3...
+        - inversion H13... inversion H2... }
       constructor. 
       apply S_push with
       (o:=reg_o (nat_reg 1)) 
@@ -477,8 +487,7 @@ Proof with super_a.
         (tm:=t1'). destruct (RelConfig.LS.term_trans t1')as []eqn:?;automate.
         rewrite <- Heql. rewrite <- PeanoNat.Nat.add_succ_comm.
         apply rel_tm with (E:=nth i lst0 L.ns :: E1) (t:=t1').
-      * apply rel_context with
-          (s:=s) (s_out:=s_out) (L_0:=L_0)...
+      * apply rel_env_context with (s_out:=s_out)...
         rewrite <- map_nth with (d:=L.ns)...
       * rewrite H15... assert (AssocIns: forall (x1:instr) x2 x3 tl,
           [x1;x2;x3] ++ tl = x1::x2::x3::tl). { intros... }
@@ -556,10 +565,10 @@ Proof with super_a.
           rewrite PeanoNat.Nat.sub_diag in Ins.
           assert (Temp:loc_w (hloc L_str 0)
                        = nth (0 + ind) cur_stk_val ns).
-          { inversion H5... rewrite app_nth1...
+          { inversion H8... rewrite app_nth1...
             rewrite map_nth with (d:=L.ns).
             rewrite H2... rewrite List.map_length...
-            inversion H17... inversion H8...
+            inversion H17... inversion H6...
             inversion H4... }
           destruct SH_conts. rewrite Temp. apply Ins...
           + inversion H11. rewrite H15... apply ins_verify with (n:=1).
@@ -584,9 +593,9 @@ Proof with super_a.
                (nat_reg 0,o0);
                (nat_reg 1,val_direct_trans v' cur_stk_val);
                (nat_reg 2,loc_w (hloc L_str 0))] ++ R36)...
-        - rewrite H15. inversion H11.
+        - rewrite H15. inversion H19... inversion H11.
           apply ins_verify with (n:=2).
-        - inversion H13... inversion H4...
+        - inversion H13... inversion H2...
           apply H1 with (vs:=[c])... }
       constructor.
       apply S_push with
@@ -606,36 +615,35 @@ Proof with super_a.
         (tm:=t1'). destruct (RelConfig.LS.term_trans t1')as []eqn:?;automate.
         rewrite <- Heql. rewrite <- PeanoNat.Nat.add_succ_comm.
         apply rel_tm with (E:=L.var_deref E1 v' :: E1) (t:=t1').
-      * apply rel_context with
-          (s:=s) (s_out:=s_out) (L_0:=L_0)...
+      * apply rel_env_context with (s_out:=s_out)...
         destruct v'... destruct v0...
         rewrite <- map_nth with (d:=L.ns).
         rewrite app_nth1... inversion H17...
-        inversion H4... rewrite map_length. inversion H10...
+        inversion H4... rewrite map_length. inversion H9...
       * unfold th_update,L.th_update,L.h_eqb,h_eqb.
+        inversion H19...
         intros. destruct (String.eqb L_str L_tup)...
         -- inversion H1... destruct v' as [|[|]]...
            rewrite <- map_nth with (d:=L.ns)...
-           rewrite app_nth1... inversion H17... inversion H8...
-           rewrite List.map_length... inversion H16...
-        -- inversion H13... inversion H8...
-      * inversion H13...
+           rewrite app_nth1... inversion H17... inversion H6...
+           rewrite List.map_length... inversion H10...
+        -- inversion H13... inversion H3...
       * rewrite H15... assert (AssocIns: forall (x1:instr) x2 x3 x4 tl,
           [x1;x2;x3;x4] ++ tl = x1::x2::x3::x4::tl). { intros... }
         rewrite <- AssocIns,app_assoc...
       * rewrite app_length. rewrite PeanoNat.Nat.add_comm...
       * destruct t1';inversion H17...
-  - (* x = v(v1,v2,v3) *)
-    remember ((L_out,stack (loc_w (incr_cloc 2 l) :: cur_stk_val))
-                :: H_stack,SH_tup,SH_conts) as newH.
+          
+  - (* x = v(v') *)
     destruct lab as [lab].
-    destruct lst0 as [|v1 [|v2 [|v3 [|v4 args]]]].
-    (* split into 4 cases for different arglist length *)
-    *** exists newH,
-         ([(ip,loc_w (cloc lab 0));
-           (sp,loc_w (hloc L_out (1+(List.length cur_stk_val))));
+    exists ((L_out,stack ((val_direct_trans v' cur_stk_val)::
+                            (loc_w (incr_cloc 3 l)) :: cur_stk_val))
+                :: H_stack,SH_tup,SH_conts),
+         ([(ip,loc_w (cloc lab 1));
+           (sp,loc_w (hloc L_out (2 + (List.length cur_stk_val))));
            (nat_reg 0,loc_w (cloc lab 0));
-           (nat_reg 1,o1);(nat_reg 2,o2)] ++ R36). split.
+           (nat_reg 1,val_direct_trans v' cur_stk_val);
+           (nat_reg 2,o2)] ++ R36). split.
     + apply multi_step with
         (y:=(cur_stkh,SH_tup,SH_conts,
               [(ip,loc_w (next_cloc l));
@@ -649,7 +657,7 @@ Proof with super_a.
                  (sp,loc_w (hloc L_out (List.length cur_stk_val)));
                  (nat_reg 0,o0);(nat_reg 1,o1);
                  (nat_reg 2,o2)] ++ R36)...
-          rewrite H15. inversion H11... inversion H8...
+          rewrite H15. inversion H11... inversion H7...
           apply nth_middle.
         - pose proof S_load_stk as Ins. specialize Ins with
             (d:=0) (s:=sp) (off:=ind)
@@ -662,39 +670,203 @@ Proof with super_a.
           rewrite PeanoNat.Nat.sub_diag in Ins.
           assert (Temp:loc_w (cloc lab 0)
                        = nth (0 + ind) cur_stk_val ns).
-          { inversion H8... rewrite app_nth1...
+          { inversion H7... rewrite app_nth1...
             rewrite map_nth with (d:=L.ns).
             rewrite H2... rewrite List.map_length...
-            inversion H17... inversion H5... inversion H10... }
+            inversion H17... inversion H6... inversion H9... }
           destruct SH_conts. rewrite Temp. apply Ins...
           + inversion H11. rewrite H15... apply nth_middle.
           + rewrite h_eqb_refl...
-        - inversion H8... }
-      constructor. rewrite HeqnewH. Check S_call.
-      apply S_call with
-        (o:=reg_o (nat_reg 0)) (l_dst:=cloc lab 0)
+        - inversion H7... }
+      apply multi_step with
+        (y:=(cur_stkh,SH_tup,SH_conts,
+              [(ip,loc_w (incr_cloc 2 l));
+               (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+               (nat_reg 0,loc_w (cloc lab 0));
+               (nat_reg 1,val_direct_trans v' cur_stk_val);
+               (nat_reg 2,o2)] ++ R36)).
+      { destruct v' as [cst|[ind|str]].
+        - apply S_mov with
+            (d:=1) (o:=val_direct_trans (const_val cst) cur_stk_val)
+            (R:=[(ip,loc_w (next_cloc l));
+                 (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+                 (nat_reg 0,loc_w (cloc lab 0));
+                 (nat_reg 1,o1);(nat_reg 2,o2)] ++ R36)...
+          rewrite H15. inversion H11... inversion H7...
+          apply ins_verify with (n:=1).
+        - pose proof S_load_stk as Ins. specialize Ins with
+            (d:=1) (s:=sp) (off:=ind)
+            (L:=L_out) (sign:=false)
+            (lst:=cur_stk_val) (i:=List.length cur_stk_val)
+            (R:=[(ip,loc_w (next_cloc l));
+                 (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+                 (nat_reg 0,loc_w (cloc lab 0));
+                 (nat_reg 1,o1);(nat_reg 2,o2)] ++ R36).
+          rewrite PeanoNat.Nat.sub_diag in Ins.
+          destruct SH_conts. apply Ins...
+          + inversion H11. rewrite H15... apply ins_verify with (n:=1).
+          + rewrite h_eqb_refl...
+        - apply S_mov with
+            (d:=1) (o:=val_direct_trans (var_val str) cur_stk_val)
+            (R:=[(ip,loc_w (next_cloc l));
+                 (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+                 (nat_reg 0,loc_w (cloc lab 0));
+                 (nat_reg 1,o1);(nat_reg 2,o2)] ++ R36)...
+          rewrite H15. inversion H11... inversion H7...
+          apply ins_verify with (n:=1). }
+      apply multi_step with
+        (y:=((L_out, stack (loc_w (incr_cloc 3 l) :: cur_stk_val)) :: H_stack,
+           SH_tup, SH_conts,
+           [(ip,loc_w (cloc lab 0));
+            (sp,loc_w (hloc L_out (1 + List.length cur_stk_val)));
+            (nat_reg 0,loc_w (cloc lab 0));
+            (nat_reg 1,val_direct_trans v' cur_stk_val);
+            (nat_reg 2,o2)] ++ R36)).
+      { apply S_call with
+        (o:=reg_o (nat_reg 0))
+        (R:=[(ip,loc_w (incr_cloc 2 l));
+             (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+             (nat_reg 0,loc_w (cloc lab 0));
+             (nat_reg 1,val_direct_trans v' cur_stk_val);
+             (nat_reg 2,o2)] ++ R36)...
+        rewrite H15. inversion H11...
+        apply ins_verify with (n:=2). }
+      constructor.
+      apply S_push with
+        (o:=reg_o (nat_reg 1)) (lst:=loc_w (incr_cloc 3 l) :: cur_stk_val)
+        (l:=cloc lab 0)
+        (R:=[(ip,loc_w (cloc lab 0));
+             (sp,loc_w (hloc L_out (1 + (List.length cur_stk_val))));
+             (nat_reg 0,loc_w (cloc lab 0));
+             (nat_reg 1,val_direct_trans v' cur_stk_val);
+             (nat_reg 2,o2)] ++ R36)...
+      inversion H14;super_a;rewrite H19...
+    + (* prove LS_rel for v(v') *)
+      unfold incr_cloc,next_cloc... destruct (SC lab) as [newIns].
+      apply rel_LS with
+        (lst:=[push (reg_o 1)]) (SIlst:=func_term_trans 1 t1');
+        inversion H11;automate.
+      * apply rel_env_context with
+          (s_out:=loc_w (cloc Clab (3 + (Datatypes.length lst)))
+                    :: List.map run_cst_trans E1 ++ s_out).
+        { inversion H5...
+          - intros. inversion H1...
+            assert (Temp:stk_points_to s_out s' L').
+            { apply H2 with (L:=L) (H':=H')... }
+            unfold stk_points_to in Temp.
+            unfold stk_points_to. rewrite <- Temp.
+            rewrite app_comm_cons. rewrite rev_app_distr.
+            apply nth_error_app1. apply nth_error_Some.
+            rewrite Temp. unfold not. intros...
+          - inversion H3... rewrite app_comm_cons.
+            apply rel_hdl_stk_lst... rewrite app_comm_cons.
+            inversion H16...
+            + repeat (rewrite app_comm_cons).
+              rewrite app_assoc.
+              apply rel_hdl_stk_base with
+                (frm:=frm) (frm_stk:=frm_stk)...
+              rewrite app_comm_cons. constructor...
+              apply rel_frame with
+                (C_mem:=SC)
+                (lst:=lst ++ [val_trans 0 v;val_trans 1 v';
+                              call (reg_o 0)])
+                (Ilst:=push (reg_o 1) :: func_term_trans (S (List.length E1)) t)...
+              rewrite H15. cbn. pose proof term_trans_not_nil as NN.
+              specialize NN with (tm:=t).
+              destruct (term_trans t) as []eqn:?;automate.
+              rewrite <- Heql. unfold func_term_trans.
+              rewrite <- PeanoNat.Nat.add_succ_comm.
+              rewrite <- app_assoc...
+              rewrite app_length... rewrite PeanoNat.Nat.add_comm...
+            + repeat (rewrite app_comm_cons).
+              rewrite app_assoc.
+              apply rel_hdl_stk with
+                (frm:=frm) (frm_stk:=frm_stk)...
+              rewrite app_comm_cons. constructor...
+              apply rel_frame with
+                (C_mem:=SC)
+                (lst:=lst ++ [val_trans 0 v;val_trans 1 v';
+                              call (reg_o 0)])
+                (Ilst:=push (reg_o 1) :: func_term_trans (S (List.length E1)) t)...
+              rewrite H15. cbn. pose proof term_trans_not_nil as NN.
+              specialize NN with (tm:=t).
+              destruct (term_trans t) as []eqn:?;automate.
+              rewrite <- Heql. unfold func_term_trans.
+              rewrite <- PeanoNat.Nat.add_succ_comm.
+              rewrite <- app_assoc...
+              rewrite app_length... rewrite PeanoNat.Nat.add_comm... }
+        destruct v' as [cst|[ind|str]]...
+        rewrite <- map_nth with (d:=L.ns). rewrite app_nth1...
+        inversion H17... rewrite List.map_length... inversion H4...
+        assert (Temp:wf_val (Datatypes.length E1) (var_val ind)).
+        { apply H3... } inversion Temp...           
+      * inversion H14... rewrite H19...
+      * inversion H14... specialize H2 with (c_lab lab).
+        unfold wf_func_tm in H2. rewrite H19 in H2.
+        inversion H2... 
+  - (* v end, return from function call *)
+    (* move result to r1, chop stack via sfree
+       (sp's label and Lsp changes accordingly)
+     then return (ip changes, stack further chops *)
+    exists ((L_out,stack (val_direct_trans v cur_stk_val :: (tl s_out)))
+              :: H_stack,SH_tup,SH_conts),
+    ([(ip,nth 0 s_out ns);
+      (sp,loc_w (hloc L_out (List.length s_out))); (*remove l_dst, add v*)
+      (nat_reg 0,o0);
+      (nat_reg 1,val_direct_trans v cur_stk_val);(nat_reg 2,o2)] ++ R36).
+    split.
+    apply multi_step with
+      (y:=((cur_stkh,SH_tup,SH_conts),
+            [(ip,loc_w (next_cloc l));
+             (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+             (nat_reg 0,o0);
+             (nat_reg 1,val_direct_trans v cur_stk_val);
+             (nat_reg 2,o2)] ++ R36)).
+    { destruct v as [cst|[ind|str]].
+      - apply S_mov with
+          (d:=1) (o:=val_direct_trans (const_val cst) cur_stk_val)
+          (R:=[(ip,loc_w l);
+               (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+               (nat_reg 0,o0);(nat_reg 1,o1);
+               (nat_reg 2,o2)] ++ R36)...
+        inversion H11... rewrite H15... apply nth_middle.
+      - pose proof S_load_stk as Ins. specialize Ins with
+          (d:=1) (s:=sp) (off:=ind)
+          (L:=L_out) (sign:=false)
+          (lst:=cur_stk_val) (i:=List.length cur_stk_val)
+          (R:=[(ip,loc_w l);
+               (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+               (nat_reg 0,o0);(nat_reg 1,o1);
+               (nat_reg 2,o2)] ++ R36).
+        rewrite PeanoNat.Nat.sub_diag in Ins.
+        destruct SH_conts. apply Ins...
+        + inversion H11. rewrite H15... apply nth_middle.
+        + rewrite h_eqb_refl...
+      - apply S_mov with
+          (d:=1) (o:=val_direct_trans (var_val str) cur_stk_val)
+          (R:=[(ip,loc_w l);
+               (sp,loc_w (hloc L_out (List.length cur_stk_val)));
+               (nat_reg 0,o0);(nat_reg 1,o1);
+               (nat_reg 2,o2)] ++ R36)...
+        inversion H11... rewrite H15... apply nth_middle. }
+    apply multi_step with
+      (y:=((L_out,stack s_out) :: H_stack,SH_tup,SH_conts,
+            [(ip,loc_w (incr_cloc 2 l));
+             (sp,loc_w (hloc L_out (List.length s_out)));
+             (nat_reg 0,o0);
+             (nat_reg 1,val_direct_trans v cur_stk_val);
+             (nat_reg 2,o2)] ++ R36)).
+    { lemma on cdr_nth
+      assert (cdr_nth (Datatypes.length E1) cur_stk_val) =  s_out.
+      assert ((List.length - Datatypes.length E1) = length s_out
+      apply S_sfree with
+        (n:=List.length E1)
         (R:=[(ip,loc_w (next_cloc l));
              (sp,loc_w (hloc L_out (List.length cur_stk_val)));
-             (nat_reg 0,static_const_trans lab);(nat_reg 1,o1);
+             (nat_reg 0,o0);
+             (nat_reg 1,val_direct_trans v cur_stk_val);
              (nat_reg 2,o2)] ++ R36)...
-      rewrite H15. inversion H11... rewrite ins_verify with (n:=1)...
-    + (* prove LS_rel for fun() no arg *)
-      unfold incr_cloc,next_cloc... apply rel_LS with
-      (lst:=lst ++ firstn 4 SIlst)
-      (SIlst:= tl (tl (tl (tl SIlst))));inversion H11;automate.
-      * pose proof term_trans_not_nil as NN. specialize NN with
-        (tm:=t1'). cbn. destruct (RelConfig.LS.term_trans t1')as []eqn:?;automate.
-        rewrite <- Heql. rewrite <- PeanoNat.Nat.add_succ_comm.
-        apply rel_tm with (E:=L.run_const (i1 + i2) :: E1) (t:=t1').
-      * apply rel_context with (s:=s) (s_out:=s_out)
-        (L_0:=L_0)...
-      * rewrite H15... assert (AssocIns: forall (x1:instr) x2 x3 x4 tl,
-          [x1;x2;x3;x4] ++ tl = x1::x2::x3::x4::tl). { intros... }
-        rewrite <- AssocIns,app_assoc...
-      * rewrite app_length. rewrite PeanoNat.Nat.add_comm...
-      * destruct t1';inversion H17...
- ------------       -----
-    
+
     4: { destruct (List.length l0). apply PeanoNat.Nat.lt_irrefl in H19;
          destruct H19. 
    
@@ -711,7 +883,11 @@ Qed.
 (*
 All changes made
 malloc rule's register should be r_d in resulting state
-newref's translation should be malloc r2 n rather than i
+newref's translation s hould be malloc r2 n rather than i
+
+simplifications can be done:
+sfree after function call is just size of environment,
+      no need to compute numlet
 *)
 
 

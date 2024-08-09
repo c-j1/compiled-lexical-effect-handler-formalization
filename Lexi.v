@@ -172,27 +172,27 @@ Inductive step (C:code) :
       (H,K,(run_const (i1+i2)) :: E,t)
 | L_value : forall H K E t (v:value),
     step C (H,K,E, bind v t) (H,K,(var_deref E v) :: E,t)
-| L_new : forall tH cH K E t (v:value) (L:obj_label),
-    tH L = empty_tup ->
-    step C (tH,cH,K,E, bind (newref [v]) t)
-      (L !->t tuple (List.map (var_deref E) [v]); tH,
+| L_new : forall tH cH K E t (v:value) (L:obj_label) lst,
+    tH L = empty_tup -> lst = [v] ->
+    step C (tH,cH,K,E, bind (newref lst) t)
+      (L !->t tuple (List.map (var_deref E) lst); tH,
          cH, K, (d_lab_const L) :: E, t)
 | L_get : forall tH cH K E t (i:nat) (v:value)
                  (L:obj_label) (lst:list runtime_const),
     var_deref E v = L -> tH L = tuple lst ->
     step C (tH,cH,K,E, bind (pi i v) t)
       (tH,cH,K,(nth i lst ns) :: E,t) (* from (1+i) to i*)
-| L_set : forall tH cH K E t (i:nat)
+| L_set : forall tH cH K E t (i:nat) (lst:list runtime_const)
                  (v v':value) (L:obj_label) (c:runtime_const),
-    var_deref E v = L -> tH L = tuple [c] ->
-    i = 0 (*< List.length [c]*) ->
+    var_deref E v = L -> tH L = tuple lst ->
+    i < List.length lst -> lst = [c] ->
     step C (tH,cH,K,E, bind (asgn v i v') t)
-      (L !->t tuple (update_nth i [c] (var_deref E v')); tH,
+      (L !->t tuple (update_nth i lst (var_deref E v')); tH,
          cH,K,(var_deref E v') :: E,t) (* from i-1 to i *)
-| L_app : forall H K E t t' (n:nat) (v:value) (lst:list value)
+| L_app : forall H K E t t' (n:nat) (v v':value) (lst:list value)
                  (lab:code_label),
     var_deref E v = lab ->
-    C lab = func n t' -> List.length lst < 4 ->
+    C lab = func (List.length lst) t' -> lst = [v'] ->
     step C (H,K,E,bind (app v lst) t)
       (H, (a_f(act_f E t)) :: K,
         rev (List.map (var_deref E) lst),t')

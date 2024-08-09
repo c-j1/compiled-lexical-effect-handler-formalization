@@ -325,7 +325,7 @@ Inductive step (P:program) :
     -> H_stk = (lsp, stack lst) :: H_stk'
     -> j > 0 -> List.length lst = j ->
     step P (H_stk,H_tup,H_conts,R)
-      ((lsp,stack (cdr_nth 1 lst)) :: H_stk',H_tup,H_conts,
+      ((lsp,stack (tl lst)) :: H_stk',H_tup,H_conts,
         ip !->r next_cloc l; reg !->r (List.hd ns lst);
        sp !->r  hloc lsp (j-1); R)
 | S_malloc :
@@ -565,6 +565,6 @@ load: used in
       nonono, these are also counting from top of stack
   raise general:
   resume:
-I do also notice though that since stack pointer counts from the base, but variable/de brujin index counts from the top of stack, the translated code should be 
+
 raising handler has wrong offsets
  *)

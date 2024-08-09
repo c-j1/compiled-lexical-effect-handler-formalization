@@ -1,4 +1,4 @@
-DIGEST 664215f40501fe6603647af99b629500
+DIGEST 09c80bff0397c1fd65cc93a2366510a8
 FLSEH.LexiToSalt
 R24:33 Coq.Lists.List <> <> lib
 R43:55 Coq.Lists.List ListNotations <> mod
@@ -330,45 +330,47 @@ R3642:3647 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
 R3630:3639 LSEH.LexiToSalt <> term_trans def
 R3641:3641 LSEH.LexiToSalt <> t:43 var
 R3654:3657 Coq.Lists.List <> last def
-R3674:3679 LSEH.LexiToSalt <> halt constr
+R3674:3676 LSEH.Salt <> ret constr
 R3660:3669 LSEH.LexiToSalt <> term_trans def
 R3671:3671 LSEH.LexiToSalt <> t:43 var
-R3690:3695 LSEH.LexiToSalt <> halt constr
-R3700:3701 Coq.Lists.List ListNotations ::list_scope:'['_']' not
-R3712:3712 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3736:3737 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3741:3741 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
-R3713:3717 LSEH.Salt <> sfree constr
-R3721:3724 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R3734:3734 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
-R3720:3720 LSEH.LexiToSalt <> n:42 var
-R3725:3731 LSEH.LexiToSalt <> num_let def
-R3733:3733 LSEH.LexiToSalt <> t:43 var
-R3738:3740 LSEH.Salt <> ret constr
-def 3761:3770 <> func_trans
-R3775:3784 LSEH.LexiToSalt <> function ind
-binder 3773:3773 <> f:44
-R3789:3797 LSEH.Salt <> instr_seq ind
-R3810:3810 LSEH.LexiToSalt <> f:44 var
-R3817:3822 LSEH.LexiToSalt <> func constr
-R3835:3841 LSEH.Salt <> ins_seq constr
-R3911:3918 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
-R3848:3850 Coq.Lists.List <> map def
-R3893:3900 Coq.Lists.List <> rev def
-R3903:3906 LSEH.LexiToSalt <> iota def
-R3860:3862 Coq.Init.Datatypes <> nat ind
-binder 3858:3858 <> x:46
-R3869:3872 LSEH.Salt <> push constr
-R3875:3879 LSEH.Salt <> reg_o constr
-R3881:3881 LSEH.LexiToSalt <> x:46 var
-R3919:3933 LSEH.LexiToSalt <> func_term_trans def
-def 3958:3967 <> code_trans
-R3972:3977 LSEH.LexiToSalt <> code def
-binder 3970:3970 <> c:47
-R3982:3990 LSEH.LexiToSalt <> program def
-R4004:4011 LSEH.Salt <> code_loc ind
-binder 4002:4002 <> x:48
-R4025:4025 LSEH.LexiToSalt <> x:48 var
-R4032:4039 LSEH.Salt <> cloc_str constr
-R4048:4057 LSEH.LexiToSalt <> func_trans def
-R4060:4060 LSEH.LexiToSalt <> c:47 var
+R3687:3692 LSEH.LexiToSalt <> halt constr
+R3697:3698 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3704:3708 LSEH.LexiToSalt <> jmp constr
+R3715:3716 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3727:3727 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3751:3752 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3756:3756 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R3728:3732 LSEH.Salt <> sfree constr
+R3736:3739 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R3749:3749 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R3735:3735 LSEH.LexiToSalt <> n:42 var
+R3740:3746 LSEH.LexiToSalt <> num_let def
+R3748:3748 LSEH.LexiToSalt <> t:43 var
+R3753:3755 LSEH.Salt <> ret constr
+def 3776:3785 <> func_trans
+R3790:3799 LSEH.LexiToSalt <> function ind
+binder 3788:3788 <> f:44
+R3804:3812 LSEH.Salt <> instr_seq ind
+R3825:3825 LSEH.LexiToSalt <> f:44 var
+R3832:3837 LSEH.LexiToSalt <> func constr
+R3850:3856 LSEH.Salt <> ins_seq constr
+R3926:3933 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R3863:3865 Coq.Lists.List <> map def
+R3908:3915 Coq.Lists.List <> rev def
+R3918:3921 LSEH.LexiToSalt <> iota def
+R3875:3877 Coq.Init.Datatypes <> nat ind
+binder 3873:3873 <> x:46
+R3884:3887 LSEH.Salt <> push constr
+R3890:3894 LSEH.Salt <> reg_o constr
+R3896:3896 LSEH.LexiToSalt <> x:46 var
+R3934:3948 LSEH.LexiToSalt <> func_term_trans def
+def 3973:3982 <> code_trans
+R3987:3992 LSEH.LexiToSalt <> code def
+binder 3985:3985 <> c:47
+R3997:4005 LSEH.LexiToSalt <> program def
+R4019:4026 LSEH.Salt <> code_loc ind
+binder 4017:4017 <> x:48
+R4040:4040 LSEH.LexiToSalt <> x:48 var
+R4047:4054 LSEH.Salt <> cloc_str constr
+R4063:4072 LSEH.LexiToSalt <> func_trans def
+R4075:4075 LSEH.LexiToSalt <> c:47 var
