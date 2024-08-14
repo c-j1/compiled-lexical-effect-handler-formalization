@@ -32,8 +32,7 @@ Inductive trav_exp (p : L.value -> Prop)
     trav_exp p (raise A v1 v2)
 | trav_resume : forall v1 v2,
     p v1 -> p v2 ->
-    trav_exp p (resume v1 v2)
-| trav_exit : forall v, p v -> trav_exp p (exit v).
+    trav_exp p (resume v1 v2).
 Inductive trav_tm (p : nat -> L.value -> Prop)
   : nat -> L.term -> Prop :=
 | trav_halt : forall k, trav_tm p k L.halt
@@ -52,8 +51,10 @@ Inductive wf_val : nat -> L.value -> Prop :=
 | wf_fvar : forall k fvar, wf_val k (var_val (free_var fvar))
 | wf_cst : forall k cst, wf_val k (const_val cst).
 Definition wf_tm (E:local_env) t := trav_tm wf_val (List.length E) t.
-Definition wf_func_tm (f:L.function) :=
-  match f with func i t => trav_tm wf_val i t end.
+Inductive wf_func_tm : L.function -> Prop :=
+| wf_func : forall i t,
+    trav_tm wf_val i t -> wf_func_tm (func i t)
+| wf_ns_func : wf_func_tm ns_func.
 (* ----------------------------------------------------------
             Local Closure of Lexi terms
    ---------------------------------------------------------- *)
@@ -83,7 +84,6 @@ Definition open_exp (k : nat) (u : L.variable) (exp : L.expr)
       L.raise A (open_val k u val1) (open_val k u val2)
   | L.resume val1 val2 =>
       L.resume (open_val k u val1) (open_val k u val2)
-  | L.exit val => L.exit (open_val k u val)
   end.
 Fixpoint open_tm (k : nat) (u : L.variable) (t : L.term)
   : term :=
@@ -118,8 +118,7 @@ Inductive lc_exp : L.expr -> Prop :=
     lc_exp (raise A v1 v2)
 | lc_resume : forall v1 v2,
     lc_val v1 -> lc_val v2 ->
-    lc_exp (resume v1 v2)
-| lc_exit : forall v, lc_val v -> lc_exp (exit v).
+    lc_exp (resume v1 v2).
 
 Inductive lc_term : L.term -> Prop :=
   | lc_bind : forall L exp t,
@@ -133,46 +132,102 @@ Definition body t :=
 (* ----------------------------------------------------------
     Initial & Final Predicates for Lexi and Salt 
    ---------------------------------------------------------- *)
-Definition ns_hloc : S.word := hloc ""%string 0.
-Definition ns_cloc : S.word := cloc ""%string 0.
-Definition ns_hdl_lab : L.hdl_label := hdl_lab ""%string.
-Definition ns_clab : L.code_label := ""%string.
-Inductive init_S (init_lab main_lab:code_loc): S.program ->
-  (S.program * S.heap * reg_file) -> Prop :=
-| mk_init_S : forall (p:program) L_stack dummy_hdl_stk,
-    (* a stack section as a dummy handler *)
-    dummy_hdl_stk = [ns_hloc;int_w 0;ns_hloc;ns_cloc] ->
-    (forall LC x, p = code_trans LC -> wf_func_tm (LC x)) ->
-    init_S init_lab main_lab
-      p (init_lab !->c
-           ins_seq [mov 0 (cloc main_lab 0); call (reg_o 0);
-                    push (reg_o 1); load 1 sp false 0; halt]; p,
-           ([(L_stack,stack dummy_hdl_stk)],th_empty,(sh_empty, th_empty)),
-           [(ip,loc_w (cloc init_lab 0));(sp,loc_w (hloc L_stack 4));
-            (nat_reg 0,ns);(nat_reg 1,ns);
-            (nat_reg 2,ns);(nat_reg 3,ns);(nat_reg 4,ns);
-            (nat_reg 5,ns);(nat_reg 6,ns)]).
+
+
+Definition exit_lab : string := "exit"%string.
+Definition init_lab : string := "init"%string.
+Definition main_lab : string := "main"%string.
 (* note that the value returned after the "exit" doesn't
    matter to the translated program, so we just choose
    000 as an arbitrary value *)
-Inductive init_L (init_lab:code_label):
-  L.program -> (L.code * L.heap * L.eval_context
+Definition L_init_tm :=
+  bind (app (c_lab main_lab) [])
+    (bind (app exit_lab [var_val 0]) (val_term 000)).
+Definition L_init_func :=
+  (exit_lab !->c func 1 L.halt;
+   init_lab !->c func 0 L_init_tm ; L.c_empty)%L_scope.
+
+Definition handle_loc : S.code_loc := "handle"%string.
+Definition handle_sm_stk_loc : S.code_loc := "handle_sm_stk"%string.
+Definition raise_loc : S.code_loc := "raise"%string.
+Definition resume_loc : S.code_loc := "resume"%string.
+
+Definition S_init_ins :=
+  code_mem_trans L_init_func.
+Definition S_builtin_ins :=
+  (handle_loc !->c
+     ins_seq
+     [mov r5 sp; mkstk sp;
+      push r2; push r3;
+      push r4; push r5;
+      mov r6 r1; mov r2 sp;
+      mov r1 r3; call r6;
+      pop r2; sfree 3;
+      mov sp r2; ret];
+   handle_sm_stk_loc !->c
+     ins_seq
+     [push r2; push r3;
+      push r4; push ns;
+      mov r6 r1; mov r2 sp;
+      mov r1 r3; call r6;
+      sfree 4; ret];
+   raise_loc !->c
+     ins_seq
+     [load r4 r1 0; store r1 0 sp;
+      mov sp r4; load r5 r1 3;
+      malloc r3 1; store r3 0 r1;
+      load r1 r1 2; call r5;
+      ret];
+   resume_loc !->c
+     ins_seq
+     [load r3 r1 0; store r1 0 ns;
+      load r4 r3 0; store r3 0 sp;
+      mov r1 r2; mov sp r4;
+      ret];
+   c_empty).
+
+Definition ns_hdl_lab : L.hdl_label := hdl_lab ""%string.
+Definition ns_clab : L.code_label := ""%string.
+Inductive init_L :
+  L.code_mem -> (L.code_mem * L.heap * L.eval_context
                 * L.local_env * L.term) -> Prop :=
-| mk_init_L : forall C (H:L.heap) main_lab init_tm dummy_hdl,
-    init_tm = bind (app (c_lab main_lab) [])
-                (bind (exit (var_val 0)) (val_term 000)) ->
+| mk_init_L : forall (C:L.code_mem) (H:L.heap) dummy_hdl,
     dummy_hdl = h_f (handler_f ns_hdl_lab
                        ns_hdl_lab ns_clab general) ->
+    (forall (x:string) n t,
+        L.c_comp L_init_func C x = func n t ->
+        S_builtin_ins x = ns_ins_seq) ->
     (forall x, wf_func_tm (C x)) ->
-    init_L init_lab
-      (letrec C init_tm)
-      (init_lab !->c func 0 init_tm ; C, L.h_empty, [dummy_hdl] ,[],
-         init_tm)%L_scope.
-Inductive final_L : (L.code * L.heap * L.eval_context *
+    init_L C
+      (L.c_comp L_init_func C,
+        L.h_empty, [dummy_hdl] ,[], L_init_tm)%L_scope.
+Definition ns_hloc : S.word := hloc ""%string 0.
+Definition ns_cloc : S.word := cloc ""%string 0.
+Inductive init_S : S.code_mem ->
+  (S.code_mem * S.heap * reg_file) -> Prop :=
+| mk_init_S : forall (uc:code_mem) L_stack dummy_hdl_stk,
+    (* a stack section as a dummy handler *)
+    dummy_hdl_stk = [ns_hloc;int_w 0;ns_hloc;ns_cloc] ->
+    (forall LC x,
+        uc = code_mem_trans LC ->
+        wf_func_tm (LC x)) ->
+    (forall x lst,
+        c_comp S_init_ins uc x = ins_seq lst ->
+        S_builtin_ins x = ns_ins_seq) ->
+    init_S
+      uc (c_comp S_builtin_ins (c_comp S_init_ins uc),
+        ([(L_stack,stack dummy_hdl_stk)],th_empty,(sh_empty, th_empty)),
+        [(ip,loc_w (cloc init_lab 0));(sp,loc_w (hloc L_stack 4));
+         (r0,ns);(r1,ns);
+         (r2,ns);(r3,ns);(r4,ns);
+         (r5,ns);(r6,ns)]).
+
+
+Inductive final_L : (L.code_mem * L.heap * L.eval_context *
   L.local_env * L.term) -> nat -> Prop :=
   mk_final_L : forall C H K (i:nat),
     final_L (C,H,K,[run_const i],L.halt) i.
-Inductive final_S : (S.program * S.heap * reg_file) -> word -> Prop :=
+Inductive final_S : (S.code_mem * S.heap * reg_file) -> word -> Prop :=
   mk_final_S : forall p H_stk H_conts H_tup R (l:code_location)
     (i:nat) lsp S,
     fetch_instr l p = halt ->
@@ -185,36 +240,37 @@ Inductive final_S : (S.program * S.heap * reg_file) -> word -> Prop :=
    ---------------------------------------------------------- *)
 Inductive LS_rel_run_cst :
   L.runtime_const -> S.word -> Prop :=
-  rel_run_cst :
+| rel_run_cst :
   forall cst, LS_rel_run_cst cst (run_cst_trans cst).
                      
 Inductive LS_rel_run_csts :
   list L.runtime_const -> list S.word -> Prop :=
-  rel_run_csts : forall lstv,
+| rel_run_csts : forall lstv,
     LS_rel_run_csts lstv (List.map run_cst_trans lstv).
 
 Inductive LS_rel_env : L.local_env -> S.stack_heap_val -> Prop :=
-  rel_env : forall envlst,
+| rel_env : forall envlst,
     LS_rel_env envlst (stack (List.map run_cst_trans envlst)).
 Inductive LS_rel_ins : (L.local_env*L.term) -> S.instr_seq -> Prop :=
-  rel_tm : forall E t,
+| rel_ins : forall E t,
+    wf_tm E t ->
     LS_rel_ins (E,t)
       (ins_seq (LS.func_term_trans (List.length E) t)).
-
-Inductive LS_rel_frame : L.a_frame -> S.stack_heap_val -> Prop :=
-  rel_frame : forall E t Ilst C_mem C_lab i lst s,
+Inductive LS_rel_frame (C_mem : S.code_mem): L.a_frame -> S.stack_heap_val -> Prop :=
+  rel_frame : forall E t Ilst C_lab i lst s,
     LS_rel_ins (L.ns :: E,t) (ins_seq (tl Ilst))
     -> C_mem C_lab = ins_seq (lst ++ Ilst)
-    -> List.length lst = i -> LS_rel_env E (stack s) ->
-    LS_rel_frame (act_f E t)
+    -> List.length lst = i -> LS_rel_env E (stack s)
+    -> nth 0 Ilst halt = push r1 ->
+    LS_rel_frame C_mem (act_f E t)
     (stack ((loc_w (cloc C_lab i)) :: s)).
-Inductive LS_rel_frames : (list L.frame)
+Inductive LS_rel_frames (C_mem : S.code_mem) : (list L.frame)
   -> S.stack_heap_val -> Prop :=
-  | rel_noframe : LS_rel_frames [] (stack [])
+  | rel_noframe : LS_rel_frames C_mem [] (stack [])
   | rel_frame_cons : forall Fi si Flst s',
-    LS_rel_frame Fi (stack si)
-    -> LS_rel_frames Flst (stack s')
-    -> LS_rel_frames ((a_f Fi) :: Flst) (stack (si ++ s')).
+    LS_rel_frame C_mem Fi (stack si)
+    -> LS_rel_frames C_mem Flst (stack s')
+    -> LS_rel_frames C_mem ((a_f Fi) :: Flst) (stack (si ++ s')).
 Inductive LS_rel_hdl : L.h_frame -> list S.word -> Prop :=
 | rel_hdl_general : forall (L L_env Clab_op:string) L_prev (s_prev:list word),
     LS_rel_hdl
@@ -235,52 +291,52 @@ Definition is_general_hdl_frame (f:L.h_frame) : bool :=
   | handler_f _ _ _ general => true
   | _ => false
   end.
-Inductive LS_rel_hdl_stk :
+Inductive LS_rel_hdl_stk (C_mem : S.code_mem) :
   list L.frame -> list S.word -> Prop :=
 | rel_hdl_stk_base : forall Flst s frm frm_stk,
-    LS_rel_frames Flst (stack s) ->
+    LS_rel_frames C_mem Flst (stack s) ->
     LS_rel_hdl frm frm_stk ->
     is_general_hdl_frame frm = true ->
-    LS_rel_hdl_stk (Flst ++ [h_f frm]) (s ++ frm_stk)
+    LS_rel_hdl_stk C_mem (Flst ++ [h_f frm]) (s ++ frm_stk)
 | rel_hdl_stk : forall Flst s frm frm_stk Klst slst,
-    LS_rel_hdl_stk Klst slst ->
-    LS_rel_frames Flst (stack s) ->
+    LS_rel_hdl_stk C_mem Klst slst ->
+    LS_rel_frames C_mem Flst (stack s) ->
     LS_rel_hdl frm frm_stk ->
     is_general_hdl_frame frm = false ->
-    LS_rel_hdl_stk (Flst ++ [h_f frm] ++ Klst) (s ++ frm_stk ++ slst).
+    LS_rel_hdl_stk C_mem (Flst ++ [h_f frm] ++ Klst) (s ++ frm_stk ++ slst).
 (* ensures that each stack in the list of stacks
    relates to the corresponding frames of K, in
    the same and correct order
    
    also ensures that all stacks except the first one
    should point to the previous stack*)
-Inductive LS_rel_hdl_stk_lst :
+Inductive LS_rel_hdl_stk_lst (C_mem : S.code_mem):
   list L.frame -> list (S.heap_loc * S.stack_heap_val) -> Prop :=
-| rel_hdl_stk_nil : LS_rel_hdl_stk_lst [] []
+| rel_hdl_stk_nil : LS_rel_hdl_stk_lst C_mem [] []
 | rel_hdl_stk_lst : forall Ks H K s L,
-    LS_rel_hdl_stk_lst Ks H ->
-    LS_rel_hdl_stk K s ->
-    LS_rel_hdl_stk_lst (K ++ Ks) ((L,stack s)::H).
+    LS_rel_hdl_stk_lst C_mem Ks H ->
+    LS_rel_hdl_stk C_mem K s ->
+    LS_rel_hdl_stk_lst C_mem (K ++ Ks) ((L,stack s)::H).
 Definition stk_points_to
   (s s_prev:list S.word) (L:string) :=
   nth_error (rev s) 3 = Some (loc_w (hloc L (List.length s_prev))).
 (* must have at least 1 stack *)
-Inductive LS_rel_eval_ctx :
+Inductive LS_rel_eval_ctx (C_mem : S.code_mem) :
   L.eval_context -> S.stack_heap -> Prop :=
 | rel_hdl_led_ctx : forall Ks H,
     (forall L s s' L' H',
         H = [(L,stack s);(hloc_str L',stack s')] ++ H' ->
         stk_points_to s s' L') ->
-    LS_rel_hdl_stk_lst Ks H ->
-    LS_rel_eval_ctx Ks H.
+    LS_rel_hdl_stk_lst C_mem Ks H ->
+    LS_rel_eval_ctx C_mem Ks H.
 
-Inductive LS_rel_env_context : (L.eval_context * L.local_env) ->
+Inductive LS_rel_env_context (C_mem : S.code_mem) : (L.eval_context * L.local_env) ->
   (S.stack_heap * S.heap_location) -> Prop :=
 | rel_env_context :
   forall s' s_out Ks L_out (E:L.local_env) (H_stack:stack_heap),
-    LS_rel_eval_ctx Ks ((L_out,stack s_out) :: H_stack) ->
+    LS_rel_eval_ctx C_mem Ks ((L_out,stack s_out) :: H_stack) ->
     s' = (List.map run_cst_trans E) ++ s_out ->
-    LS_rel_env_context (Ks, E)
+    LS_rel_env_context C_mem (Ks, E)
       ((L_out, stack s') :: H_stack,
         hloc L_out (List.length s')).
 Inductive LS_rel_tup_heap : L.tup_heap -> S.tuple_heap -> Prop :=
@@ -334,11 +390,14 @@ Inductive LS_rel_heap :
     LS_rel_tup_heap LH_tup SH_tup ->
     (* LS_rel_cont_heap LH_cont SH_conts -> *)
     LS_rel_heap (LH_tup,LH_cont) (SH_conts,SH_tup).
-Inductive LS_rel_code : L.code -> S.program -> Prop :=
+Inductive LS_rel_code_mem : L.code_mem -> S.code_mem -> Prop :=
 | rel_code : forall LC SC,
-    SC = code_trans LC ->
+    SC = code_mem_trans LC ->
     (forall x, wf_func_tm (LC x)) ->
-    LS_rel_code LC SC.
+    (forall (x:string) n t,
+        LC x = func n t ->
+        S_builtin_ins x = ns_ins_seq) ->
+    LS_rel_code_mem LC SC.
 (* | rel_code_func : forall f (x:string) C,
     LS_rel_code (x !->c f ; C)%L_scope
       (cloc_str x !->c func_trans f; (code_trans C)).*)
@@ -354,25 +413,27 @@ Inductive LS_rel_code : L.code -> S.program -> Prop :=
    this LS_rel relation also relates lexi programs containing
    free variables, although we don't care about them. *)
 Inductive LS_rel :
-  (L.code * L.heap * L.eval_context * L.local_env * L.term)
-  -> (S.program * S.heap * reg_file) -> Prop :=
+  (L.code_mem * L.heap * L.eval_context * L.local_env * L.term)
+  -> (S.code_mem * S.heap * reg_file) -> Prop :=
   rel_LS : forall len lst SIlst
     LC LH LK LE Lt SC o0 o1 o2 o3 o4 o5 o6
     (SH_stack:stack_heap) (SH_conts:stack_heap * tuple_heap)
     (SH_tup:tuple_heap)
     (Slsp:heap_location) Clab,
     LS_rel_ins (LE,Lt) (ins_seq SIlst) ->
-    LS_rel_env_context (LK,LE) (SH_stack,Slsp) ->
-    LS_rel_heap LH (SH_conts,SH_tup) -> LS_rel_code LC SC ->
-    SC Clab = ins_seq (lst ++ SIlst) -> List.length lst = len ->
+    LS_rel_env_context (c_comp S_builtin_ins SC)
+      (LK,LE) (SH_stack,Slsp) ->
+    LS_rel_heap LH (SH_conts,SH_tup) ->
+    LS_rel_code_mem LC SC ->
+    (c_comp S_builtin_ins SC) Clab = ins_seq (lst ++ SIlst) ->
+    List.length lst = len ->
     (*lc_term Lt \/ body Lt*)
-    wf_tm LE Lt ->
     LS_rel (LC, LH, LK, LE, Lt)
-      (SC, (SH_stack,SH_tup,SH_conts),
+      (c_comp S_builtin_ins SC, (SH_stack,SH_tup,SH_conts),
         [(ip,loc_w (cloc Clab len));(sp,loc_w Slsp);
-         (nat_reg 0,o0);(nat_reg 1,o1);
-         (nat_reg 2,o2);(nat_reg 3,o3);(nat_reg 4,o4);
-         (nat_reg 5,o5);(nat_reg 6,o6)]).
+         (r0,o0);(r1,o1);
+         (r2,o2);(r3,o3);(r4,o4);
+         (r5,o5);(r6,o6)]).
 (*
 in rel_frame, the constructor for insturction sequence
 shouldn't be ::, but should be ;

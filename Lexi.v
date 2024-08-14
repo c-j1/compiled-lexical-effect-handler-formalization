@@ -46,7 +46,6 @@ Inductive expr : Type :=
            -> annotation -> value -> expr
 | raise : annotation -> value -> value -> expr
 | resume : value -> value -> expr
-| exit : value -> expr
 with term : Type :=
 | val_term : value -> term
 | bind : expr -> term -> term
@@ -69,10 +68,10 @@ Definition tup_heap := obj_label -> heap_tuple.
 Definition cont_heap := obj_label -> heap_cont.
 Definition heap := (tup_heap * cont_heap)%type.
 Inductive function : Type :=
-  func : nat -> term -> function.
-Definition code : Type := code_label -> function.
-Inductive program : Type :=
-  letrec : code -> term -> program.
+| func : nat -> term -> function
+| ns_func.
+Definition code_mem : Type := code_label -> function.
+
 (* Coercions *)
 Coercion dbjind_var : nat >-> variable.
 Coercion free_var : var >-> variable.
@@ -126,16 +125,29 @@ Definition env_fetch (env: local_env) (var:variable)
   end.
 
 (* Code *)
+Definition c_empty : code_mem := fun _ => ns_func.
 Definition c_eqb (a b : code_label) := 
   match a,b with
   | c_lab a', c_lab b' => String.eqb a' b'
   end.
-Definition c_update (m : code) (x : code_label) (v : function) :=
+Definition c_update (m : code_mem) (x : code_label) (v : function) :=
   fun x' => if c_eqb x x' then v else m x'.
-
+Definition c_comp (c1:code_mem) (c2:code_mem) :=
+  fun x => match c1 x with
+           | ns_func => c2 x
+           | _ => c1 x
+           end.
 Notation "x '!->c' v ';' m" :=
   (c_update m x v)
     (at level 100, v at next level, right associativity):Lexi_scope.
+(* annotation *)
+Definition a_eqb (a b : annotation) :=
+  match a,b with
+  | general,general => true
+  | tail,tail => true
+  | abort,abort => true
+  | _,_ => false
+  end.
 (* --------------------------------------------
                   Other helpers
    -------------------------------------------- *)
@@ -163,7 +175,7 @@ Definition var_deref (E:local_env) (val:value)
 
    Also we view lambda x y body as lambda x (lambda y body),
    so the de brujin index for x is 1 and y is 0.*)
-Inductive step (C:code) :
+Inductive step (C:code_mem) :
   (heap * eval_context * local_env * term)
   -> (heap * eval_context * local_env * term) -> Prop :=
 | L_arith : forall H K E t (v1 v2:value) (i1 i2:nat),
@@ -192,23 +204,21 @@ Inductive step (C:code) :
 | L_app : forall H K E t t' (n:nat) (v v':value) (lst:list value)
                  (lab:code_label),
     var_deref E v = lab ->
-    C lab = func (List.length lst) t' -> lst = [v'] ->
+    C lab = func (List.length lst) t' ->
+    lst = [v'] ->
     step C (H,K,E,bind (app v lst) t)
-      (H, (a_f(act_f E t)) :: K,
+      (H, (a_f (act_f E t)) :: K,
         rev (List.map (var_deref E) lst),t')
 | L_ret : forall H K E E' t (v:value),
     step C (H,(a_f(act_f E t)) :: K,E',val_term v)
       (H,K,(var_deref E' v) :: E,t)
-| L_exit : forall H K E t (v:value)  (c:runtime_const),
-    var_deref E v = c ->
-    step C (H,K,E,bind (exit v) t)
-      (H,(a_f (act_f E t)) :: K,[var_deref E v],halt)
 | L_handle :
   forall H K E t t'
          (v_env:value) (A:annotation)
          (lab_body lab_op:code_label) (L L_env:hdl_label),
-    (* L fresh *) C lab_body = func 2 t' ->
+    (* L fresh *)
     var_deref E v_env = L_env ->
+    C lab_body = func 2 t' ->
     step C (H,K,E, bind (handle lab_body lab_op A v_env) t)
       (H, ([h_f(handler_f L L_env lab_op A);a_f(act_f E t)] ++ K),
         [d_lab_const L; d_lab_const L_env],t')
@@ -224,7 +234,8 @@ Inductive step (C:code) :
   forall tH cH K K' E t t' (v1 v2:value)
          (L L_env:hdl_label) (L_k:obj_label) (L_y:data_label) (lab_op:code_label),
     cH L_k = empty_cont -> var_deref E v1 = L ->
-    C lab_op = func 3 t' -> var_deref E v2 = L_y ->
+    var_deref E v2 = L_y ->
+    C lab_op = func 3 t' ->
     step C (tH,cH,K' ++ [h_f (handler_f L L_env lab_op general)] ++ K,E,
         bind (raise general v1 v2) t)
       (tH, L_k !->ch 
@@ -242,8 +253,9 @@ Inductive step (C:code) :
 | L_tailraise :
   forall H K K' E t t' (v1 v2:value)
          (L L_env:hdl_label) (L_y:data_label) (lab_op:code_label),
-    var_deref E v1 = L -> C lab_op = func 2 t' ->
+    var_deref E v1 = L ->
     var_deref E v2 = L_y ->
+    C lab_op = func 2 t' ->
     step C (H,K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,E,
         bind (raise tail v1 v2) t)
       (H,
@@ -252,8 +264,9 @@ Inductive step (C:code) :
 | L_abortraise :
   forall H K K' E t t' (v1 v2:value)
          (L L_env:hdl_label) (L_y:data_label) (lab_op:code_label),
-    var_deref E v1 = L -> C lab_op = func 2 t' ->
+    var_deref E v1 = L ->
     var_deref E v2 = L_y ->
+    C lab_op = func 2 t' ->
     step C (H,K' ++ [h_f (handler_f L L_env lab_op abort)] ++ K,E,
         bind (raise abort v1 v2) t)
       (H,K,[d_lab_const L_y;d_lab_const L_env],t').

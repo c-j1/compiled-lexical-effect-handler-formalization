@@ -1,4 +1,4 @@
-DIGEST abe8f896e6178d7a00d2cf2ce9e7d2f7
+DIGEST eb26eff1515c086d8ca5b8fd3563caa5
 FLSEH.Infrastructure
 R15:24 Coq.Lists.List <> <> lib
 R34:46 Coq.Lists.List ListNotations <> mod
@@ -410,52 +410,50 @@ R3133:3138 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
 R3150:3150 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
 R3122:3127 LSEH.Infrastructure <> fv_val def
 R3139:3144 LSEH.Infrastructure <> fv_val def
-R3156:3161 LSEH.RelConfig L exit constr
-R3170:3175 LSEH.Infrastructure <> fv_val def
-def 3197:3198 <> fv
-R3206:3211 LSEH.RelConfig L term ind
-binder 3201:3202 <> tm:39
-R3216:3219 TLC.LibVar Variables vars def
-R3232:3233 LSEH.Infrastructure <> tm:39 var
-R3244:3247 LSEH.Lexi <> bind constr
-R3258:3258 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R3269:3274 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R3279:3279 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R3259:3264 LSEH.Infrastructure <> fv_exp def
-R3275:3276 LSEH.Infrastructure <> fv:40 def
-R3285:3292 LSEH.Lexi <> val_term constr
-R3300:3305 LSEH.Infrastructure <> fv_val def
-R3314:3319 LSEH.RelConfig L halt constr
-R3324:3326 TLC.LibFset FsetSig ::fset_scope:'\{}' not
-R3693:3696 TLC.LibVar Variables vars def
-binder 3689:3689 <> x:42
-R3701:3701 LSEH.Infrastructure <> x:42 var
-R3744:3746 TLC.LibVar Variables var defax
-binder 3740:3740 <> x:43
-R3751:3752 TLC.LibFset FsetSig ::fset_scope:'\{'_x_'}' not
-R3754:3754 TLC.LibFset FsetSig ::fset_scope:'\{'_x_'}' not
-R3753:3753 LSEH.Infrastructure <> x:43 var
-R3797:3803 LSEH.RelConfig L value ind
-binder 3793:3793 <> x:44
-R3808:3813 LSEH.Infrastructure <> fv_val def
-R3815:3815 LSEH.Infrastructure <> x:44 var
-R3859:3862 Coq.Init.Datatypes <> list ind
-R3864:3870 LSEH.RelConfig L value ind
-binder 3855:3855 <> x:45
-R3876:3882 LSEH.Infrastructure <> fv_vlst def
-R3884:3884 LSEH.Infrastructure <> x:45 var
-R3927:3932 LSEH.RelConfig L expr ind
-binder 3923:3923 <> x:46
-R3937:3942 LSEH.Infrastructure <> fv_exp def
-R3944:3944 LSEH.Infrastructure <> x:46 var
-R3987:3992 LSEH.RelConfig L term ind
-binder 3983:3983 <> x:47
-R3997:3998 LSEH.Infrastructure <> fv def
-R4000:4000 LSEH.Infrastructure <> x:47 var
-R4017:4020 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R4022:4025 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R4027:4030 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R4032:4035 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R4037:4040 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
-R4867:4873 LSEH.Infrastructure <> lc_term ind
-R4875:4880 LSEH.Infrastructure <> L.step ind
+def 3168:3169 <> fv
+R3177:3182 LSEH.RelConfig L term ind
+binder 3172:3173 <> tm:39
+R3187:3190 TLC.LibVar Variables vars def
+R3203:3204 LSEH.Infrastructure <> tm:39 var
+R3215:3218 LSEH.Lexi <> bind constr
+R3229:3229 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R3240:3245 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R3250:3250 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R3230:3235 LSEH.Infrastructure <> fv_exp def
+R3246:3247 LSEH.Infrastructure <> fv:40 def
+R3256:3263 LSEH.Lexi <> val_term constr
+R3271:3276 LSEH.Infrastructure <> fv_val def
+R3285:3290 LSEH.RelConfig L halt constr
+R3295:3297 TLC.LibFset FsetSig ::fset_scope:'\{}' not
+R3664:3667 TLC.LibVar Variables vars def
+binder 3660:3660 <> x:42
+R3672:3672 LSEH.Infrastructure <> x:42 var
+R3715:3717 TLC.LibVar Variables var defax
+binder 3711:3711 <> x:43
+R3722:3723 TLC.LibFset FsetSig ::fset_scope:'\{'_x_'}' not
+R3725:3725 TLC.LibFset FsetSig ::fset_scope:'\{'_x_'}' not
+R3724:3724 LSEH.Infrastructure <> x:43 var
+R3768:3774 LSEH.RelConfig L value ind
+binder 3764:3764 <> x:44
+R3779:3784 LSEH.Infrastructure <> fv_val def
+R3786:3786 LSEH.Infrastructure <> x:44 var
+R3830:3833 Coq.Init.Datatypes <> list ind
+R3835:3841 LSEH.RelConfig L value ind
+binder 3826:3826 <> x:45
+R3847:3853 LSEH.Infrastructure <> fv_vlst def
+R3855:3855 LSEH.Infrastructure <> x:45 var
+R3898:3903 LSEH.RelConfig L expr ind
+binder 3894:3894 <> x:46
+R3908:3913 LSEH.Infrastructure <> fv_exp def
+R3915:3915 LSEH.Infrastructure <> x:46 var
+R3958:3963 LSEH.RelConfig L term ind
+binder 3954:3954 <> x:47
+R3968:3969 LSEH.Infrastructure <> fv def
+R3971:3971 LSEH.Infrastructure <> x:47 var
+R3988:3991 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R3993:3996 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R3998:4001 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R4003:4006 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R4008:4011 TLC.LibFset FsetSig ::fset_scope:x_'\u'_x not
+R4838:4844 LSEH.Infrastructure <> lc_term ind
+R4846:4851 LSEH.Infrastructure <> L.step ind

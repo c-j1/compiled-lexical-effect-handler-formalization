@@ -81,7 +81,6 @@ Definition fv_exp (exp : L.expr) : vars :=
       (fv_val val1) \u (fv_val val2)
   | L.resume val1 val2 =>
       (fv_val val1) \u (fv_val val2)
-  | L.exit val => fv_val val
   end.
 Fixpoint fv (tm : L.term) : vars :=
   match tm with
