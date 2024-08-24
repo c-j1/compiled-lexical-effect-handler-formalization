@@ -33,8 +33,8 @@ Inductive instr : Type :=
   | sfree : nat -> instr
   | malloc : register -> nat -> instr
   | mov : register -> operand -> instr
-  | load : register -> register -> nat -> instr
-  | store : register -> nat -> operand -> instr
+  | load : register -> register -> bool -> nat -> instr
+  | store : register -> bool -> nat -> operand -> instr
   | push : operand -> instr
   | pop : register -> instr
   | call : operand -> instr
@@ -42,8 +42,7 @@ Inductive instr : Type :=
   | ret
   | halt.
 Inductive stack_heap_val : Type :=
-  | stack : list word -> stack_heap_val
-  | no_stacks.
+  | stack : list word -> stack_heap_val.
 Inductive tuple_heap_val : Type :=
   | tuple : list word -> tuple_heap_val.
 Definition heap_val := (stack_heap_val + tuple_heap_val)%type.
@@ -57,7 +56,7 @@ Definition stack_heap : Type :=
 Definition tuple_heap : Type := heap_loc -> tuple_heap_val.
 (* K and E, continuations in heap, then tuples *)
 Definition heap : Type :=
-  (stack_heap * tuple_heap * (stack_heap * tuple_heap)).
+  (stack_heap * tuple_heap).
 Definition code_mem : Type := code_loc -> instr_seq.
 (* Coercions *)
 Coercion hloc_str : string >-> heap_loc.
@@ -115,7 +114,7 @@ Definition h_eqb a b :=
 Definition sh_empty : stack_heap := nil.
 Definition th_empty : tuple_heap := fun _ => tuple nil.
 Definition h_empty : heap :=
-  (sh_empty, th_empty, (sh_empty, th_empty)).
+  (sh_empty, th_empty).
 Fixpoint sh_update (sh:stack_heap) (x:heap_loc)
   (v:stack_heap_val) :=
   match sh with
@@ -126,6 +125,11 @@ Fixpoint sh_update (sh:stack_heap) (x:heap_loc)
 Definition th_update (th:tuple_heap) (x:heap_loc)
   (v:tuple_heap_val) :=
   (fun x' => if h_eqb x x' then v else th x').
+Definition th_comp (h1:tuple_heap) (h2:tuple_heap) :=
+  fun x => match h1 x with
+           | tuple [] => h2 x
+           | _ => h1 x
+           end.
 (*Definition h_update (h : heap) (x : heap_loc) 
   (v : heap_val) :=
   match v, h with
@@ -226,13 +230,13 @@ Definition operand_value o (r_file:reg_file) :=
 (* --------------------------------------------
           Section for H hat of paper
    -------------------------------------------- *)
-Fixpoint stk_heap_app (sh: stack_heap) (loc: heap_loc) :=
+(* Fixpoint stk_heap_app (sh: stack_heap) (loc: heap_loc) :=
   match sh with
   | (x,v) :: sh' =>
     if h_eqb x loc then v else stk_heap_app sh' loc
   | [] => no_stacks
   end.
-(*Definition fresh (h:heap) (loc:heap_loc) : bool :=
+Definition fresh (h:heap) (loc:heap_loc) : bool :=
   match h with (s1,s2,t) =>
     match stk_heap_app s1 loc, stk_heap_app s2 loc, t loc with
     | no_stacks, no_stacks, tuple nil => true
@@ -274,176 +278,221 @@ Inductive step (P:code_mem) :
       (H, ip !->r next_cloc l; reg !->r w1+w2 ; R)
 | S_mkstk :
   forall (H_stk:stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
          (R:reg_file) (l:code_location) (reg:register) (L:heap_loc),
     reg_app R ip = l -> fetch_instr l P = mkstk reg
     -> (*fresh (H_stk,H_cont,H_tup) L = true ->*)
-    step P (H_stk,H_tup,H_conts,R)
-      ((L,stack nil) :: H_stk,H_tup,H_conts,
+    step P (H_stk,H_tup,R)
+      ((L,stack nil) :: H_stk,H_tup,
       ip !->r next_cloc l; reg !->r hloc L 0; R)
 | S_salloc :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
          (R:reg_file) (l:code_location) (n j:nat)
          (lsp:heap_loc) (lst:list word),
     reg_app R ip = l -> fetch_instr l P = salloc n
     -> reg_app R sp = hloc lsp j
     -> H_stk = (lsp, stack lst) :: H_stk'
     -> List.length lst = j ->
-    step P (H_stk,H_tup,H_conts,R)
-      ((lsp,stack (n_cons n ns lst)) :: H_stk',H_tup,H_conts,
+    step P (H_stk,H_tup,R)
+      ((lsp,stack (n_cons n ns lst)) :: H_stk',H_tup,
         ip !->r next_cloc l; sp !->r  hloc lsp (j+n); R)
 | S_push :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
          (R:reg_file) (l:code_location)
          (o:operand) (j:nat) (lsp:heap_loc) (lst:list word),
     reg_app R ip = l -> fetch_instr l P = push o
     -> reg_app R sp = hloc lsp j
     -> H_stk = (lsp, stack lst) :: H_stk'
     -> List.length lst = j ->
-    step P (H_stk,H_tup,H_conts,R)
+    step P (H_stk,H_tup,R)
       ((lsp,stack (cons (operand_value o R) lst)) :: H_stk',
-        H_tup, H_conts,
+        H_tup,
         ip !->r next_cloc l; sp !->r hloc lsp (1+j); R)
 | S_sfree :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
          (R:reg_file) (l:code_location)
          (j n:nat) (lsp:heap_loc) (lst:list word),
     reg_app R ip = l -> fetch_instr l P = sfree n
     -> reg_app R sp = hloc lsp j
     -> H_stk = (lsp, stack lst) :: H_stk'
     -> n <= j -> List.length lst = j ->
-    step P (H_stk,H_tup,H_conts,R)
-      ((lsp,stack (skipn n lst)) :: H_stk',H_tup,H_conts,
+    step P (H_stk,H_tup,R)
+      ((lsp,stack (skipn n lst)) :: H_stk',H_tup,
         ip !->r next_cloc l; sp !->r  hloc lsp (j-n); R)
 | S_pop :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
          (R:reg_file) (l:code_location)
          (j:nat) (reg:register) (lsp:heap_loc) (lst:list word),
     reg_app R ip = l -> fetch_instr l P = pop reg
     -> reg_app R sp = hloc lsp j
     -> H_stk = (lsp, stack lst) :: H_stk'
     -> 0 < j -> List.length lst = j ->
-    step P (H_stk,H_tup,H_conts,R)
-      ((lsp,stack (tl lst)) :: H_stk',H_tup,H_conts,
+    step P (H_stk,H_tup,R)
+      ((lsp,stack (tl lst)) :: H_stk',H_tup,
         ip !->r next_cloc l; reg !->r (List.hd ns lst);
        sp !->r  hloc lsp (j-1); R)
-| S_malloc :
-  forall (H_stk:stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
+| S_malloc_v :
+  forall (H_stk:stack_heap) (H_tup H_vtup H_ctup:tuple_heap)
          (R:reg_file) (l:code_location) (i:nat)
          (d:register) (L:heap_loc),
-    reg_app R ip = l -> fetch_instr l P = malloc d i
-    -> (*fresh (H_stks,H_tup) L = true ->*)
-      step P (H_stk,H_tup,H_conts,R)
-        (H_stk,L !->t tuple (n_cons i ns nil) ; H_tup,H_conts,
+    reg_app R ip = l -> fetch_instr l P = malloc d i ->
+    H_tup = th_comp H_vtup H_ctup ->
+    (*fresh (H_stks,H_tup) L = true ->*)
+      step P (H_stk,H_tup,R)
+        (H_stk,th_comp (L !->t tuple (n_cons i ns nil) ; H_vtup)
+          H_ctup,
+           ip !->r next_cloc l ; d !->r hloc L 0 ;R)
+| S_malloc_c :
+  forall (H_stk:stack_heap) (H_tup H_vtup H_ctup:tuple_heap)
+         (R:reg_file) (l:code_location) (i:nat)
+         (d:register) (L:heap_loc),
+    reg_app R ip = l -> fetch_instr l P = malloc d i ->
+    H_tup = th_comp H_vtup H_ctup ->
+    (*fresh (H_stks,H_tup) L = true ->*)
+      step P (H_stk,H_tup,R)
+        (H_stk,th_comp H_vtup
+                 (L !->t tuple (n_cons i ns nil) ; H_ctup),
            ip !->r next_cloc l ; d !->r hloc L 0 ;R)
 | S_mov : forall (H:heap) (R:reg_file) (l:code_location)
                  (d:register) (o:operand),
     reg_app R ip = l -> fetch_instr l P = mov d o ->
     step P (H,R)
       (H, ip !->r next_cloc l; d !->r (operand_value o R); R)
-| S_mov_sp_raise :
-  forall (H_stk H_stk_hd H_stk' H_cont:stack_heap)
+| S_mov_sp_to_cont :
+  forall (H_stk H_stk_ld H_stk_ed H_cont:stack_heap)
+         (H_tup:tuple_heap) (R:reg_file) (l:code_location)
+         (o:operand) (L:heap_loc) (lst:list word) (j k:nat),
+    reg_app R ip = l -> fetch_instr l P = mov sp o
+    -> operand_value o R = hloc L j
+    -> H_stk = H_stk_ld ++ (L, stack lst) :: H_stk_ed
+    -> List.length lst = k -> j <= k ->
+    step P (H_stk ++ H_cont,H_tup,R)
+      ((L,stack (skipn (k-j) lst)) :: H_stk_ed ++
+        H_stk_ld ++ H_cont, H_tup,
+        ip !->r next_cloc l; sp !->r hloc L j ; R)
+| S_mov_sp_from_cont :
+  forall (H_stk H_cont_ld H_cont' H_cont_ed H_cont:stack_heap)
          (H_tup H_ctup:tuple_heap) (R:reg_file) (l:code_location)
          (o:operand) (L:heap_loc) (lst:list word) (j k:nat),
     reg_app R ip = l -> fetch_instr l P = mov sp o
     -> operand_value o R = hloc L j
-    -> H_stk = H_stk_hd ++ (L, stack lst) :: H_stk'
+    -> H_cont = H_cont_ld ++
+                  (L, stack lst) :: H_cont' ++ H_cont_ed
     -> List.length lst = k -> j <= k ->
-    step P (H_stk,H_tup,(H_cont,H_ctup),R)
-      ((L,stack (skipn (k-j) lst)) :: H_stk',H_tup,
-        ((rev H_stk_hd) ++ H_cont, H_ctup),
+    step P (H_stk ++ H_cont,H_tup,R)
+      ((L,stack (skipn (k-j) lst)) :: H_cont' ++ H_stk
+        ++ H_cont', H_tup,
         ip !->r next_cloc l; sp !->r hloc L j ; R)
-| S_mov_sp_resume :
-  forall (H_stk H_cont_hd H_cont' H_cont:stack_heap)
-         (H_tup H_ctup:tuple_heap) (R:reg_file) (l:code_location)
-         (o:operand) (L:heap_loc) (lst:list word) (j k:nat),
-    reg_app R ip = l -> fetch_instr l P = mov sp o
-    -> operand_value o R = hloc L j
-    -> H_cont = H_cont_hd ++ (L, stack lst) :: H_cont'
-    -> List.length lst = k -> j <= k ->
-    step P (H_stk,H_tup,(H_cont,H_ctup),R)
-      ((L,stack (skipn (k-j) lst)) :: (rev H_cont_hd) ++ H_stk,
-        H_tup,(H_cont', H_ctup),
-        ip !->r next_cloc l; sp !->r hloc L j ; R)
-| S_mov_sp_lvhdl :
-  forall (H_stk H_stk_hd H_stk':stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
+| S_mov_sp_del :
+  forall (H_stk H_stk_ld H_stk_ed:stack_heap) (H_tup:tuple_heap)
          (R:reg_file) (l:code_location)
-         (o:operand) (L:heap_loc) (lst:list word) (j k:nat),
+         (o:operand) (L L_fst:heap_loc)
+         (lst s_fst:list word) (j k:nat),
     reg_app R ip = l -> fetch_instr l P = mov sp o
     -> operand_value o R = hloc L j
-    -> H_stk = H_stk_hd ++ (L, stack lst) :: H_stk'
+    -> H_stk = (L_fst,stack s_fst) :: H_stk_ld
+                 ++ (L, stack lst) :: H_stk_ed
     -> List.length lst = k -> j <= k ->
-    step P (H_stk,H_tup,H_conts,R)
-      ((L,stack (skipn (k-j) lst)) :: H_stk',
-        H_tup, H_conts,
+    step P (H_stk,H_tup,R)
+      ((L,stack (skipn (k-j) lst)) :: H_stk_ld ++ H_stk_ed,
+        H_tup,
         ip !->r next_cloc l; sp !->r hloc L j ; R)
 | S_load_stk :
-  forall (H_stk H_cont:stack_heap) (H_tup H_ctup:tuple_heap)
+  forall (H_stk H_stk_ld H_stk_ed:stack_heap) (H_tup:tuple_heap)
+         (R:reg_file) (l:code_location)
+         (L:heap_loc) (s:register)
+         (load_off reg_off:nat)
+         (d:register) lst H,
+    (* true means addition and false subtraction *)
+    reg_app R ip = l -> fetch_instr l P = load d s false load_off
+    -> reg_app R s = hloc L reg_off ->
+    H = (H_stk,H_tup) ->
+    H_stk = H_stk_ld ++ (L,stack lst) :: H_stk_ed ->
+    step P (H,R)
+      (H, ip !->r next_cloc l;
+       d !->r nth (List.length lst - reg_off + load_off) lst ns; R)
+(*match sign with
+  | true => reg_off + load_off
+  | false => 
+  end*)
+| S_load_tup_v :
+  forall (H_stk:stack_heap) (H_vtup H_ctup:tuple_heap)
          (R:reg_file) (l:code_location)
          (L:heap_loc) (s:register) (off:nat)
-         (d:register) lst,
-    (* true means addition and false subtraction *)
-    reg_app R ip = l -> fetch_instr l P = load d s off
+         (d:register) lst H,
+    reg_app R ip = l -> fetch_instr l P = load d s true off
     -> reg_app R s = hloc L 0 ->
-    stk_heap_app H_stk L = stack lst \/
-      stk_heap_app H_cont L = stack lst ->
-    step P (H_stk,H_tup,(H_cont,H_ctup),R)
-      (H_stk,H_tup,(H_cont,H_ctup), ip !->r next_cloc l;
-       d !->r nth off (rev lst) ns; R)
-| S_load_sp :
-  forall (H_stk:stack_heap) (H_tup:tuple_heap) H_conts
-         (R:reg_file) (l:code_location)
-         (L:heap_loc) (off i:nat)
-         (d:register) lst,
-    (* true means addition and false subtraction *)
-    reg_app R ip = l -> fetch_instr l P = load d sp off
-    -> reg_app R sp = hloc L i ->
-    stk_heap_app H_stk L = stack lst ->
-    step P (H_stk,H_tup,H_conts,R)
-      (H_stk,H_tup,H_conts, ip !->r next_cloc l;
-       d !->r nth (List.length lst - i + off) lst ns; R)
-| S_load_tup :
-  forall (H_stk:stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
-         (R:reg_file) (l:code_location)
-         (L:heap_loc) (s:register) (off:nat)
-         (d:register) lst,
-    reg_app R ip = l -> fetch_instr l P = load d s off
-    -> reg_app R s = hloc L 0 ->
-    H_tup L = tuple lst ->
-    step P (H_stk,H_tup,H_conts,R)
-      (H_stk,H_tup,H_conts, ip !->r next_cloc l;
+    H = (H_stk,th_comp H_vtup H_ctup) ->
+    H_vtup L = tuple lst ->
+    step P (H,R)
+      (H, ip !->r next_cloc l;
        d !->r nth off lst ns; R)
-| S_store :
-  forall (H_conts:stack_heap * tuple_heap)
-         (H_stk:stack_heap) (H_tup:tuple_heap)
+| S_load_tup_c :
+  forall (H_stk:stack_heap) (H_vtup H_ctup:tuple_heap)
+         (R:reg_file) (l:code_location)
+         (L:heap_loc) (s:register) (off:nat)
+         (d:register) lst H,
+    reg_app R ip = l -> fetch_instr l P = load d s true off
+    -> reg_app R s = hloc L 0 ->
+    H = (H_stk,th_comp H_vtup H_ctup) ->
+    H_ctup L = tuple lst ->
+    step P (H,R)
+      (H, ip !->r next_cloc l;
+       d !->r nth off lst ns; R)
+| S_store_stk :
+  forall (H_stk H_stk_ld H_stk_ed:stack_heap) (H_tup:tuple_heap)
+         (R:reg_file) (l:code_location)
+         (L:heap_loc) (reg_off load_off:nat) (o:operand)
+         (d:register) (lst:list word),
+    reg_app R ip = l ->
+    fetch_instr l P = store d false load_off o
+    -> reg_app R d = hloc L reg_off ->
+    H_stk = H_stk_ld ++ (L, stack lst) :: H_stk_ed ->
+    load_off < List.length lst ->
+    step P (H_stk,H_tup,R)
+      (H_stk_ld ++
+         (L, stack (update_nth load_off
+                      lst (operand_value o R)))
+         :: H_stk_ed, H_tup,
+        ip !->r next_cloc l; R)
+| S_store_v :
+  forall (H_stk:stack_heap) (H_tup H_vtup H_ctup:tuple_heap)
          (R:reg_file) (l:code_location)
          (L:heap_loc) (j:nat) (o:operand)
          (d:register) (lst:list word),
-    reg_app R ip = l -> fetch_instr l P = store d j o
-    -> reg_app R d = hloc L 0
-    -> H_tup L = tuple lst
-    -> j < List.length lst ->
-    step P (H_stk,H_tup,H_conts,R)
-      (H_stk,L !->t tuple (update_nth j lst (operand_value o R)); H_tup,
-         H_conts,
+    reg_app R ip = l -> fetch_instr l P = store d true j o
+    -> reg_app R d = hloc L 0 ->
+    H_tup = th_comp H_vtup H_ctup ->
+    H_vtup L = tuple lst ->
+    j < List.length lst ->
+    step P (H_stk,H_tup,R)
+      (H_stk,th_comp
+               (L !->t tuple (update_nth j lst (operand_value o R));
+                H_vtup) H_ctup,
+        ip !->r next_cloc l; R)
+| S_store_c :
+  forall (H_stk:stack_heap) (H_tup H_vtup H_ctup:tuple_heap)
+         (R:reg_file) (l:code_location)
+         (L:heap_loc) (j:nat) (o:operand)
+         (d:register) (lst:list word),
+    reg_app R ip = l -> fetch_instr l P = store d true j o
+    -> reg_app R d = hloc L 0 ->
+    H_tup = th_comp H_vtup H_ctup ->
+    H_ctup L = tuple lst ->
+    j < List.length lst ->
+    step P (H_stk,H_tup,R)
+      (H_stk,th_comp H_vtup
+               (L !->t tuple (update_nth j lst (operand_value o R));
+                H_ctup),
          ip !->r next_cloc l; R)
 | S_call :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
          (R:reg_file) (l l_dst:code_location)
          (lsp:heap_loc) (j:nat) (o:operand) (lst:list word),
     reg_app R ip = l -> fetch_instr l P = call o
     -> reg_app R sp = hloc lsp j -> H_stk = (lsp,stack lst) :: H_stk'
     -> List.length lst = j -> operand_value o R = l_dst ->
-    step P (H_stk,H_tup,H_conts,R)
-      ((lsp,stack ((loc_w(next_cloc l)) :: lst)) :: H_stk',H_tup,H_conts,
+    step P (H_stk,H_tup,R)
+      ((lsp,stack ((loc_w(next_cloc l)) :: lst)) :: H_stk',H_tup,
         ip !->r l_dst; sp !->r hloc lsp (S j); R)
 | S_jmp :
   forall (H:heap) (R:reg_file) (l l':code_location)
@@ -453,16 +502,16 @@ Inductive step (P:code_mem) :
     step P (H,R) (H, ip !->r l' ; R)
 | S_ret :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
-         (H_conts:stack_heap * tuple_heap)
-         (R:reg_file) (l l':code_location)
-         (lst:list word) (j:nat) (lsp:heap_loc),
+         (R:reg_file) (l:code_location)
+         (lst:list word) (pred_j:nat) (lsp:heap_loc),
     reg_app R ip = l -> fetch_instr l P = ret
-    -> reg_app R sp = hloc lsp j ->
-    H_stk = (lsp,stack ((loc_w l') :: lst)) :: H_stk'
-    -> List.length lst = j-1 ->
-    step P (H_stk,H_tup,H_conts,R)
-      ((lsp,stack lst)::H_stk',H_tup,H_conts,
-        ip !->r l'; sp !->r hloc lsp (j-1); R).
+    -> reg_app R sp = hloc lsp (S pred_j) ->
+    H_stk = (lsp,stack lst) :: H_stk' ->
+    List.length (tl lst) = pred_j ->
+    lst <> [] ->
+    step P (H_stk, H_tup,R)
+      ((lsp,stack (tl lst))::H_stk',H_tup,
+        ip !->r hd ns lst; sp !->r hloc lsp pred_j; R).
 (* Some properties and lemmas to be used later 
 Lemma reg_eqb_refl : forall a, reg_eqb a a = true.
 Proof with simpl;try reflexivity;auto.

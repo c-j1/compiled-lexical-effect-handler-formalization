@@ -1,16 +1,20 @@
 Require Import Lists.List. Import ListNotations.
 Require Import Strings.String.
 Require Import Logic.FunctionalExtensionality.
+Require Import Lia.
 From TLC Require Import LibLN.
 From LSEH Require Import Lexi.
 From LSEH Require Import Salt.
 From LSEH Require Import LexiToSalt.
 From LSEH Require Import RelConfig.
-
+Ltac trysolve :=
+  try easy;try discriminate;
+  try congruence;try tauto;
+  try lia;auto;eauto.
 Ltac automate :=
-  subst; auto;repeat constructor;subst;try easy;
-  try discriminate;try congruence;try tauto.
-Ltac super_a := repeat (cbn;automate;cbn).
+  repeat (trysolve;try constructor;trysolve;subst).
+Ltac super_a :=
+  repeat (automate;cbn).
 
 (* ---------------------------------------------------------
    ------------------ Lemmas for Salt ----------------------
@@ -23,7 +27,7 @@ Theorem reg_file_front_update : forall (R:reg_file) a v1 v2
   R = [(ip,oi);(sp,os);(nat_reg 1,o1);(nat_reg 2,o2);(nat_reg 3,o3);
       (nat_reg 4,o4);(nat_reg 5,o5);(nat_reg 6,o6)] ->
   (a !->r v1; a !->r v2; R) = (a !->r v1; R).
-Proof. intros. repeat (destruct H;automate). Qed.
+Proof. intros. repeat (destruct H;super_a). Qed.
 Theorem reg_file_swap : forall R a b v1 v2
   oi os o1 o2 o3 o4 o5 o6,
   (a = ip \/ a = sp \/ a = nat_reg 1 \/ a = nat_reg 2 \/
@@ -36,7 +40,7 @@ Theorem reg_file_swap : forall R a b v1 v2
   R = [(ip,oi);(sp,os);(nat_reg 1,o1);(nat_reg 2,o2);(nat_reg 3,o3);
       (nat_reg 4,o4);(nat_reg 5,o5);(nat_reg 6,o6)] ->
   (a !->r v1; b !->r v2; R) = (b !->r v2; a !->r v1; R).
-Proof with automate.
+Proof with super_a.
   intros. subst.
   repeat (destruct H as [ | ]);
   repeat (destruct H0 as [ | ])...

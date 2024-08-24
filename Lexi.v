@@ -17,15 +17,16 @@ Inductive variable :=
 Inductive code_label := c_lab : string -> code_label.
 Inductive obj_label := obj_lab : string -> obj_label.
 Inductive hdl_label := hdl_lab : string -> hdl_label.
-Inductive data_label : Type := 
+(*Inductive data_label : Type := 
 | obj_data_lab : obj_label -> data_label
-| hdl_data_lab : hdl_label -> data_label.
+| hdl_data_lab : hdl_label -> data_label.*)
 Inductive static_const : Type :=
 | nat_const : nat -> static_const
 | c_lab_const : code_label -> static_const.
 Inductive runtime_const : Type :=
 | run_const : static_const -> runtime_const
-| d_lab_const : data_label -> runtime_const
+| obj_lab_const : obj_label -> runtime_const
+| hdl_lab_const : hdl_label -> runtime_const
 | ns.
 Inductive value :=
 | const_val : static_const -> value
@@ -53,7 +54,7 @@ with term : Type :=
 with a_frame: Type :=
   act_f : local_env -> term -> a_frame
 with h_frame : Type :=
-  handler_f : hdl_label -> hdl_label ->
+  handler_f : hdl_label -> obj_label ->
               code_label -> annotation -> h_frame
 with frame : Type :=
 | h_f : h_frame -> frame
@@ -76,12 +77,11 @@ Definition code_mem : Type := code_label -> function.
 Coercion dbjind_var : nat >-> variable.
 Coercion free_var : var >-> variable.
 Coercion c_lab : string >-> code_label.
-Coercion obj_data_lab : obj_label >-> data_label.
-Coercion hdl_data_lab : hdl_label >-> data_label.
 Coercion nat_const : nat >-> static_const.
 Coercion c_lab_const : code_label >-> static_const.
 Coercion run_const : static_const >-> runtime_const.
-Coercion d_lab_const : data_label >-> runtime_const.
+Coercion obj_lab_const : obj_label >-> runtime_const.
+Coercion hdl_lab_const : hdl_label >-> runtime_const.
 Coercion const_val : static_const >-> value.
 Coercion val_e : value >-> expr.
 Coercion h_f : h_frame >-> frame.
@@ -188,7 +188,7 @@ Inductive step (C:code_mem) :
     tH L = empty_tup -> lst = [v] ->
     step C (tH,cH,K,E, bind (newref lst) t)
       (L !->t tuple (List.map (var_deref E) lst); tH,
-         cH, K, (d_lab_const L) :: E, t)
+         cH, K, (obj_lab_const L) :: E, t)
 | L_get : forall tH cH K E t (i:nat) (v:value)
                  (L:obj_label) (lst:list runtime_const),
     var_deref E v = L -> tH L = tuple lst ->
@@ -214,34 +214,37 @@ Inductive step (C:code_mem) :
       (H,K,(var_deref E' v) :: E,t)
 | L_handle :
   forall H K E t t'
-         (v_env:value) (A:annotation)
-         (lab_body lab_op:code_label) (L L_env:hdl_label),
+         (v_env:value)
+         (lab_body lab_op:code_label)
+         (L:hdl_label) (L_env:obj_label),
     (* L fresh *)
     var_deref E v_env = L_env ->
     C lab_body = func 2 t' ->
-    step C (H,K,E, bind (handle lab_body lab_op A v_env) t)
-      (H, ([h_f(handler_f L L_env lab_op A);a_f(act_f E t)] ++ K),
-        [d_lab_const L; d_lab_const L_env],t')
+    step C (H,K,E, bind (handle lab_body lab_op general v_env) t)
+      (H, ([h_f(handler_f L L_env lab_op general);a_f(act_f E t)] ++ K),
+        [obj_lab_const L_env; hdl_lab_const L],t')
 (*L and L_env reversed because dbj index counts from inside *)
 | L_leave :
   forall H K E E' t
-         (L L_env:hdl_label) (lab_op:code_label) (A:annotation) (v:value),
+         (L:hdl_label) (L_env:obj_label)
+         (lab_op:code_label) (v:value),
     step C (H,
-        [h_f (handler_f L L_env lab_op A); a_f(act_f E t)] ++ K,
+        [h_f (handler_f L L_env lab_op general); a_f(act_f E t)] ++ K,
         E',val_term v)
       (H,K,(var_deref E' v) :: E,t)
 | L_raise :
   forall tH cH K K' E t t' (v1 v2:value)
-         (L L_env:hdl_label) (L_k:obj_label) (L_y:data_label) (lab_op:code_label),
+         op_arg (lab_op:code_label)
+         (L:hdl_label) (L_k L_env:obj_label),
     cH L_k = empty_cont -> var_deref E v1 = L ->
-    var_deref E v2 = L_y ->
+    var_deref E v2 = op_arg ->
     C lab_op = func 3 t' ->
     step C (tH,cH,K' ++ [h_f (handler_f L L_env lab_op general)] ++ K,E,
         bind (raise general v1 v2) t)
       (tH, L_k !->ch 
              cont ([a_f(act_f E t)] ++ K' ++ [h_f(handler_f L L_env lab_op general)]);
        cH,K,
-         [d_lab_const L_k;d_lab_const L_y;d_lab_const L_env],t')
+         [obj_lab_const L_k;op_arg;obj_lab_const L_env],t')
 | L_resume :
   forall tH cH K K' E E' t t' (v1 v2:value)
          (L_k:obj_label),
@@ -249,27 +252,55 @@ Inductive step (C:code_mem) :
     step C (tH,cH,K,E,bind (resume v1 v2) t)
       (tH, L_k !->ch empty_cont; cH,
          K' ++ [a_f(act_f E t)] ++ K,
-         (var_deref E v2) :: E',t')
+         (var_deref E v2) :: E',t').
+
+Inductive step_tail_or_abort (C:code_mem) :
+  (heap * eval_context * local_env * term)
+  -> (heap * eval_context * local_env * term) -> Prop :=
+| L_otherhandle :
+  forall H K E t t'
+         (v_env:value) (A:annotation)
+         (lab_body lab_op:code_label)
+         (L:hdl_label) (L_env:obj_label),
+    (* L fresh *)
+    var_deref E v_env = L_env ->
+    C lab_body = func 2 t' ->
+    A = tail \/ A = abort ->
+    step_tail_or_abort C (H,K,E, bind (handle lab_body lab_op A v_env) t)
+      (H, ([h_f(handler_f L L_env lab_op A);a_f(act_f E t)] ++ K),
+        [obj_lab_const L_env; hdl_lab_const L],t')
+(*L and L_env reversed because dbj index counts from inside *)
+| L_otherleave :
+  forall H K E E' t
+         (L:hdl_label) (L_env:obj_label)
+         (lab_op:code_label) (A:annotation) (v:value),
+    A = tail \/ A = abort ->
+    step_tail_or_abort C (H,
+        [h_f (handler_f L L_env lab_op A); a_f(act_f E t)] ++ K,
+        E',val_term v)
+      (H,K,(var_deref E' v) :: E,t)
 | L_tailraise :
   forall H K K' E t t' (v1 v2:value)
-         (L L_env:hdl_label) (L_y:data_label) (lab_op:code_label),
+         (L:hdl_label) (L_env:obj_label)
+         op_arg (lab_op:code_label),
     var_deref E v1 = L ->
-    var_deref E v2 = L_y ->
+    var_deref E v2 = op_arg ->
     C lab_op = func 2 t' ->
-    step C (H,K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,E,
+    step_tail_or_abort C (H,K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,E,
         bind (raise tail v1 v2) t)
       (H,
         [a_f (act_f E t)] ++ K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,
-        [d_lab_const L_y;d_lab_const L_env],t')
+        [op_arg;obj_lab_const L_env],t')
 | L_abortraise :
-  forall H K K' E t t' (v1 v2:value)
-         (L L_env:hdl_label) (L_y:data_label) (lab_op:code_label),
+  forall H K K' E t t' (v1 v2:value) op_arg
+         (L:hdl_label) (L_env:obj_label)
+         (lab_op:code_label),
     var_deref E v1 = L ->
-    var_deref E v2 = L_y ->
+    var_deref E v2 = op_arg ->
     C lab_op = func 2 t' ->
-    step C (H,K' ++ [h_f (handler_f L L_env lab_op abort)] ++ K,E,
+    step_tail_or_abort C (H,K' ++ [h_f (handler_f L L_env lab_op abort)] ++ K,E,
         bind (raise abort v1 v2) t)
-      (H,K,[d_lab_const L_y;d_lab_const L_env],t').
+      (H,K,[op_arg;obj_lab_const L_env],t').
 Close Scope Lexi_scope.
 
 (* Changes made:

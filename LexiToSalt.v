@@ -29,6 +29,11 @@ Definition r3 := nat_reg 3.
 Definition r4 := nat_reg 4.
 Definition r5 := nat_reg 5.
 Definition r6 := nat_reg 6.
+(* -------- Translation for handler labels ------------ *)
+(* have a mapping storing what heap location in salt a
+   handler label maps to *)
+Definition handle_map := L.hdl_label -> S.heap_loc.
+
 (* -------------- Actual Translations ----------------- *)
 Definition annotation_trans (a:L.annotation) r : instr :=
   match a with
@@ -46,7 +51,7 @@ Definition run_cst_trans (v:L.runtime_const) : word :=
   match v with
   | run_const st_c => static_const_trans st_c
   | obj_lab d => hloc d 0
-  | hdl_lab d => hloc d 0
+  | hdl_lab d => hloc d 4
   | L.ns => S.ns
   end.
 Definition val_direct_trans (v:L.value)
@@ -59,7 +64,7 @@ Definition val_direct_trans (v:L.value)
   end.
 Definition val_trans r (v:value) : instr :=
   match v with
-  | L.var_val (dbjind_var n) => load r sp n
+  | L.var_val (dbjind_var n) => load r sp false n
   | _ => mov r (val_direct_trans v [])
   end.
 
@@ -77,11 +82,11 @@ Definition expr_trans exp : list instr :=
   | L.newref h_v =>
     ([malloc r1 (List.length h_v)] ++
     zip (map (val_trans r2) h_v)
-      (map (fun x => store r1 (x-1) r2)
+      (map (fun x => store r1 true (x-1) r2)
         (iota (List.length h_v))))
-  | L.pi i v => [val_trans r1 v; load r1 r1 i]
+  | L.pi i v => [val_trans r1 v; load r1 r1 true i]
   | L.asgn v1 i v2 =>
-    [val_trans r1 v2; val_trans r2 v1; store r2 i r1]
+    [val_trans r1 v2; val_trans r2 v1; store r2 true i r1]
   | L.handle (L.c_lab clab_body)
     (L.c_lab clab_op) A v_env =>
     [annotation_trans A r4; val_trans r3 v_env;
@@ -92,7 +97,7 @@ Definition expr_trans exp : list instr :=
   | L.raise L.general v1 v2 => [val_trans r2 v2; val_trans r1 v1;
     call (cloc "raise"%string 0)]
   | L.raise L.tail v1 v2 => [val_trans r2 v2 ; val_trans r1 v1;
-    load r3 r1 3; load r1 r1 2 ; call r3]
+    load r3 r1 false 3; load r1 r1 false 2 ; call r3]
   | L.resume v1 v2 => [val_trans r2 v2 ; val_trans r1 v1;
     call (cloc "resume"%string 0)]
   (* Impossible case for newref continuation *)
@@ -103,7 +108,7 @@ Fixpoint term_trans tm : list instr:=
   | L.val_term v => [val_trans r1 v]
   | L.bind (L.raise L.abort v1 v2) t =>
     [val_trans r2 v2 ; val_trans r1 v1;
-    load r3 r1 3; mov sp r1; load r1 r1 2;
+    load r3 r1 false 3; mov sp r1; load r1 r1 false 2;
     sfree 4; jmp r3]        
   | L.bind exp t =>
     expr_trans exp
