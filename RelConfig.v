@@ -173,12 +173,12 @@ Definition S_builtin_ins :=
       sfree 4; ret];
    raise_loc !->c
      ins_seq
-     [load r4 r1 false 1; (*r4 <- L_prev^|s_prev|*)
-      store r1 false 1 sp; (*L_prev^|s_prev| -> cursp*)
+     [load r4 r1 false 0; (*r4 <- L_prev^|s_prev|*)
+      store r1 false 0 sp; (*L_prev^|s_prev| -> cursp*)
       mov sp r4; (*sp <- L_prev^|s_prev|*)
-      load r5 r1 false 4;(*r5 <- P_op*)
+      load r5 r1 false 3;(*r5 <- P_op*)
       malloc r3 1;store r3 true 0 r1;(*make heap tuple for L_rsp*)
-      load r1 r1 false 3;(*r1 <- L_env*)
+      load r1 r1 false 2;(*r1 <- L_env*)
       call r5;
       ret];
    resume_loc !->c
@@ -315,15 +315,6 @@ Inductive LS_rel_hdl (L : string)
       [loc_w (cloc handle_loc 10);
        loc_w (hloc L_prev (List.length s_prev));
        int_w 0; loc_w (hloc L_env 0);
-       loc_w (c_loc (cloc Clab_op 0))]
-| rel_hdl_other : forall (L_other L_env Clab_op:string) A num,
-    (A = tail -> num = 1) -> (A = abort -> num = 2) ->
-    A = tail \/ A = abort ->
-    LS_rel_hdl L
-      (handler_f (hdl_lab L_other)
-              (obj_lab L_env) Clab_op A)
-      [loc_w (cloc handle_sm_stk_loc 8);
-       ns; int_w num; loc_w (hloc L_env 0);
        loc_w (c_loc (cloc Clab_op 0))].
 Definition is_h_frm_general_hdl (f:L.h_frame) : bool :=
   match f with
@@ -342,14 +333,7 @@ Inductive LS_rel_hdl_stk
     LS_rel_frames C_mem Flst (stack s) ->
     LS_rel_hdl L frm frm_stk ->
     is_h_frm_general_hdl frm = true ->
-    LS_rel_hdl_stk C_mem L (Flst ++ [h_f frm]) (s ++ frm_stk)
-| rel_hdl_stk : forall Flst s frm frm_stk Klst slst,
-    LS_rel_hdl_stk C_mem L Klst slst ->
-    LS_rel_frames C_mem Flst (stack s) ->
-    LS_rel_hdl L frm frm_stk ->
-    is_h_frm_general_hdl frm = false ->
-    Klst <> [] /\ slst <> [] ->
-    LS_rel_hdl_stk C_mem L (Flst ++ [h_f frm] ++ Klst) (s ++ frm_stk ++ slst).
+    LS_rel_hdl_stk C_mem L (Flst ++ [h_f frm]) (s ++ frm_stk).
 (* ensures that each stack in the list of stacks
    relates to the corresponding frames of K, in
    the same and correct order
