@@ -3,7 +3,6 @@ From Coq Require Import Strings.String.
 From LSEH Require Import Lexi.
 From LSEH Require Import Salt.
 From LSEH Require Import LexiToSalt.
-From TLC Require Import LibLN.
 Module L := Lexi. Module S := Salt. Module LS := LexiToSalt.
 Delimit Scope Lexi_scope with L_scope.
 
@@ -55,85 +54,10 @@ Inductive wf_func_tm : L.function -> Prop :=
 | wf_func : forall i t,
     trav_tm wf_val i t -> wf_func_tm (func i t)
 | wf_ns_func : wf_func_tm ns_func.
-(* ----------------------------------------------------------
-            Local Closure of Lexi terms
-   ---------------------------------------------------------- *)
-Definition open_val (k : nat) (u : L.variable) (v : L.value)
-   : L.value :=
-  match v with
-  | const_val c => const_val c
-  | var_val (dbjind_var i) =>
-    if Nat.eqb k i then var_val u else var_val (dbjind_var i)
-  | var_val (free_var str) => var_val (free_var str)
-  end.
-Definition open_exp (k : nat) (u : L.variable) (exp : L.expr)
-  : L.expr :=
-  match exp with
-  | L.val_e val => L.val_e (open_val k u val)
-  | L.add val1 val2 =>
-      L.add (open_val k u val1) (open_val k u val2)
-  | L.newref val_lst => L.newref (List.map (open_val k u) val_lst)
-  | L.pi n val => L.pi n (open_val k u val)
-  | L.asgn val1 i val2 =>
-      L.asgn (open_val k u val1) i (open_val k u val2)
-  | L.app val val_lst =>
-      L.app (open_val k u val) (List.map (open_val k u) val_lst)
-  | L.handle c_lab1 c_lab2 A val =>
-      L.handle c_lab1 c_lab2 A (open_val k u val)
-  | L.raise A val1 val2 =>
-      L.raise A (open_val k u val1) (open_val k u val2)
-  | L.resume val1 val2 =>
-      L.resume (open_val k u val1) (open_val k u val2)
-  end.
-Fixpoint open_tm (k : nat) (u : L.variable) (t : L.term)
-  : term :=
-  match t with
-  | bind exp tm => bind (open_exp k u exp) (open_tm (S k) u tm)
-  | val_term val => val_term (open_val k u val)
-  | L.halt => L.halt
-  end.
-Definition open var tm := open_tm 0 var tm.
-Notation "t ^ x" := (open (free_var x) t).
-Inductive lc_val : L.value -> Prop :=
-| lc_fvar : forall x, lc_val (var_val (free_var x))
-| lc_const : forall c, lc_val (const_val c).
-Inductive lc_exp : L.expr -> Prop :=
-| lc_val_e : forall v, lc_val v -> lc_exp (L.val_e v)
-| lc_add : forall v1 v2,
-    lc_val v1 -> lc_val v2 -> lc_exp (L.add v1 v2)
-| lc_newref_nil : lc_exp (newref [])
-| lc_newref_cons : forall lst v,
-    lc_exp (newref lst) -> lc_val v -> lc_exp (newref (v::lst))
-| lc_pi : forall n v, lc_val v -> lc_exp (pi n v)
-| lc_asgn : forall v1 v2 i,
-    lc_val v1 -> lc_val v2 -> lc_exp (asgn v1 i v2)
-| lc_app_nil : forall v, lc_val v -> lc_exp (app v [])
-| lc_app_cons : forall v v' lst,
-    lc_val v -> lc_exp (app v lst)
-    -> lc_exp (app v (v'::lst))
-| lc_handle : forall c_lab1 c_lab2 A v,
-    lc_val v -> lc_exp (handle c_lab1 c_lab2 A v)
-| lc_raise : forall A v1 v2,
-    lc_val v1 -> lc_val v2 ->
-    lc_exp (raise A v1 v2)
-| lc_resume : forall v1 v2,
-    lc_val v1 -> lc_val v2 ->
-    lc_exp (resume v1 v2).
-
-Inductive lc_term : L.term -> Prop :=
-  | lc_bind : forall L exp t,
-    (forall x, x \notin L -> lc_term (t ^ x))
-    -> lc_exp exp -> lc_term (bind exp t)
-  | lc_val_tm : forall v, lc_val v -> lc_term (val_term v)
-  | lc_halt : lc_term L.halt.
-Definition body t :=
-  exists L, forall x, x \notin L -> lc_term (t ^ x).
 
 (* ----------------------------------------------------------
     Initial & Final Predicates for Lexi and Salt 
    ---------------------------------------------------------- *)
-
-
 Definition exit_lab : string := "exit"%string.
 Definition init_lab : string := "init"%string.
 Definition main_lab : string := "main"%string.
@@ -198,15 +122,15 @@ Inductive init_L :
   L.code_mem -> (L.code_mem * L.heap * L.eval_context
                 * L.local_env * L.term) -> Prop :=
 | mk_init_L : forall (C:L.code_mem) (H:L.heap) dummy_hdl,
-    dummy_hdl = h_f (handler_f ns_hdl_lab
-                       ns_obj_lab ns_clab general) ->
+    dummy_hdl = handler_f ns_hdl_lab
+                  ns_obj_lab ns_clab general ->
     (forall (x:string) n t,
         L.c_comp L_init_func C x = func n t ->
         S_builtin_ins x = ns_ins_seq) ->
     (forall x, wf_func_tm (C x)) ->
     init_L C
       (L.c_comp L_init_func C,
-        L.h_empty, [dummy_hdl] ,[], L_init_tm)%L_scope.
+        L.h_empty, [hdl_led_lst dummy_hdl []] ,[], L_init_tm)%L_scope.
 Definition ns_hloc_str : S.heap_loc := hloc_str ""%string.
 Definition ns_hloc : S.word := hloc ns_hloc_str 0.
 Definition ns_hdl_hloc : S.word := hloc ns_hloc_str 4.
@@ -299,13 +223,13 @@ Inductive LS_rel_frame (C_mem : S.code_mem): L.a_frame -> S.stack_heap_val -> Pr
     -> nth 0 Ilst halt = push r1 ->
     LS_rel_frame C_mem (act_f E t)
     (stack ((loc_w (cloc C_lab i)) :: s)).
-Inductive LS_rel_frames (C_mem : S.code_mem) : (list L.frame)
+Inductive LS_rel_frames (C_mem : S.code_mem) : (list L.a_frame)
   -> S.stack_heap_val -> Prop :=
   | rel_noframe : LS_rel_frames C_mem [] (stack [])
   | rel_frame_cons : forall Fi si Flst s',
     LS_rel_frame C_mem Fi (stack si)
     -> LS_rel_frames C_mem Flst (stack s')
-    -> LS_rel_frames C_mem ((a_f Fi) :: Flst) (stack (si ++ s')).
+    -> LS_rel_frames C_mem (Fi :: Flst) (stack (si ++ s')).
 Inductive LS_rel_hdl (L : string)
   : L.h_frame -> list S.word -> Prop :=
 | rel_hdl_general : forall (L_env Clab_op:string) L_prev (s_prev:list word),
@@ -321,19 +245,14 @@ Definition is_h_frm_general_hdl (f:L.h_frame) : bool :=
   | handler_f _ _ _ general => true
   | _ => false
   end.
-Definition is_frm_general_hdl (f:L.frame):bool :=
-  match f with
-  | handler_f _ _ _ general => true
-  | _ => false
-  end.
 Inductive LS_rel_hdl_stk
   (C_mem : S.code_mem) (L : string) :
-  list L.frame -> list S.word -> Prop :=
+  L.hdl_led_frm_lst -> S.stack_heap_val -> Prop :=
 | rel_hdl_stk_base : forall Flst s frm frm_stk,
     LS_rel_frames C_mem Flst (stack s) ->
     LS_rel_hdl L frm frm_stk ->
     is_h_frm_general_hdl frm = true ->
-    LS_rel_hdl_stk C_mem L (Flst ++ [h_f frm]) (s ++ frm_stk).
+    LS_rel_hdl_stk C_mem L (hdl_led_lst frm Flst) (stack (s ++ frm_stk)).
 (* ensures that each stack in the list of stacks
    relates to the corresponding frames of K, in
    the same and correct order
@@ -348,12 +267,11 @@ Inductive LS_rel_eval_ctx (C_mem : S.code_mem) :
 | rel_eval_ctx_nil : LS_rel_eval_ctx C_mem [] []
 | rel_eval_ctx_lst : forall Ks H K s L,
     LS_rel_eval_ctx C_mem Ks H ->
-    LS_rel_hdl_stk C_mem L K s ->
+    LS_rel_hdl_stk C_mem L K (stack s) ->
     (forall L' s' H',
         H = (L',stack s') :: H' -> 
         stk_points_to s s' L') ->
-    LS_rel_eval_ctx C_mem (K ++ Ks) ((hloc_str L,stack s)::H).
-
+    LS_rel_eval_ctx C_mem (K :: Ks) ((hloc_str L,stack s) :: H).
 Inductive LS_rel_env_context (C_mem : S.code_mem) : (L.eval_context * L.local_env) ->
   (S.stack_heap * S.heap_location) -> Prop :=
 | rel_env_context :

@@ -56,15 +56,14 @@ with a_frame: Type :=
 with h_frame : Type :=
   handler_f : hdl_label -> obj_label ->
               code_label -> annotation -> h_frame
-with frame : Type :=
-| h_f : h_frame -> frame
-| a_f : a_frame -> frame
+with hdl_led_frm_lst : Type :=
+| hdl_led_lst : h_frame -> list a_frame -> hdl_led_frm_lst
 with heap_cont : Type :=
-| cont : list frame -> heap_cont
+| cont : list hdl_led_frm_lst -> heap_cont
 | empty_cont.
 Inductive heap_tuple : Type :=
 | tuple : list runtime_const -> heap_tuple.
-Definition eval_context := list frame.
+Definition eval_context := list hdl_led_frm_lst.
 Definition tup_heap := obj_label -> heap_tuple.
 Definition cont_heap := obj_label -> heap_cont.
 Definition heap := (tup_heap * cont_heap)%type.
@@ -84,8 +83,6 @@ Coercion obj_lab_const : obj_label >-> runtime_const.
 Coercion hdl_lab_const : hdl_label >-> runtime_const.
 Coercion const_val : static_const >-> value.
 Coercion val_e : value >-> expr.
-Coercion h_f : h_frame >-> frame.
-Coercion a_f : a_frame >-> frame.
 
 (* ------------ ------------ ------------
    ------------ ------------ ------------
@@ -201,106 +198,86 @@ Inductive step (C:code_mem) :
     step C (tH,cH,K,E, bind (asgn v i v') t)
       (L !->t tuple (update_nth i lst (var_deref E v')); tH,
          cH,K,(var_deref E v') :: E,t) (* from i-1 to i *)
-| L_app : forall H K E t t' (n:nat) (v v':value) (lst:list value)
-                 (lab:code_label),
+| L_app : forall H K E t t' (n:nat)
+                 (v v':value) (lst:list value)
+                 (lab:code_label) hf alst,
     var_deref E v = lab ->
     C lab = func (List.length lst) t' ->
     lst = [v'] ->
-    step C (H,K,E,bind (app v lst) t)
-      (H, (a_f (act_f E t)) :: K,
-        rev (List.map (var_deref E) lst),t')
-| L_ret : forall H K E E' t (v:value),
-    step C (H,(a_f(act_f E t)) :: K,E',val_term v)
-      (H,K,(var_deref E' v) :: E,t)
+    step C (H,(hdl_led_lst hf alst) :: K,E,bind (app v lst) t)
+      (H, (hdl_led_lst hf ((act_f E t) :: alst)) :: K,
+            rev (List.map (var_deref E) lst),t')
+| L_ret : forall H K E E' t (v:value) hf alst,
+    step C (H, (hdl_led_lst hf ((act_f E t) :: alst)) :: K,E',val_term v)
+      (H,(hdl_led_lst hf alst) :: K,(var_deref E' v) :: E,t)
 | L_handle :
-  forall H K E t t'
+  forall H K E t t' hf alst
          (v_env:value)
          (lab_body lab_op:code_label)
          (L:hdl_label) (L_env:obj_label),
     (* L fresh *)
     var_deref E v_env = L_env ->
     C lab_body = func 2 t' ->
-    step C (H,K,E, bind (handle lab_body lab_op general v_env) t)
-      (H, ([h_f(handler_f L L_env lab_op general);a_f(act_f E t)] ++ K),
+    step C (H,(hdl_led_lst hf alst) :: K,E, bind (handle lab_body lab_op general v_env) t)
+      (H,(hdl_led_lst (handler_f L L_env lab_op general) [])
+         :: (hdl_led_lst hf ((act_f E t)::alst)) :: K,
         [obj_lab_const L_env; hdl_lab_const L],t')
 (*L and L_env reversed because dbj index counts from inside *)
 | L_leave :
-  forall H K E E' t
+  forall H K E E' t alst hf
          (L:hdl_label) (L_env:obj_label)
          (lab_op:code_label) (v:value),
     step C (H,
-        [h_f (handler_f L L_env lab_op general); a_f(act_f E t)] ++ K,
+        (hdl_led_lst (handler_f L L_env lab_op general) [])
+          :: (hdl_led_lst hf ((act_f E t)::alst)) :: K,
         E',val_term v)
-      (H,K,(var_deref E' v) :: E,t)
-| L_raise :
-  forall tH cH K K' E t t' (v1 v2:value)
+      (H,(hdl_led_lst hf alst) :: K,(var_deref E' v) :: E,t)
+| L_raise_curstk :
+  forall LH_tup LH_cont K E t t' (v1 v2:value)
          op_arg (lab_op:code_label)
-         (L:hdl_label) (L_k L_env:obj_label),
-    cH L_k = empty_cont -> var_deref E v1 = L ->
+         (L:hdl_label) (L_k L_env:obj_label)
+         alst_to_cont alst hf,
+    LH_cont L_k = empty_cont -> var_deref E v1 = L ->
     var_deref E v2 = op_arg ->
     C lab_op = func 3 t' ->
-    step C (tH,cH,K' ++ [h_f (handler_f L L_env lab_op general)] ++ K,E,
+    step C (LH_tup,LH_cont,
+        (hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont) ::
+          (hdl_led_lst hf alst) :: K,E,
         bind (raise general v1 v2) t)
-      (tH, L_k !->ch 
-             cont ([a_f(act_f E t)] ++ K' ++ [h_f(handler_f L L_env lab_op general)]);
-       cH,K,
+      (LH_tup, L_k !->ch 
+                 cont ([hdl_led_lst (handler_f L L_env lab_op general)
+                          ((act_f E t) :: alst_to_cont)]);
+       LH_cont,(hdl_led_lst hf alst) :: K,
+         [obj_lab_const L_k;op_arg;obj_lab_const L_env],t')
+| L_raise_past_stks :
+  forall LH_tup LH_cont K K' E t t' (v1 v2:value)
+         op_arg (lab_op:code_label)
+         (L:hdl_label) (L_k L_env:obj_label)
+         alst_topmost alst_to_cont alst hf,
+    LH_cont L_k = empty_cont -> var_deref E v1 = L ->
+    var_deref E v2 = op_arg ->
+    C lab_op = func 3 t' ->
+    step C (LH_tup,LH_cont,
+        (hdl_led_lst hf alst_topmost) :: K' ++
+          (hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont) ::
+          (hdl_led_lst hf alst) :: K,E,
+        bind (raise general v1 v2) t)
+      (LH_tup, L_k !->ch 
+                 cont ((hdl_led_lst hf ((act_f E t)::alst_topmost)) :: K' ++
+                         [hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont]);
+       LH_cont,(hdl_led_lst hf alst) :: K,
          [obj_lab_const L_k;op_arg;obj_lab_const L_env],t')
 | L_resume :
-  forall tH cH K K' E E' t t' (v1 v2:value)
-         (L_k:obj_label),
-    var_deref E v1 = L_k -> cH L_k = cont (a_f(act_f E' t') :: K') ->
-    step C (tH,cH,K,E,bind (resume v1 v2) t)
-      (tH, L_k !->ch empty_cont; cH,
-         K' ++ [a_f(act_f E t)] ++ K,
+  forall LH_tup LH_cont K K' E E' t t' (v1 v2:value)
+         (L_k:obj_label) hf alst hf_cont alst_cont,
+    var_deref E v1 = L_k ->
+    LH_cont L_k = cont ((hdl_led_lst hf_cont ((act_f E' t')::alst_cont)) :: K') ->
+    step C (LH_tup,LH_cont,(hdl_led_lst hf alst) :: K,E,bind (resume v1 v2) t)
+      (LH_tup, L_k !->ch empty_cont; LH_cont,
+         (hdl_led_lst hf_cont alst_cont) :: K' ++
+           (hdl_led_lst hf ((act_f E t) :: alst)) :: K,
          (var_deref E v2) :: E',t').
 
-Inductive step_tail_or_abort (C:code_mem) :
-  (heap * eval_context * local_env * term)
-  -> (heap * eval_context * local_env * term) -> Prop :=
-| L_otherhandle :
-  forall H K E t t'
-         (v_env:value) (A:annotation)
-         (lab_body lab_op:code_label)
-         (L:hdl_label) (L_env:obj_label),
-    (* L fresh *)
-    var_deref E v_env = L_env ->
-    C lab_body = func 2 t' ->
-    A = tail \/ A = abort ->
-    step_tail_or_abort C (H,K,E, bind (handle lab_body lab_op A v_env) t)
-      (H, ([h_f(handler_f L L_env lab_op A);a_f(act_f E t)] ++ K),
-        [obj_lab_const L_env; hdl_lab_const L],t')
-(*L and L_env reversed because dbj index counts from inside *)
-| L_otherleave :
-  forall H K E E' t
-         (L:hdl_label) (L_env:obj_label)
-         (lab_op:code_label) (A:annotation) (v:value),
-    A = tail \/ A = abort ->
-    step_tail_or_abort C (H,
-        [h_f (handler_f L L_env lab_op A); a_f(act_f E t)] ++ K,
-        E',val_term v)
-      (H,K,(var_deref E' v) :: E,t)
-| L_tailraise :
-  forall H K K' E t t' (v1 v2:value)
-         (L:hdl_label) (L_env:obj_label)
-         op_arg (lab_op:code_label),
-    var_deref E v1 = L ->
-    var_deref E v2 = op_arg ->
-    C lab_op = func 2 t' ->
-    step_tail_or_abort C (H,K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,E,
-        bind (raise tail v1 v2) t)
-      (H,
-        [a_f (act_f E t)] ++ K' ++ [h_f (handler_f L L_env lab_op tail)] ++ K,
-        [op_arg;obj_lab_const L_env],t')
-| L_abortraise :
-  forall H K K' E t t' (v1 v2:value) op_arg
-         (L:hdl_label) (L_env:obj_label)
-         (lab_op:code_label),
-    var_deref E v1 = L ->
-    var_deref E v2 = op_arg ->
-    C lab_op = func 2 t' ->
-    step_tail_or_abort C (H,K' ++ [h_f (handler_f L L_env lab_op abort)] ++ K,E,
-        bind (raise abort v1 v2) t)
-      (H,K,[op_arg;obj_lab_const L_env],t').
 Close Scope Lexi_scope.
 
 (* Changes made:
