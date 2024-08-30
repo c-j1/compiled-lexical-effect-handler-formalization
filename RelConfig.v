@@ -103,8 +103,7 @@ Definition S_builtin_ins :=
       load r5 r1 false 3;(*r5 <- P_op*)
       malloc r3 1;store r3 true 0 r1;(*make heap tuple for L_rsp*)
       load r1 r1 false 2;(*r1 <- L_env*)
-      call r5;
-      ret];
+      jmp r5];
    resume_loc !->c
      ins_seq
      [(*rewrite the tuple for L_rsp*)
@@ -215,21 +214,21 @@ Inductive LS_rel_frame (C_mem : S.code_mem): L.a_frame -> S.stack_heap_val -> Pr
     LS_rel_frame C_mem (act_f E t)
       (stack ((loc_w (cloc C_lab i)) :: s)).*)
 
-Inductive LS_rel_frame (C_mem : S.code_mem): L.a_frame -> S.stack_heap_val -> Prop :=
+Inductive LS_rel_frame (C_mem : S.code_mem): L.a_frame -> list S.word -> Prop :=
   rel_frame : forall E t Ilst C_lab i lst s,
     LS_rel_ins (L.ns :: E,t) (ins_seq (tl Ilst))
     -> C_mem C_lab = ins_seq (lst ++ Ilst)
     -> List.length lst = i -> LS_rel_env E (stack s)
     -> nth 0 Ilst halt = push r1 ->
     LS_rel_frame C_mem (act_f E t)
-    (stack ((loc_w (cloc C_lab i)) :: s)).
+    (loc_w (cloc C_lab i) :: s).
 Inductive LS_rel_frames (C_mem : S.code_mem) : (list L.a_frame)
-  -> S.stack_heap_val -> Prop :=
-  | rel_noframe : LS_rel_frames C_mem [] (stack [])
+  -> list S.word -> Prop :=
+  | rel_noframe : LS_rel_frames C_mem [] []
   | rel_frame_cons : forall Fi si Flst s',
-    LS_rel_frame C_mem Fi (stack si)
-    -> LS_rel_frames C_mem Flst (stack s')
-    -> LS_rel_frames C_mem (Fi :: Flst) (stack (si ++ s')).
+    LS_rel_frame C_mem Fi si
+    -> LS_rel_frames C_mem Flst s'
+    -> LS_rel_frames C_mem (Fi :: Flst) (si ++ s').
 Inductive LS_rel_hdl (L : string)
   : L.h_frame -> list S.word -> Prop :=
 | rel_hdl_general : forall (L_env Clab_op:string) L_prev (s_prev:list word),
@@ -249,7 +248,7 @@ Inductive LS_rel_hdl_stk
   (C_mem : S.code_mem) (L : string) :
   L.hdl_led_frm_lst -> S.stack_heap_val -> Prop :=
 | rel_hdl_stk_base : forall Flst s frm frm_stk,
-    LS_rel_frames C_mem Flst (stack s) ->
+    LS_rel_frames C_mem Flst s ->
     LS_rel_hdl L frm frm_stk ->
     is_h_frm_general_hdl frm = true ->
     LS_rel_hdl_stk C_mem L (hdl_led_lst frm Flst) (stack (s ++ frm_stk)).
@@ -291,24 +290,30 @@ Inductive LS_rel_tup_heap : L.tup_heap -> S.tuple_heap -> Prop :=
 Inductive LS_rel_cont (C_mem : S.code_mem) :
   L.heap_cont -> S.stack_heap -> Prop :=
 | rel_cont_stks :
-  forall Ks H L_fst s_fst L_lst s_lst stks,
+  forall Ks H stks,
   LS_rel_eval_ctx C_mem Ks H ->
-  H = (L_fst, stack s_fst)
-        :: stks ++ [(L_lst, stack s_lst)] ->
-  stk_points_to s_lst s_fst L_fst ->
+  (forall L_fst L_lst s_fst s_lst,
+      H = (L_fst, stack s_fst)
+         :: stks ++ [(L_lst, stack s_lst)] ->
+   stk_points_to s_lst s_fst L_fst) ->
+  (forall L s,
+      H = [(L,stack s)] ->
+      stk_points_to s s L) ->
   LS_rel_cont C_mem (cont Ks) H.
 Inductive LS_rel_cont_heap (C_mem : S.code_mem) :
   L.cont_heap -> (S.stack_heap * S.tuple_heap) -> Prop :=
+| rel_cont_heap_base : LS_rel_cont_heap C_mem ch_empty ([],th_empty)
 | rel_cont_heap :
-  forall LH_cont SH_cont (SH_ctup:S.tuple_heap),
-    (forall (L_rsp:string) L_last
-            H_one_cont H_one_cont_ld
-            H_conts_ld  H_conts_ed s_last,
-        LS_rel_cont C_mem (LH_cont (obj_lab L_rsp)) H_one_cont ->
-        H_one_cont = H_one_cont_ld ++ [(L_last,stack s_last)] ->
-        SH_cont = H_conts_ld ++ H_one_cont ++ H_conts_ed
-        /\ SH_ctup L_rsp = tuple [loc_w (hloc L_last 4)]) ->
-    LS_rel_cont_heap C_mem LH_cont (SH_cont,SH_ctup).
+  forall LH_cont SH_cont (SH_ctup:S.tuple_heap)
+         (L_rsp:string) L_last s_last
+         H_one_cont H_one_cont_ld Ks,
+    LS_rel_cont_heap C_mem LH_cont (SH_cont,SH_ctup) ->
+    LS_rel_cont C_mem (cont Ks) H_one_cont ->
+    H_one_cont = H_one_cont_ld ++ [(L_last,stack s_last)] ->
+    LS_rel_cont_heap C_mem
+      (obj_lab L_rsp !->ch cont Ks; LH_cont)%L_scope
+      (H_one_cont ++ SH_cont,
+        hloc_str L_rsp !->t tuple [loc_w (hloc L_last 4)]; SH_ctup).
 (* each continuation is a list of stacks, like H_stk.
    The difference is that the first stack doesn't point
    back to the context frame where it was cut off, but rather
@@ -355,7 +360,8 @@ Inductive LS_rel :
     LS_rel_ins (LE,Lt) (ins_seq SIlst) ->
     LS_rel_env_context (c_comp S_builtin_ins SC)
       (LK,LE) (SH_stack,Slsp) ->
-    LS_rel_heap SC LH ((SH_cont,SH_ctup),SH_tup) ->
+    LS_rel_heap (c_comp S_builtin_ins SC)
+      LH ((SH_cont,SH_ctup),SH_tup) ->
     LS_rel_code_mem LC SC ->
     (c_comp S_builtin_ins SC) Clab = ins_seq (lst ++ SIlst) ->
     List.length lst = len ->

@@ -248,34 +248,36 @@ Inductive step (C:code_mem) :
                  cont ([hdl_led_lst (handler_f L L_env lab_op general)
                           ((act_f E t) :: alst_to_cont)]);
        LH_cont,(hdl_led_lst hf alst) :: K,
-         [obj_lab_const L_k;op_arg;obj_lab_const L_env],t')
+         [obj_lab_const L_env;op_arg;obj_lab_const L_k],t')
 | L_raise_past_stks :
   forall LH_tup LH_cont K K' E t t' (v1 v2:value)
-         op_arg (lab_op:code_label)
-         (L:hdl_label) (L_k L_env:obj_label)
-         alst_topmost alst_to_cont alst hf,
+         op_arg (lab_op lab_opnew:code_label)
+         (L L_new:hdl_label) (L_k L_env L_envnew:obj_label)
+         alst_topmost alst_to_cont alst hf_topmost,
     LH_cont L_k = empty_cont -> var_deref E v1 = L ->
     var_deref E v2 = op_arg ->
     C lab_op = func 3 t' ->
     step C (LH_tup,LH_cont,
-        (hdl_led_lst hf alst_topmost) :: K' ++
-          (hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont) ::
-          (hdl_led_lst hf alst) :: K,E,
+        hdl_led_lst hf_topmost alst_topmost :: K' ++
+          [hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont] ++
+          hdl_led_lst (handler_f L_new L_envnew lab_opnew general) alst :: K,E,
         bind (raise general v1 v2) t)
       (LH_tup, L_k !->ch 
-                 cont ((hdl_led_lst hf ((act_f E t)::alst_topmost)) :: K' ++
+                 cont (hdl_led_lst hf_topmost (act_f E t::alst_topmost) :: K' ++
                          [hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont]);
-       LH_cont,(hdl_led_lst hf alst) :: K,
-         [obj_lab_const L_k;op_arg;obj_lab_const L_env],t')
+       LH_cont,(hdl_led_lst
+                  (handler_f L_new
+                     L_envnew lab_opnew general) alst) :: K,
+         [obj_lab_const L_env;op_arg;obj_lab_const L_k],t')
 | L_resume :
   forall LH_tup LH_cont K K' E E' t t' (v1 v2:value)
          (L_k:obj_label) hf alst hf_cont alst_cont,
     var_deref E v1 = L_k ->
-    LH_cont L_k = cont ((hdl_led_lst hf_cont ((act_f E' t')::alst_cont)) :: K') ->
+    LH_cont L_k = cont (hdl_led_lst hf_cont (act_f E' t'::alst_cont) :: K') ->
     step C (LH_tup,LH_cont,(hdl_led_lst hf alst) :: K,E,bind (resume v1 v2) t)
       (LH_tup, L_k !->ch empty_cont; LH_cont,
-         (hdl_led_lst hf_cont alst_cont) :: K' ++
-           (hdl_led_lst hf ((act_f E t) :: alst)) :: K,
+         hdl_led_lst hf_cont alst_cont :: K' ++
+           hdl_led_lst hf (act_f E t :: alst) :: K,
          (var_deref E v2) :: E',t').
 
 Close Scope Lexi_scope.

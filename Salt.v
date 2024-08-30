@@ -102,7 +102,7 @@ Fixpoint reg_update (rf : reg_file) (x : register)
   end.
 Fixpoint reg_app (rf:reg_file) r :=
   match rf with
-  | cons (x,v) rf' => if reg_eqb x r then v else reg_app rf' r
+  | (x,v) :: rf' => if reg_eqb x r then v else reg_app rf' r
   | nil => ns
   end.
 Notation "x '!->r' v ';' m" := (reg_update m x v)
@@ -163,7 +163,7 @@ Definition c_comp (c1:code_mem) (c2:code_mem) :=
 (* Fixpoint (*code_fetch*) (c: program) (lab: code_loc)
  : instr_seq :=
   match c with
-  | cons (x,v) c' => if c_eqb x lab then v else 
+  | (x,v) :: c' => if c_eqb x lab then v else 
     (*code_fetch*) c' lab
   | nil => empty_seq
   end.
@@ -190,18 +190,19 @@ Fixpoint incr_hloc n (hl:heap_location) : heap_location :=
   | S n' => incr_hloc n' (next_hloc hl)
   end.
 
-(* add n nonsenses to a list of words (for stacks) *)
+(* add n words to a list of words, used for adding
+   ns to stacks *)
 Fixpoint n_cons {A:Type} n v (lst:list A) :=
   match n with
   | 0 => lst
-  | S n' => n_cons n' v (cons v lst)
+  | S n' => n_cons n' v (v :: lst)
   end.
 
 Fixpoint update_nth {A: Type} (n:nat) (lst:list A) (v:A) :=
   match n, lst with
-  | 0, cons x lst' => cons v lst'
+  | 0, x :: lst' => v :: lst'
+  | S n', x :: lst' => x :: update_nth n' lst' v
   | _, nil => nil
-  | S n', cons x lst' => update_nth n' lst' v
   end.
 (* --------------------------------------------
     Section for the cursive H hat of paper 
@@ -304,7 +305,7 @@ Inductive step (P:code_mem) :
     -> H_stk = (lsp, stack lst) :: H_stk'
     -> List.length lst = j ->
     step P (H_stk,H_tup,R)
-      ((lsp,stack (cons (operand_value o R) lst)) :: H_stk',
+      ((lsp,stack ((operand_value o R) :: lst)) :: H_stk',
         H_tup,
         ip !->r next_cloc l; sp !->r hloc lsp (1+j); R)
 | S_sfree :
@@ -450,7 +451,8 @@ Inductive step (P:code_mem) :
     load_off < List.length lst ->
     step P (H_stk,H_tup,R)
       (H_stk_ld ++
-         (L, stack (update_nth load_off
+         (L, stack (update_nth
+                      (List.length lst - reg_off + load_off)
                       lst (operand_value o R)))
          :: H_stk_ed, H_tup,
         ip !->r next_cloc l; R)
