@@ -1,12 +1,12 @@
-From Coq Require Import Lists.List. Import ListNotations.
-From Coq Require Import Strings.String.
+Require Import Lists.List. Import ListNotations.
+Require Import Strings.String.
 
 (* ------------ ------------ ------------
    ------------ ------------ ------------
    ----------- Abstract Syntax -----------
    ------------ ------------ ------------
    ------------ ------------ ------------ *)
-Inductive heap_loc := hloc_str : string -> heap_loc.
+Inductive heap_loc := hloc_str : nat -> heap_loc.
 Inductive code_loc := cloc_str : string -> code_loc.
 Inductive heap_location :=
   hloc : heap_loc -> nat -> heap_location.
@@ -59,7 +59,7 @@ Definition heap : Type :=
   (stack_heap * tuple_heap).
 Definition code_mem : Type := code_loc -> instr_seq.
 (* Coercions *)
-Coercion hloc_str : string >-> heap_loc.
+Coercion hloc_str : nat >-> heap_loc.
 Coercion cloc_str : string >-> code_loc.
 Coercion h_loc : heap_location >-> location.
 Coercion c_loc : code_location >-> location.
@@ -109,7 +109,7 @@ Notation "x '!->r' v ';' m" := (reg_update m x v)
   (at level 100, v at next level, right associativity).
 Definition h_eqb a b :=
   match a,b with
-  | hloc_str a', hloc_str b' => eqb a' b'
+  | hloc_str a', hloc_str b' => Nat.eqb a' b'
   end.
 Definition sh_empty : stack_heap := nil.
 Definition th_empty : tuple_heap := fun _ => tuple nil.
@@ -381,7 +381,7 @@ Inductive step (P:code_mem) :
     -> List.length lst = k -> j <= k ->
     step P (H_stk ++ H_cont,H_tup,R)
       ((L,stack (skipn (k-j) lst)) :: H_cont' ++ H_stk
-        ++ H_cont', H_tup,
+        ++ H_cont_ld ++ H_cont_ed, H_tup,
         ip !->r next_cloc l; sp !->r hloc L j ; R)
 | S_mov_sp_del :
   forall (H_stk H_stk_ld H_stk_ed:stack_heap) (H_tup:tuple_heap)
@@ -485,7 +485,20 @@ Inductive step (P:code_mem) :
       (H_stk,th_comp H_vtup
                (L !->t tuple (update_nth j lst (operand_value o R));
                 H_ctup),
-         ip !->r next_cloc l; R)
+        ip !->r next_cloc l; R)
+| S_store_c_ns :
+  forall (H_stk:stack_heap) (H_tup H_vtup H_ctup:tuple_heap)
+         (R:reg_file) (l:code_location)
+         (L:heap_loc) (d:register) (v:word),
+    reg_app R ip = l -> fetch_instr l P = store d true 0 ns
+    -> reg_app R d = hloc L 0 ->
+    H_tup = th_comp H_vtup H_ctup ->
+    H_ctup L = tuple [v] ->
+    step P (H_stk,H_tup,R)
+      (H_stk,
+        th_comp H_vtup
+          (L !->t tuple [];H_ctup),
+        ip !->r next_cloc l; R)
 | S_call :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
          (R:reg_file) (l l_dst:code_location)

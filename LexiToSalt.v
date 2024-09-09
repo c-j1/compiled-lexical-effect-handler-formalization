@@ -1,6 +1,6 @@
-From Coq Require Import Lists.List. Import ListNotations.
-From Coq Require Import Strings.String.
 From LSEH Require Import Lexi.
+Import Lists.List. Import ListNotations.
+Import Strings.String.
 From LSEH Require Import Salt.
 Module L := Lexi. Module S := Salt. 
 (* -------------- Helper Functions ----------------- *)
@@ -11,7 +11,7 @@ Fixpoint iota i :=
   end.
 Fixpoint zip_map {A B C: Type} (func:A->B->C) lst1 lst2 :=
   match lst1,lst2 with
-  | cons x1 lst1', cons x2 lst2' =>
+  | x1 :: lst1', x2 :: lst2' =>
     [func x1 x2] ++ (zip_map func lst1' lst2')
   | _,_ => nil
   end.

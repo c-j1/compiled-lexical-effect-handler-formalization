@@ -1,11 +1,9 @@
-Require Import Lists.List. Import ListNotations.
-Require Import Strings.String.
 Require Import Logic.FunctionalExtensionality.
 Require Import Lia.
-From LSEH Require Import Lexi.
-From LSEH Require Import Salt.
-From LSEH Require Import LexiToSalt.
 From LSEH Require Import RelConfig.
+Import Lists.List. Import ListNotations.
+Import Strings.String. Import LexiToSalt.
+Import Lexi. Import Salt.
 Ltac trysolve :=
   try easy;try discriminate;
   try congruence;try tauto;
@@ -45,7 +43,7 @@ Proof with super_a.
   repeat (destruct H0 as [ | ])...
 Qed.
 Lemma h_eqb_refl : forall (a:heap_loc), a = a -> h_eqb a a = true.
-Proof. intros. unfold h_eqb. destruct a. apply eqb_refl. Qed.
+Proof. intros. unfold h_eqb. destruct a. apply PeanoNat.Nat.eqb_refl. Qed.
 Lemma c_eqb_refl : forall (a:code_loc), a = a -> c_eqb a a = true.
 Proof. intros. unfold h_eqb. destruct a. apply eqb_refl. Qed.
 

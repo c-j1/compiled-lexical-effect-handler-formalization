@@ -1,8 +1,6 @@
-From Coq Require Import Lists.List. Import ListNotations.
-From Coq Require Import Strings.String.
-From LSEH Require Import Lexi.
-From LSEH Require Import Salt.
 From LSEH Require Import LexiToSalt.
+Import Lists.List. Import ListNotations.
+Import Strings.String. Import Lexi. Import Salt.
 Module L := Lexi. Module S := Salt. Module LS := LexiToSalt.
 Delimit Scope Lexi_scope with L_scope.
 
@@ -106,16 +104,18 @@ Definition S_builtin_ins :=
       jmp r5];
    resume_loc !->c
      ins_seq
-     [(*rewrite the tuple for L_rsp*)
+     [(*rewrite the tuple for L_rsp to be ns*)
        load r3 r1 true 0; store r1 true 0 ns;
-       (*replace L^|s| in continuation*)
-       load r4 r3 false 1;store r3 false 1 sp;
-       mov r1 r2; mov sp r4;
+       load r4 r3 false 0; (*r4 <- top of cont*)
+       (*let base of cont point to current stack*)
+       store r3 false 0 sp; 
+       mov r1 r2; (*argument for after return*)
+       mov sp r4; (*sp <- top of cont*)
        ret];
    c_empty).
 
-Definition ns_hdl_lab : L.hdl_label := hdl_lab ""%string.
-Definition ns_obj_lab : L.obj_label := obj_lab ""%string.
+Definition ns_hdl_lab : L.hdl_label := hdl_lab 0.
+Definition ns_obj_lab : L.obj_label := obj_lab 0.
 Definition ns_clab : L.code_label := ""%string.
 Inductive init_L :
   L.code_mem -> (L.code_mem * L.heap * L.eval_context
@@ -130,7 +130,7 @@ Inductive init_L :
     init_L C
       (L.c_comp L_init_func C,
         L.h_empty, [hdl_led_lst dummy_hdl []] ,[], L_init_tm)%L_scope.
-Definition ns_hloc_str : S.heap_loc := hloc_str ""%string.
+Definition ns_hloc_str : S.heap_loc := hloc_str 0.
 Definition ns_hloc : S.word := hloc ns_hloc_str 0.
 Definition ns_hdl_hloc : S.word := hloc ns_hloc_str 4.
 Definition ns_cloc : S.word := cloc ""%string 0.
@@ -229,9 +229,9 @@ Inductive LS_rel_frames (C_mem : S.code_mem) : (list L.a_frame)
     LS_rel_frame C_mem Fi si
     -> LS_rel_frames C_mem Flst s'
     -> LS_rel_frames C_mem (Fi :: Flst) (si ++ s').
-Inductive LS_rel_hdl (L : string)
+Inductive LS_rel_hdl (L : nat)
   : L.h_frame -> list S.word -> Prop :=
-| rel_hdl_general : forall (L_env Clab_op:string) L_prev (s_prev:list word),
+| rel_hdl_general : forall L_env (Clab_op:string) L_prev (s_prev:list word),
     LS_rel_hdl L
       (handler_f (hdl_lab L)
               (obj_lab L_env) Clab_op general)
@@ -245,7 +245,7 @@ Definition is_h_frm_general_hdl (f:L.h_frame) : bool :=
   | _ => false
   end.
 Inductive LS_rel_hdl_stk
-  (C_mem : S.code_mem) (L : string) :
+  (C_mem : S.code_mem) (L : nat) :
   L.hdl_led_frm_lst -> S.stack_heap_val -> Prop :=
 | rel_hdl_stk_base : forall Flst s frm frm_stk,
     LS_rel_frames C_mem Flst s ->
@@ -283,7 +283,7 @@ Inductive LS_rel_env_context (C_mem : S.code_mem) : (L.eval_context * L.local_en
 Inductive LS_rel_tup_heap : L.tup_heap -> S.tuple_heap -> Prop :=
   rel_tup_heap :
     forall (LH_tup:L.tup_heap) (SH_tup:S.tuple_heap),
-    (forall (L_tup:string) vs,
+    (forall (L_tup:nat) vs,
         LH_tup (obj_lab L_tup) = L.tuple vs
         -> SH_tup L_tup = tuple (List.map run_cst_trans vs)) ->
     LS_rel_tup_heap LH_tup SH_tup.
@@ -305,11 +305,12 @@ Inductive LS_rel_cont_heap (C_mem : S.code_mem) :
 | rel_cont_heap_base : LS_rel_cont_heap C_mem ch_empty ([],th_empty)
 | rel_cont_heap :
   forall LH_cont SH_cont (SH_ctup:S.tuple_heap)
-         (L_rsp:string) L_last s_last
+         (L_rsp:nat) L_last s_last
          H_one_cont H_one_cont_ld Ks,
     LS_rel_cont_heap C_mem LH_cont (SH_cont,SH_ctup) ->
     LS_rel_cont C_mem (cont Ks) H_one_cont ->
     H_one_cont = H_one_cont_ld ++ [(L_last,stack s_last)] ->
+    SH_ctup L_rsp = tuple [] ->
     LS_rel_cont_heap C_mem
       (obj_lab L_rsp !->ch cont Ks; LH_cont)%L_scope
       (H_one_cont ++ SH_cont,
@@ -326,7 +327,7 @@ Inductive LS_rel_heap (C_mem : S.code_mem) :
          (LH_cont:L.cont_heap),
     LS_rel_tup_heap LH_tup SH_tup ->
     LS_rel_cont_heap C_mem LH_cont SH_conts ->
-    (forall (x:string) e lst,
+    (forall (x:nat) e lst,
         LH_tup (obj_lab x) = L.tuple (e :: lst) ->
         SH_tup x <> tuple []) ->
     LS_rel_heap C_mem (LH_tup,LH_cont) (SH_conts,SH_tup).

@@ -1,13 +1,10 @@
-Require Import Lists.List. Import ListNotations.
-Require Import Strings.String.
-Require Import Logic.FunctionalExtensionality.
-Require Import PeanoNat.
-Require Import Lia.
-From LSEH Require Import Lexi.
-From LSEH Require Import Salt.
-From LSEH Require Import LexiToSalt.
-From LSEH Require Import RelConfig.
 From LSEH Require Import Infrastructure.
+Import Lists.List. Import ListNotations.
+Import Strings.String.
+Import Logic.FunctionalExtensionality.
+Import RelConfig. Import LexiToSalt.
+Import PeanoNat. Import Lia.
+Import Lexi. Import Salt.
 Module L := Lexi. Module S := Salt. Module LS := LexiToSalt.
 Module R := RelConfig.
 Delimit Scope Lexi_scope with L_scope.
@@ -157,7 +154,6 @@ Proof with super_a.
     rewrite nth_error_app1;super_a;
     rewrite rev_length...    
 Qed.
-Check L_raise_past_stks.
 Lemma last_eval_ctx_rel :
   forall s C_mem L L_env lab_op Ks H alst,
     LS_rel_eval_ctx C_mem
@@ -233,7 +229,7 @@ Proof with super_a.
   destruct H4 as [H' [s' [h1 h2]]].
   exists ((hloc_str L0, stack s) :: H'),s'...
 Qed.
-Definition get_hdl_lab (hdl_frm_lst:hdl_led_frm_lst) : string :=
+Definition get_hdl_lab (hdl_frm_lst:hdl_led_frm_lst) : nat :=
   match hdl_frm_lst with
   | hdl_led_lst (handler_f (hdl_lab L) _ _ _) _ => L
   end.
@@ -370,6 +366,128 @@ Proof with super_a.
   intros. destruct H_ld;inversion H...
   - eapply H9...
   - eapply H9...
+Qed.
+Lemma app_inv_length_ld :
+  forall {A:Type} (l1 l2 l3 l4:list A),
+    l1 ++ l2 = l3 ++ l4 ->
+    List.length l2 = 5 ->
+    List.length l4 = 5->
+    l1 = l3.
+Proof with super_a.
+  intros.
+  assert (forall {A:Type} (l1 l2:list A),
+             l1 = l2 -> List.length l1
+                        = List.length l2)...
+  pose proof H as H3.
+  apply H2 in H3.
+  apply app_inv_tail with (l:=l2).
+  repeat (rewrite app_length in H3).
+  repeat (destruct l2 as [|];super_a).
+  repeat (destruct l4 as [|];super_a).
+  rewrite H. generalize dependent l1.
+  induction l3...
+  - destruct l1...
+  - intros. destruct l1.
+    + inversion H3...
+    + rewrite IHl3 with
+        (l1:=l1)...
+      inversion H...
+Qed.
+Lemma app_inv_length_ed :
+  forall {A:Type} (l1 l2 l3 l4:list A),
+    l1 ++ l2 = l3 ++ l4 ->
+    List.length l2 = 5 ->
+    List.length l4 = 5->
+    l2 = l4.
+Proof with super_a.
+  intros.
+  pose proof H.
+  apply app_inv_length_ld in H...
+  eapply app_inv_head...
+Qed.
+Lemma eval_ctx_last_points_to_preserves :
+  forall C_mem K H L s frmlst1 frmlst2 frm alst,
+    LS_rel_eval_ctx C_mem
+      (K ++ [hdl_led_lst frm alst])  
+      (H ++ [(hloc_str L, stack (s ++ frmlst1))]) ->
+    LS_rel_hdl L frm frmlst1 ->
+    LS_rel_hdl L frm frmlst2 ->
+    LS_rel_eval_ctx C_mem
+      (K ++ [hdl_led_lst frm alst])  
+      (H ++ [(hloc_str L, stack (s ++ frmlst2))]).
+Proof with super_a.
+  intros. inversion H1...
+  inversion H2...
+  generalize dependent K.
+  induction H...
+  - intros.
+    inversion H0...
+    inversion H8...
+    inversion H5...
+    + apply app_inv_length_ld
+        in H...
+    + inversion H5...
+      apply app_inv_length_ed
+        in H...
+  - intros.
+    destruct K;
+      inversion H0;subst.
+    { inversion H8.
+      destruct H... }
+    apply IHlist in H8.
+    constructor...
+    destruct H. 
+    + intros. 
+      inversion H...
+      unfold stk_points_to.
+      rewrite app_length.
+      assert (stk_points_to s0
+                (s ++
+                   [loc_w (cloc handle_loc 10);
+                    loc_w (hloc L_prev (Datatypes.length s_prev));
+                    int_w 0; 
+                    loc_w (hloc L_env 0);
+                    loc_w (cloc Clab_op 0)]) L).
+      { apply H10 with (H':=[])... }
+      unfold stk_points_to in H3.
+      rewrite app_length in H3...
+    + intros. inversion H3...
+      apply H10 with
+        (H':=H ++
+               [(hloc_str L,
+                  stack (s ++
+                           [loc_w (cloc handle_loc 10);
+                            loc_w (hloc L_prev (Datatypes.length s_prev));
+                            int_w 0; 
+                            loc_w (hloc L_env 0);
+                            loc_w (cloc Clab_op 0)]))])...
+Qed.
+
+Lemma app_inv_last :
+  forall {A:Type} (l1:list A) l2 a b,
+    l1 ++ [a] = l2 ++ [b] ->
+    a = b
+    /\ l1 = l2.
+Proof with super_a.
+  intros. generalize dependent l2.
+  induction l1.
+  - intros.
+    induction l2...
+    + inversion H...
+    + inversion H...
+      induction l2...
+    + induction l2...
+  - intros.
+    induction l2.
+    + induction l1...
+    + split.
+      * apply IHl1 with
+          (l2:=l2).
+        inversion H...
+      * inversion H...
+        apply IHl1 in H2.
+        destruct H2.
+        rewrite H1...
 Qed.
  (* intros.
   apply eval_ctx_app_split in H0.
@@ -736,32 +854,7 @@ Proof with super_a.
   destruct H4 as [s [H_ld [H_ed [hyp1 [hyp2 hyp3]]]]].
 Admitted.
 *)
-Lemma app_inv_last :
-  forall {A:Type} (l1:list A) l2 a b,
-    l1 ++ [a] = l2 ++ [b] ->
-    a = b
-    /\ l1 = l2.
-Proof with super_a.
-  intros. generalize dependent l2.
-  induction l1.
-  - intros.
-    induction l2...
-    + inversion H...
-    + inversion H...
-      induction l2...
-    + induction l2...
-  - intros.
-    induction l2.
-    + induction l1...
-    + split.
-      * apply IHl1 with
-          (l2:=l2).
-        inversion H...
-      * inversion H...
-        apply IHl1 in H2.
-        destruct H2.
-        rewrite H1...
-Qed.
+
 Lemma update_nth_one_iter :
   forall {A} n a lst (v:A),
     update_nth (S n) (a :: lst) v = a :: update_nth n lst v.
@@ -784,7 +877,14 @@ Proof with super_a.
   rewrite <- app_comm_cons.
   rewrite update_nth_one_iter...
 Qed.
-
+Lemma update_nth_length :
+  forall {A} n l (v:A),
+    List.length (update_nth n l v)
+    = List.length l.
+Proof with super_a.
+  intros. generalize dependent n.
+  induction l;destruct n...
+Qed.
 (*Lemma rel_frame_inv :
    forall C_mem F s s',
     LS_rel_frame C_mem F s -> LS_rel_frame C_mem F s' ->
@@ -836,6 +936,196 @@ intros. Search (List.map _ _=_(List.map _ _)). Admitted.
 Proof. intros.  Qed.
 Lemma SSn_n2 : forall n, S (S n) = n + 2.*)
 
+(*what I need:
+split cont stacks of salt
+using knowledge of cont heap in lexa
+need to give base of cont and top of cont*)
+Lemma tup_heap_nil_split :
+  forall H1 H2 L,
+    th_comp H1 H2 L = tuple [] ->
+    H1 L = tuple [] /\ H2 L = tuple [].
+Proof with super_a.
+  intros. split;
+    unfold th_comp in H;
+    destruct (H1 L) as []eqn:?;
+                         destruct l...
+Qed.
+Lemma th_comp_comm_th_update :
+  forall x v H1 H2,
+    H2 x = tuple [] ->
+    th_comp (x !->t v; H1) H2 =
+      (x !->t v; th_comp H1 H2).
+Proof with super_a.
+  intros. extensionality x'.
+  unfold th_comp,th_update,
+    h_eqb. destruct x as [x],x' as [x'].
+  destruct (x =? x') as []eqn:?...
+  rewrite Nat.eqb_eq in Heqb.
+  destruct v as [[|]]...
+Qed.
+Lemma cont_heap_split :
+  forall C_mem LH_cont_ld LH_cont_ed
+         SH_cont SH_ctup,
+    (*L_last is label of last stack
+      in the Ks*)
+    LS_rel_cont_heap C_mem
+      (LH_cont_ld ++ LH_cont_ed)
+      (SH_cont,SH_ctup) ->
+    exists SH_cont_ld SH_cont_ed
+           SH_ctup_ld SH_ctup_ed,
+      LS_rel_cont_heap C_mem LH_cont_ld
+        (SH_cont_ld,SH_ctup_ld)
+      /\ LS_rel_cont_heap C_mem LH_cont_ed
+           (SH_cont_ed,SH_ctup_ed)
+      /\ SH_cont = SH_cont_ld ++ SH_cont_ed
+      /\ SH_ctup = th_comp SH_ctup_ld SH_ctup_ed
+      /\ (forall L,
+             SH_ctup_ed L = tuple []
+             \/ SH_ctup_ld L = tuple []).
+(*can't both be non nil.
+if ed not nil then ld is nil
+if ld not nil then ed nil
+at least one is nil*)
+Proof with super_a.
+  intros.
+  generalize dependent SH_cont.
+  generalize dependent SH_ctup.
+  induction LH_cont_ld.
+  - intros.
+    exists sh_empty,SH_cont,
+      th_empty,SH_ctup...
+  - intros. inversion H...
+    apply IHLH_cont_ld in H4.
+    destruct H4 as
+      [SH_cont_ld' [SH_cont_ed' [SH_ctup_ld' [SH_ctup_ed' hyp]]]].
+    destruct hyp as
+      [hyp1 [hyp2 [hyp3 [hyp4 hyp5]]]].
+    exists
+      ((H_one_cont_ld ++ [(L_last,stack s_last)]) ++ SH_cont_ld'),
+      SH_cont_ed',
+      (L_rsp !->t tuple [loc_w (hloc L_last 4)];
+       SH_ctup_ld'),
+      SH_ctup_ed'.
+    repeat split;trysolve.
+    + econstructor...
+      apply tup_heap_nil_split in H7...
+    + super_a. rewrite app_assoc...
+    + extensionality x.
+      unfold th_update,th_comp.
+      destruct (h_eqb L_rsp x)...
+    + intros.
+      destruct (h_eqb L_rsp L) as []eqn:?.
+      * left...
+        apply tup_heap_nil_split in H7...
+        destruct L as [L].
+        inversion Heqb.
+        apply Nat.eqb_eq in H1...
+      * destruct hyp5 with (L:=L).
+        -- left...
+        -- right... unfold th_update.
+           rewrite Heqb...
+Qed.
+Lemma cont_heap_app :
+  forall C_mem LH_cont_ld LH_cont_ed
+         SH_cont_ld SH_cont_ed
+         SH_ctup_ld SH_ctup_ed,
+    (*L_last is label of last stack
+      in the Ks*)
+    LS_rel_cont_heap C_mem LH_cont_ld
+      (SH_cont_ld,SH_ctup_ld) ->
+    LS_rel_cont_heap C_mem LH_cont_ed
+      (SH_cont_ed,SH_ctup_ed) ->
+    (forall L,
+        SH_ctup_ed L = tuple []
+        \/ SH_ctup_ld L = tuple []) ->
+    LS_rel_cont_heap C_mem
+      (LH_cont_ld ++ LH_cont_ed)
+      (SH_cont_ld ++ SH_cont_ed,
+        th_comp SH_ctup_ld SH_ctup_ed).
+Proof with super_a.
+  intros.
+  generalize dependent SH_cont_ld.
+  generalize dependent SH_ctup_ld.
+  induction LH_cont_ld;
+    intros;inversion H...
+  apply IHLH_cont_ld in H6.
+  2:{ intros. specialize H1 with L.
+      destruct H1.
+      - left...
+      - right. unfold th_update in H1.
+        destruct (h_eqb L_rsp L)
+          as []eqn:?... }
+  rewrite <- app_assoc.
+  specialize H1 with (hloc_str L_rsp).
+  destruct H1.
+  - rewrite th_comp_comm_th_update...
+    econstructor...
+    unfold th_comp.
+    rewrite H9...
+  - unfold th_update in H1.
+    rewrite h_eqb_refl in H1...
+Qed.
+Lemma update_comp_cancel :
+  forall L lst H1 H2,
+    H1 L = tuple [] -> H2 L = tuple [] ->
+    (L !->t tuple []; th_comp H1 (L !->t tuple lst; H2))
+    = th_comp H1 H2.
+Proof with super_a.
+  intros. extensionality x.
+  unfold th_update,th_comp.
+  destruct L as [L],x as [x].
+  destruct (h_eqb L x) as []eqn:?...
+  unfold h_eqb in Heqb.
+  rewrite Nat.eqb_eq in Heqb...
+  rewrite H0,H...
+Qed.
+Lemma fresh_cont_lab_rel :
+  forall L LH_cont C_mem SH_cont SH_ctup,
+    fresh_cont_lab (obj_lab L) LH_cont = true ->
+    LS_rel_cont_heap C_mem
+      LH_cont (SH_cont,SH_ctup) ->
+    SH_ctup L = tuple [].
+Proof with super_a.
+  intros.
+  generalize dependent SH_ctup.
+  generalize dependent SH_cont.
+  induction LH_cont;intros;
+    inversion H0...
+  specialize IHLH_cont with
+    (SH_cont:=SH_cont0)
+    (SH_ctup:=SH_ctup0).
+  unfold th_update.
+  inversion H.
+  destruct (L_rsp =? L) as []eqn:?...
+  rewrite Heqb.
+  apply IHLH_cont...
+Qed.
+(*Lemma cont_heap_split_middle :
+  forall C_mem LH_cont_ld LH_cont_ed
+         L_rsp Ks SH_cont SH_ctup,
+    (*L_last is label of last stack
+      in the Ks*)
+    LS_rel_cont_heap C_mem
+      (LH_cont_ld ++ (L_rsp, cont Ks) :: LH_cont_ed)
+      (SH_cont,SH_ctup) ->
+    exists SH_cont_ld SH_cont_ed
+           SH_one_cont_ld L_last
+           s_last,
+      LS_rel_cont_heap C_mem LH_cont_ld
+        (SH_cont_ld,SH_ctup_ld)
+      /\ LS_rel_cont_heap C_mem [cont Ks]
+           (SH_one_cont_ld ++ [(L_last,s_last)],
+             L_rsp !->t tuple [hloc L_last 4]; th_empty)
+      /\ LS_rel_cont_heap C_mem LH_cont_ed
+           (SH_cont_ed,SH_ctup_ed)
+      /\ SH_cont = SH_cont_ld ++
+                     SH_one_cont_ld ++ [(L_last,s_last)]
+                     ++ SH_cont_ed
+      /\ SH_ctup = (L_rsp !->t tuple [hloc L_last 4];
+                    th_comp SH_cont_ld SH_cont_ed).
+Proof with super_a.
+  
+Qed.*)
 Theorem cond3 : forall LC SC H1 K1 E1 t1 R2 H2 H1' K1' E1' t1',
     LS_rel (LC, H1, K1, E1, t1)
       (SC, H2, R2) ->
@@ -1116,7 +1406,7 @@ Proof with super_a.
         apply rel_ins. inversion H10... inversion H3...
       * apply rel_env_context with (s_out:=s_out)...
       * unfold th_update,L.th_update,L.h_eqb,h_eqb.
-        intros. destruct (String.eqb L_str L_tup)...
+        intros. destruct (Nat.eqb L_str L_tup)...
         -- inversion H1... destruct v as [|[|]]...
            rewrite <- map_nth with (d:=L.ns)...
            rewrite app_nth1... inversion H2...
@@ -1127,7 +1417,7 @@ Proof with super_a.
            rewrite List.map_length...
         -- inversion H7...
       * unfold th_update,L.th_update,h_eqb,L.h_eqb.
-        intros. destruct (eqb L_str x)...
+        intros. destruct (Nat.eqb L_str x)...
       * rewrite H15... assert (AssocIns: forall (x1:instr) x2 x3 x4 tl,
                                   [x1;x2;x3;x4] ++ tl = x1::x2::x3::x4::tl).
         { intros... }
@@ -1348,7 +1638,7 @@ Proof with super_a.
         inversion H11...
       * unfold th_update,L.th_update,L.h_eqb,h_eqb.
         inversion H18...
-        intros. destruct (String.eqb L_str L_tup)...
+        intros. destruct (Nat.eqb L_str L_tup)...
         -- inversion H1... destruct v' as [|[|]]...
            rewrite <- map_nth with (d:=L.ns)...
            rewrite app_nth1... inversion H2... inversion H7...
@@ -1356,7 +1646,7 @@ Proof with super_a.
            inversion H6... inversion H21...
         -- inversion H13... inversion H9...
       * unfold th_update,L.th_update,h_eqb,L.h_eqb.
-        intros. destruct (eqb L_str x)...
+        intros. destruct (Nat.eqb L_str x)...
       * rewrite H15...
         assert (AssocIns: forall (x1:instr) x2 x3 x4 tl,
                    [x1;x2;x3;x4] ++ tl = x1::x2::x3::x4::tl).
@@ -2046,7 +2336,7 @@ Proof with super_a.
             (H_stk_ed:=(hloc_str L, stack s0) ::
                          H1 ++ SH_cont)...
         destruct v1 as [|[|]]...
-        inversion H17... rewrite app_nth1,
+        inversion H8... rewrite app_nth1,
           map_nth with (d:=L.ns),H3...
         rewrite map_length.
         inversion H10... inversion H23...
@@ -2065,7 +2355,7 @@ Proof with super_a.
         super_a. super_a.
         2:{ super_a. }
         destruct v1 as [|[|]]...
-        inversion H17... rewrite app_nth1,
+        inversion H8... rewrite app_nth1,
           map_nth with (d:=L.ns),H3...
         rewrite map_length.
         inversion H10... inversion H23...
@@ -2114,8 +2404,8 @@ Proof with super_a.
           (H_stk_ld:=(hloc_str L, stack s0) :: H1)
           (H_stk_ed:=SH_cont)...
         destruct v1 as [|[|]]...
-        inversion H17... rewrite
-          app_nth1, map_nth with (d:=L.ns),H3...
+        inversion H8... rewrite app_nth1,
+          map_nth with (d:=L.ns),H3...
         rewrite map_length.
         inversion H10... inversion H23...
         inversion H26... inversion H25... }
@@ -2134,7 +2424,7 @@ Proof with super_a.
           (H_stk_ld:=(hloc_str L, stack (skipn 0 s0)) :: H1)
           (H_stk_ed:=SH_cont)...
         destruct v1 as [|[|]]...
-        inversion H17... rewrite app_nth1,
+        inversion H8... rewrite app_nth1,
           map_nth with (d:=L.ns),H3...
         rewrite map_length.
         inversion H10... inversion H23...
@@ -2155,21 +2445,21 @@ Proof with super_a.
       eapply multi_step.
       { eapply S_push with (o:=r3)...
         unfold c_comp. inversion H14...
-        inversion H19.
-        apply H23 in H19.
-        rewrite H19,H24... }
+        inversion H18.
+        apply H23 in H18.
+        rewrite H18,H24... }
       eapply multi_step.
       { eapply S_push with (o:=r2)...
         unfold c_comp. inversion H14...
-        inversion H19.
-        apply H23 in H19.
-        rewrite H19,H24... }
+        inversion H18.
+        apply H23 in H18.
+        rewrite H18,H24... }
       constructor.
       { eapply S_push with (o:=r1)...
         unfold c_comp. inversion H14...
-        inversion H19.
-        apply H23 in H19.
-        rewrite H19,H24... }
+        inversion H18.
+        apply H23 in H18.
+        rewrite H18,H24... }
     (* prove LS_rel for raise, to handler of current stack*)
     + rewrite app_comm_cons.
       apply rel_LS with
@@ -2188,7 +2478,7 @@ Proof with super_a.
              :: SH_cont);automate.
       * inversion H14... specialize H3 with
           (x:=c_lab Clab_op).
-        inversion H3... rewrite H19 in H2.
+        inversion H3... rewrite H18 in H2.
         inversion H2...        
       * repeat (rewrite Nat.sub_add_distr with
                  (m:=2) (p:=2)).
@@ -2211,7 +2501,7 @@ Proof with super_a.
       * intros. inversion H13...
         inversion H26...
       * cbn. destruct v1 as [|[|]]...
-        inversion H17... rewrite app_nth1,
+        inversion H8... rewrite app_nth1,
           map_nth with (d:=L.ns),H3...
         2:{ rewrite map_length.
             inversion H10... inversion H23...
@@ -2251,16 +2541,16 @@ Proof with super_a.
             rewrite app_length with
               (l:=map run_cst_trans E1 ++ s),
                 Nat.add_comm... }
+        eapply fresh_cont_lab_rel...
       * inversion H13...
-      * inversion H14... inversion H19.
-        unfold c_comp. apply H23 in H19.
-        rewrite H19... rewrite H24...
+      * inversion H14... inversion H18.
+        unfold c_comp. apply H23 in H18.
+        rewrite H18... rewrite H24...
   (* x = raise v1 v2, raising handler of past stacks*)
   - destruct L as [L_str].
     destruct L_k as [L_k_str].
     destruct L_new as [L_new].
-    inversion H5.
-    inversion H9. inversion H3.
+    inversion H5;subst.
     (*assert (Temp:forall {A} a b (l l': list A),
                l' ++ a :: b :: l = l' ++ [a] ++ b :: l). {super_a.}
     rewrite Temp, app_assoc in H7.*)
@@ -2271,9 +2561,27 @@ Proof with super_a.
     destruct H7 as
       [s1 [s2 [H_ld [H_ed hyp]]]].
     destruct hyp as [hyp1 [hyp2 [hyp3 hyp4]]].
+    pose proof hyp1 as hyp1_backup.
     destruct L_env as [L_env].
     apply last_eval_ctx_rel in hyp1.
-    inversion hyp1. inversion H24.
+    inversion hyp1;subst.
+    inversion H6;subst.
+    (*inversion H24.*)
+    remember
+      (map run_cst_trans E1 ++
+         s_out) as cur_stk_val.
+    remember
+      ([loc_w (cloc handle_loc 10);
+        loc_w (hloc L_prev (Datatypes.length s_prev));
+        int_w 0; 
+        loc_w (hloc L_env 0);
+        loc_w (cloc Clab_op 0)])
+        as frm_stk.
+     (* l code loc
+        SH_tups
+        R36
+        H_stks
+        cur_stkh*)
     esplit. esplit. split.
     + eapply multi_step.
       { destruct v2 as [cst|[ind|var]].
@@ -2313,9 +2621,9 @@ Proof with super_a.
         rewrite H15. inversion H10...
         apply ins_verify with (n:=2). }
       eapply multi_step.
-      { inversion hyp3. subst.
+      { (*inversion hyp3.*)
         unfold next_cloc.
-        Check S_load_stk.
+        Check S_load_stk. cbn.
         eapply S_load_stk with
           (d:=r4) (s:=r1) (load_off:=0)
           (l:=cloc raise_loc 0)
@@ -2356,19 +2664,14 @@ Proof with super_a.
                         int_w 0; 
                         loc_w (hloc L_env 0);
                         loc_w (cloc Clab_op 0)]))]*))
-          (lst:=s0 ++
-                  [loc_w (cloc handle_loc 10);
-                   loc_w (hloc L_prev (List.length s_prev));
-                   int_w 0; 
-                   loc_w (hloc L_env 0);
-                   loc_w (cloc Clab_op 0)])
+          (lst:=s ++ frm_stk)
           (*H_stk_ed:=H_ed ++ SH_cont*)...
         - destruct v1 as [|[|]]...
-          inversion H17... rewrite app_nth1,
+          inversion H8... rewrite app_nth1,
             map_nth with (d:=L.ns),H2...
           rewrite map_length.
           inversion H10... inversion H3...
-          inversion H7... inversion H6...
+          inversion H20... inversion H17...
         - repeat (rewrite <- app_assoc)... }      
       eapply multi_step.
       { eapply S_store_stk with
@@ -2382,18 +2685,18 @@ Proof with super_a.
           (*lst:=s_md)
           (H_stk_ed:=H_ed ++ SH_cont*)...
         - destruct v1 as [|[|]]...
-          inversion H17... rewrite app_nth1,
+          inversion H8... rewrite app_nth1,
             map_nth with (d:=L.ns),H2...
           rewrite map_length.
           inversion H10... inversion H3...
-          inversion H7... inversion H6...
+          inversion H20... inversion H17...
         - repeat (rewrite <- app_assoc)...
         - rewrite app_length... }
-      rewrite <- H22.
+      (*rewrite <- H22.*)
       rewrite Nat.add_0_r.
       rewrite update_nth_split with
         (l2:=frm_stk).
-      2:{ super_a. } rewrite <- H26.
+      2:{ super_a. } (*rewrite <- H26.*)
       inversion hyp2.
       (*assert (hloc_str L0 = L_prev /\
              s1 = s_prev).
@@ -2426,9 +2729,10 @@ Proof with super_a.
                         :: map run_cst_trans E1 ++ s_out))
                :: H_ld ++
                [(hloc_str L_str,
-                  stack (s0 ++ [loc_w (cloc handle_loc 10);
-                                loc_w (hloc L_out
-                                         (S (List.length (map run_cst_trans E1 ++ s))));
+                  stack (s ++ [loc_w (cloc handle_loc 10);
+                                loc_w (hloc L
+                                         (S (List.length (map run_cst_trans E1
+                                                            ++ s_out))));
                                 int_w 0;
                                 loc_w (hloc L_env 0); 
                                 loc_w (cloc Clab_op 0)]))])
@@ -2475,12 +2779,12 @@ Proof with super_a.
           (L:=L_str)
           (H_stk_ed:=SH_cont)...
         - destruct v1 as [|[|]]...
-          inversion H17...
+          inversion H8...
           rewrite app_nth1,
             map_nth with (d:=L.ns),H2...
           rewrite map_length.
           inversion H10... inversion H3...
-          inversion H7... inversion H6...
+          inversion H21... inversion H17...
         - repeat (rewrite <- app_assoc)... }
       eapply multi_step.
       { apply S_malloc_c with
@@ -2502,23 +2806,12 @@ Proof with super_a.
                :: H_ld)
           (H_stk_ed:=SH_cont)...
         - destruct v1 as [|[|]]...
-          inversion H17... rewrite app_nth1,
+          inversion H8... rewrite app_nth1,
             map_nth with (d:=L.ns),H2...
           rewrite map_length.
           inversion H10... inversion H3...
-          inversion H7... inversion H6...
+          inversion H21... inversion H17...
         - repeat (rewrite <-app_assoc)... }
-      (* finish up till here, ??????!!!!!!---<<<>>>>>>><<<<
-
-copy and paste both versions (no need for call, only jump)
- (o:=r5) (lsp:=match H_ld with
-                        | [] => L_prev
-                        | _::_ => L_prev0
-                        end)
-          (lst:=match H_ld with
-                        | [] => s_prev
-                        | _::_ => s_prev0
-                        end).*)
       eapply multi_step.
       { eapply S_jmp with
           (o:=r5) (l':=cloc Clab_op 0);automate.
@@ -2528,473 +2821,637 @@ copy and paste both versions (no need for call, only jump)
           repeat (rewrite app_comm_cons).
         2:{ repeat (rewrite app_length)... }
         rewrite <- rev_nth with (n:=0),
-            rev_app_distr,rev_app_distr.
+            rev_app_distr.
         2:{ repeat (rewrite app_length).
             rewrite Nat.add_comm... }
         cbn... }
-      
-    (*inversion H7...
-    specialize H16 with
-      (L':=hloc_str L) (s':=s0) (H':=H1).
-    assert (Temp:(hloc_str L, stack s0) :: H1
-                 = (hloc_str L, stack s0) :: H1)...
-    apply H16 in Temp.
-    unfold stk_points_to in Temp.
-    rewrite rev_app_distr in Temp.
-    inversion Temp...*)
-    
-      
       eapply multi_step.
       { eapply S_push with (o:=r3)...
         unfold c_comp. inversion H14...
-        inversion H19.
-        apply H23 in H19.
-        rewrite H19,H24... }
+        inversion H18.
+        apply H3 in H18.
+        rewrite H18,H9... }
       eapply multi_step.
       { eapply S_push with (o:=r2)...
         unfold c_comp. inversion H14...
-        inversion H19.
-        apply H23 in H19.
-        rewrite H19,H24... }
+        inversion H18.
+        apply H3 in H18.
+        rewrite H18,H9... }
       constructor.
       { eapply S_push with (o:=r1)...
         unfold c_comp. inversion H14...
-        inversion H19.
-        apply H23 in H19.
-        rewrite H19,H24... }
-    (* prove LS_rel for raise, to handler of current stack*)
-    + rewrite app_comm_cons.
+        inversion H18.
+        apply H3 in H18.
+        rewrite H18,H9... }
+    (* prove LS_rel for raise, to handler of past stacks*)
+    + (* simplify the fetching from lists*)
+      cbn.
+      rewrite Nat.sub_add_distr with
+               (m:=1) (p:=3).
+      rewrite Nat.sub_add.
+      2:{ repeat (rewrite app_length)... }
+      rewrite Nat.sub_add_distr with
+               (m:=1) (p:=2).
+      rewrite Nat.sub_add.
+      2:{ repeat (rewrite app_length)... }
+      rewrite <- Nat.sub_add_distr.
+      rewrite <- rev_nth with (n:=0),
+          rev_app_distr.
+      2:{ repeat (rewrite app_length).
+          rewrite Nat.add_comm... }
+      rewrite <- rev_nth with (n:=1),
+          rev_app_distr.
+      2:{ repeat (rewrite app_length).
+          rewrite Nat.add_comm... }
+      rewrite <- rev_nth with (n:=3),
+          rev_app_distr.
+      2:{ (*rewrite <- H26.*)
+          repeat (rewrite app_length).
+          rewrite Nat.add_comm... }
+      cbn.
+      rewrite <- app_assoc.
+      rewrite app_comm_cons with (x:=H_ed).
       apply rel_LS with
         (lst:=[push r3;push r2;push r1])
-        (SIlst:=func_term_trans 3 t1')
+        (SIlst:=func_term_trans 3 t1')...
+        (*SH_stack:=
+           (hloc_str L_new,
+             stack
+               (loc_w (hloc L_env 0) ::
+                  val_direct_trans v2
+                  (map run_cst_trans E1 ++ s)
+                  :: loc_w (hloc L_k_str 0) :: s2)) :: H_ed).
         (SH_cont:=
-           (hloc_str L_str,
+           (hloc_str L,
              stack (loc_w (cloc Clab (3 + Datatypes.length lst))
-                      :: map run_cst_trans E1 ++ s ++
+                      :: map run_cst_trans E1 ++ s_out))
+             :: H_ld ++    
+             [(hloc_str L_str,
+             stack (s0 ++
                       [loc_w (cloc handle_loc 10);
-                       loc_w (hloc L_str
-                                (6 + (List.length (map run_cst_trans E1 ++ s))));
+                       loc_w (hloc L_out
+                                (S (List.length (map run_cst_trans E1 ++ s))));
                        int_w 0;
-                       loc_w (hloc L_env0 0); 
-                       loc_w (cloc Clab_op 0)]))
-             :: SH_cont);automate.
-      * inversion H14... specialize H3 with
+                       loc_w (hloc L_env 0); 
+                       loc_w (cloc Clab_op 0)]))]
+             ++ SH_cont*)
+      * inversion H14... specialize H2 with
           (x:=c_lab Clab_op).
-        inversion H3... rewrite H19 in H2.
-        inversion H2...        
-      * repeat (rewrite Nat.sub_add_distr with
-                 (m:=2) (p:=2)).
-        rewrite Nat.sub_add;
-          repeat (rewrite app_comm_cons).
-        2:{ repeat (rewrite app_length)... }
-        rewrite <- rev_nth with (n:=1),
-            rev_app_distr,rev_app_distr.
-        2:{ repeat (rewrite app_length).
-            rewrite Nat.add_comm... }
-        cbn.
-        apply rel_env_context with
-          (s_out:=s0)...
+        rewrite H18 in H2. inversion H2...        
+      * apply rel_env_context with
+          (s_out:=s2)...
         destruct v2 as [cst|[ind|str]]...
         rewrite <- map_nth with (d:=L.ns).
         rewrite app_nth1... inversion H10...
         rewrite List.map_length.
-        inversion H3... inversion H25...
-        inversion H28...
+        inversion H2... inversion H17...
+        inversion H22...
       * intros. inversion H13...
-        inversion H26...
-      * cbn. destruct v1 as [|[|]]...
-        inversion H17... rewrite app_nth1,
-          map_nth with (d:=L.ns),H3...
+        inversion H20...
+      * destruct v1 as [|[|]]...
+        inversion H8... rewrite app_nth1,
+          map_nth with (d:=L.ns),H2...
         2:{ rewrite map_length.
-            inversion H10... inversion H23...
-            inversion H26... inversion H25... }
+            inversion H10... inversion H3...
+            inversion H20... inversion H17... }
         rewrite heap_front_update.
         assert (forall a (l : list (heap_loc * stack_heap_val)),
                    a :: l = [a] ++ l)...
         inversion H13...
-        rewrite H2 with (l:=SH_cont).
+        rewrite H1 with (l:=SH_cont).
+        rewrite app_comm_cons with (x:=H_ld).
+        rewrite app_assoc.
         eapply rel_cont_heap with
-          (SH_cont:=SH_cont)
-          (H_one_cont_ld:=[])...
-        { apply rel_cont_stks with (stks:=[])...
-          - rewrite app_comm_cons,
-             app_assoc...
-            + apply rel_frame with
-                (lst:=lst ++ firstn 3 SIlst)
-                (Ilst:=skipn 3 SIlst);inversion H10...
-              * pose proof term_trans_not_nil...
-                destruct (term_trans t) as []eqn:?;automate.
-                rewrite <- Heql.
-                rewrite <- PeanoNat.Nat.add_succ_comm.
-                apply rel_ins. inversion H24...
-              * rewrite H15,
+          (SH_cont:=SH_cont)...
+        { apply rel_cont_stks with
+            (stks:=H_ld)...
+          - apply eval_ctx_last_points_to_preserves with
+              (frmlst1:=
+                 [loc_w (cloc handle_loc 10);
+                  loc_w (hloc L_prev (List.length s_prev));
+                  int_w 0; 
+                  loc_w (hloc L_env 0);
+                  loc_w (cloc Clab_op 0)])...
+            Check rel_hdl_general.
+            apply rel_hdl_general with
+              (s_prev:=ns :: map run_cst_trans E1 ++ s_out).
+          - inversion H11...
+            rewrite app_comm_cons,app_assoc.
+            Check rel_hdl_stk_base.
+            constructor...
+            apply rel_frame with
+              (lst:=lst ++ firstn 3 SIlst)
+              (Ilst:=skipn 3 SIlst);inversion H10...
+            + pose proof term_trans_not_nil...
+              destruct (term_trans t) as []eqn:?;automate.
+              rewrite <- Heql.
+              rewrite <- PeanoNat.Nat.add_succ_comm.
+              apply rel_ins. inversion H9...
+            + rewrite H15,
                    <- app_assoc...
-              * rewrite app_length...
-            + assert (S (S (S (S (S (S (List.length (map run_cst_trans E1 ++ s)))))))
-                      = List.length (map run_cst_trans E1 ++
-                                       s ++ [ns;ns;ns;ns;ns;ns])).
-              { repeat (rewrite app_length)... }
-              rewrite H23.
-              constructor.
-          - intros. inversion H23...
+            + rewrite app_length...
+          - intros.
+            rewrite app_comm_cons.
+            apply stk_points_to_preserves.
+            { inversion H11...
+              rewrite app_length.
+              inversion H25... }
+            destruct H_ld.
+            + inversion H3...
+              unfold stk_points_to.
+              unfold stk_points_to in H16.
+              erewrite H16 with
+                (s':=s ++
+                       [loc_w (cloc handle_loc 10);
+                        loc_w (hloc L_prev (Datatypes.length s_prev));
+                        int_w 0; 
+                        loc_w (hloc L_env 0);
+                        loc_w (cloc Clab_op 0)])...
+              repeat (rewrite app_length)...
+            + inversion H3...
+          - intros. inversion H3...
+            apply app_inj_tail in H24.
+            destruct H24. inversion H17...
             unfold stk_points_to.
-            rewrite app_comm_cons,
-              app_assoc,rev_app_distr...
-            rewrite app_length with
-              (l:=map run_cst_trans E1 ++ s),
-                Nat.add_comm... }
-      * inversion H13...
-      * inversion H14... inversion H19.
-        unfold c_comp. apply H23 in H19.
-        rewrite H19... rewrite H24...
-
-
-
------!!!???
-
-  
-      cbn.
-      apply multi_step with
-        (y:=((hloc_str L,
-               stack (loc_w (cloc Clab
-                               (S (S (S (Datatypes.length lst)))))
-                         :: cur_stk_val))
-              :: H_stack ++ SH_cont, th_comp SH_tup SH_ctup,
-           [(ip,loc_w (cloc raise_loc 1));
-            (sp,loc_w (hloc L (S (Datatypes.length cur_stk_val))));
-            (r0,o0); (r1,val_direct_trans v1 cur_stk_val);
-            (r2,val_direct_trans v2 cur_stk_val);
-            (r3,o3);
-            (r4,nth (List.length
-                       (match H_ld with
-                        | [] => loc_w (cloc Clab
-                                         (3 + List.length lst))
-                                  :: cur_stk_val
-                        | _ :: _ => s_cont
-                        end) - 4 + 0)
-                  (match H_ld with
-                   | [] => loc_w (cloc Clab
-                                    (3 + List.length lst))
-                             :: cur_stk_val
-                   | _ :: _ => s_cont
-                   end) ns);
-            (r5,o5);(r6,o6)])).
-      { destruct H_ld.
-        - (*inversion hyp3.
-          fold (nth (List.length (loc_w (cloc Clab
-                                    (3 + Datatypes.length lst))
-                                    :: List.map run_cst_trans E1
-                                    ++ s0 ++ frm_stk) - 4 + 0)
-                  (loc_w (cloc Clab (3 + List.length lst))
-                     :: List.map run_cst_trans E1
-                     ++ s0 ++ frm_stk) ns*)
-          subst. unfold next_cloc.
-          inversion hyp3.
-          eapply S_load_stk with
-            (d:=r4) (s:=r1) (load_off:=0)
-            (l:=cloc raise_loc 0)
-            (R:=[(ip,loc_w (cloc raise_loc 0));
-                 (sp,loc_w (hloc L_str (S (List.length
-                                             (List.map run_cst_trans E1
-                                                ++ s0 ++ frm_stk)))));
-                 (r0,o0);
-                 (r1,val_direct_trans v1
-                       (List.map run_cst_trans E1 ++ s0 ++ frm_stk));
-                 (r2,val_direct_trans v2
-                       (List.map run_cst_trans E1 ++ s0 ++ frm_stk));
-                 (r3,o3);
-                 (r4,o4);
-                 (r5,o5);(r6,o6)])
-            (H_stk_ld:=[])
-            (lst:=loc_w (cloc Clab (3 + List.length lst))
-                    :: List.map run_cst_trans E1 ++ s0 ++ frm_stk)
-            (H_stk_ed:=H_ed ++ SH_cont)...
-          + destruct v1 as [|[|]]...
-            inversion H17... rewrite app_nth1,
-              map_nth with (d:=L.ns),H3...
-            rewrite map_length.
-            inversion H10... inversion H6...
-            inversion H27... inversion H22...
-        - inversion hyp3. subst.
-          unfold next_cloc.
-          Check S_load_stk.
-          eapply S_load_stk with
-            (d:=r4) (s:=r1) (load_off:=0)
-            (l:=cloc raise_loc 0)
-            (R:=[(ip,loc_w (cloc raise_loc 0));
-                 (sp,loc_w (hloc L (S (Datatypes.length (List.map run_cst_trans E1
-                                         ++ s0 ++ frm_stk)))));
-                 (r0,o0); (r1,val_direct_trans v1 (List.map run_cst_trans E1
-                                ++ s0 ++ frm_stk));
-                 (r2,val_direct_trans v2 (List.map run_cst_trans E1
-                       ++ s0 ++ frm_stk));
-                 (r3,o3);
-                 (r4,o4);
-                 (r5,o5);(r6,o6)])
-            (H_stk_ld:=
-               (hloc_str L,
-                 stack (loc_w (cloc Clab (3 + List.length lst))
-                          :: List.map run_cst_trans E1
-                          ++ s0 ++ frm_stk))
-                 :: H_ld)
-            (*lst:=s1 ++
-                     [loc_w (cloc handle_loc 10);
-                      loc_w (hloc L_prev (Datatypes.length s_prev));
-                      int_w 0; 
-                      loc_w (hloc L_env0 0);
-                      loc_w (cloc Clab_op 0)]*)
-            (H_stk_ed:=H_ed ++ SH_cont)...
-          + destruct v1 as [|[|]]...
-            inversion H17... rewrite app_nth1,
-              map_nth with (d:=L.ns),H3...
-            rewrite map_length.
-            inversion H10... inversion H4...
-            inversion H22... inversion H21...
-          + inversion hyp3...
-            rewrite <- app_assoc,
-              <- app_comm_cons... }
+            rewrite rev_app_distr...
+          - intros... destruct H_ld... }
+        eapply fresh_cont_lab_rel...
+        * inversion H13...
+        * inversion H14... inversion H18.
+          unfold c_comp. apply H3 in H9.
+          rewrite H9... rewrite H18...
+  (* x = resume v1 v2, resuming a continuation with one handler*)
+  - destruct L_k as [L_k_str].
+    revert Heqcur_stk_val.
+    inversion H13;subst.
+    apply cont_heap_split in H8.
+    destruct H8 as
+      [SH_cont_ld [SH_cont_ed hyp]].
+    destruct hyp as
+      [SH_ctup_ld [SH_ctup_ed hyp]].
+    destruct hyp as
+      [hyp1 [hyp2 [hyp3 [hyp4 hyp5]]]].
+    inversion hyp2;subst.
+    destruct H_one_cont_ld.
+    2:{ inversion H16;subst.
+        inversion H3;subst.
+        inversion H21;subst.
+        destruct H_one_cont_ld... }
+    inversion H16;subst. 
+    assert (hyp_point:stk_points_to s_last s_last L_last).
+    { eapply H8... }
+    inversion H3;subst.
+    remember s_last as stk_last.
+    revert Heqstk_last.
+    inversion H23;subst.
+    inversion H20;subst.
+    inversion H19;subst.
+    inversion H17;subst.
+    intros.
+    assert (Temp:
+             List.length s_prev = List.length s_last
+             /\ L_prev = L).
+    { inversion hyp_point;subst.
+      rewrite rev_app_distr in H2.
+      inversion H2... }
+    destruct Temp as
+      [s_prev_len_eq HeqL_prev].         
+    esplit. esplit. split.
+    + eapply multi_step.
+      { destruct v2 as [cst|[ind|var]].
+        - eapply S_mov with
+            (d:=r2) (o:=val_direct_trans cst cur_stk_val)...
+          cbn. rewrite H15. inversion H10... apply nth_middle.
+        - pose proof S_load_stk as Tmp.
+          specialize Tmp with
+            (d:=r2) (load_off:=ind) (lst:=cur_stk_val)
+            (reg_off:=List.length cur_stk_val)(s:=sp)
+            (H_stk_ld:=[]).
+          rewrite PeanoNat.Nat.sub_diag in Tmp.
+          eapply Tmp...
+          + rewrite H15. inversion H10...
+            apply nth_middle.
+        - eapply S_mov with
+            (d:=r2) (o:=val_direct_trans (var_val var) cur_stk_val)...
+          rewrite H15. inversion H10... apply nth_middle. }
+      eapply multi_step.
+      { destruct v1 as [cst|[ind|var]].
+        - eapply S_mov with
+            (d:=r1) (o:=val_direct_trans cst cur_stk_val)...
+        - pose proof S_load_stk as Tmp.
+          specialize Tmp with
+            (d:=r1) (load_off:=ind) (lst:=cur_stk_val)
+            (reg_off:=List.length cur_stk_val)(s:=sp)
+            (H_stk_ld:=[]).
+          rewrite PeanoNat.Nat.sub_diag in Tmp.
+          eapply Tmp...
+          + rewrite H15. inversion H10...
+            apply ins_verify with (n:=1).
+        - eapply S_mov with
+            (d:=r1) (o:=val_direct_trans (var_val var) cur_stk_val)... }
+      eapply multi_step.
+      { eapply S_call
+          with (o:=wd_o (cloc resume_loc 0))...
+        rewrite H15. inversion H10...
+        apply ins_verify with (n:=2). }
+     (**)
+      eapply multi_step.
+      { eapply S_load_tup_c with
+          (d:=r3) (s:=r1) (off:=0)...
+        - destruct v1 as [|[|]]...
+          inversion H4... rewrite app_nth1,
+            map_nth with (d:=L.ns),H2...
+          rewrite map_length.
+          inversion H10... inversion H28...
+          inversion H33... inversion H32...
+        - specialize hyp5 with
+            (L:=hloc_str L_k_str).
+          inversion hyp5.
+          + unfold th_update in H1.
+            rewrite h_eqb_refl in H1...
+          + unfold th_comp.
+            rewrite H1.
+            unfold th_update.
+            rewrite h_eqb_refl... }
+      eapply multi_step.
+      { eapply S_store_c_ns with
+          (d:=r1)...
+        - destruct v1 as [|[|]]...
+          inversion H4... rewrite app_nth1,
+            map_nth with (d:=L.ns),H2...
+          rewrite map_length.
+          inversion H10... inversion H28...
+          inversion H33... inversion H32...
+        - specialize hyp5 with
+            (L:=hloc_str L_k_str).
+          inversion hyp5.
+          + unfold th_update in H1.
+            rewrite h_eqb_refl in H1...
+          + unfold th_comp.
+            rewrite H1.
+            unfold th_update.
+            rewrite h_eqb_refl... }
+      eapply multi_step.
+      { eapply S_load_stk with
+          (d:=r4) (s:=r3) (load_off:=0)
+          (H_stk_ld:=
+             (L_out,
+               stack (loc_w (cloc Clab (3 + List.length lst))
+                        :: map run_cst_trans E1 ++ s_out))
+               :: H_stack ++ SH_cont_ld)...
+        rewrite app_assoc... }
       eapply multi_step.
       { eapply S_store_stk with
-          (d:=r1) (load_off:=0) (o:=sp)
-          (H_stk_ld:=match H_ld with
-                     | [] => []
-                     | _::H_ld' =>
-                         (hloc_str L,
-                           stack (loc_w (cloc Clab (3 + List.length lst))
-                                    :: cur_stk_val))
-                           :: H_ld'
-                     end)
-          (lst:=match H_ld with
-                | [] =>
-                    loc_w (cloc Clab (3 + List.length lst))
-                      :: cur_stk_val
-                | _ :: _ => s_cont
-                end)
-          (H_stk_ed:=H_ed ++ SH_cont)...
+          (d:=r3) (load_off:=0) (o:=sp)
+          (H_stk_ed:=SH_cont0)...
+        - rewrite app_assoc,app_comm_cons...
+        - rewrite app_comm_cons, app_length,
+            Nat.add_comm... }
+      eapply multi_step.
+      { eapply S_mov with
+          (d:=r1) (o:=r2)... }
+      (**)
+      rewrite Nat.add_0_r.
+      rewrite <- Heqstk_last.
+      rewrite update_nth_split.
+      2:{ super_a. }
+      rewrite <- rev_nth,
+        rev_app_distr.
+      2:{ rewrite app_length,Nat.add_comm... }
+      eapply multi_step.
+      { Check S_mov_sp_from_cont.
+        rewrite app_comm_cons,<-app_assoc.
+        eapply S_mov_sp_from_cont with
+          (o:=r4) (H_cont':=[])
+          (lst:=update_nth (List.length s_last - 4) s_last
+                  (loc_w (hloc L_out (S (List.length (map run_cst_trans
+                                                        E1 ++ s_out))))))
+          (H_cont_ld:=SH_cont_ld)
+          (H_cont_ed:=SH_cont0);trysolve.
+        - rewrite <- Heqstk_last,
+            update_nth_split...
+        - rewrite s_prev_len_eq.
+          rewrite update_nth_length... }
+      rewrite update_nth_length,
+        s_prev_len_eq, Nat.sub_diag.
+      eapply multi_step.
+      { eapply S_ret;trysolve;
+          rewrite <- Heqstk_last;
+          rewrite update_nth_split...
+        repeat (rewrite app_length)... }
+      rewrite <- Heqstk_last.
+      rewrite update_nth_split.
+      2:{ super_a. }
+      constructor.
+      { eapply S_push with (o:=r1)...
+        rewrite H27. destruct Ilst as
+          [|a Ilst']... rewrite nth_middle... }
+    (* prove LS_rel for resume, with a continuation of one stack *)
+    + cbn. repeat (rewrite app_comm_cons).
+      apply rel_LS with
+        (SIlst:=tl Ilst)
+        (lst:=lst0 ++ firstn 1 Ilst)...
+      * inversion H25...
+      * rewrite <- app_assoc.
+        apply rel_env_context with
+          (s_out:=
+             s' ++
+               [loc_w (cloc handle_loc 10);
+                loc_w (hloc L_out (S (Datatypes.length
+                                        (map run_cst_trans
+                                           E1 ++ s_out))));
+                int_w 0;
+                loc_w (hloc L_env 0); 
+                loc_w (cloc Clab_op 0)])...
+        -- inversion H5...
+           { inversion H35...
+             rewrite app_comm_cons,app_assoc.
+             constructor... Check rel_frame.
+             apply rel_frame with
+               (Ilst:=push r1 :: func_term_trans (List.length (L.ns :: E1)) t)
+               (lst:=lst ++ firstn 3 SIlst);trysolve;
+               inversion H10...
+             - inversion H2...
+             - rewrite H15. rewrite <- app_assoc.
+               pose proof term_trans_not_nil...
+               destruct (term_trans t) as []eqn:?;automate.
+               rewrite <- Heql.
+               rewrite <- Nat.add_succ_comm...
+             - rewrite app_length... }
+           intros. rewrite app_comm_cons,
+             <- stk_points_to_preserves...
+           inversion H35... rewrite app_length.
+           inversion H32...
+        -- apply rel_hdl_general with
+             (s_prev:=ns :: map run_cst_trans E1 ++ s_out).
+        -- intros. inversion H1...
+           unfold stk_points_to.
+           rewrite app_comm_cons,
+             rev_app_distr...
+        -- inversion H10... inversion H2...
+           inversion H32... inversion H29...
+           inversion H34...
+           rewrite <- map_nth with (d:=L.ns).
+           rewrite app_nth1...
+           rewrite List.map_length...
+      * unfold th_update in hyp5.
+        rewrite update_comp_cancel...
+        2:{ specialize hyp5 with (hloc_str L_k_str).
+            destruct hyp5 as [hyp5|]...
+            rewrite h_eqb_refl in hyp5... }
+        apply cont_heap_app;trysolve.
+        intros. specialize hyp5 with L0.
+        destruct hyp5 as [hyp5|hyp5].
+        -- destruct (h_eqb L_k_str L0)...
+        -- right...
+      * rewrite H27. destruct Ilst...
+        rewrite <- app_assoc...
+      * destruct Ilst... rewrite app_length...
+  (* x = resume v1 v2, resuming a continuation with multiple handlers*)
+  - destruct L_k as [L_k_str].
+    revert Heqcur_stk_val.
+    inversion H13;subst.
+    apply cont_heap_split in H8.
+    destruct H8 as
+      [SH_cont_ld [SH_cont_ed hyp]].
+    destruct hyp as
+      [SH_ctup_ld [SH_ctup_ed hyp]].
+    destruct hyp as
+      [hyp1 [hyp2 [hyp3 [hyp4 hyp5]]]].
+    inversion hyp2;subst.
+    destruct H_one_cont_ld as [|a H_one_cont_ld'].
+    { inversion H16;subst.
+      inversion H3;subst.
+      inversion H21;subst.
+      destruct K'... }
+    inversion H16;subst.
+    inversion H3;subst.
+    assert (hyp_point:stk_points_to s_last s L).
+    { eapply H6 with (L_lst:=L_last)...
+      (*change something about stks*)
+      assert (forall a b l1 l2,
+                 a :: l1 ++ [b] = a :: l2 ++ [b] ->
+                 l1 =
+                 constructor. }
+    remember s_last as stk_last.
+    revert Heqstk_last.
+    inversion H23;subst.
+    inversion H20;subst.
+    inversion H19;subst.
+    inversion H17;subst.
+    intros.
+    assert (Temp:
+             List.length s_prev = List.length s_last
+             /\ L_prev = L).
+    { inversion hyp_point;subst.
+      rewrite rev_app_distr in H2.
+      inversion H2... }
+    destruct Temp as
+      [s_prev_len_eq HeqL_prev].         
+    esplit. esplit. split.
+    + eapply multi_step.
+      { destruct v2 as [cst|[ind|var]].
+        - eapply S_mov with
+            (d:=r2) (o:=val_direct_trans cst cur_stk_val)...
+          cbn. rewrite H15. inversion H10... apply nth_middle.
+        - pose proof S_load_stk as Tmp.
+          specialize Tmp with
+            (d:=r2) (load_off:=ind) (lst:=cur_stk_val)
+            (reg_off:=List.length cur_stk_val)(s:=sp)
+            (H_stk_ld:=[]).
+          rewrite PeanoNat.Nat.sub_diag in Tmp.
+          eapply Tmp...
+          + rewrite H15. inversion H10...
+            apply nth_middle.
+        - eapply S_mov with
+            (d:=r2) (o:=val_direct_trans (var_val var) cur_stk_val)...
+          rewrite H15. inversion H10... apply nth_middle. }
+      eapply multi_step.
+      { destruct v1 as [cst|[ind|var]].
+        - eapply S_mov with
+            (d:=r1) (o:=val_direct_trans cst cur_stk_val)...
+        - pose proof S_load_stk as Tmp.
+          specialize Tmp with
+            (d:=r1) (load_off:=ind) (lst:=cur_stk_val)
+            (reg_off:=List.length cur_stk_val)(s:=sp)
+            (H_stk_ld:=[]).
+          rewrite PeanoNat.Nat.sub_diag in Tmp.
+          eapply Tmp...
+          + rewrite H15. inversion H10...
+            apply ins_verify with (n:=1).
+        - eapply S_mov with
+            (d:=r1) (o:=val_direct_trans (var_val var) cur_stk_val)... }
+      eapply multi_step.
+      { eapply S_call
+          with (o:=wd_o (cloc resume_loc 0))...
+        rewrite H15. inversion H10...
+        apply ins_verify with (n:=2). }
+     (**)
+      eapply multi_step.
+      { eapply S_load_tup_c with
+          (d:=r3) (s:=r1) (off:=0)...
         - destruct v1 as [|[|]]...
-          inversion H17... rewrite app_nth1,
-            map_nth with (d:=L.ns),H3...
+          inversion H4... rewrite app_nth1,
+            map_nth with (d:=L.ns),H2...
           rewrite map_length.
-          inversion H10... inversion H4...
-          inversion H22... inversion H21...
-        - destruct H_ld.
-          + inversion hyp3...
-          + inversion hyp3...
-            rewrite <- app_assoc,
-              <- app_comm_cons...
-        - destruct H_ld.
-          + inversion H9. cbn.
-            repeat (rewrite app_length).
-            inversion H3...
-          + apply eval_ctx_last_label in hyp1.
-            destruct hyp1 as [H' [s [hyp1 hyp5]]].
-            apply app_inv_last in hyp1.
-            inversion hyp1... }
-      inversion H18.
+          inversion H10... inversion H28...
+          inversion H33... inversion H32...
+        - specialize hyp5 with
+            (L:=hloc_str L_k_str).
+          inversion hyp5.
+          + unfold th_update in H1.
+            rewrite h_eqb_refl in H1...
+          + unfold th_comp.
+            rewrite H1.
+            unfold th_update.
+            rewrite h_eqb_refl... }
       eapply multi_step.
-      { Check S_mov_sp_to_cont.
-        eapply S_mov_sp_to_cont with
-          (o:=r4) (H_cont:=SH_cont) (H_stk_ed:=H_ed)
-          (H_stk_ld:=match H_ld with
-                     | [] => []
-                     | _ :: H_ld' =>
-                         (hloc_str L,
-                           stack (loc_w (cloc Clab (3 + Datatypes.length lst))
-                                    :: cur_stk_val)) :: H_ld'
-                     end)
-          (L:=match H_ld with
-              | [] => L_prev0
-              | _::_ => L_prev
-              end)
-          (lst:=match H_ld with
-                | [] => s_prev0
-                | _::_ => s_prev
-                end)...
-        - destruct H_ld.
-          + rewrite app_comm_cons,Nat.add_0_r.
-            rewrite <- rev_nth with (n:=3),
-                rev_app_distr,rev_app_distr.
-            2:{ repeat (rewrite app_length).
-                rewrite Nat.add_comm... }
-            cbn...
-          + rewrite Nat.add_0_r.
-            rewrite <- rev_nth with (n:=3),
-                rev_app_distr.
-            2:{ rewrite app_length.
-                rewrite Nat.add_comm... }
-            cbn...
-            super_a.
-        - destruct H_ld.
-          + inversion hyp3... }
-      eapply multi_step.
-      { eapply S_load_stk with
-          (d:=r5) (s:=r1) (load_off:=3)...
-        destruct v1 as [|[|]]...
-        inversion H17... rewrite app_nth1,
-          map_nth with (d:=L.ns),H3...
-        rewrite map_length.
-        inversion H10... inversion H4...
-        inversion H16... inversion H6... }
-      eapply multi_step.
-      { apply S_malloc_c with
-          (d:=r3) (i:=1) (L:=L_str)... }
-      eapply multi_step.
-      { eapply S_store_c with
-          (d:=r3) (o:=r1) (j:=0)...
-        - unfold th_update.
-          rewrite h_eqb_refl...
-        - super_a. }
-      eapply multi_step.
-      { eapply S_load_stk with
-          (d:=r1) (s:=r1) (load_off:=2)...
-        destruct v1 as [|[|]]...
-        inversion H17... rewrite app_nth1,
-          map_nth with (d:=L.ns),H3...
-        rewrite map_length.
-        inversion H10... inversion H4...
-        inversion H16... inversion H6... }
-      eapply multi_step.
-      { cbn. 
-        eapply S_call with
-          (o:=r5) (lsp:=match H_ld with
-                        | [] => L_prev
-                        | _::_ => L_prev0
-                        end)
-          (lst:=match H_ld with
-                        | [] => s_prev
-                        | _::_ => s_prev0
-                        end)...       
-        - destruct H_ld.
-          + rewrite app_comm_cons,Nat.add_0_r.
-            rewrite <- rev_nth with (n:=3),
-                rev_app_distr,rev_app_distr.
-            2:{ repeat (rewrite app_length).
-                inversion H3. cbn.
-                rewrite Nat.add_comm... }
-            inversion H3...
-          + rewrite Nat.add_0_r.
-            rewrite <- rev_nth with (n:=3),
-                rev_app_distr.
-            2:{ rewrite app_length.
-                inversion H3. cbn.
-                rewrite Nat.add_comm... }
-            inversion H3...
-        - destruct H_ld.
-          + Check S_call. inversion hyp3...
-          + inversion hyp3...
-            rewrite <- app_assoc,
-              <- app_comm_cons...
-        - destruct H_ld.
-          +
-            
-            rewrite app_length. inversion H3.
-            rewrite <- rev_nth.
+      { eapply S_store_c_ns with
+          (d:=r1)...
         - destruct v1 as [|[|]]...
-          destruct H_ld.
-          + inversion H17.
-          + inversion H17... rewrite app_nth1,
-              map_nth with (d:=L.ns),H3...
-            rewrite map_length.
-            inversion H10... inversion H4...
-            inversion H16... inversion H6...
-        
-        - destruct H_ld.
-          + inversion H9. cbn.
-            repeat (rewrite app_length).
-            inversion H3...
-          + apply eval_ctx_last_label in hyp1.
-            destruct hyp1 as [H' [s0 [hyp1 hyp4]]].
-            apply app_inv_last in hyp1.
-            inversion hyp1...
-      }
+          inversion H4... rewrite app_nth1,
+            map_nth with (d:=L.ns),H2...
+          rewrite map_length.
+          inversion H10... inversion H28...
+          inversion H33... inversion H32...
+        - specialize hyp5 with
+            (L:=hloc_str L_k_str).
+          inversion hyp5.
+          + unfold th_update in H1.
+            rewrite h_eqb_refl in H1...
+          + unfold th_comp.
+            rewrite H1.
+            unfold th_update.
+            rewrite h_eqb_refl... }
+      eapply multi_step.
+      { eapply S_load_stk with
+          (d:=r4) (s:=r3) (load_off:=0)
+          (H_stk_ld:=
+             (L_out,
+               stack (loc_w (cloc Clab (3 + List.length lst))
+                        :: map run_cst_trans E1 ++ s_out))
+               :: H_stack ++ SH_cont_ld)...
+        rewrite app_assoc... }
+      eapply multi_step.
+      { eapply S_store_stk with
+          (d:=r3) (load_off:=0) (o:=sp)
+          (H_stk_ed:=SH_cont0)...
+        - rewrite app_assoc,app_comm_cons...
+        - rewrite app_comm_cons, app_length,
+            Nat.add_comm... }
+      eapply multi_step.
+      { eapply S_mov with
+          (d:=r1) (o:=r2)... }
+      (**)
+      rewrite Nat.add_0_r.
+      rewrite <- Heqstk_last.
+      rewrite update_nth_split.
+      2:{ super_a. }
+      rewrite <- rev_nth,
+        rev_app_distr.
+      2:{ rewrite app_length,Nat.add_comm... }
+      eapply multi_step.
+      { Check S_mov_sp_from_cont.
+        rewrite app_comm_cons,<-app_assoc.
+        eapply S_mov_sp_from_cont with
+          (o:=r4) (H_cont':=[])
+          (lst:=update_nth (List.length s_last - 4) s_last
+                  (loc_w (hloc L_out (S (List.length (map run_cst_trans
+                                                        E1 ++ s_out))))))
+          (H_cont_ld:=SH_cont_ld)
+          (H_cont_ed:=SH_cont0);trysolve.
+        - rewrite <- Heqstk_last,
+            update_nth_split...
+        - rewrite s_prev_len_eq.
+          rewrite update_nth_length... }
+      rewrite update_nth_length,
+        s_prev_len_eq, Nat.sub_diag.
+      eapply multi_step.
+      { eapply S_ret;trysolve;
+          rewrite <- Heqstk_last;
+          rewrite update_nth_split...
+        repeat (rewrite app_length)... }
+      rewrite <- Heqstk_last.
+      rewrite update_nth_split.
+      2:{ super_a. }
+      constructor.
+      { eapply S_push with (o:=r1)...
+        rewrite H27. destruct Ilst as
+          [|a Ilst']... rewrite nth_middle... }
+    (* prove LS_rel for resume, with a continuation of multiple stack *)
+    + cbn. repeat (rewrite app_comm_cons).
+      apply rel_LS with
+        (SIlst:=tl Ilst)
+        (lst:=lst0 ++ firstn 1 Ilst)...
+      * inversion H25...
+      * rewrite <- app_assoc.
+        apply rel_env_context with
+          (s_out:=
+             s' ++
+               [loc_w (cloc handle_loc 10);
+                loc_w (hloc L_out (S (Datatypes.length
+                                        (map run_cst_trans
+                                           E1 ++ s_out))));
+                int_w 0;
+                loc_w (hloc L_env 0); 
+                loc_w (cloc Clab_op 0)])...
+        -- inversion H5...
+           { inversion H35...
+             rewrite app_comm_cons,app_assoc.
+             constructor... Check rel_frame.
+             apply rel_frame with
+               (Ilst:=push r1 :: func_term_trans (List.length (L.ns :: E1)) t)
+               (lst:=lst ++ firstn 3 SIlst);trysolve;
+               inversion H10...
+             - inversion H2...
+             - rewrite H15. rewrite <- app_assoc.
+               pose proof term_trans_not_nil...
+               destruct (term_trans t) as []eqn:?;automate.
+               rewrite <- Heql.
+               rewrite <- Nat.add_succ_comm...
+             - rewrite app_length... }
+           intros. rewrite app_comm_cons,
+             <- stk_points_to_preserves...
+           inversion H35... rewrite app_length.
+           inversion H32...
+        -- apply rel_hdl_general with
+             (s_prev:=ns :: map run_cst_trans E1 ++ s_out).
+        -- intros. inversion H1...
+           unfold stk_points_to.
+           rewrite app_comm_cons,
+             rev_app_distr...
+        -- inversion H10... inversion H2...
+           inversion H32... inversion H29...
+           inversion H34...
+           rewrite <- map_nth with (d:=L.ns).
+           rewrite app_nth1...
+           rewrite List.map_length...
+      * unfold th_update in hyp5.
+        rewrite update_comp_cancel...
+        2:{ specialize hyp5 with (hloc_str L_k_str).
+            destruct hyp5 as [hyp5|]...
+            rewrite h_eqb_refl in hyp5... }
+        apply cont_heap_app;trysolve.
+        intros. specialize hyp5 with L0.
+        destruct hyp5 as [hyp5|hyp5].
+        -- destruct (h_eqb L_k_str L0)...
+        -- right...
+      * rewrite H27. destruct Ilst...
+        rewrite <- app_assoc...
+  -
+           
+          
+
+????
+
+  
+      (*cbn.nversion H3.
+           
+      }*)
 
 
-
-      ---------------------------------------
-           (*H_one_cont:=
-             [(hloc_str L_str,
-                stack
-                  (loc_w (hloc L_str
-                     (S (Datatypes.length
-                           (map run_cst_trans E1 ++ s ++
-                              [loc_w (cloc handle_loc 10);
-                               loc_w (hloc L (List.length s_prev));
-                               int_w 0;
-                               loc_w (hloc L_env0 0); 
-                               loc_w (cloc Clab_op 0)]))))
-                     :: map run_cst_trans E1 ++ s ++
-                     [loc_w (cloc handle_loc 10);
-                      loc_w (hloc L (List.length s_prev));
-                      int_w 0;
-                      loc_w (hloc L_env0 0); 
-                      loc_w (cloc Clab_op 0)]))]*)
-        
-
-        intros. exists [],SH_cont. split.
-        -- inversion H2... unfold ch_update in H24.
-           { destruct (L.h_eqb (obj_lab L_k_str)
-                         (obj_lab L_rsp)) as []eqn:?.
-             - inversion H24... inversion H25...
-               inversion H30...
-               destruct H_one_cont_ld;
-                 inversion H29...
-               2:{ destruct H_one_cont_ld... }
-               inversion H31... inversion H34...
-               inversion H33...
-               assert (s = s').
-               { inversion H37...
-                 - inversion H4...
-                 -  inversion H4...
-                   (* alst_to_cont is s, and alst_to_cont is s', we prove*)
-           cbn.
-        rewrite H18... destruct Ilst... rewrite <- app_assoc...
-      * rewrite H22, app_length... 
-        --
-        -- intros. apply H11 with (s':=s'0) (L':=L') in H1.
-           rewrite <- app_assoc in H1.
-           apply <- stk_points_to_preserves. apply H1.
-           rewrite app_length. inversion H6... 
         
    
-
-(*
-rewrite app_comm_cons,
-              Nat.sub_add_distr with
-              (m:=3) (p:=1). ,Nat.sub_add with
-                (n:=1).
-            2:{ inversion H9...
-                repeat (rewrite app_length).
-                inversion H3... }
-            Search (rev (_++_)).
-
-
- should write another lemma
-             to compose two lists back 
-::
-tl H_ld*)
-
-          (*inversion H1...
-    inversion H3...
-    2:{ destruct H16... }
-    inversion H7...
-    inversion H2...
-    specialize H9 with
-      (L':=L1) (s':=s) (H':=H6).
-    assert (Temp:(L1, stack s) :: H6
-                 = (L1, stack s) :: H6).
-    { reflexivity. }
-    apply H9 in Temp.
-    unfold stk_points_to in Temp.
-    cbn in Temp. inversion Temp.
-    destruct Temp.
-    assert (exists str num,
-               loc_w (cloc str num) = hd ns s).
-    { inversion H16...
-      - inversion H18...
-        inversion H24... eauto.
-      - inversion H21...
-        inversion H25... eauto. }
-    destruct H18 as [C_lab [num s_ret_addr]].*)
 (*other things
 0. changes in lexi heaps e.g. assignment
 1. handler related stuff

@@ -1,6 +1,6 @@
-From Coq Require Import Lists.List. Import ListNotations.
-From Coq Require Import Strings.String.
-From Coq Require Import Program.Basics.
+Require Import Lists.List. Import ListNotations.
+Require Import Strings.String.
+Require Import Program.Basics.
 From TLC Require Import LibLN.
 Declare Scope Lexi_scope.
 Open Scope Lexi_scope.
@@ -15,8 +15,8 @@ Inductive variable :=
 | dbjind_var : nat -> variable
 | free_var : var -> variable.
 Inductive code_label := c_lab : string -> code_label.
-Inductive obj_label := obj_lab : string -> obj_label.
-Inductive hdl_label := hdl_lab : string -> hdl_label.
+Inductive obj_label := obj_lab : nat -> obj_label.
+Inductive hdl_label := hdl_lab : nat -> hdl_label.
 (*Inductive data_label : Type := 
 | obj_data_lab : obj_label -> data_label
 | hdl_data_lab : hdl_label -> data_label.*)
@@ -65,7 +65,7 @@ Inductive heap_tuple : Type :=
 | tuple : list runtime_const -> heap_tuple.
 Definition eval_context := list hdl_led_frm_lst.
 Definition tup_heap := obj_label -> heap_tuple.
-Definition cont_heap := obj_label -> heap_cont.
+Definition cont_heap := list (obj_label * heap_cont).
 Definition heap := (tup_heap * cont_heap)%type.
 Inductive function : Type :=
 | func : nat -> term -> function
@@ -97,10 +97,10 @@ Coercion val_e : value >-> expr.
 Definition empty_tup := tuple nil.
 Definition h_eqb (a b : obj_label) := 
   match a,b with
-  | obj_lab a', obj_lab b' => String.eqb a' b'
+  | obj_lab a', obj_lab b' => Nat.eqb a' b'
   end.
 Definition th_empty : tup_heap := fun _ => empty_tup.
-Definition ch_empty : cont_heap := fun _ => empty_cont.
+Definition ch_empty : cont_heap := [].
 Definition h_empty : heap := (th_empty,ch_empty).
 Definition th_update (m : tup_heap) (x : obj_label) (v : heap_tuple) :=
   fun x' => if h_eqb x x' then v else m x'.
@@ -108,7 +108,7 @@ Notation "x '!->t' v ';' m" :=
   (th_update m x v)
     (at level 100, v at next level, right associativity):Lexi_scope.
 Definition ch_update (m : cont_heap) (x : obj_label) (v : heap_cont) :=
-  fun x' => if h_eqb x x' then v else m x'.
+  (x,v) :: m.
 Notation "x '!->ch' v ';' m" :=
   (ch_update m x v)
     (at level 100, v at next level, right associativity):Lexi_scope.
@@ -164,6 +164,14 @@ Definition var_deref (E:local_env) (val:value)
   | const_val c => run_const c
   end.
 
+Fixpoint fresh_cont_lab L (H_cont:cont_heap) :=
+  match H_cont with
+  | [] => true
+  | (L',c) :: H_cont' =>
+      if h_eqb L' L
+      then false
+      else fresh_cont_lab L H_cont'
+  end.
 (* --------------------------------------------
                Operational Semantics
    -------------------------------------------- *)
@@ -232,31 +240,33 @@ Inductive step (C:code_mem) :
           :: (hdl_led_lst hf ((act_f E t)::alst)) :: K,
         E',val_term v)
       (H,(hdl_led_lst hf alst) :: K,(var_deref E' v) :: E,t)
-| L_raise_curstk :
+| L_raise_cur_hdl :
   forall LH_tup LH_cont K E t t' (v1 v2:value)
          op_arg (lab_op:code_label)
          (L:hdl_label) (L_k L_env:obj_label)
          alst_to_cont alst hf,
-    LH_cont L_k = empty_cont -> var_deref E v1 = L ->
+    var_deref E v1 = L ->
     var_deref E v2 = op_arg ->
     C lab_op = func 3 t' ->
+    fresh_cont_lab L_k LH_cont = true ->
     step C (LH_tup,LH_cont,
         (hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont) ::
           (hdl_led_lst hf alst) :: K,E,
         bind (raise general v1 v2) t)
       (LH_tup, L_k !->ch 
-                 cont ([hdl_led_lst (handler_f L L_env lab_op general)
-                          ((act_f E t) :: alst_to_cont)]);
+                 cont [hdl_led_lst (handler_f L L_env lab_op general)
+                          ((act_f E t) :: alst_to_cont)];
        LH_cont,(hdl_led_lst hf alst) :: K,
          [obj_lab_const L_env;op_arg;obj_lab_const L_k],t')
-| L_raise_past_stks :
+| L_raise_past_hdls :
   forall LH_tup LH_cont K K' E t t' (v1 v2:value)
          op_arg (lab_op lab_opnew:code_label)
          (L L_new:hdl_label) (L_k L_env L_envnew:obj_label)
          alst_topmost alst_to_cont alst hf_topmost,
-    LH_cont L_k = empty_cont -> var_deref E v1 = L ->
+    var_deref E v1 = L ->
     var_deref E v2 = op_arg ->
     C lab_op = func 3 t' ->
+    fresh_cont_lab L_k LH_cont = true ->
     step C (LH_tup,LH_cont,
         hdl_led_lst hf_topmost alst_topmost :: K' ++
           [hdl_led_lst (handler_f L L_env lab_op general) alst_to_cont] ++
@@ -269,14 +279,37 @@ Inductive step (C:code_mem) :
                   (handler_f L_new
                      L_envnew lab_opnew general) alst) :: K,
          [obj_lab_const L_env;op_arg;obj_lab_const L_k],t')
-| L_resume :
-  forall LH_tup LH_cont K K' E E' t t' (v1 v2:value)
+| L_resume_one_hdl :
+  forall LH_tup LH_cont LH_cont_ld LH_cont_ed
+         K E E' t t' (v1 v2:value)
          (L_k:obj_label) hf alst hf_cont alst_cont,
     var_deref E v1 = L_k ->
-    LH_cont L_k = cont (hdl_led_lst hf_cont (act_f E' t'::alst_cont) :: K') ->
+    LH_cont = LH_cont_ld ++
+                    (L_k,cont [hdl_led_lst hf_cont
+                                 (act_f E' t'::alst_cont)])
+                    :: LH_cont_ed ->
     step C (LH_tup,LH_cont,(hdl_led_lst hf alst) :: K,E,bind (resume v1 v2) t)
-      (LH_tup, L_k !->ch empty_cont; LH_cont,
-         hdl_led_lst hf_cont alst_cont :: K' ++
+      (LH_tup, LH_cont_ld ++ LH_cont_ed,
+         hdl_led_lst hf_cont alst_cont ::
+           hdl_led_lst hf (act_f E t :: alst) :: K,
+         (var_deref E v2) :: E',t')      
+| L_resume_many_hdls :
+  forall LH_tup LH_cont LH_cont_ld LH_cont_ed
+         K K' E E' t t' (v1 v2:value)
+         (L_k:obj_label) hf alst hf_cont alst_cont
+         hf_newtop alst_newtop,
+    var_deref E v1 = L_k ->
+    LH_cont =
+      LH_cont_ld ++
+      (L_k,cont (hdl_led_lst hf_newtop
+                   (act_f E' t'::alst_newtop)
+                   :: K' ++ [hdl_led_lst hf_cont
+                               alst_cont]))
+      :: LH_cont_ed ->
+    step C (LH_tup,LH_cont,(hdl_led_lst hf alst) :: K,E,bind (resume v1 v2) t)
+      (LH_tup, LH_cont_ld ++ LH_cont_ed,
+         hdl_led_lst hf_newtop alst_newtop :: K' ++
+           [hdl_led_lst hf_cont alst_cont] ++
            hdl_led_lst hf (act_f E t :: alst) :: K,
          (var_deref E v2) :: E',t').
 
