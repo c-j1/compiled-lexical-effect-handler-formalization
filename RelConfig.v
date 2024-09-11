@@ -239,11 +239,6 @@ Inductive LS_rel_hdl (L : nat)
        loc_w (hloc L_prev (List.length s_prev));
        int_w 0; loc_w (hloc L_env 0);
        loc_w (c_loc (cloc Clab_op 0))].
-Definition is_h_frm_general_hdl (f:L.h_frame) : bool :=
-  match f with
-  | handler_f _ _ _ general => true
-  | _ => false
-  end.
 Inductive LS_rel_hdl_stk
   (C_mem : S.code_mem) (L : nat) :
   L.hdl_led_frm_lst -> S.stack_heap_val -> Prop :=
@@ -290,9 +285,9 @@ Inductive LS_rel_tup_heap : L.tup_heap -> S.tuple_heap -> Prop :=
 Inductive LS_rel_cont (C_mem : S.code_mem) :
   L.heap_cont -> S.stack_heap -> Prop :=
 | rel_cont_stks :
-  forall Ks H stks,
+  forall Ks H,
   LS_rel_eval_ctx C_mem Ks H ->
-  (forall L_fst L_lst s_fst s_lst,
+  (forall L_fst L_lst s_fst s_lst stks,
       H = (L_fst, stack s_fst)
          :: stks ++ [(L_lst, stack s_lst)] ->
    stk_points_to s_lst s_fst L_fst) ->

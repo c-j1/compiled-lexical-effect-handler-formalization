@@ -172,6 +172,11 @@ Fixpoint fresh_cont_lab L (H_cont:cont_heap) :=
       then false
       else fresh_cont_lab L H_cont'
   end.
+Definition is_h_frm_general_hdl (f:h_frame) : bool :=
+  match f with
+  | handler_f _ _ _ general => true
+  | _ => false
+  end.
 (* --------------------------------------------
                Operational Semantics
    -------------------------------------------- *)
@@ -306,6 +311,7 @@ Inductive step (C:code_mem) :
                    :: K' ++ [hdl_led_lst hf_cont
                                alst_cont]))
       :: LH_cont_ed ->
+    is_h_frm_general_hdl hf_cont = true ->
     step C (LH_tup,LH_cont,(hdl_led_lst hf alst) :: K,E,bind (resume v1 v2) t)
       (LH_tup, LH_cont_ld ++ LH_cont_ed,
          hdl_led_lst hf_newtop alst_newtop :: K' ++
