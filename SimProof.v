@@ -3402,52 +3402,86 @@ Proof with super_a.
       { eapply S_push with (o:=r1)...
         rewrite H31. destruct Ilst as
           [|a Ilst']... rewrite nth_middle... }
-     !!!!! done by here.
     (* prove LS_rel for resume, with a continuation of multiple stack *)
     + cbn. repeat (rewrite app_comm_cons).
+      rewrite app_assoc.
       apply rel_LS with
         (SIlst:=tl Ilst)
-        (lst:=lst0 ++ firstn 1 Ilst)...
-      * inversion H25...
+        (lst:=lst0 ++ firstn 1 Ilst)
+        (SH_cont:=SH_cont_ld ++ SH_cont0)...
+      * inversion H29...
       * rewrite <- app_assoc.
         apply rel_env_context with
           (s_out:=
              s' ++
                [loc_w (cloc handle_loc 10);
-                loc_w (hloc L_out (S (Datatypes.length
-                                        (map run_cst_trans
-                                           E1 ++ s_out))));
+                loc_w (hloc L_prev0 (Datatypes.length s_prev0));
                 int_w 0;
-                loc_w (hloc L_env 0); 
-                loc_w (cloc Clab_op 0)])...
-        -- inversion H5...
-           { inversion H35...
-             rewrite app_comm_cons,app_assoc.
-             constructor... Check rel_frame.
-             apply rel_frame with
-               (Ilst:=push r1 :: func_term_trans (List.length (L.ns :: E1)) t)
-               (lst:=lst ++ firstn 3 SIlst);trysolve;
-               inversion H10...
-             - inversion H2...
-             - rewrite H15. rewrite <- app_assoc.
-               pose proof term_trans_not_nil...
-               destruct (term_trans t) as []eqn:?;automate.
-               rewrite <- Heql.
-               rewrite <- Nat.add_succ_comm...
-             - rewrite app_length... }
-           intros. rewrite app_comm_cons,
-             <- stk_points_to_preserves...
-           inversion H35... rewrite app_length.
-           inversion H32...
-        -- apply rel_hdl_general with
-             (s_prev:=ns :: map run_cst_trans E1 ++ s_out).
-        -- intros. inversion H1...
-           unfold stk_points_to.
-           rewrite app_comm_cons,
-             rev_app_distr...
-        -- inversion H10... inversion H2...
-           inversion H32... inversion H29...
-           inversion H34...
+                loc_w (hloc L_env0 0); 
+                loc_w (cloc Clab_op0 0)])...
+        -- assert (Temp: forall {A} l1 {x:A} l2,
+                      l1 ++ x :: l2 = (l1 ++ [x]) ++ l2).
+           { intros. rewrite <- app_assoc... }
+           rewrite Temp.
+           { apply eval_ctx_app_comp.
+             - inversion H3...
+               eapply eval_ctx_last_points_to_preserves...
+               apply rel_hdl_general with
+                 (s_prev:=ns :: map run_cst_trans E1 ++ s_out).
+             - destruct L_out as [L_out].
+               inversion H5...
+               + inversion H39;subst.
+                 rewrite app_comm_cons,
+                   app_assoc...
+                 apply rel_frame with
+                   (Ilst:=push r1 :: func_term_trans (List.length (L.ns :: E1)) t)
+                   (lst:=lst ++ firstn 3 SIlst);trysolve;
+                   inversion H10...
+                 * inversion H17...
+                 * rewrite H15. rewrite <- app_assoc.
+                   pose proof term_trans_not_nil...
+                   destruct (term_trans t) as []eqn:?;automate.
+                   rewrite <- Heql.
+                   rewrite <- Nat.add_succ_comm...
+                 * rewrite app_length...
+               + intros. rewrite app_comm_cons,
+                   <- stk_points_to_preserves...
+                 inversion H39... rewrite app_length.
+                 inversion H36...
+             - intros. Search (_++[_]).
+               apply app_inj_tail in H2.
+               destruct H2.
+               inversion H17...
+               inversion H32...
+               unfold stk_points_to.
+               rewrite app_comm_cons,
+                 rev_app_distr... }
+        -- intros.
+           rewrite stk_points_to_preserves.
+           2:{ rewrite app_length... }
+           rewrite <- app_assoc in H24.
+           { destruct H_one_cont_ld'.
+             2:{ eapply H24.
+                 inversion H2... }
+             inversion H2;subst.
+             unfold stk_points_to.
+             repeat (rewrite rev_app_distr).
+             rewrite app_length. cbn.
+             unfold stk_points_to in H24.
+             repeat (rewrite rev_app_distr in H24).
+             specialize H24 with
+               (s':=
+                  s0 ++
+                    [loc_w (cloc handle_loc 10);
+                     loc_w (hloc L (Datatypes.length s_prev));
+                     int_w 0; 
+                     loc_w (hloc L_env 0);
+                     loc_w (cloc Clab_op 0)]).
+           rewrite app_length in H24. cbn in H24.
+           eapply H24... }
+        -- inversion H10... inversion H17...
+           inversion H36... inversion H33...
+           inversion H38...
            rewrite <- map_nth with (d:=L.ns).
            rewrite app_nth1...
            rewrite List.map_length...
@@ -3461,29 +3495,19 @@ Proof with super_a.
         destruct hyp5 as [hyp5|hyp5].
         -- destruct (h_eqb L_k_str L0)...
         -- right...
-      * rewrite H27. destruct Ilst...
+      * rewrite H31. destruct Ilst...
         rewrite <- app_assoc...
-  -
-           
-          
-
-????
-
-  
-      (*cbn.nversion H3.
-           
-      }*)
-
-
-        
+      * destruct Ilst...
+        rewrite app_length...
+Qed.
+                   
+             
    
 (*other things
 0. changes in lexi heaps e.g. assignment
 1. handler related stuff
 2. relating data heap
 3. relating hdl-led-ctx*)
-
-Qed.
 
 
 (*
