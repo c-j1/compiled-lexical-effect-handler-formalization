@@ -6,47 +6,54 @@ Require Import Strings.String.
    ----------- Abstract Syntax -----------
    ------------ ------------ ------------
    ------------ ------------ ------------ *)
-Inductive heap_loc := hloc_str : nat -> heap_loc.
+(* Rather than having a "next" constructor that
+   increments heap and code location, we implemented
+   heap and code locations as some base location with
+   some increments *)
+Inductive heap_loc := hloc_num : nat -> heap_loc.
 Inductive code_loc := cloc_str : string -> code_loc.
 Inductive heap_location :=
   hloc : heap_loc -> nat -> heap_location.
 Inductive code_location :=
   cloc : code_loc -> nat -> code_location.
 Inductive location : Type :=
-  | h_loc : heap_location -> location
-  | c_loc : code_location -> location.
+| h_loc : heap_location -> location
+| c_loc : code_location -> location.
 Inductive register : Type :=
-  | nat_reg : nat -> register
-  | ip
-  | sp.
+| nat_reg : nat -> register
+| ip
+| sp.
 Inductive word : Type :=
-  | loc_w : location -> word
-  | int_w : nat -> word
-  | ns.
+| loc_w : location -> word
+| int_w : nat -> word
+| ns.
 Inductive operand : Type :=
-  | reg_o : register -> operand
-  | wd_o : word -> operand.
+| reg_o : register -> operand
+| wd_o : word -> operand.
 Inductive instr : Type :=
-  | add : register -> operand -> instr
-  | mkstk : register -> instr
-  | salloc : nat -> instr
-  | sfree : nat -> instr
-  | malloc : register -> nat -> instr
-  | mov : register -> operand -> instr
-  | load : register -> register -> bool -> nat -> instr
-  | store : register -> bool -> nat -> operand -> instr
-  | push : operand -> instr
-  | pop : register -> instr
-  | call : operand -> instr
-  | jmp : operand -> instr
-  | ret
-  | halt.
+| add : register -> operand -> instr
+| mkstk : register -> instr
+| salloc : nat -> instr
+| sfree : nat -> instr
+| malloc : register -> nat -> instr
+| mov : register -> operand -> instr
+| load : register -> register -> bool -> nat -> instr
+| store : register -> bool -> nat -> operand -> instr
+| push : operand -> instr
+| pop : register -> instr
+| call : operand -> instr
+| jmp : operand -> instr
+| ret
+| halt.
+(* We explicitly separated heap values that are stacks,
+   and heap values that are tuples, so that we can 
+   explicitly split the heap into 2 parts that are easier
+   to work with *)
 Inductive stack_heap_val : Type :=
-  | stack : list word -> stack_heap_val.
+| stack : list word -> stack_heap_val.
 Inductive tuple_heap_val : Type :=
-  | tuple : list word -> tuple_heap_val.
+| tuple : list word -> tuple_heap_val.
 Definition heap_val := (stack_heap_val + tuple_heap_val)%type.
-(* Compound Lists *)
 Inductive instr_seq : Type :=
 | ins_seq : list instr -> instr_seq
 | ns_ins_seq.
@@ -54,12 +61,11 @@ Definition reg_file : Type := list (register * word).
 Definition stack_heap : Type :=
   list (heap_loc * stack_heap_val).
 Definition tuple_heap : Type := heap_loc -> tuple_heap_val.
-(* K and E, continuations in heap, then tuples *)
 Definition heap : Type :=
   (stack_heap * tuple_heap).
 Definition code_mem : Type := code_loc -> instr_seq.
 (* Coercions *)
-Coercion hloc_str : nat >-> heap_loc.
+Coercion hloc_num : nat >-> heap_loc.
 Coercion cloc_str : string >-> code_loc.
 Coercion h_loc : heap_location >-> location.
 Coercion c_loc : code_location >-> location.
@@ -67,15 +73,15 @@ Coercion loc_w : location >-> word.
 Coercion int_w : nat >-> word.
 Coercion wd_o : word >-> operand.
 Coercion reg_o : register >-> operand.
-(* ------------ ------------ ------------
-   ------------ ------------ ------------
-   ------------- Interpreter -------------
-   ------------ ------------ ------------
-   ------------ ------------ ------------ *)
+(* --------------------------------------
+   --------------------------------------
+   ------- Operational Semantics --------
+   --------------------------------------
+   -------------------------------------- *)
 
 (* --------------------------------------------
-   initialization and update functions for maps
-         (register and heap as functions)
+   initialization and update functions for
+           registers and heaps
    -------------------------------------------- *)
 Definition reg_eqb a b :=
   match a,b with
@@ -84,11 +90,12 @@ Definition reg_eqb a b :=
   | sp, sp => true
   | _,_ => false
   end.
-(* register file is always an ordered list *)
+(* register file is always an association list,
+   ordered by the order of registers *)
 Fixpoint reg_update (rf : reg_file) (x : register)
   (v : word) :=
   match x,rf with
-  | _,nil => (x,v) :: nil
+  | _,[] => (x,v) :: []
   | ip, (ip,w) :: rf' => (ip,v) :: rf'
   | sp, (sp,w) :: rf' => (sp,v) :: rf'
   | ip, (sp,w) :: rf' => (ip,v) :: rf
@@ -103,22 +110,22 @@ Fixpoint reg_update (rf : reg_file) (x : register)
 Fixpoint reg_app (rf:reg_file) r :=
   match rf with
   | (x,v) :: rf' => if reg_eqb x r then v else reg_app rf' r
-  | nil => ns
+  | [] => ns
   end.
 Notation "x '!->r' v ';' m" := (reg_update m x v)
   (at level 100, v at next level, right associativity).
 Definition h_eqb a b :=
   match a,b with
-  | hloc_str a', hloc_str b' => Nat.eqb a' b'
+  | hloc_num a', hloc_num b' => Nat.eqb a' b'
   end.
-Definition sh_empty : stack_heap := nil.
-Definition th_empty : tuple_heap := fun _ => tuple nil.
+Definition sh_empty : stack_heap := [].
+Definition th_empty : tuple_heap := fun _ => tuple [].
 Definition h_empty : heap :=
   (sh_empty, th_empty).
 Fixpoint sh_update (sh:stack_heap) (x:heap_loc)
   (v:stack_heap_val) :=
   match sh with
-  | nil => (x,v) :: nil
+  | [] => (x,v) :: []
   | (hl,shv) :: sh' => if h_eqb hl x then (hl,v) :: sh'
                        else (hl,shv) :: (sh_update sh' x v)
   end.
@@ -130,18 +137,6 @@ Definition th_comp (h1:tuple_heap) (h2:tuple_heap) :=
            | tuple [] => h2 x
            | _ => h1 x
            end.
-(*Definition h_update (h : heap) (x : heap_loc) 
-  (v : heap_val) :=
-  match v, h with
-  | inl (stack lst), (s_h,t_h) =>
-    (sh_update s_h x (stack lst),t_h)
-  | inr (tuple lst), (s_h,t_h) =>
-    (s_h,th_update t_h x (tuple lst))
-  (* undefined below *)
-  | inl no_stacks, (s_h,t_h) => (s_h,t_h)
-  end.
-Notation "x '!->h' v ';' m" := (h_update m x v)
-  (at level 100, v at next level, right associativity).*)
 Notation "x '!->s' v ';' m" := (sh_update m x v)
   (at level 100, v at next level, right associativity).
 Notation "x '!->t' v ';' m" := (th_update m x v)
@@ -160,14 +155,6 @@ Definition c_comp (c1:code_mem) (c2:code_mem) :=
            | ns_ins_seq => c2 x
            | _ => c1 x
            end.
-(* Fixpoint (*code_fetch*) (c: program) (lab: code_loc)
- : instr_seq :=
-  match c with
-  | (x,v) :: c' => if c_eqb x lab then v else 
-    (*code_fetch*) c' lab
-  | nil => empty_seq
-  end.
-*)
 Notation "x '!->c' v ';' m" := (c_update m x v)
   (at level 100, v at next level, right associativity).
 
@@ -202,7 +189,7 @@ Fixpoint update_nth {A: Type} (n:nat) (lst:list A) (v:A) :=
   match n, lst with
   | 0, x :: lst' => v :: lst'
   | S n', x :: lst' => x :: update_nth n' lst' v
-  | _, nil => nil
+  | _, [] => []
   end.
 (* --------------------------------------------
     Section for the cursive H hat of paper 
@@ -229,43 +216,6 @@ Definition operand_value o (r_file:reg_file) :=
   | wd_o w => w
   end.
 (* --------------------------------------------
-          Section for H hat of paper
-   -------------------------------------------- *)
-(* Fixpoint stk_heap_app (sh: stack_heap) (loc: heap_loc) :=
-  match sh with
-  | (x,v) :: sh' =>
-    if h_eqb x loc then v else stk_heap_app sh' loc
-  | [] => no_stacks
-  end.
-Definition fresh (h:heap) (loc:heap_loc) : bool :=
-  match h with (s1,s2,t) =>
-    match stk_heap_app s1 loc, stk_heap_app s2 loc, t loc with
-    | no_stacks, no_stacks, tuple nil => true
-    | _,_,_ => false
-    end
-  end.
-returns word at given heap memory address
-Definition heap_app (h: heap) (loc:heap_loc) :=
-  match h with (s_h,t_h) =>
-    match stk_heap_app s_h loc with
-    | stack lst => inl (stack lst)
-    | no_stacks => inr (t_h loc)
-    end
-  end.*)
-(* Definition fetch_heap (loc:heap_loc) (i:nat) (h:heap) :=
-  match h with (s_h1,s_h2,t_h) =>
-    match stk_heap_app s_h1 loc,
-      stk_heap_app s_h2 loc,t_h loc with
-    | stack lst,no_stacks,tuple [] =>
-      nth ((List.length lst)-i) lst ns
-    | no_stacks,stack lst,tuple [] =>
-      nth ((List.length lst)-i) lst ns
-    | no_stacks,no_stacks,tuple lst => nth i lst ns
-    | _,_,_ => ns
-    end
-  end.
-*)
-(* --------------------------------------------
                       Interpreter
    -------------------------------------------- *)
 Inductive step (P:code_mem) :
@@ -281,9 +231,9 @@ Inductive step (P:code_mem) :
   forall (H_stk:stack_heap) (H_tup:tuple_heap)
          (R:reg_file) (l:code_location) (reg:register) (L:heap_loc),
     reg_app R ip = l -> fetch_instr l P = mkstk reg
-    -> (*fresh (H_stk,H_cont,H_tup) L = true ->*)
+    ->
     step P (H_stk,H_tup,R)
-      ((L,stack nil) :: H_stk,H_tup,
+      ((L,stack []) :: H_stk,H_tup,
       ip !->r next_cloc l; reg !->r hloc L 0; R)
 | S_salloc :
   forall (H_stk H_stk':stack_heap) (H_tup:tuple_heap)
@@ -337,9 +287,8 @@ Inductive step (P:code_mem) :
          (d:register) (L:heap_loc),
     reg_app R ip = l -> fetch_instr l P = malloc d i ->
     H_tup = th_comp H_vtup H_ctup ->
-    (*fresh (H_stks,H_tup) L = true ->*)
       step P (H_stk,H_tup,R)
-        (H_stk,th_comp (L !->t tuple (n_cons i ns nil) ; H_vtup)
+        (H_stk,th_comp (L !->t tuple (n_cons i ns []) ; H_vtup)
           H_ctup,
            ip !->r next_cloc l ; d !->r hloc L 0 ;R)
 | S_malloc_c :
@@ -348,10 +297,9 @@ Inductive step (P:code_mem) :
          (d:register) (L:heap_loc),
     reg_app R ip = l -> fetch_instr l P = malloc d i ->
     H_tup = th_comp H_vtup H_ctup ->
-    (*fresh (H_stks,H_tup) L = true ->*)
       step P (H_stk,H_tup,R)
         (H_stk,th_comp H_vtup
-                 (L !->t tuple (n_cons i ns nil) ; H_ctup),
+                 (L !->t tuple (n_cons i ns []) ; H_ctup),
            ip !->r next_cloc l ; d !->r hloc L 0 ;R)
 | S_mov : forall (H:heap) (R:reg_file) (l:code_location)
                  (d:register) (o:operand),
@@ -411,10 +359,6 @@ Inductive step (P:code_mem) :
     step P (H,R)
       (H, ip !->r next_cloc l;
        d !->r nth (List.length lst - reg_off + load_off) lst ns; R)
-(*match sign with
-  | true => reg_off + load_off
-  | false => 
-  end*)
 | S_load_tup_v :
   forall (H_stk:stack_heap) (H_vtup H_ctup:tuple_heap)
          (R:reg_file) (l:code_location)
@@ -527,123 +471,3 @@ Inductive step (P:code_mem) :
     step P (H_stk, H_tup,R)
       ((lsp,stack (tl lst))::H_stk',H_tup,
         ip !->r hd ns lst; sp !->r hloc lsp pred_j; R).
-(* Some properties and lemmas to be used later 
-Lemma reg_eqb_refl : forall a, reg_eqb a a = true.
-Proof with simpl;try reflexivity;auto.
-  intros. unfold reg_eqb. induction a... induction n...
-Qed.
-Lemma leb_remov_SS : forall a b,
-  Nat.leb (S a) (S b) = Nat.leb a b.
-Proof with try reflexivity.
-intros a. induction a;intros;induction b...
-Qed.
-Lemma leb_ab_Sab : forall a b,
-  Nat.leb a b = false -> Nat.leb (S a) b = false.
-Proof with try discriminate; try reflexivity.
-  intros a. induction a;intros;induction b...
-  rewrite leb_remov_SS. rewrite leb_remov_SS in H. auto.
-Qed.
-Lemma leb_not_eqb_means_ltb : forall a b,
-  Nat.leb a b = true -> Nat.eqb a b = false ->
-  Nat.ltb a b = true.
-Proof with try reflexivity; try discriminate.
-  unfold Nat.ltb. intros a. induction a;intros;induction b...
-  rewrite leb_remov_SS. auto.
-Qed.
-Theorem reg_file_swap : forall R a b v1 v2,
-  reg_eqb a b = false ->
-  (a !->r v1; b !->r v2; R) = (b !->r v2; a !->r v1; R).
-Proof with auto; try reflexivity.
-  intros. induction R,a,b;inversion H;try reflexivity;
-    try discriminate;simpl; try destruct a0,r.
-  - rewrite H1. rewrite PeanoNat.Nat.eqb_sym in H1.
-    rewrite H1. destruct Nat.ltb as []eqn:?;
-    rewrite PeanoNat.Nat.ltb_antisym in Heqb;
-    apply eq_sym in Heqb; apply Bool.negb_sym in Heqb;
-    simpl in Heqb.
-    + apply leb_ab_Sab in Heqb; unfold Nat.ltb.
-    rewrite Heqb. reflexivity.
-    + apply leb_not_eqb_means_ltb in Heqb... 
-      rewrite Heqb...
-  - 
-
-Qed.
-Theorem reg_file_front_update : forall R a v1 v2,
-  (a !->r v1; a !->r v2; R) = (a !->r v1; R).
-Proof.
-  intros. induction a,R;simpl;
-    try (rewrite nat_eqb_refl);try reflexivity;
-    destruct p;induction r; try reflexivity.
-  - 
-Qed.
-(n !->r v1;
- (let (r, w) := p in
-  if
-   match r with
-   | nat_reg n' => Nat.eqb n n'
-   | _ => false
-   end
-  then (n, v2) :: R
-  else
-   if
-    match r with
-    | nat_reg n' => Nat.ltb n n'
-    | _ => false
-    end
-   then (n, v2) :: p :: R
-   else (r, w) :: (n !->r v2; R))) =
-(let (r, w) := p in
- if
-  match r with
-  | nat_reg n' => Nat.eqb n n'
-  | _ => false
-  end
- then (n, v1) :: R
- else
-  if
-   match r with
-   | nat_reg n' => Nat.ltb n n'
-   | _ => false
-   end
-  then (n, v1) :: p :: R
-  else (r, w) :: (n !->r v1; R))
- *)
-
-
-(*
-raise abort's translation involves mov sp r1
-label_handle involves mkstk sp, and mov sp r2 in the end.
-  how handle works: make a new stack temporarily, call the function
-  then ignore the new stack and go back to previous stack
-
-label_raise
-  sp now gets the location given by argument v1, translated to r1
-  we then call the handler
-label_resume
-  similar, we also put content in r1 to sp
-
-normally, sp points to top of first stack. When raising, sp points
-to some middle stack, when resuming, sp go back to some stack
-So we can view H_stack as two chuncks, 1 representing K of lexi,
-the other representing heap of continuations.
- *)
-(*
-change sfree from r to sp in premise. Wrong register
-for call and return, also increment and decrement stack pointer
-    in principle we can also do it without changing stack pointer,
-    but in practice that would require the offset of return to be
-    j-1, so still we need to make some changes
-
-
-load: used in 
-  translating variables, 
-  getting value/pi (load r1 r1 i): load from tuple,
-    r1 always have offset 0, no need to special consider
-  raise: load from stack, counting from bottom, also
-    always offset 0
-      nonono, these are also counting from top of stack
-  raise general:
-  resume:
-
-raising handler has wrong offsets
- *)

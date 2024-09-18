@@ -1,12 +1,12 @@
-From LSEH Require Import LexiToSalt.
+From LSEH Require Import LexaToSalt.
 Import Lists.List. Import ListNotations.
-Import Strings.String. Import Lexi. Import Salt.
-Module L := Lexi. Module S := Salt. Module LS := LexiToSalt.
-Delimit Scope Lexi_scope with L_scope.
+Import Strings.String. Import Lexa. Import Salt.
+Module L := Lexa. Module S := Salt. Module LS := LexaToSalt.
+Delimit Scope Lexa_scope with L_scope.
 
 (* All salt heaps start with every label allocating 0 space *)
 (* ----------------------------------------------------------
-            Traversal of Lexi terms
+            Traversal of Lexa terms
    ---------------------------------------------------------- *)
 Inductive trav_exp (p : L.value -> Prop)
   : L.expr -> Prop :=
@@ -39,13 +39,13 @@ Inductive trav_tm (p : nat -> L.value -> Prop)
     trav_exp (p k) exp -> trav_tm p (1+k) t ->
     trav_tm p k (bind exp t).
 (* ----------------------------------------------------------
-                   Possibly don't need locally nameless     
+            Definition for well formed terms that
+          doesn' have out of range de Brujin indices
    ---------------------------------------------------------- *)
 Inductive wf_val : nat -> L.value -> Prop :=
 | wf_ind : forall k ind,
     ind < k ->
-    wf_val k (var_val (dbjind_var ind))
-| wf_fvar : forall k fvar, wf_val k (var_val (free_var fvar))
+    wf_val k (ind_val (dbj_ind ind))
 | wf_cst : forall k cst, wf_val k (const_val cst).
 Definition wf_tm (E:local_env) t := trav_tm wf_val (List.length E) t.
 Inductive wf_func_tm : L.function -> Prop :=
@@ -54,7 +54,7 @@ Inductive wf_func_tm : L.function -> Prop :=
 | wf_ns_func : wf_func_tm ns_func.
 
 (* ----------------------------------------------------------
-    Initial & Final Predicates for Lexi and Salt 
+    Initial & Final Predicates for Lexa and Salt 
    ---------------------------------------------------------- *)
 Definition exit_lab : string := "exit"%string.
 Definition init_lab : string := "init"%string.
@@ -64,7 +64,7 @@ Definition main_lab : string := "main"%string.
    000 as an arbitrary value *)
 Definition L_init_tm :=
   bind (app (c_lab main_lab) [])
-    (bind (app exit_lab [var_val 0]) (val_term 000)).
+    (bind (app exit_lab [ind_val 0]) (val_term 000)).
 Definition L_init_func :=
   (exit_lab !->c func 1 L.halt;
    init_lab !->c func 0 L_init_tm ; L.c_empty)%L_scope.
@@ -121,7 +121,7 @@ Inductive init_L :
   L.code_mem -> (L.code_mem * L.heap * L.eval_context
                 * L.local_env * L.term) -> Prop :=
 | mk_init_L : forall (C:L.code_mem) (H:L.heap) dummy_hdl,
-    dummy_hdl = handler_f ns_hdl_lab
+    dummy_hdl = hdl_f ns_hdl_lab
                   ns_obj_lab ns_clab general ->
     (forall (x:string) n t,
         L.c_comp L_init_func C x = func n t ->
@@ -130,9 +130,9 @@ Inductive init_L :
     init_L C
       (L.c_comp L_init_func C,
         L.h_empty, [hdl_led_lst dummy_hdl []] ,[], L_init_tm)%L_scope.
-Definition ns_hloc_str : S.heap_loc := hloc_str 0.
-Definition ns_hloc : S.word := hloc ns_hloc_str 0.
-Definition ns_hdl_hloc : S.word := hloc ns_hloc_str 4.
+Definition ns_hloc_num : S.heap_loc := hloc_num 0.
+Definition ns_hloc : S.word := hloc ns_hloc_num 0.
+Definition ns_hdl_hloc : S.word := hloc ns_hloc_num 4.
 Definition ns_cloc : S.word := cloc ""%string 0.
 Inductive init_S : S.code_mem ->
   (S.code_mem * S.heap * reg_file) -> Prop :=
@@ -148,8 +148,8 @@ Inductive init_S : S.code_mem ->
         S_builtin_ins x = ns_ins_seq) ->
     init_S
       uc (c_comp S_builtin_ins (c_comp S_init_ins uc),
-        ([(ns_hloc_str,stack dummy_hdl_stk)] ++ [],th_comp th_empty th_empty),
-        [(ip,loc_w (cloc init_lab 0));(sp,loc_w (hloc ns_hloc_str 5));
+        ([(ns_hloc_num,stack dummy_hdl_stk)] ++ [],th_comp th_empty th_empty),
+        [(ip,loc_w (cloc init_lab 0));(sp,loc_w (hloc ns_hloc_num 5));
          (r0,ns);(r1,ns);
          (r2,ns);(r3,ns);(r4,ns);
          (r5,ns);(r6,ns)]).
@@ -172,7 +172,7 @@ Inductive final_S : (S.code_mem * S.heap * reg_file) -> word -> Prop :=
 
 
 (* ----------------------------------------------------------
-            Relate configurations of Lexi and Salt 
+            Relate configurations of Lexa and Salt 
    ---------------------------------------------------------- *)
 Inductive LS_rel_run_cst :
   L.runtime_const -> S.word -> Prop :=
@@ -199,21 +199,6 @@ Inductive LS_rel_ins : (L.local_env*L.term) -> S.instr_seq -> Prop :=
     wf_tm E t ->
     LS_rel_ins (E,t)
       (ins_trans E t).
-(*Definition frame_trans (af:L.a_frame) : S.stack_heap_val :=
-  match af with
-  | act_f E t =>
-      stack ((loc_w (cloc C_lab (List.length lst)))
-               :: (run_cst_trans E))
-  end.
-Inductive LS_rel_frame (C_mem : S.code_mem): L.a_frame -> S.stack_heap_val -> Prop :=
-| rel_frame : forall E t Ilst C_lab i lst s,
-    LS_rel_ins (L.ns :: E,t) (ins_seq (tl Ilst))
-    -> C_mem C_lab = ins_seq (lst ++ Ilst)
-    -> nth 0 Ilst halt = push r1 ->
-    
-    LS_rel_frame C_mem (act_f E t)
-      (stack ((loc_w (cloc C_lab i)) :: s)).*)
-
 Inductive LS_rel_frame (C_mem : S.code_mem): L.a_frame -> list S.word -> Prop :=
   rel_frame : forall E t Ilst C_lab i lst s,
     LS_rel_ins (L.ns :: E,t) (ins_seq (tl Ilst))
@@ -233,7 +218,7 @@ Inductive LS_rel_hdl (L : nat)
   : L.h_frame -> list S.word -> Prop :=
 | rel_hdl_general : forall L_env (Clab_op:string) L_prev (s_prev:list word),
     LS_rel_hdl L
-      (handler_f (hdl_lab L)
+      (hdl_f (hdl_lab L)
               (obj_lab L_env) Clab_op general)
       [loc_w (cloc handle_loc 10);
        loc_w (hloc L_prev (List.length s_prev));
@@ -265,7 +250,7 @@ Inductive LS_rel_eval_ctx (C_mem : S.code_mem) :
     (forall L' s' H',
         H = (L',stack s') :: H' -> 
         stk_points_to s s' L') ->
-    LS_rel_eval_ctx C_mem (K :: Ks) ((hloc_str L,stack s) :: H).
+    LS_rel_eval_ctx C_mem (K :: Ks) ((hloc_num L,stack s) :: H).
 Inductive LS_rel_env_context (C_mem : S.code_mem) : (L.eval_context * L.local_env) ->
   (S.stack_heap * S.heap_location) -> Prop :=
 | rel_env_context :
@@ -309,7 +294,7 @@ Inductive LS_rel_cont_heap (C_mem : S.code_mem) :
     LS_rel_cont_heap C_mem
       (obj_lab L_rsp !->ch cont Ks; LH_cont)%L_scope
       (H_one_cont ++ SH_cont,
-        hloc_str L_rsp !->t tuple [loc_w (hloc L_last 4)]; SH_ctup).
+        hloc_num L_rsp !->t tuple [loc_w (hloc L_last 4)]; SH_ctup).
 (* each continuation is a list of stacks, like H_stk.
    The difference is that the first stack doesn't point
    back to the context frame where it was cut off, but rather
@@ -334,17 +319,7 @@ Inductive LS_rel_code_mem : L.code_mem -> S.code_mem -> Prop :=
         LC x = func n t ->
         S_builtin_ins x = ns_ins_seq) ->
     LS_rel_code_mem LC SC.
-(* A runtime lexi config relates to a runtime salt config if
-   subparts of the configs relates to each other accordingly,
-   and that the lexi term t is locally closed (i.e. without
-   nonsensically large de brujin indices)
 
-   The translation for free variables is undefined, but for
-   the simplicity of the proof I will make all free variables
-   dereference to L.ns, and the translated salt instruction
-   will be mov r S.ns, so that they still relate. Therefore
-   this LS_rel relation also relates lexi programs containing
-   free variables, although we don't care about them. *)
 Inductive LS_rel :
   (L.code_mem * L.heap * L.eval_context * L.local_env * L.term)
   -> (S.code_mem * S.heap * reg_file) -> Prop :=
@@ -361,7 +336,6 @@ Inductive LS_rel :
     LS_rel_code_mem LC SC ->
     (c_comp S_builtin_ins SC) Clab = ins_seq (lst ++ SIlst) ->
     List.length lst = len ->
-    (*lc_term Lt \/ body Lt*)
     LS_rel (LC, LH, LK, LE, Lt)
       (c_comp S_builtin_ins SC,
         (SH_stack ++ SH_cont,th_comp SH_tup SH_ctup),
@@ -369,17 +343,3 @@ Inductive LS_rel :
          (r0,o0);(r1,o1);
          (r2,o2);(r3,o3);(r4,o4);
          (r5,o5);(r6,o6)]).
-(*
-in rel_frame, the constructor for insturction sequence
-shouldn't be ::, but should be ;
-
-the rules for hdl-led ctx needs to be changed
-handlers are on top not bottom, syntax wrong
-  other than this the whole rules need to change
-
-
-built in raise instruction sequence have 1 offset
-wrong, and they should all be load _ [_-_], not
-load _ [_+_] (same for store), because you go 
-down the stack
-*)
