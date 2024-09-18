@@ -1,4 +1,8 @@
-# Lexa - A Programming Language Supporting Compiled Lexical Scoped Effect Handlers
+# Lexa - A Programming Language Supporting Compiled Lexical Scoped Effect Handlers, formally verified in Coq
+
+## Introduction
+
+Lexa is a programming language that can compile lexical scoped effect handlers into normal assembly code without any special construct. This project is the Coq formalization of Lexa and includes a proof of correctness of the language.
 
 This project contains the Coq formalization of the syntax and operational semantics of LEXA and SALT, the compiler from LEXA to SALT, and the proof of correctness of compiler.
 
@@ -14,4 +18,4 @@ This project contains the Coq formalization of the syntax and operational semant
 
 - Infrastructure.v contains some lemmas used in the proofs in SimProof.v, and some simple tactics.
 
-SimProof.v contains the simulation proof for the correctness of translation.
+- SimProof.v contains the simulation proof for the correctness of translation.
